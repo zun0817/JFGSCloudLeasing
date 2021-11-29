@@ -1,0 +1,30 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="Theme.JFGSCloudLeasing" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <item name="colorPrimary">@color/white</item>
+        <item name="colorPrimaryDark">@color/white</item>
+        <item name="colorAccent">@color/theme_color</item>
+    </style>
+
+    <!--无标题栏样式-->
+    <style name="ActivityTheme" parent="Theme.JFGSCloudLeasing">
+        <item name="android:windowNoTitle">true</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <!--无标题栏样式-->
+    <style name="SplashTheme" parent="Theme.JFGSCloudLeasing">
+        <item name="android:windowNoTitle">true</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowBackground">@mipmap/icon_welcome</item>
+    </style>
+
+    <!--有标题栏样式-->
+    <style name="ActionBarActivityTheme" parent="Theme.JFGSCloudLeasing">
+
+    </style>
+
+</resources>

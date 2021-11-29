@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/forget_phone_edit"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:background="@android:color/transparent"
+            android:hint="请输入手机号码"
+            android:imeOptions="actionNext"
+            android:inputType="phone"
+            android:maxLength="11"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:text=""
+            android:textColor="@color/color_262626"
+            android:textColorHint="@color/color_BFBFBF"
+            android:textSize="15sp" />
+
+        <View
+            android:id="@+id/forget_view1"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/color_F7F7F7" />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="12dp">
+
+        <ImageView
+            android:id="@+id/forget_eye_img1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/icon_login_show" />
+
+        <EditText
+            android:id="@+id/forget_password_edit1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="10dp"
+            android:layout_toLeftOf="@+id/forget_eye_img1"
+            android:background="@android:color/transparent"
+            android:hint="请输入新密码"
+            android:imeOptions="actionNext"
+            android:inputType="textPassword"
+            android:maxLength="6"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:textColor="@color/color_262626"
+            android:textColorHint="@color/color_BFBFBF"
+            android:textSize="15sp" />
+
+        <View
+            android:id="@+id/forget_view2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/color_F7F7F7" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="12dp">
+
+        <ImageView
+            android:id="@+id/forget_eye_img2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/icon_login_show" />
+
+        <EditText
+            android:id="@+id/forget_password_edit2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="10dp"
+            android:layout_toLeftOf="@+id/forget_eye_img2"
+            android:background="@android:color/transparent"
+            android:hint="请再次输入新密码"
+            android:imeOptions="actionNext"
+            android:inputType="textPassword"
+            android:maxLength="6"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:textColor="@color/color_262626"
+            android:textColorHint="@color/color_BFBFBF"
+            android:textSize="15sp" />
+
+        <View
+            android:id="@+id/forget_view3"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/color_F7F7F7" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="12dp">
+
+        <TextView
+            android:id="@+id/forget_sms_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:text="获取验证码"
+            android:textColor="@color/color_0E64BC"
+            android:textSize="15sp" />
+
+        <EditText
+            android:id="@+id/forget_sms_edit"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="10dp"
+            android:layout_toLeftOf="@+id/forget_sms_tv"
+            android:background="@android:color/transparent"
+            android:hint="请输入验证码"
+            android:imeOptions="actionDone"
+            android:inputType="textPassword"
+            android:maxLength="6"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:textColor="@color/color_262626"
+            android:textColorHint="@color/color_BFBFBF"
+            android:textSize="15sp" />
+
+        <View
+            android:id="@+id/forget_view4"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/color_F7F7F7" />
+
+    </RelativeLayout>
+
+</LinearLayout>
