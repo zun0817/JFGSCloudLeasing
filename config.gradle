@@ -36,6 +36,7 @@ versions.immersionbar = "3.0.0"
 versions.swipebacklayout = "1.1.0"
 versions.ptr = "1.0.11"
 versions.loadingview = "1.0"
+versions.bannerviewpager = "3.5.4"
 ext.versions = versions
 
 /**

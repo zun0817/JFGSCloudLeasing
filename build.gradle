@@ -9,6 +9,9 @@ buildscript {
 
 allprojects {
     addRepos(repositories)
+    repositories {
+        maven { url 'https://www.jitpack.io' }
+    }
 }
 
 task clean(type: Delete) {

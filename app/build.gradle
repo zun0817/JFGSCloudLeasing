@@ -154,4 +154,7 @@ dependencies {
 
     // 加载动画
     implementation("com.ldoublem.loadingview:loadingviewlib:${versions.loadingview}")
+
+    // 轮播图
+    implementation("com.github.zhpanvip:bannerviewpager:${versions.bannerviewpager}")
 }
