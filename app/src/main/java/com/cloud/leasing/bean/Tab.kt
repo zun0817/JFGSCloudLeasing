@@ -9,6 +9,5 @@ data class Tab(
     val id: String,
     val title: String,
     val icon: Int,
-    val color:Int,
     val fragmentClz: KClass<out BaseFragment<*>>
 )
