@@ -1,8 +1,10 @@
 package com.cloud.leasing.module.home
 
+import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.RecyclerView
 import com.cloud.leasing.R
@@ -16,10 +18,11 @@ import com.cloud.leasing.databinding.FragmentHomeBinding
 import com.cloud.leasing.eventbus.XEventBus
 import com.gyf.immersionbar.ktx.immersionBar
 
-/**
- * 首页
- */
-class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::inflate) {
+
+
+@RequiresApi(Build.VERSION_CODES.M)
+class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::inflate),
+    View.OnScrollChangeListener {
 
     private var mPictureList: MutableList<Int> = ArrayList()
 
@@ -62,6 +65,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
     }
 
     private fun initView() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            viewBinding.mainScrollview.setOnScrollChangeListener(this)
+        }
         viewBinding.rvList.init(
             XRecyclerView.Config()
                 .setViewModel(viewModel)
@@ -104,6 +110,21 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         }
     }
 
+    override fun onScrollChange(
+        v: View?,
+        scrollX: Int,
+        scrollY: Int,
+        oldScrollX: Int,
+        oldScrollY: Int
+    ) {
+        if (scrollY >= 170) {
+            viewBinding.mainSearchImg.visibility = View.VISIBLE
+        } else if (scrollY < 150) {
+            viewBinding.mainSearchImg.visibility = View.GONE
+        }
+    }
+
+
     override fun onPause() {
         super.onPause()
         viewBinding.mainBannerView.stopLoop()
@@ -124,6 +145,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
 
     override fun onHiddenChanged(hidden: Boolean) {
         super.onHiddenChanged(hidden)
-        // 这里可以添加页面打点
+        initSystemBar()
     }
+
 }

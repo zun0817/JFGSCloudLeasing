@@ -10,7 +10,7 @@ import com.cloud.leasing.bean.Tab
 import com.cloud.leasing.constant.PageName
 import com.cloud.leasing.constant.TabId
 import com.cloud.leasing.databinding.ActivityMainBinding
-import com.cloud.leasing.module.gold.GoldFragment
+import com.cloud.leasing.module.device.DeviceFragment
 import com.cloud.leasing.module.home.HomeFragment
 import com.cloud.leasing.module.mine.MineFragment
 import com.cloud.leasing.widget.TabIndicatorView
@@ -65,10 +65,10 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
                 HomeFragment::class
             ),
             Tab(
-                TabId.GOLD,
+                TabId.DEVICE,
                 getString(R.string.page_device),
                 R.drawable.selector_btn_gold,
-                GoldFragment::class
+                DeviceFragment::class
             ),
             Tab(
                 TabId.MINE,

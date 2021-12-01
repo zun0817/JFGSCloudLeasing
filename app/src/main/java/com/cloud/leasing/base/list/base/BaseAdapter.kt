@@ -1,10 +1,7 @@
 package com.cloud.leasing.base.list.base
 
 import com.cloud.leasing.base.list.multitype.MultiTypeAdapter
-import com.cloud.leasing.item.LoadMoreViewDelegate
-import com.cloud.leasing.item.Test1ViewDelegate
-import com.cloud.leasing.item.Test2ViewDelegate
-import com.cloud.leasing.item.Test3ViewDelegate
+import com.cloud.leasing.item.*
 
 open class BaseAdapter : MultiTypeAdapter() {
 
@@ -13,6 +10,7 @@ open class BaseAdapter : MultiTypeAdapter() {
         register(Test1ViewDelegate())
         register(Test2ViewDelegate())
         register(Test3ViewDelegate())
+        register(DeviceItemViewDelegate())
     }
 
     open fun setViewData(viewData: List<BaseViewData<*>>) {

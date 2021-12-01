@@ -41,6 +41,6 @@ class MineFragment : BaseFragment<FragmentMineBinding>(FragmentMineBinding::infl
 
     override fun onHiddenChanged(hidden: Boolean) {
         super.onHiddenChanged(hidden)
-        // 这里可以添加页面打点
+        initSystemBar()
     }
 }
