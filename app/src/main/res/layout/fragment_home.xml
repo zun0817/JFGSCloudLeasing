@@ -18,7 +18,7 @@
         <ImageView
             android:id="@+id/main_mask_img1"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="55dp"
             android:scaleType="fitXY"
             android:src="@mipmap/icon_main_bg_up"
             app:layout_constraintTop_toTopOf="parent" />
@@ -28,7 +28,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
-            android:layout_marginTop="10dp"
             android:src="@mipmap/icon_main_logo"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -52,6 +51,7 @@
         android:layout_height="match_parent"
         android:layout_below="@id/main_cl"
         android:fillViewport="true"
+        android:scrollbars="none"
         android:overScrollMode="never">
 
         <LinearLayout
@@ -122,6 +122,7 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/home_want_tv"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -134,6 +135,7 @@
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/home_have_tv"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -146,6 +148,7 @@
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/home_publish_tv"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -158,6 +161,7 @@
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/home_service_tv"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -286,7 +290,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:padding="12dp"
-                    android:text="~ 已经到底了啦 ~"
+                    android:text="- 已经到底部了 -"
                     android:textColor="@color/color_999999"
                     android:textSize="14sp" />
 

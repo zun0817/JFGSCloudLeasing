@@ -10,6 +10,11 @@ import androidx.annotation.StringDef
     PageName.MAIN,
     PageName.HOME,
     PageName.DEVICE,
+    PageName.WANT,
+    PageName.HAVE,
+    PageName.SERVICE,
+    PageName.PUBLISH,
+
     PageName.ACGN,
     PageName.SMALL_VIDEO,
     PageName.GOLD,
@@ -27,6 +32,11 @@ annotation class PageName {
         const val HOME = "home"
         const val DEVICE = "device"
         const val MINE = "mine"
+        const val WANT = "want"
+        const val HAVE = "have"
+        const val SERVICE = "service"
+        const val PUBLISH = "publish"
+
         const val ACGN = "acgn"
         const val SMALL_VIDEO = "small_video"
         const val GOLD = "gold"

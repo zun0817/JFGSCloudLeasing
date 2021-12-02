@@ -13,7 +13,7 @@
         <ImageView
             android:id="@+id/device_mask_img"
             android:layout_width="match_parent"
-            android:layout_height="55dp"
+            android:layout_height="50dp"
             android:scaleType="fitXY"
             android:src="@mipmap/icon_device_mask"
             app:layout_constraintTop_toTopOf="parent" />
@@ -61,6 +61,7 @@
         android:id="@+id/device_recyclerview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/device_cl" />
+        android:layout_below="@id/device_cl"
+        android:scrollbars="none"/>
 
 </RelativeLayout>

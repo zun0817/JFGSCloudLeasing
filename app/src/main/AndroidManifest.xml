@@ -47,10 +47,32 @@
         <activity
             android:name=".module.forget.ForgetActivity"
             android:exported="true"
+            android:screenOrientation="portrait"
             android:theme="@style/ActivityTheme" />
         <activity
             android:name=".module.register.RegisterActivity"
             android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/ActivityTheme" />
+        <activity
+            android:name=".module.home.have.HaveActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/ActivityTheme" />
+        <activity
+            android:name=".module.home.want.WantActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/ActivityTheme" />
+        <activity
+            android:name=".module.home.service.ServiceActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/ActivityTheme" />
+        <activity
+            android:name=".module.home.publish.PublishActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"
             android:theme="@style/ActivityTheme" />
         <activity
             android:name=".module.about.AboutActivity"

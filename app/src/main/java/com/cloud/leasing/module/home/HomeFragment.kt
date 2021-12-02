@@ -16,13 +16,15 @@ import com.cloud.leasing.constant.EventName
 import com.cloud.leasing.constant.PageName
 import com.cloud.leasing.databinding.FragmentHomeBinding
 import com.cloud.leasing.eventbus.XEventBus
+import com.cloud.leasing.module.home.have.HaveActivity
+import com.cloud.leasing.module.home.want.WantActivity
 import com.gyf.immersionbar.ktx.immersionBar
 
 
 
 @RequiresApi(Build.VERSION_CODES.M)
 class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::inflate),
-    View.OnScrollChangeListener {
+    View.OnScrollChangeListener, View.OnClickListener {
 
     private var mPictureList: MutableList<Int> = ArrayList()
 
@@ -55,6 +57,13 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         }
     }
 
+    override fun onClick(v: View?) {
+        when(v!!.id){
+            R.id.home_want_tv -> WantActivity.startActivity(requireActivity())
+            R.id.home_have_tv -> HaveActivity.startActivity(requireActivity())
+        }
+    }
+
     private fun getPicList(): MutableList<Int> {
         for (i in 0..3) {
             val drawable =
@@ -65,6 +74,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
     }
 
     private fun initView() {
+        viewBinding.homeWantTv.setOnClickListener(this)
+        viewBinding.homeHaveTv.setOnClickListener(this)
+        viewBinding.homePublishTv.setOnClickListener(this)
+        viewBinding.homeServiceTv.setOnClickListener(this)
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             viewBinding.mainScrollview.setOnScrollChangeListener(this)
         }
@@ -117,7 +131,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         oldScrollX: Int,
         oldScrollY: Int
     ) {
-        if (scrollY >= 170) {
+        if (scrollY >= 150) {
             viewBinding.mainSearchImg.visibility = View.VISIBLE
         } else if (scrollY < 150) {
             viewBinding.mainSearchImg.visibility = View.GONE

@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="15dp"
+    android:layout_marginTop="10dp"
+    android:background="@drawable/shape_item_white">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="10dp"
+        android:paddingVertical="15dp"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/have_item_date_label_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="创建时间："
+            android:textSize="14sp"
+            android:textColor="@color/color_999999"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"/>
+
+        <TextView
+            android:id="@+id/have_item_date_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2021-12-02"
+            android:textSize="14sp"
+            android:textColor="@color/color_999999"
+            android:layout_marginStart="10dp"
+            app:layout_constraintLeft_toRightOf="@id/have_item_date_label_tv"
+            app:layout_constraintTop_toTopOf="@id/have_item_date_label_tv"
+            app:layout_constraintBottom_toBottomOf="@id/have_item_date_label_tv"/>
+
+        <View
+            android:id="@+id/have_item_view"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/color_14707070"
+            app:layout_constraintTop_toBottomOf="@id/have_item_date_label_tv"
+            android:layout_marginTop="15dp"/>
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/have_item_img"
+            android:layout_width="92dp"
+            android:layout_height="92dp"
+            android:src="@mipmap/icon_launcher_round"
+            app:shapeAppearance="@style/roundedCornerStyle"
+            android:layout_marginTop="12dp"
+            app:layout_constraintTop_toBottomOf="@id/have_item_view"
+            app:layout_constraintLeft_toLeftOf="parent"/>
+
+        <TextView
+            android:id="@+id/have_item_name_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:text="郑州·中国中铁"
+            android:textColor="@color/color_010F1D"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toRightOf="@id/have_item_img"
+            app:layout_constraintTop_toTopOf="@+id/have_item_img" />
+
+        <TextView
+            android:id="@+id/have_item_type_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:gravity="center_vertical"
+            android:text="设备类型"
+            android:textColor="@color/color_999999"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@id/have_item_img"
+            app:layout_constraintLeft_toRightOf="@id/have_item_img" />
+
+        <TextView
+            android:id="@+id/have_item_follow_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:gravity="center_vertical"
+            android:text="土压平衡"
+            android:textColor="@color/color_010F1D"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@id/have_item_type_tv"
+            app:layout_constraintTop_toTopOf="@id/have_item_type_tv"
+            app:layout_constraintLeft_toRightOf="@id/have_item_type_tv" />
+
+        <TextView
+            android:id="@+id/have_item_serial_label_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:gravity="center_vertical"
+            android:text="设备编号"
+            android:textColor="@color/color_999999"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@id/have_item_img"
+            app:layout_constraintTop_toTopOf="@id/have_item_img"
+            app:layout_constraintLeft_toRightOf="@id/have_item_img" />
+
+        <TextView
+            android:id="@+id/have_item_serial_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:gravity="center_vertical"
+            android:text="中铁459号"
+            android:textColor="@color/color_010F1D"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@id/have_item_serial_label_tv"
+            app:layout_constraintTop_toTopOf="@id/have_item_serial_label_tv"
+            app:layout_constraintLeft_toRightOf="@id/have_item_serial_label_tv" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/have_item_label_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:background="@drawable/shape_want_label_0e64bc"
+        android:gravity="center"
+        android:paddingHorizontal="10dp"
+        android:paddingVertical="2dp"
+        android:text="已匹配"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

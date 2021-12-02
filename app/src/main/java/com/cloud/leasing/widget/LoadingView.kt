@@ -16,7 +16,7 @@ class LoadingView @JvmOverloads constructor(
 ) : ConstraintLayout(context, attrs, defStyleAttr) {
 
     val viewBinding = ViewLoadingBinding.inflate(LayoutInflater.from(context), this, true).apply {
-        viewLoading.setViewColor(resources.getColor(R.color.theme_color))
+        viewLoading.setViewColor(resources.getColor(R.color.color_0E64BC))
     }
 
     override fun setVisibility(visibility: Int) {
