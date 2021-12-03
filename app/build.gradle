@@ -76,6 +76,8 @@ kapt {
 }
 
 dependencies {
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+
     // 测试
     testImplementation("junit:junit:${versions.junit}")
     androidTestImplementation("androidx.test.ext:junit:${versions.androidx_junit}")

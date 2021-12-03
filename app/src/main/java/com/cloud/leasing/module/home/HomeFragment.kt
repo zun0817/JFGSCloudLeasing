@@ -17,6 +17,8 @@ import com.cloud.leasing.constant.PageName
 import com.cloud.leasing.databinding.FragmentHomeBinding
 import com.cloud.leasing.eventbus.XEventBus
 import com.cloud.leasing.module.home.have.HaveActivity
+import com.cloud.leasing.module.home.publish.PublishActivity
+import com.cloud.leasing.module.home.service.ServiceActivity
 import com.cloud.leasing.module.home.want.WantActivity
 import com.gyf.immersionbar.ktx.immersionBar
 
@@ -61,6 +63,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         when(v!!.id){
             R.id.home_want_tv -> WantActivity.startActivity(requireActivity())
             R.id.home_have_tv -> HaveActivity.startActivity(requireActivity())
+            R.id.home_service_tv -> ServiceActivity.startActivity(requireActivity())
+            R.id.home_publish_tv -> PublishActivity.startActivity(requireActivity())
         }
     }
 

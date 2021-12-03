@@ -14,6 +14,8 @@ open class BaseAdapter : MultiTypeAdapter() {
         register(WantItemViewDelegate())
         register(HaveItemViewDelegate())
         register(ServiceItemViewDelegate())
+        register(MineDeviceItemViewDelegate())
+        register(MinePublishItemViewDelegate())
     }
 
     open fun setViewData(viewData: List<BaseViewData<*>>) {

@@ -1,5 +1,7 @@
 package com.cloud.leasing.module.home.service
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -11,9 +13,19 @@ import com.cloud.leasing.base.list.XRecyclerView
 import com.cloud.leasing.base.list.base.BaseViewData
 import com.cloud.leasing.constant.PageName
 import com.cloud.leasing.databinding.ActivityServiceBinding
+import com.cloud.leasing.util.ViewTouchUtil
 import com.gyf.immersionbar.ktx.immersionBar
 
-class ServiceActivity : BaseActivity<ActivityServiceBinding>(ActivityServiceBinding::inflate) {
+class ServiceActivity : BaseActivity<ActivityServiceBinding>(ActivityServiceBinding::inflate),
+    View.OnClickListener {
+
+    companion object {
+        fun startActivity(activity: Activity) {
+            val intent = Intent()
+            intent.setClass(activity, ServiceActivity::class.java)
+            activity.startActivity(intent)
+        }
+    }
 
     private val viewModel: ServiceViewModel by viewModels()
 
@@ -26,9 +38,10 @@ class ServiceActivity : BaseActivity<ActivityServiceBinding>(ActivityServiceBind
     }
 
     private fun initView() {
+        viewBinding.serviceBackImg.setOnClickListener(this)
+        ViewTouchUtil.expandViewTouchDelegate(viewBinding.serviceBackImg)
         viewBinding.serviceRecyclerview.init(
             XRecyclerView.Config()
-                .setPullRefreshEnable(false)
                 .setPullUploadMoreEnable(false)
                 .setViewModel(viewModel)
                 .setOnItemClickListener(object : XRecyclerView.OnItemClickListener {
@@ -57,6 +70,12 @@ class ServiceActivity : BaseActivity<ActivityServiceBinding>(ActivityServiceBind
             statusBarDarkFont(true)
             navigationBarColor(R.color.white)
             navigationBarDarkIcon(true)
+        }
+    }
+
+    override fun onClick(v: View?) {
+        when (v!!.id) {
+            R.id.service_back_img -> this.finish()
         }
     }
 }

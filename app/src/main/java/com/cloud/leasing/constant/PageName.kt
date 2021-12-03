@@ -14,6 +14,8 @@ import androidx.annotation.StringDef
     PageName.HAVE,
     PageName.SERVICE,
     PageName.PUBLISH,
+    PageName.MINEDEVICE,
+    PageName.MINEPUBLISH,
 
     PageName.ACGN,
     PageName.SMALL_VIDEO,
@@ -36,6 +38,8 @@ annotation class PageName {
         const val HAVE = "have"
         const val SERVICE = "service"
         const val PUBLISH = "publish"
+        const val MINEDEVICE = "minedevice"
+        const val MINEPUBLISH = "minepublish"
 
         const val ACGN = "acgn"
         const val SMALL_VIDEO = "small_video"

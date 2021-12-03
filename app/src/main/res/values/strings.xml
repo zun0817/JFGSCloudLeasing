@@ -22,4 +22,5 @@
     <string name="load_more_no_network">无网络连接，请检查网络设置</string>
     <string name="load_more_network_error">网络异常，点击重试</string>
     <string name="load_more_no_more">- 已经到底部了 -</string>
+
 </resources>

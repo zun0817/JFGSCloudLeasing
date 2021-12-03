@@ -50,17 +50,17 @@ object ViewTouchUtil {
     }
 
     /**
-     * 扩大view的点击范围 左右上下都为15；
+     * 扩大view的点击范围 左右上下都为20；
      */
     fun expandViewTouchDelegate(view: View) {
         (view.parent as View).post {
             val bounds = Rect()
             view.isEnabled = true
             view.getHitRect(bounds)
-            bounds.top -= 15
-            bounds.bottom += 15
-            bounds.left -= 15
-            bounds.right += 15
+            bounds.top -= 20
+            bounds.bottom += 20
+            bounds.left -= 20
+            bounds.right += 20
             val touchDelegate = TouchDelegate(bounds, view)
             if (View::class.java.isInstance(view.parent)) {
                 (view.parent as View).touchDelegate = touchDelegate

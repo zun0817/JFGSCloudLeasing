@@ -50,7 +50,7 @@
             android:orientation="horizontal">
 
             <LinearLayout
-                android:id="@+id/pusblish_device_ll"
+                android:id="@+id/publish_device_ll"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -59,6 +59,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/publish_device_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="我的设备"
@@ -67,6 +68,7 @@
                     android:textStyle="bold" />
 
                 <View
+                    android:id="@+id/publish_device_view"
                     android:layout_width="25dp"
                     android:layout_height="2dp"
                     android:layout_marginTop="5dp"
@@ -75,7 +77,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/pusblish_require_ll"
+                android:id="@+id/publish_require_ll"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -84,6 +86,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/publish_require_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="我的需求"
@@ -92,6 +95,7 @@
                     android:textStyle="bold" />
 
                 <View
+                    android:id="@+id/publish_require_view"
                     android:layout_width="25dp"
                     android:layout_height="2dp"
                     android:layout_marginTop="5dp"
@@ -105,32 +109,9 @@
     </LinearLayout>
 
     <FrameLayout
-        android:id="@+id/publish_fl"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_alignParentBottom="true"
-        android:background="@color/white"
-        android:paddingHorizontal="20dp">
-
-        <TextView
-            android:id="@+id/publish_edit_tv"
-            android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:layout_gravity="center_vertical"
-            android:background="@drawable/shape_login_0e64bc"
-            android:gravity="center"
-            android:text="编辑"
-            android:textColor="@color/white"
-            android:textSize="17sp"
-            android:textStyle="bold" />
-
-    </FrameLayout>
-
-    <FrameLayout
         android:id="@+id/publish_fragment_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/publish_ll"
-        android:layout_above="@id/publish_fl"/>
+        android:layout_below="@id/publish_ll" />
 
 </RelativeLayout>
