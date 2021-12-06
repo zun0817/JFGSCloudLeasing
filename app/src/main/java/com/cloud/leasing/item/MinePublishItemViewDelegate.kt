@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.cloud.leasing.R
 import com.cloud.leasing.base.list.base.BaseItemViewDelegate
 import com.cloud.leasing.databinding.LayoutMinepublishItemBinding
 
@@ -22,10 +23,18 @@ class MinePublishItemViewDelegate :
     override fun onBindViewHolder(holder: ViewHolder, item: MinePublishItemViewData) {
         super.onBindViewHolder(holder, item)
         holder.viewBinding.minepublishItemTypeTv.text = item.value.name
-        if (item.value.isSelect) {
+        if (item.value.isVisible) {
             holder.viewBinding.minepublishSelectImg.visibility = View.VISIBLE
         } else {
             holder.viewBinding.minepublishSelectImg.visibility = View.GONE
+        }
+        if (item.value.isSelect) {
+            holder.viewBinding.minepublishSelectImg.setImageResource(R.mipmap.icon_select_yes)
+        } else {
+            holder.viewBinding.minepublishSelectImg.setImageResource(R.mipmap.icon_select_no)
+        }
+        holder.viewBinding.minepublishSelectImg.setOnClickListener {
+            performItemChildViewClick(it, item, holder, "选择")
         }
     }
 

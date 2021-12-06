@@ -135,7 +135,8 @@ class XRecyclerView @JvmOverloads constructor(
         // 下拉刷新监听
         viewBinding.refreshLayout.isEnabled = config.pullRefreshEnable
         if (config.pullRefreshEnable) {
-            viewBinding.refreshLayout.setOnPullRefreshListener(object : PullRefreshLayout.OnPullRefreshListener {
+            viewBinding.refreshLayout.setOnPullRefreshListener(object :
+                PullRefreshLayout.OnPullRefreshListener {
                 override fun onRefreshBegin() {
                     loadData(isLoadMore = false, isReLoad = false)
                 }
@@ -171,7 +172,8 @@ class XRecyclerView @JvmOverloads constructor(
                 }
             }
             // 上拉加载监听
-            viewBinding.loadMoreRecyclerView.setOnLoadMoreListener(object : LoadMoreRecyclerView.OnLoadMoreListener {
+            viewBinding.loadMoreRecyclerView.setOnLoadMoreListener(object :
+                LoadMoreRecyclerView.OnLoadMoreListener {
                 override fun onLoadMore(page: Int, totalItemsCount: Int) {
                     loadData(isLoadMore = true, isReLoad = false)
                 }
@@ -179,7 +181,10 @@ class XRecyclerView @JvmOverloads constructor(
         }
 
         // 网络状态监听
-        (activity.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager).requestNetwork(NetworkRequest.Builder().build(), networkCallback)
+        (activity.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager).requestNetwork(
+            NetworkRequest.Builder().build(),
+            networkCallback
+        )
 
         // 开始加载数据
         loadData(isLoadMore = false, isReLoad = false, showLoading = true)
@@ -199,7 +204,9 @@ class XRecyclerView @JvmOverloads constructor(
 
     override fun onDetachedFromWindow() {
         // 注销网络状态监听
-        (activity.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager).unregisterNetworkCallback(networkCallback)
+        (activity.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager).unregisterNetworkCallback(
+            networkCallback
+        )
         mainHandler.removeCallbacksAndMessages(null)
         super.onDetachedFromWindow()
     }
@@ -252,6 +259,10 @@ class XRecyclerView @JvmOverloads constructor(
         viewBinding.refreshLayout.autoRefresh()
     }
 
+    fun setViewData(viewData: List<BaseViewData<*>>) {
+        config.adapter.setViewData(viewData)
+    }
+
     /**
      * 悄悄更新数据
      */
@@ -262,14 +273,20 @@ class XRecyclerView @JvmOverloads constructor(
     fun removeData(position: Int) {
         val removedViewData = config.adapter.removeViewData(position)
         if (null != removedViewData) {
-            config.onItemDeleteListener?.onItemDelete(viewBinding.loadMoreRecyclerView, mutableListOf(removedViewData))
+            config.onItemDeleteListener?.onItemDelete(
+                viewBinding.loadMoreRecyclerView,
+                mutableListOf(removedViewData)
+            )
         }
     }
 
     fun removeData(viewData: BaseViewData<*>) {
         val removedViewData = config.adapter.removeViewData(viewData)
         if (null != removedViewData) {
-            config.onItemDeleteListener?.onItemDelete(viewBinding.loadMoreRecyclerView, mutableListOf(removedViewData))
+            config.onItemDeleteListener?.onItemDelete(
+                viewBinding.loadMoreRecyclerView,
+                mutableListOf(removedViewData)
+            )
         }
     }
 
@@ -290,33 +307,82 @@ class XRecyclerView @JvmOverloads constructor(
             }
         } else {
             // 普通item点击
-            config.onItemClickListener?.onItemClick(viewBinding.loadMoreRecyclerView, view, viewData, position, id)
+            config.onItemClickListener?.onItemClick(
+                viewBinding.loadMoreRecyclerView,
+                view,
+                viewData,
+                position,
+                id
+            )
         }
     }
 
-    fun performItemLongClick(view: View, viewData: BaseViewData<*>, position: Int, id: Long): Boolean {
+    fun performItemLongClick(
+        view: View,
+        viewData: BaseViewData<*>,
+        position: Int,
+        id: Long
+    ): Boolean {
         // 长按监听
         var consumed = false
         if (viewData !is LoadMoreViewData) {
-            consumed = config.onItemLongClickListener?.onItemLongClick(viewBinding.loadMoreRecyclerView, view, viewData, position, id) ?: false
+            consumed = config.onItemLongClickListener?.onItemLongClick(
+                viewBinding.loadMoreRecyclerView,
+                view,
+                viewData,
+                position,
+                id
+            ) ?: false
         }
         return consumed
     }
 
-    fun performItemChildViewClick(view: View, viewData: BaseViewData<*>, position: Int, id: Long, extra: Any?) {
-        config.onItemSubViewClickListener?.onItemChildViewClick(viewBinding.loadMoreRecyclerView, view, viewData, position, id, extra)
+    fun performItemChildViewClick(
+        view: View,
+        viewData: BaseViewData<*>,
+        position: Int,
+        id: Long,
+        extra: Any?
+    ) {
+        config.onItemSubViewClickListener?.onItemChildViewClick(
+            viewBinding.loadMoreRecyclerView,
+            view,
+            viewData,
+            position,
+            id,
+            extra
+        )
     }
 
     interface OnItemClickListener {
-        fun onItemClick(parent: RecyclerView, view: View, viewData: BaseViewData<*>, position: Int, id: Long)
+        fun onItemClick(
+            parent: RecyclerView,
+            view: View,
+            viewData: BaseViewData<*>,
+            position: Int,
+            id: Long
+        )
     }
 
     interface OnItemLongClickListener {
-        fun onItemLongClick(parent: RecyclerView, view: View, viewData: BaseViewData<*>, position: Int, id: Long): Boolean
+        fun onItemLongClick(
+            parent: RecyclerView,
+            view: View,
+            viewData: BaseViewData<*>,
+            position: Int,
+            id: Long
+        ): Boolean
     }
 
     interface OnItemChildViewClickListener {
-        fun onItemChildViewClick(parent: RecyclerView, view: View, viewData: BaseViewData<*>, position: Int, id: Long, extra: Any?)
+        fun onItemChildViewClick(
+            parent: RecyclerView,
+            view: View,
+            viewData: BaseViewData<*>,
+            position: Int,
+            id: Long,
+            extra: Any?
+        )
     }
 
     interface OnItemDeleteListener {

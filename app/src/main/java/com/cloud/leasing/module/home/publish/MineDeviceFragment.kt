@@ -12,6 +12,7 @@ import com.cloud.leasing.base.list.XRecyclerView
 import com.cloud.leasing.base.list.base.BaseViewData
 import com.cloud.leasing.constant.PageName
 import com.cloud.leasing.databinding.FragmentMineDeviceBinding
+import com.cloud.leasing.item.MineDeviceItemViewData
 
 
 class MineDeviceFragment :
@@ -22,7 +23,11 @@ class MineDeviceFragment :
         fun newInstance() = MineDeviceFragment()
     }
 
-    private var isAllSelect = true
+    private var isAllSelect = false
+
+    private var isAllVisible = false
+
+    private var datas: MutableList<MineDeviceItemViewData> = mutableListOf()
 
     private val viewModel: MineDeviceViewModel by viewModels()
 
@@ -31,6 +36,7 @@ class MineDeviceFragment :
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initView()
+        initData()
     }
 
     override fun onClick(v: View?) {
@@ -38,9 +44,11 @@ class MineDeviceFragment :
             R.id.mine_device_edit_tv -> {
                 viewBinding.mineDeviceEditTv.visibility = View.GONE
                 viewBinding.mineDeviceDeleteCl.visibility = View.VISIBLE
+                refreshVisibleData(true)
+                isAllVisible = true
             }
             R.id.mine_device_selectall_tv -> {
-                if (isAllSelect) {
+                if (!isAllSelect) {
                     val drawable = resources.getDrawable(R.mipmap.icon_select_yes)
                     drawable.setBounds(0, 0, drawable.intrinsicWidth, drawable.intrinsicHeight)
                     viewBinding.mineDeviceSelectallTv.setCompoundDrawables(
@@ -59,6 +67,7 @@ class MineDeviceFragment :
                         null
                     )
                 }
+                refershSelectData(!isAllSelect)
                 isAllSelect = !isAllSelect
             }
             R.id.mine_device_deleteall_tv -> {
@@ -67,6 +76,10 @@ class MineDeviceFragment :
             R.id.mine_device_cancel_tv -> {
                 viewBinding.mineDeviceEditTv.visibility = View.VISIBLE
                 viewBinding.mineDeviceDeleteCl.visibility = View.GONE
+                refreshVisibleData(false)
+                refershSelectData(false)
+                isAllVisible = false
+                isAllSelect = false
             }
         }
     }
@@ -117,12 +130,41 @@ class MineDeviceFragment :
         )
     }
 
+    private fun initData() {
+        viewModel.listData.observe(viewLifecycleOwner) { it ->
+            datas = it
+            it.forEach {
+                it.value.isSelect = isAllSelect
+                it.value.isVisible = isAllVisible
+            }
+            viewBinding.mineDeviceRecyclerview.setViewData(it)
+        }
+    }
+
+    private fun refershSelectData(isSelect: Boolean) {
+        datas.forEach {
+            it.value.isSelect = isSelect
+        }
+        viewBinding.mineDeviceRecyclerview.setViewData(viewModel.list)
+    }
+
+    private fun refreshVisibleData(isVisible: Boolean) {
+        datas.forEach {
+            it.value.isVisible = isVisible
+        }
+        viewBinding.mineDeviceRecyclerview.setViewData(viewModel.list)
+    }
+
     override fun onHiddenChanged(hidden: Boolean) {
         super.onHiddenChanged(hidden)
         Log.e("***device", hidden.toString())
         if (hidden) {
             viewBinding.mineDeviceEditTv.visibility = View.VISIBLE
             viewBinding.mineDeviceDeleteCl.visibility = View.GONE
+            refreshVisibleData(false)
+            refershSelectData(false)
+            isAllVisible = false
+            isAllSelect = false
         }
     }
 

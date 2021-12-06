@@ -41,10 +41,18 @@ class MineDeviceItemViewDelegate :
                 holder.viewBinding.minedeviceItemLabelTv.setBackgroundResource(R.drawable.shape_want_label_13ad6b)
             }
         }
-        if (item.value.isSelect) {
+        if (item.value.isVisible) {
             holder.viewBinding.minedeviceSelectImg.visibility = View.VISIBLE
         } else {
             holder.viewBinding.minedeviceSelectImg.visibility = View.GONE
+        }
+        if (item.value.isSelect) {
+            holder.viewBinding.minedeviceSelectImg.setImageResource(R.mipmap.icon_select_yes)
+        } else {
+            holder.viewBinding.minedeviceSelectImg.setImageResource(R.mipmap.icon_select_no)
+        }
+        holder.viewBinding.minedeviceSelectImg.setOnClickListener {
+            performItemChildViewClick(it, item, holder, "选择")
         }
     }
 

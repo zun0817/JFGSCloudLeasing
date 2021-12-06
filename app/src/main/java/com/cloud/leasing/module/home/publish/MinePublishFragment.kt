@@ -12,6 +12,8 @@ import com.cloud.leasing.base.list.XRecyclerView
 import com.cloud.leasing.base.list.base.BaseViewData
 import com.cloud.leasing.constant.PageName
 import com.cloud.leasing.databinding.FragmentMinePublishBinding
+import com.cloud.leasing.item.MineDeviceItemViewData
+import com.cloud.leasing.item.MinePublishItemViewData
 
 class MinePublishFragment :
     BaseFragment<FragmentMinePublishBinding>(FragmentMinePublishBinding::inflate),
@@ -21,7 +23,11 @@ class MinePublishFragment :
         fun newInstance() = MinePublishFragment()
     }
 
-    private var isAllSelect = true
+    private var isAllSelect = false
+
+    private var isAllVisible = false
+
+    private var datas: MutableList<MinePublishItemViewData> = mutableListOf()
 
     private val viewModel: MinePublishViewModel by viewModels()
 
@@ -30,6 +36,7 @@ class MinePublishFragment :
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initView()
+        initData()
     }
 
     override fun onClick(v: View?) {
@@ -37,9 +44,11 @@ class MinePublishFragment :
             R.id.mine_publish_edit_tv -> {
                 viewBinding.minePublishEditTv.visibility = View.GONE
                 viewBinding.minePublishDeleteCl.visibility = View.VISIBLE
+                refreshVisibleData(true)
+                isAllVisible = true
             }
             R.id.mine_publish_selectall_tv -> {
-                if (isAllSelect) {
+                if (!isAllSelect) {
                     val drawable = resources.getDrawable(R.mipmap.icon_select_yes)
                     drawable.setBounds(0, 0, drawable.intrinsicWidth, drawable.intrinsicHeight)
                     viewBinding.minePublishSelectallTv.setCompoundDrawables(
@@ -58,6 +67,7 @@ class MinePublishFragment :
                         null
                     )
                 }
+                refershSelectData(!isAllSelect)
                 isAllSelect = !isAllSelect
             }
             R.id.mine_publish_deleteall_tv -> {
@@ -66,6 +76,10 @@ class MinePublishFragment :
             R.id.mine_publish_cancel_tv -> {
                 viewBinding.minePublishEditTv.visibility = View.VISIBLE
                 viewBinding.minePublishDeleteCl.visibility = View.GONE
+                refreshVisibleData(false)
+                refershSelectData(false)
+                isAllVisible = false
+                isAllSelect = false
             }
         }
     }
@@ -116,12 +130,41 @@ class MinePublishFragment :
         )
     }
 
+    private fun initData() {
+        viewModel.listData.observe(viewLifecycleOwner) { it ->
+            datas = it
+            it.forEach {
+                it.value.isSelect = isAllSelect
+                it.value.isVisible = isAllVisible
+            }
+            viewBinding.minePublishRecyclerview.setViewData(it)
+        }
+    }
+
+    private fun refershSelectData(isSelect: Boolean) {
+        datas.forEach {
+            it.value.isSelect = isSelect
+        }
+        viewBinding.minePublishRecyclerview.setViewData(viewModel.list)
+    }
+
+    private fun refreshVisibleData(isVisible: Boolean) {
+        datas.forEach {
+            it.value.isVisible = isVisible
+        }
+        viewBinding.minePublishRecyclerview.setViewData(viewModel.list)
+    }
+
     override fun onHiddenChanged(hidden: Boolean) {
         super.onHiddenChanged(hidden)
         Log.e("***publish", hidden.toString())
         if (hidden) {
             viewBinding.minePublishEditTv.visibility = View.VISIBLE
             viewBinding.minePublishDeleteCl.visibility = View.GONE
+            refreshVisibleData(false)
+            refershSelectData(false)
+            isAllVisible = false
+            isAllSelect = false
         }
     }
 

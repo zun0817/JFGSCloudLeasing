@@ -23,7 +23,9 @@
         android:theme="@style/Theme.JFGSCloudLeasing"
         tools:replace="android:allowBackup,android:networkSecurityConfig,android:supportsRtl"
         tools:targetApi="n">
-
+        <activity
+            android:name=".module.home.search.SearchActivity"
+            android:exported="true" />
         <activity
             android:name=".module.splash.SplashActivity"
             android:exported="true"

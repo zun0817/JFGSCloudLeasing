@@ -4,5 +4,6 @@ import java.io.Serializable
 
 data class MineDeviceBean(
     var id: Int,
-    var isSelect: Boolean
+    var isSelect: Boolean,
+    var isVisible: Boolean
 ) : Serializable
