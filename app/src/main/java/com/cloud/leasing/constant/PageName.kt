@@ -17,6 +17,7 @@ import androidx.annotation.StringDef
     PageName.MINEDEVICE,
     PageName.MINEPUBLISH,
     PageName.SEARCH,
+    PageName.FOLLOW,
 
     PageName.ACGN,
     PageName.SMALL_VIDEO,
@@ -42,6 +43,7 @@ annotation class PageName {
         const val MINEDEVICE = "minedevice"
         const val MINEPUBLISH = "minepublish"
         const val SEARCH = "search"
+        const val FOLLOW = "follow"
 
         const val ACGN = "acgn"
         const val SMALL_VIDEO = "small_video"

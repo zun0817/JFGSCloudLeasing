@@ -27,6 +27,7 @@
         <entry key="..\:/Users/zun/AndroidStudioProjects/JFGSCloudLeasing/app/src/main/res/layout/activity_have.xml" value="0.280859375" />
         <entry key="..\:/Users/zun/AndroidStudioProjects/JFGSCloudLeasing/app/src/main/res/layout/activity_login.xml" value="0.25" />
         <entry key="..\:/Users/zun/AndroidStudioProjects/JFGSCloudLeasing/app/src/main/res/layout/activity_main.xml" value="0.16" />
+        <entry key="..\:/Users/zun/AndroidStudioProjects/JFGSCloudLeasing/app/src/main/res/layout/activity_mine_follow.xml" value="0.25" />
         <entry key="..\:/Users/zun/AndroidStudioProjects/JFGSCloudLeasing/app/src/main/res/layout/activity_publish.xml" value="0.280859375" />
         <entry key="..\:/Users/zun/AndroidStudioProjects/JFGSCloudLeasing/app/src/main/res/layout/activity_register.xml" value="0.280859375" />
         <entry key="..\:/Users/zun/AndroidStudioProjects/JFGSCloudLeasing/app/src/main/res/layout/activity_search.xml" value="0.280859375" />
@@ -38,7 +39,7 @@
         <entry key="..\:/Users/zun/AndroidStudioProjects/JFGSCloudLeasing/app/src/main/res/layout/fragment_gold.xml" value="0.37447916666666664" />
         <entry key="..\:/Users/zun/AndroidStudioProjects/JFGSCloudLeasing/app/src/main/res/layout/fragment_home.xml" value="0.22" />
         <entry key="..\:/Users/zun/AndroidStudioProjects/JFGSCloudLeasing/app/src/main/res/layout/fragment_mine.xml" value="0.25" />
-        <entry key="..\:/Users/zun/AndroidStudioProjects/JFGSCloudLeasing/app/src/main/res/layout/fragment_mine_device.xml" value="0.5" />
+        <entry key="..\:/Users/zun/AndroidStudioProjects/JFGSCloudLeasing/app/src/main/res/layout/fragment_mine_device.xml" value="0.22" />
         <entry key="..\:/Users/zun/AndroidStudioProjects/JFGSCloudLeasing/app/src/main/res/layout/fragment_mine_publish.xml" value="0.271484375" />
         <entry key="..\:/Users/zun/AndroidStudioProjects/JFGSCloudLeasing/app/src/main/res/layout/fragment_small_video.xml" value="0.37447916666666664" />
         <entry key="..\:/Users/zun/AndroidStudioProjects/JFGSCloudLeasing/app/src/main/res/layout/item_test1.xml" value="0.25" />

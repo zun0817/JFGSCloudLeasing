@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_F2F4F6"
+    tools:context=".module.mine.follow.MineFollowActivity">
+
+    <LinearLayout
+        android:id="@+id/mine_follow_ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:id="@+id/mine_follow_cl"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@mipmap/icon_device_mask">
+
+            <ImageView
+                android:id="@+id/mine_follow_back_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="15dp"
+                android:src="@mipmap/icon_back_white" />
+
+            <TextView
+                android:id="@+id/mine_follow_title_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center_vertical"
+                android:text="我的关注"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/white"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/mine_follow_device_ll"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="25dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/mine_follow_device_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="我的设备"
+                    android:textColor="@color/color_0E64BC"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <View
+                    android:id="@+id/mine_follow_device_view"
+                    android:layout_width="25dp"
+                    android:layout_height="2dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/shape_look_0e64bc" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/mine_follow_require_ll"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="25dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/mine_follow_require_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="我的需求"
+                    android:textColor="@color/color_999999"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <View
+                    android:id="@+id/mine_follow_require_view"
+                    android:layout_width="25dp"
+                    android:layout_height="2dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/shape_look_0e64bc"
+                    android:visibility="invisible" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <com.cloud.leasing.base.list.XRecyclerView
+        android:id="@+id/mine_follow_recyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/mine_follow_ll"
+        android:scrollbars="none"/>
+
+</RelativeLayout>
