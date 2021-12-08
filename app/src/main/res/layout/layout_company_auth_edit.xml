@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingHorizontal="15dp"
+    android:paddingVertical="35dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="请完善以下企业信息"
+        android:textColor="@color/color_262626"
+        android:textSize="22sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="请如实填写以下相关信息"
+        android:textColor="@color/color_999999"
+        android:textSize="14sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="30dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableEnd="@mipmap/icon_required"
+            android:text="企业名称"
+            android:textColor="@color/color_17191C"
+            android:textSize="15sp" />
+
+        <EditText
+            android:id="@+id/company_auth_name_et"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="30dp"
+            android:background="@color/transparent"
+            android:gravity="center_vertical"
+            android:hint="企业名称"
+            android:imeOptions="actionNext"
+            android:inputType="text"
+            android:singleLine="true"
+            android:textColor="@color/color_262626"
+            android:textColorHint="@color/color_BFBFBF"
+            android:textSize="15sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="5dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableEnd="@mipmap/icon_required"
+            android:text="企业法人"
+            android:textColor="@color/color_17191C"
+            android:textSize="15sp" />
+
+        <EditText
+            android:id="@+id/company_auth_legal_et"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="30dp"
+            android:background="@color/transparent"
+            android:gravity="center_vertical"
+            android:hint="企业法人"
+            android:imeOptions="actionNext"
+            android:inputType="text"
+            android:maxLength="4"
+            android:singleLine="true"
+            android:textColor="@color/color_262626"
+            android:textColorHint="@color/color_BFBFBF"
+            android:textSize="15sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="5dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableEnd="@mipmap/icon_required"
+            android:text="企业法人身份证号"
+            android:textColor="@color/color_17191C"
+            android:textSize="15sp" />
+
+        <EditText
+            android:id="@+id/company_auth_cardno_et"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="10dp"
+            android:background="@color/transparent"
+            android:gravity="center_vertical"
+            android:hint="企业法人身份证号"
+            android:imeOptions="actionNext"
+            android:inputType="textVisiblePassword"
+            android:maxLength="18"
+            android:singleLine="true"
+            android:text=""
+            android:textColor="@color/color_262626"
+            android:textColorHint="@color/color_BFBFBF"
+            android:textSize="15sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="5dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableEnd="@mipmap/icon_required"
+            android:text="统一社会信用代码"
+            android:textColor="@color/color_17191C"
+            android:textSize="15sp" />
+
+        <EditText
+            android:id="@+id/company_auth_creditcode_et"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="10dp"
+            android:background="@color/transparent"
+            android:gravity="center_vertical"
+            android:hint="统一社会信用代码"
+            android:imeOptions="actionDone"
+            android:inputType="textCapCharacters"
+            android:maxLength="18"
+            android:singleLine="true"
+            android:text=""
+            android:textColor="@color/color_262626"
+            android:textColorHint="@color/color_BFBFBF"
+            android:textSize="15sp" />
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="45dp"
+        android:drawableEnd="@mipmap/icon_required"
+        android:gravity="center_vertical"
+        android:text="营业执照"
+        android:textColor="@color/color_17191C"
+        android:textSize="15sp" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:background="@mipmap/icon_auth_mask"
+        android:padding="17dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="17dp"
+            android:scaleType="fitXY"
+            android:src="@mipmap/icon_auth_picture"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/company_auth_camera_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/icon_auth_camera"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7dp"
+            android:text="点击上传营业执照"
+            android:textColor="@color/color_BFBFBF"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/company_auth_camera_img" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>

@@ -15,8 +15,13 @@
         <FrameLayout
             android:id="@+id/mine_follow_cl"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="@mipmap/icon_device_mask">
+            android:layout_height="50dp">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@mipmap/icon_device_mask"
+                android:scaleType="fitXY"/>
 
             <ImageView
                 android:id="@+id/mine_follow_back_img"
@@ -104,11 +109,10 @@
 
     </LinearLayout>
 
-    <com.cloud.leasing.base.list.XRecyclerView
-        android:id="@+id/mine_follow_recyclerview"
+    <FrameLayout
+        android:id="@+id/mine_follow_fragment_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/mine_follow_ll"
-        android:scrollbars="none"/>
+        android:layout_below="@id/mine_follow_ll" />
 
 </RelativeLayout>

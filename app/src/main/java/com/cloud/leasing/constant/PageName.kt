@@ -18,6 +18,10 @@ import androidx.annotation.StringDef
     PageName.MINEPUBLISH,
     PageName.SEARCH,
     PageName.FOLLOW,
+    PageName.EQUIPMENT,
+    PageName.REQUIRE,
+    PageName.MODIFY,
+    PageName.COMPANYAUTH,
 
     PageName.ACGN,
     PageName.SMALL_VIDEO,
@@ -44,6 +48,10 @@ annotation class PageName {
         const val MINEPUBLISH = "minepublish"
         const val SEARCH = "search"
         const val FOLLOW = "follow"
+        const val EQUIPMENT = "equipment"
+        const val REQUIRE = "require"
+        const val MODIFY = "modify"
+        const val COMPANYAUTH = "companyauth"
 
         const val ACGN = "acgn"
         const val SMALL_VIDEO = "small_video"
