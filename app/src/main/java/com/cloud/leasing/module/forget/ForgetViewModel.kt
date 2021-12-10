@@ -6,6 +6,6 @@ import com.cloud.leasing.constant.PageName
 class ForgetViewModel : BaseViewModel() {
 
     @PageName
-    override fun getPageName() = PageName.LOGIN
+    override fun getPageName() = PageName.FORGET
 
 }
