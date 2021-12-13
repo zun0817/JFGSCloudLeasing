@@ -13,9 +13,11 @@ import com.cloud.leasing.base.list.XRecyclerView
 import com.cloud.leasing.base.list.base.BaseViewData
 import com.cloud.leasing.constant.PageName
 import com.cloud.leasing.databinding.ActivityWantBinding
+import com.cloud.leasing.util.ViewTouchUtil
 import com.gyf.immersionbar.ktx.immersionBar
 
-class WantActivity : BaseActivity<ActivityWantBinding>(ActivityWantBinding::inflate) {
+class WantActivity : BaseActivity<ActivityWantBinding>(ActivityWantBinding::inflate),
+    View.OnClickListener {
 
     companion object {
         fun startActivity(activity: Activity) {
@@ -46,6 +48,9 @@ class WantActivity : BaseActivity<ActivityWantBinding>(ActivityWantBinding::infl
     }
 
     private fun initView() {
+        viewBinding.wantBackImg.setOnClickListener(this)
+        viewBinding.wantAddDeviceTv.setOnClickListener(this)
+        ViewTouchUtil.expandViewTouchDelegate(viewBinding.wantBackImg)
         viewBinding.wantRecyclerview.init(
             XRecyclerView.Config()
                 .setViewModel(viewModel)
@@ -85,6 +90,13 @@ class WantActivity : BaseActivity<ActivityWantBinding>(ActivityWantBinding::infl
                     }
                 })
         )
+    }
+
+    override fun onClick(v: View?) {
+        when (v!!.id) {
+            R.id.want_back_img -> this.finish()
+            R.id.want_add_device_tv -> AddRequireActivity.startActivity(this)
+        }
     }
 
 }

@@ -171,4 +171,11 @@ dependencies {
 
     // 轮播图
     implementation("com.github.zhpanvip:bannerviewpager:${versions.bannerviewpager}")
+
+    // 万能适配器
+    implementation ("com.zhy:base-rvadapter:${versions.rvadapter}")
+
+    implementation project(':pictureLibrary')
+
+    implementation project(':filepickerLibrary')
 }

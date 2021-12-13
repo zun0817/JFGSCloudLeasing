@@ -1,2 +1,3 @@
 rootProject.name = "JFGSCloudLeasing"
-include ':app'
+include ':app', ':pictureLibrary'
+include ':filepickerLibrary'
