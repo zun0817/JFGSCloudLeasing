@@ -13,9 +13,12 @@ import com.cloud.leasing.base.list.XRecyclerView
 import com.cloud.leasing.base.list.base.BaseViewData
 import com.cloud.leasing.constant.PageName
 import com.cloud.leasing.databinding.ActivityHaveBinding
+import com.cloud.leasing.module.home.search.SearchActivity
+import com.cloud.leasing.util.ViewTouchUtil
 import com.gyf.immersionbar.ktx.immersionBar
 
-class HaveActivity : BaseActivity<ActivityHaveBinding>(ActivityHaveBinding::inflate) {
+class HaveActivity : BaseActivity<ActivityHaveBinding>(ActivityHaveBinding::inflate),
+    View.OnClickListener {
 
     companion object {
         fun startActivity(activity: Activity) {
@@ -46,6 +49,12 @@ class HaveActivity : BaseActivity<ActivityHaveBinding>(ActivityHaveBinding::infl
     }
 
     private fun initView() {
+        viewBinding.haveBackImg.setOnClickListener(this)
+        viewBinding.haveSearchImg.setOnClickListener(this)
+        viewBinding.haveAddDeviceTv.setOnClickListener(this)
+        ViewTouchUtil.expandViewTouchDelegate(viewBinding.haveBackImg)
+        ViewTouchUtil.expandViewTouchDelegate(viewBinding.haveSearchImg)
+
         viewBinding.haveRecyclerview.init(
             XRecyclerView.Config()
                 .setViewModel(viewModel)
@@ -85,6 +94,14 @@ class HaveActivity : BaseActivity<ActivityHaveBinding>(ActivityHaveBinding::infl
                     }
                 })
         )
+    }
+
+    override fun onClick(v: View?) {
+        when(v!!.id){
+            R.id.have_back_img -> this.finish()
+            R.id.have_search_img -> SearchActivity.startActivity(this)
+            R.id.have_add_device_tv -> AddDeviceActivity.startActivity(this)
+        }
     }
 
 }

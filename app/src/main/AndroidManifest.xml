@@ -102,7 +102,12 @@
             android:name=".module.home.want.AddRequireActivity"
             android:exported="true"
             android:screenOrientation="portrait"
-            android:theme="@style/ActivityTheme"/>
+            android:theme="@style/ActivityTheme" />
+        <activity
+            android:name=".module.home.have.AddDeviceActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/ActivityTheme" />
     </application>
 
 </manifest>

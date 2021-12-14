@@ -7,7 +7,9 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.cloud.leasing.R
+import com.cloud.leasing.adapter.AddRequireFileAdapter
 import com.cloud.leasing.adapter.AddRequirePictureAdapter
 import com.cloud.leasing.base.BaseActivity
 import com.cloud.leasing.constant.PageName
@@ -31,9 +33,13 @@ class AddRequireActivity :
         }
     }
 
-    private val REQUEST_IMAGE = 2
+    private val REQUEST_IMAGE = 1
+
+    private var mPathList = mutableListOf<String>()
 
     private var mSelectList = mutableListOf<String>()
+
+    private lateinit var addRequireFileAdapter: AddRequireFileAdapter
 
     private lateinit var addRequirePictureAdapter: AddRequirePictureAdapter
 
@@ -51,6 +57,7 @@ class AddRequireActivity :
         viewBinding.addRequirePreviousBtn.setOnClickListener(this)
         viewBinding.layoutAddRequireUpload.addRequireFileFl.setOnClickListener(this)
         ViewTouchUtil.expandViewTouchDelegate(viewBinding.addRequireBackImg)
+
         viewBinding.layoutAddRequireUpload.addRequirePictureRv.layoutManager =
             GridLayoutManager(this, 3)
         addRequirePictureAdapter = AddRequirePictureAdapter(
@@ -63,6 +70,11 @@ class AddRequireActivity :
         addRequirePictureAdapter.setOnAddPicturesListener {
             pickImage()
         }
+
+        viewBinding.layoutAddRequireUpload.addRequireFileRv.layoutManager =
+            LinearLayoutManager(this)
+        addRequireFileAdapter = AddRequireFileAdapter(this, mPathList)
+        viewBinding.layoutAddRequireUpload.addRequireFileRv.adapter = addRequireFileAdapter
     }
 
     private fun initSystemBar() {
@@ -99,6 +111,8 @@ class AddRequireActivity :
             data?.let { it ->
                 val list: MutableList<String> =
                     it.getStringArrayListExtra("pathList") as MutableList<String>
+                mPathList.addAll(list)
+                addRequireFileAdapter.notifyDataSetChanged()
                 list.forEach {
                     Log.d("地址：", it)
                 }
@@ -111,7 +125,7 @@ class AddRequireActivity :
             R.id.add_require_back_img -> this.finish()
             R.id.add_require_file_fl -> {
                 val intent = Intent(this, LocalUpdateActivity::class.java)
-                intent.putExtra("maxNum", 3)
+                intent.putExtra("maxNum", 1)
                 startActivityForResult(intent, Constants.UPLOAD_FILE_REQUEST)
             }
             R.id.add_require_next_btn -> {
@@ -141,7 +155,8 @@ class AddRequireActivity :
                 if (viewBinding.layoutAddRequireUpload.addRequireUploadScrollview.visibility ==
                     View.VISIBLE
                 ) {
-                    viewBinding.layoutAddRequireInfo.addRequireInfoScrollview.visibility = View.VISIBLE
+                    viewBinding.layoutAddRequireInfo.addRequireInfoScrollview.visibility =
+                        View.VISIBLE
                     viewBinding.layoutAddRequireUpload.addRequireUploadScrollview.visibility =
                         View.GONE
                     viewBinding.addRequireCircleTv2.setBackgroundResource(R.drawable.shape_circle_e2e2e2)

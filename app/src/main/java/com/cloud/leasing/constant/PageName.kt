@@ -23,6 +23,7 @@ import androidx.annotation.StringDef
     PageName.MODIFY,
     PageName.COMPANYAUTH,
     PageName.ADDREQUIRE,
+    PageName.ADDDEVICE,
 
     PageName.ACGN,
     PageName.SMALL_VIDEO,
@@ -54,6 +55,7 @@ annotation class PageName {
         const val MODIFY = "modify"
         const val COMPANYAUTH = "companyauth"
         const val ADDREQUIRE = "addrequire"
+        const val ADDDEVICE = "adddevice"
 
         const val ACGN = "acgn"
         const val SMALL_VIDEO = "small_video"

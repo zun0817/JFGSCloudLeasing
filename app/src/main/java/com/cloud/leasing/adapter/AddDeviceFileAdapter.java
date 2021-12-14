@@ -1,7 +1,6 @@
 package com.cloud.leasing.adapter;
 
 import android.content.Context;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -13,11 +12,11 @@ import com.zhy.adapter.recyclerview.base.ViewHolder;
 import java.io.File;
 import java.util.List;
 
-public class AddRequireFileAdapter extends CommonAdapter<String> {
+public class AddDeviceFileAdapter extends CommonAdapter<String> {
 
     private Context context;
 
-    public AddRequireFileAdapter(Context context, List<String> selectPath) {
+    public AddDeviceFileAdapter(Context context, List<String> selectPath) {
         super(context, R.layout.layout_add_file_item, selectPath);
         this.context = context;
     }

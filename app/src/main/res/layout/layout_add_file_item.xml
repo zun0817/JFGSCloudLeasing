@@ -35,7 +35,6 @@
             android:layout_height="wrap_content"
             android:ellipsize="end"
             android:singleLine="true"
-            android:text="测试用力编写.doc"
             android:textColor="@color/color_262626"
             android:textSize="14sp" />
 
@@ -45,7 +44,6 @@
             android:layout_height="wrap_content"
             android:ellipsize="end"
             android:singleLine="true"
-            android:text="15KB"
             android:textColor="@color/color_999999"
             android:textSize="12sp" />
 
