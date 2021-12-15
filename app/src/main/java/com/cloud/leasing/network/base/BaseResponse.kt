@@ -4,8 +4,7 @@ package com.cloud.leasing.network.base
  * 网络数据返回基类
  */
 data class BaseResponse<T>(
-    var code: Int = 0,
+    var code: String = "0",
     val msg: String? = null,
-    val redirect: String? = null,
-    val value: T? = null
+    val data: T? = null
 )

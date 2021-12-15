@@ -20,11 +20,13 @@
         <entry key="..\:/Users/zun/AndroidStudioProjects/JFGSCloudLeasing/app/src/main/res/drawable/shape_login_0e64bc.xml" value="0.29296875" />
         <entry key="..\:/Users/zun/AndroidStudioProjects/JFGSCloudLeasing/app/src/main/res/drawable/shape_login_d3dce5.xml" value="0.29296875" />
         <entry key="..\:/Users/zun/AndroidStudioProjects/JFGSCloudLeasing/app/src/main/res/drawable/shape_look_0e64bc.xml" value="0.29296875" />
+        <entry key="..\:/Users/zun/AndroidStudioProjects/JFGSCloudLeasing/app/src/main/res/drawable/shape_tab_indicator.xml" value="0.390625" />
         <entry key="..\:/Users/zun/AndroidStudioProjects/JFGSCloudLeasing/app/src/main/res/drawable/shape_tv_trans.xml" value="0.29296875" />
         <entry key="..\:/Users/zun/AndroidStudioProjects/JFGSCloudLeasing/app/src/main/res/drawable/shape_view_0e64bc.xml" value="0.29296875" />
         <entry key="..\:/Users/zun/AndroidStudioProjects/JFGSCloudLeasing/app/src/main/res/drawable/shape_view_auth.xml" value="0.28957528957528955" />
         <entry key="..\:/Users/zun/AndroidStudioProjects/JFGSCloudLeasing/app/src/main/res/drawable/shape_view_eaeaea.xml" value="0.29296875" />
         <entry key="..\:/Users/zun/AndroidStudioProjects/JFGSCloudLeasing/app/src/main/res/drawable/shape_view_f2f4f6.xml" value="0.29296875" />
+        <entry key="..\:/Users/zun/AndroidStudioProjects/JFGSCloudLeasing/app/src/main/res/drawable/shape_view_f8fefb.xml" value="0.390625" />
         <entry key="..\:/Users/zun/AndroidStudioProjects/JFGSCloudLeasing/app/src/main/res/drawable/shape_view_fafafa.xml" value="0.29296875" />
         <entry key="..\:/Users/zun/AndroidStudioProjects/JFGSCloudLeasing/app/src/main/res/drawable/shape_view_ffaa33.xml" value="0.29296875" />
         <entry key="..\:/Users/zun/AndroidStudioProjects/JFGSCloudLeasing/app/src/main/res/drawable/shape_want_label_0e64bc.xml" value="0.29296875" />
@@ -35,6 +37,7 @@
         <entry key="..\:/Users/zun/AndroidStudioProjects/JFGSCloudLeasing/app/src/main/res/layout/activity_add_device.xml" value="0.280859375" />
         <entry key="..\:/Users/zun/AndroidStudioProjects/JFGSCloudLeasing/app/src/main/res/layout/activity_add_require.xml" value="0.280859375" />
         <entry key="..\:/Users/zun/AndroidStudioProjects/JFGSCloudLeasing/app/src/main/res/layout/activity_company_auth.xml" value="0.280859375" />
+        <entry key="..\:/Users/zun/AndroidStudioProjects/JFGSCloudLeasing/app/src/main/res/layout/activity_device_detail.xml" value="0.37447916666666664" />
         <entry key="..\:/Users/zun/AndroidStudioProjects/JFGSCloudLeasing/app/src/main/res/layout/activity_forget.xml" value="0.280859375" />
         <entry key="..\:/Users/zun/AndroidStudioProjects/JFGSCloudLeasing/app/src/main/res/layout/activity_have.xml" value="0.280859375" />
         <entry key="..\:/Users/zun/AndroidStudioProjects/JFGSCloudLeasing/app/src/main/res/layout/activity_login.xml" value="0.25" />
@@ -43,6 +46,7 @@
         <entry key="..\:/Users/zun/AndroidStudioProjects/JFGSCloudLeasing/app/src/main/res/layout/activity_modify.xml" value="0.280859375" />
         <entry key="..\:/Users/zun/AndroidStudioProjects/JFGSCloudLeasing/app/src/main/res/layout/activity_publish.xml" value="0.280859375" />
         <entry key="..\:/Users/zun/AndroidStudioProjects/JFGSCloudLeasing/app/src/main/res/layout/activity_register.xml" value="0.280859375" />
+        <entry key="..\:/Users/zun/AndroidStudioProjects/JFGSCloudLeasing/app/src/main/res/layout/activity_require_detail.xml" value="0.37447916666666664" />
         <entry key="..\:/Users/zun/AndroidStudioProjects/JFGSCloudLeasing/app/src/main/res/layout/activity_search.xml" value="0.280859375" />
         <entry key="..\:/Users/zun/AndroidStudioProjects/JFGSCloudLeasing/app/src/main/res/layout/activity_service.xml" value="0.280859375" />
         <entry key="..\:/Users/zun/AndroidStudioProjects/JFGSCloudLeasing/app/src/main/res/layout/activity_splash.xml" value="0.25" />
@@ -72,6 +76,11 @@
         <entry key="..\:/Users/zun/AndroidStudioProjects/JFGSCloudLeasing/app/src/main/res/layout/layout_company_auth_edit.xml" value="0.25" />
         <entry key="..\:/Users/zun/AndroidStudioProjects/JFGSCloudLeasing/app/src/main/res/layout/layout_company_auth_fail.xml" value="0.271484375" />
         <entry key="..\:/Users/zun/AndroidStudioProjects/JFGSCloudLeasing/app/src/main/res/layout/layout_company_auth_success.xml" value="0.280859375" />
+        <entry key="..\:/Users/zun/AndroidStudioProjects/JFGSCloudLeasing/app/src/main/res/layout/layout_device_detail_file.xml" value="0.37447916666666664" />
+        <entry key="..\:/Users/zun/AndroidStudioProjects/JFGSCloudLeasing/app/src/main/res/layout/layout_device_detail_info.xml" value="0.37447916666666664" />
+        <entry key="..\:/Users/zun/AndroidStudioProjects/JFGSCloudLeasing/app/src/main/res/layout/layout_device_detail_remark.xml" value="0.37447916666666664" />
+        <entry key="..\:/Users/zun/AndroidStudioProjects/JFGSCloudLeasing/app/src/main/res/layout/layout_device_detail_resume.xml" value="0.37447916666666664" />
+        <entry key="..\:/Users/zun/AndroidStudioProjects/JFGSCloudLeasing/app/src/main/res/layout/layout_device_detail_user.xml" value="0.37447916666666664" />
         <entry key="..\:/Users/zun/AndroidStudioProjects/JFGSCloudLeasing/app/src/main/res/layout/layout_device_item.xml" value="0.280859375" />
         <entry key="..\:/Users/zun/AndroidStudioProjects/JFGSCloudLeasing/app/src/main/res/layout/layout_forget_edit.xml" value="0.280859375" />
         <entry key="..\:/Users/zun/AndroidStudioProjects/JFGSCloudLeasing/app/src/main/res/layout/layout_have_item.xml" value="0.280859375" />
@@ -80,6 +89,9 @@
         <entry key="..\:/Users/zun/AndroidStudioProjects/JFGSCloudLeasing/app/src/main/res/layout/layout_minepublish_item.xml" value="0.280859375" />
         <entry key="..\:/Users/zun/AndroidStudioProjects/JFGSCloudLeasing/app/src/main/res/layout/layout_password_edit_login.xml" value="0.25" />
         <entry key="..\:/Users/zun/AndroidStudioProjects/JFGSCloudLeasing/app/src/main/res/layout/layout_register_edit.xml" value="0.280859375" />
+        <entry key="..\:/Users/zun/AndroidStudioProjects/JFGSCloudLeasing/app/src/main/res/layout/layout_require_detail_file.xml" value="0.37447916666666664" />
+        <entry key="..\:/Users/zun/AndroidStudioProjects/JFGSCloudLeasing/app/src/main/res/layout/layout_require_detail_info.xml" value="0.33" />
+        <entry key="..\:/Users/zun/AndroidStudioProjects/JFGSCloudLeasing/app/src/main/res/layout/layout_require_detail_user.xml" value="0.37447916666666664" />
         <entry key="..\:/Users/zun/AndroidStudioProjects/JFGSCloudLeasing/app/src/main/res/layout/layout_require_item.xml" value="0.280859375" />
         <entry key="..\:/Users/zun/AndroidStudioProjects/JFGSCloudLeasing/app/src/main/res/layout/layout_service_item.xml" value="0.280859375" />
         <entry key="..\:/Users/zun/AndroidStudioProjects/JFGSCloudLeasing/app/src/main/res/layout/layout_test_item.xml" value="0.271484375" />

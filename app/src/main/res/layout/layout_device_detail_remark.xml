@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/device_detail_remark_ll"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/shape_item_white"
+    android:orientation="vertical"
+    android:padding="15dp">
+
+    <TextView
+        android:id="@+id/device_detail_remark_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/transparent"
+        android:text="目前根据提供客户所在城市的额工程规划、地质情 况、周边观景、工期进度等条件，特殊设计、制造 与之相适用的盾构机设备，目前已为成都复合底层 砂卵石底层的粒径、高强度漂石的卵石。"
+        android:textColor="@color/color_010F1D"
+        android:textSize="14sp"
+        android:lineSpacingExtra="2dp"/>
+
+</LinearLayout>

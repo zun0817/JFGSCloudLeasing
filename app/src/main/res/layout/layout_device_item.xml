@@ -5,6 +5,7 @@
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="15dp"
     android:layout_marginTop="10dp"
+    android:id="@+id/layout_device_item_cl"
     android:background="@drawable/shape_item_white"
     android:padding="10dp">
 

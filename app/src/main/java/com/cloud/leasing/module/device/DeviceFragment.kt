@@ -11,6 +11,7 @@ import com.cloud.leasing.base.list.XRecyclerView
 import com.cloud.leasing.base.list.base.BaseViewData
 import com.cloud.leasing.constant.PageName
 import com.cloud.leasing.databinding.FragmentDeviceBinding
+import com.cloud.leasing.module.home.detail.DeviceDetailActivity
 import com.gyf.immersionbar.ktx.immersionBar
 
 
@@ -39,8 +40,9 @@ class DeviceFragment : BaseFragment<FragmentDeviceBinding>(FragmentDeviceBinding
                         position: Int,
                         id: Long
                     ) {
-                        Toast.makeText(context, "条目点击: ${viewData.value}", Toast.LENGTH_SHORT)
-                            .show()
+//                        Toast.makeText(context, "条目点击: ${viewData.value}", Toast.LENGTH_SHORT)
+//                            .show()
+                        DeviceDetailActivity.startActivity(requireActivity())
                     }
                 })
                 .setOnItemChildViewClickListener(object :

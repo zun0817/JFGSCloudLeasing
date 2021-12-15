@@ -16,12 +16,14 @@ import com.cloud.leasing.constant.EventName
 import com.cloud.leasing.constant.PageName
 import com.cloud.leasing.databinding.FragmentHomeBinding
 import com.cloud.leasing.eventbus.XEventBus
+import com.cloud.leasing.module.home.detail.DeviceDetailActivity
+import com.cloud.leasing.module.home.detail.RequireDetailActivity
 import com.cloud.leasing.module.home.have.HaveActivity
 import com.cloud.leasing.module.home.publish.PublishActivity
 import com.cloud.leasing.module.home.service.ServiceActivity
 import com.cloud.leasing.module.home.want.WantActivity
 import com.gyf.immersionbar.ktx.immersionBar
-
+import java.util.*
 
 
 @RequiresApi(Build.VERSION_CODES.M)
@@ -60,7 +62,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
     }
 
     override fun onClick(v: View?) {
-        when(v!!.id){
+        when (v!!.id) {
             R.id.home_want_tv -> WantActivity.startActivity(requireActivity())
             R.id.home_have_tv -> HaveActivity.startActivity(requireActivity())
             R.id.home_service_tv -> ServiceActivity.startActivity(requireActivity())
@@ -82,7 +84,18 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         viewBinding.homeHaveTv.setOnClickListener(this)
         viewBinding.homePublishTv.setOnClickListener(this)
         viewBinding.homeServiceTv.setOnClickListener(this)
-
+        viewBinding.layoutRequireItemOne.requireItemLookTv.setOnClickListener {
+            RequireDetailActivity.startActivity(requireActivity())
+        }
+        viewBinding.layoutRequireItemTwo.requireItemLookTv.setOnClickListener {
+            RequireDetailActivity.startActivity(requireActivity())
+        }
+        viewBinding.layoutDeviceItemOne.layoutDeviceItemCl.setOnClickListener {
+            DeviceDetailActivity.startActivity(requireActivity())
+        }
+        viewBinding.layoutDeviceItemTwo.layoutDeviceItemCl.setOnClickListener {
+            DeviceDetailActivity.startActivity(requireActivity())
+        }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             viewBinding.mainScrollview.setOnScrollChangeListener(this)
         }

@@ -101,7 +101,7 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>(ActivityRegisterB
 
             }
             R.id.register_btn -> {
-
+                
             }
         }
     }

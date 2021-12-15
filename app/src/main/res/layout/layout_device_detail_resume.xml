@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/device_detail_resume_ll"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/shape_item_white"
+    android:orientation="vertical"
+    android:padding="15dp">
+
+    <TextView
+        android:id="@+id/device_detail_resume_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/transparent"
+        android:text="项目所在地广州市东环地区，区间长度4313m，施 工情况中风化泥质砂岩，中风化砾岩，中风化花岗 岩4313m。"
+        android:textColor="@color/color_010F1D"
+        android:textSize="14sp"
+        android:lineSpacingExtra="2dp"/>
+
+</LinearLayout>
