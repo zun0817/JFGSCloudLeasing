@@ -12,6 +12,8 @@ import android.view.View
 import android.widget.ImageView
 import com.bumptech.glide.Glide
 import android.text.TextUtils
+import android.view.Gravity
+import android.widget.Toast
 import androidx.room.util.StringUtil
 import java.util.regex.Matcher
 import java.util.regex.Pattern
@@ -52,6 +54,13 @@ fun isMobilPhone(phone: String): Boolean {
         val p: Pattern = Pattern.compile(regex)
         val m: Matcher = p.matcher(phone)
         m.matches()
+    }
+}
+
+fun Any.toast(context: Context, duration: Int = Toast.LENGTH_SHORT): Toast {
+    return Toast.makeText(context, this.toString(), duration).apply {
+        setGravity(Gravity.CENTER, 0, 0)
+        show()
     }
 }
 

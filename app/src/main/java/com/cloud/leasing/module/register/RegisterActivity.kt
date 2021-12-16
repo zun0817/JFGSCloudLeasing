@@ -3,14 +3,21 @@ package com.cloud.leasing.module.register
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
 import android.view.View
 import androidx.activity.viewModels
 import com.cloud.leasing.R
 import com.cloud.leasing.base.BaseActivity
+import com.cloud.leasing.bean.exception.NetworkException
 import com.cloud.leasing.constant.PageName
 import com.cloud.leasing.databinding.ActivityRegisterBinding
+import com.cloud.leasing.util.CountDownTimerUtils
+import com.cloud.leasing.util.ViewTouchUtil
+import com.cloud.leasing.util.isMobilPhone
+import com.cloud.leasing.util.toast
 import com.gyf.immersionbar.ktx.immersionBar
 
 class RegisterActivity : BaseActivity<ActivityRegisterBinding>(ActivityRegisterBinding::inflate),
@@ -25,9 +32,19 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>(ActivityRegisterB
         }
     }
 
-    private var isShowOne = true
+    private var isShowOne = false
 
-    private var isShowTwo = true
+    private var isShowTwo = false
+
+    private var phone = ""
+
+    private var password1 = ""
+
+    private var password2 = ""
+
+    private var smscode = ""
+
+    private var countDownTimer: CountDownTimerUtils? = null
 
     private val viewModel: RegisterViewModel by viewModels()
 
@@ -39,6 +56,7 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>(ActivityRegisterB
         super.onCreate(savedInstanceState)
         initSystemBar()
         initView()
+        viewModelObserve()
     }
 
     private fun initView() {
@@ -53,6 +71,49 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>(ActivityRegisterB
         viewBinding.layoutRegisterEditIn.registerPasswordEdit1.onFocusChangeListener = this
         viewBinding.layoutRegisterEditIn.registerPasswordEdit2.onFocusChangeListener = this
         viewBinding.layoutRegisterEditIn.registerSmsEdit.onFocusChangeListener = this
+        ViewTouchUtil.expandViewTouchDelegate(viewBinding.registerBackImg)
+        ViewTouchUtil.expandViewTouchDelegate(viewBinding.layoutRegisterEditIn.registerSmsTv)
+        ViewTouchUtil.expandViewTouchDelegate(viewBinding.layoutRegisterEditIn.registerEyeImg1)
+        ViewTouchUtil.expandViewTouchDelegate(viewBinding.layoutRegisterEditIn.registerEyeImg2)
+
+        viewBinding.layoutRegisterEditIn.registerPhoneEdit.addTextChangedListener(phoneTextWatcher)
+        viewBinding.layoutRegisterEditIn.registerPasswordEdit1.addTextChangedListener(
+            password1TextWatcher
+        )
+        viewBinding.layoutRegisterEditIn.registerPasswordEdit2.addTextChangedListener(
+            password2TextWatcher
+        )
+        viewBinding.layoutRegisterEditIn.registerSmsEdit.addTextChangedListener(smscodeTextWatcher)
+    }
+
+    private fun viewModelObserve() {
+        viewModel.apply {
+            smsCodeLiveData.observe(this@RegisterActivity, {
+                "请查收短信".toast(this@RegisterActivity)
+                countDownTimer = CountDownTimerUtils(
+                    viewBinding.layoutRegisterEditIn.registerSmsTv,
+                    60000,
+                    1000
+                )
+                countDownTimer?.apply {
+                    start()
+                }
+            })
+            registerLiveData.observe(this@RegisterActivity, { it ->
+                it.onFailure {
+                    if ((it as NetworkException).code == 200) {
+                        "注册成功，请登录".toast(this@RegisterActivity)
+                        this@RegisterActivity.finish()
+                    } else {
+                        it.toString().toast(this@RegisterActivity)
+                    }
+                }.onSuccess {
+                    "注册成功，请登录".toast(this@RegisterActivity)
+                    this@RegisterActivity.finish()
+                }
+                viewBinding.registerLoadingview.visibility = View.GONE
+            })
+        }
     }
 
     private fun initSystemBar() {
@@ -66,7 +127,7 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>(ActivityRegisterB
 
     override fun onClick(v: View?) {
         when (v!!.id) {
-            R.id.register_back_img -> this.finish()
+            R.id.register_back_img, R.id.register_login_tv -> this.finish()
             R.id.register_eye_img1 -> {
                 if (isShowOne) {
                     viewBinding.layoutRegisterEditIn.registerEyeImg1.setImageResource(R.mipmap.icon_login_show)
@@ -92,16 +153,22 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>(ActivityRegisterB
                 isShowTwo = !isShowTwo
             }
             R.id.register_sms_tv -> {
-
-            }
-            R.id.register_login_tv -> {
-                this.finish()
+                if (!isMobilPhone(phone)) {
+                    "手机号码不正确".toast(this)
+                    return
+                }
+                viewModel.requestOfSmsCode(phone)
             }
             R.id.register_protocol_tv -> {
 
             }
             R.id.register_btn -> {
-                
+                if (password1 != password2) {
+                    "密码输入不一致".toast(this)
+                    return
+                }
+                viewModel.requestOfRegister(phone, password1, smscode)
+                viewBinding.registerLoadingview.visibility = View.VISIBLE
             }
         }
     }
@@ -150,4 +217,68 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>(ActivityRegisterB
             }
         }
     }
+
+    private val phoneTextWatcher = object : TextWatcher {
+        override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+        }
+
+        override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+        }
+
+        override fun afterTextChanged(s: Editable?) {
+            phone = s.toString().trim()
+            viewBinding.registerBtn.isEnabled = s.toString().trim()
+                .isNotBlank() && password1.isNotBlank() && password2.isNotBlank() && smscode.isNotBlank()
+        }
+    }
+
+    private val password1TextWatcher = object : TextWatcher {
+        override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+        }
+
+        override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+        }
+
+        override fun afterTextChanged(s: Editable?) {
+            password1 = s.toString().trim()
+            viewBinding.registerBtn.isEnabled = phone.isNotBlank() && s.toString().trim()
+                .isNotBlank() && password2.isNotBlank() && smscode.isNotBlank()
+        }
+    }
+
+    private val password2TextWatcher = object : TextWatcher {
+        override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+        }
+
+        override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+        }
+
+        override fun afterTextChanged(s: Editable?) {
+            password2 = s.toString().trim()
+            viewBinding.registerBtn.isEnabled = phone.isNotBlank() && s.toString().trim()
+                .isNotBlank() && password1.isNotBlank() && smscode.isNotBlank()
+        }
+    }
+
+    private val smscodeTextWatcher = object : TextWatcher {
+        override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+        }
+
+        override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+        }
+
+        override fun afterTextChanged(s: Editable?) {
+            smscode = s.toString().trim()
+            viewBinding.registerBtn.isEnabled = phone.isNotBlank() && s.toString().trim()
+                .isNotBlank() && password1.isNotBlank() && password2.isNotBlank()
+        }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        countDownTimer?.apply {
+            cancel()
+        }
+    }
+
 }

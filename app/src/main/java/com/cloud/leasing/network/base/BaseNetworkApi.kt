@@ -57,12 +57,14 @@ abstract class BaseNetworkApi<I>(private val baseUrl: String) : IService<I> {
             try {
                 val response = block()
                 if (response.code.toInt() != ErrorCode.OK) {
-                    throw NetworkException.of(response.code.toInt(), "response code not 200")
+                    response.msg?.let {
+                        throw NetworkException.of(response.code.toInt(), response.msg.toString())
+                    }
                 }
                 if (response.data == null) {
-                    throw NetworkException.of(ErrorCode.VALUE_IS_NULL, "response value is null")
+                    throw NetworkException.of(response.code.toInt(), response.msg.toString())
                 }
-                return Result.success(response.data)
+                return Result.success(response.data!!)
             } catch (throwable: Throwable) {
                 if (throwable is NetworkException) {
                     return Result.failure(throwable)
@@ -72,7 +74,7 @@ abstract class BaseNetworkApi<I>(private val baseUrl: String) : IService<I> {
                 }
             }
         }
-        return Result.failure(NetworkException.of(ErrorCode.VALUE_IS_NULL, "unknown"))
+        return Result.failure(NetworkException.of(ErrorCode.VALUE_IS_NULL, "unknown error"))
     }
 
     companion object {

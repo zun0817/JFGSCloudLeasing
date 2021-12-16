@@ -6,5 +6,5 @@ package com.cloud.leasing.network.base
 data class BaseResponse<T>(
     var code: String = "0",
     val msg: String? = null,
-    val data: T? = null
+    var data: T? = null
 )

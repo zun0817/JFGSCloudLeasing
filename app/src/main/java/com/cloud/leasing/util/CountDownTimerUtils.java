@@ -2,13 +2,12 @@ package com.cloud.leasing.util;
 
 import android.graphics.Color;
 import android.os.CountDownTimer;
-
-import androidx.appcompat.widget.AppCompatTextView;
+import android.widget.TextView;
 
 public class CountDownTimerUtils extends CountDownTimer {
-    private AppCompatTextView mTextView;
+    private TextView mTextView;
 
-    public CountDownTimerUtils(AppCompatTextView textView, long millisInFuture, long countDownInterval) {
+    public CountDownTimerUtils(TextView textView, long millisInFuture, long countDownInterval) {
         super(millisInFuture, countDownInterval);
         this.mTextView = textView;
     }

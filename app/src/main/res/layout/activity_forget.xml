@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".module.forget.ForgetActivity">
 
-
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -74,5 +73,14 @@
         android:textSize="17sp"
         app:layout_constraintTop_toBottomOf="@id/layout_forget_edit_in" />
 
+    <com.cloud.leasing.widget.LoadingView
+        android:id="@+id/forget_loadingview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:visibility="gone"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
