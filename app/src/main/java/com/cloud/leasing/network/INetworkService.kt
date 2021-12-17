@@ -1,13 +1,12 @@
 package com.cloud.leasing.network
 
+import com.cloud.leasing.bean.UserBean
+import com.cloud.leasing.bean.UserInfoBean
 import com.cloud.leasing.bean.VideoBean
 import com.cloud.leasing.constant.Constant
 import com.cloud.leasing.network.base.BaseResponse
 import okhttp3.RequestBody
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Query
+import retrofit2.http.*
 
 interface INetworkService {
 
@@ -24,8 +23,12 @@ interface INetworkService {
     suspend fun requestOfResetPassword(@Body requestBody: RequestBody): BaseResponse<String>
 
     @POST(Constant.PATH_LOGIN)
-    suspend fun requestOfLogin(@Body requestBody: RequestBody): BaseResponse<String>
+    suspend fun requestOfLogin(@Body requestBody: RequestBody): BaseResponse<UserBean>
 
     @POST(Constant.PATH_LOGIN_MESSAGE)
-    suspend fun requestOfLoginMessage(@Body requestBody: RequestBody): BaseResponse<String>
+    suspend fun requestOfLoginMessage(@Body requestBody: RequestBody): BaseResponse<UserBean>
+
+    @FormUrlEncoded
+    @POST(Constant.PATH_QUERY_PROFILE)
+    suspend fun requestOfQueryProfile(@FieldMap param: MutableMap<String, Any>): BaseResponse<UserInfoBean>
 }

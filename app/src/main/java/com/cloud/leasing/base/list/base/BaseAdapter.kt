@@ -9,7 +9,6 @@ open class BaseAdapter : MultiTypeAdapter() {
         register(LoadMoreViewDelegate())
         register(Test1ViewDelegate())
         register(Test2ViewDelegate())
-        register(Test3ViewDelegate())
         register(DeviceItemViewDelegate())
         register(WantItemViewDelegate())
         register(HaveItemViewDelegate())

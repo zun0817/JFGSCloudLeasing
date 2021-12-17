@@ -12,6 +12,7 @@ import com.cloud.leasing.module.mine.about.AboutActivity
 import com.cloud.leasing.module.mine.auth.CompanyAuthActivity
 import com.cloud.leasing.module.mine.follow.MineFollowActivity
 import com.cloud.leasing.module.mine.modify.ModifyActivity
+import com.cloud.leasing.util.toast
 import com.gyf.immersionbar.ktx.immersionBar
 
 
@@ -27,6 +28,7 @@ class MineFragment : BaseFragment<FragmentMineBinding>(FragmentMineBinding::infl
         super.onViewCreated(view, savedInstanceState)
         initSystemBar()
         initView()
+        viewModelObserve()
     }
 
     private fun initView() {
@@ -37,6 +39,19 @@ class MineFragment : BaseFragment<FragmentMineBinding>(FragmentMineBinding::infl
         viewBinding.mineClearCl.setOnClickListener(this)
         viewBinding.mineQuitCl.setOnClickListener(this)
         viewBinding.mineAuthTv.setOnClickListener(this)
+        viewModel.requestOfQueryProfile()
+    }
+
+    private fun viewModelObserve() {
+        viewModel.apply {
+            profileLiveData.observe(viewLifecycleOwner, { it ->
+                it.onFailure {
+                    it.toString().toast(requireActivity())
+                }.onSuccess {
+                    viewBinding.mineNameTv.text = it.userName
+                }
+            })
+        }
     }
 
     override fun onClick(v: View?) {

@@ -2,7 +2,11 @@ package com.cloud.leasing.constant
 
 object Constant {
 
+    /** 接口模块 */
+
     const val BASE_URL = "http://123.52.43.250:2209"
+
+    const val BASE_FILE_URL = "http://123.52.43.250:2209/creg/"
 
     const val PATH_REGISTER = "/api/v1/business/user/app/save"
 
@@ -13,4 +17,15 @@ object Constant {
     const val PATH_LOGIN = "/api/v1/business/user/app/login"
 
     const val PATH_LOGIN_MESSAGE = "/api/v1/business/user/app/loginMessage"
+
+    const val PATH_QUERY_PROFILE = "/api/v1/business/user/app/queryProfile"
+
+    const val PATH_LOGOUT = "/api/v1/business/user/app/logout"
+
+    /** 本地存储 */
+
+    const val USER_ID = "user_id"
+
+    const val USER_TOKEN = "user_token"
+
 }

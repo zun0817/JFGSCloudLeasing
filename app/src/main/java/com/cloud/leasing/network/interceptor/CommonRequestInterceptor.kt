@@ -1,6 +1,7 @@
 package com.cloud.leasing.network.interceptor
 
-import android.os.Build
+import com.cloud.leasing.constant.Constant
+import com.cloud.leasing.persistence.XKeyValue
 import okhttp3.Interceptor
 import okhttp3.Response
 
@@ -9,8 +10,7 @@ class CommonRequestInterceptor : Interceptor {
         val request = chain.request()
         val builder = request.newBuilder()
         // 这里添加公共请求头
-        builder.addHeader("brand", Build.BRAND)
-        builder.addHeader("model", Build.MODEL)
+        builder.addHeader("Authorization", XKeyValue.getString(Constant.USER_TOKEN))
         return chain.proceed(builder.build())
     }
 }

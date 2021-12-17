@@ -33,4 +33,8 @@ object NetworkApi : BaseNetworkApi<INetworkService>(Constant.BASE_URL) {
     suspend fun requestOfLoginMessage(requestBody: RequestBody) = getResult {
         service.requestOfLoginMessage(requestBody)
     }
+
+    suspend fun requestOfQueryProfile(param: MutableMap<String, Any>) = getResult {
+        service.requestOfQueryProfile(param)
+    }
 }

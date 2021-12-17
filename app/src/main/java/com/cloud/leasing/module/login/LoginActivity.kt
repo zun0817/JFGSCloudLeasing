@@ -9,12 +9,15 @@ import android.view.View
 import androidx.activity.viewModels
 import com.cloud.leasing.R
 import com.cloud.leasing.base.BaseActivity
+import com.cloud.leasing.constant.Constant
 import com.cloud.leasing.constant.PageName
 import com.cloud.leasing.databinding.ActivityLoginBinding
 import com.cloud.leasing.module.forget.ForgetActivity
 import com.cloud.leasing.module.main.MainActivity
 import com.cloud.leasing.module.register.RegisterActivity
+import com.cloud.leasing.persistence.XKeyValue
 import com.cloud.leasing.util.CountDownTimerUtils
+import com.cloud.leasing.util.ViewTouchUtil
 import com.cloud.leasing.util.isMobilPhone
 import com.cloud.leasing.util.toast
 import com.gyf.immersionbar.ktx.immersionBar
@@ -31,7 +34,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::i
         }
     }
 
-    private var isShow = true
+    private var isShow = false
 
     private val viewModel: LoginViewModel by viewModels()
 
@@ -54,13 +57,13 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::i
         viewBinding.loginRegisterTv.setOnClickListener(this)
         viewBinding.loginProtocolTv.setOnClickListener(this)
         viewBinding.layoutPasswordEditLoginIn.loginEyeImg.setOnClickListener(this)
-        viewBinding.layoutPasswordEditLoginIn.loginSmsImg1.setOnClickListener(this)
-        viewBinding.layoutMessageEditLoginIn.loginSmsImg2.setOnClickListener(this)
         viewBinding.layoutMessageEditLoginIn.loginGetsmsTv.setOnClickListener(this)
         viewBinding.layoutPasswordEditLoginIn.loginPhoneEdit.onFocusChangeListener = this
         viewBinding.layoutPasswordEditLoginIn.loginPasswordEdit.onFocusChangeListener = this
         viewBinding.layoutMessageEditLoginIn.loginPhoneEdit2.onFocusChangeListener = this
         viewBinding.layoutMessageEditLoginIn.loginMessageEdit.onFocusChangeListener = this
+        ViewTouchUtil.expandViewTouchDelegate(viewBinding.loginForgetTv)
+        ViewTouchUtil.expandViewTouchDelegate(viewBinding.loginRegisterTv)
     }
 
     private fun viewModelObserve() {
@@ -73,6 +76,30 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::i
                     1000
                 )
                 countDownTimer.start()
+            })
+            loginLiveData.observe(this@LoginActivity, { it ->
+                viewBinding.LoginLoadingview.visibility = View.GONE
+                it.onFailure {
+                    it.toString().toast(this@LoginActivity)
+                }.onSuccess {
+                    "登录成功".toast(this@LoginActivity)
+                    XKeyValue.putInt(Constant.USER_ID, it.user.userId)
+                    XKeyValue.putString(Constant.USER_TOKEN, it.token)
+                    MainActivity.startActivity(this@LoginActivity)
+                    this@LoginActivity.finish()
+                }
+            })
+            messageLiveData.observe(this@LoginActivity, { it ->
+                viewBinding.LoginLoadingview.visibility = View.GONE
+                it.onFailure {
+                    it.toString().toast(this@LoginActivity)
+                }.onSuccess {
+                    "登录成功".toast(this@LoginActivity)
+                    XKeyValue.putInt(Constant.USER_ID, it.user.userId)
+                    XKeyValue.putString(Constant.USER_TOKEN, it.token)
+                    MainActivity.startActivity(this@LoginActivity)
+                    this@LoginActivity.finish()
+                }
             })
         }
     }
@@ -117,12 +144,6 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::i
                 }
                 isShow = !isShow
             }
-            R.id.login_sms_img1 -> {  //图形验证码
-
-            }
-            R.id.login_sms_img2 -> {  //图形验证码
-
-            }
             R.id.login_getsms_tv -> {  //获取验证码
                 val phone =
                     viewBinding.layoutMessageEditLoginIn.loginPhoneEdit2.text.trim().toString()
@@ -155,6 +176,8 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::i
                         "请输入密码".toast(this)
                         return
                     }
+                    viewModel.requestOfLogin(phone, password)
+                    viewBinding.LoginLoadingview.visibility = View.VISIBLE
                 } else if (viewBinding.layoutMessageEditLoginIn.loginMessageLinear.visibility == View.VISIBLE) {
                     val phone =
                         viewBinding.layoutMessageEditLoginIn.loginPhoneEdit2.text.trim().toString()
@@ -173,9 +196,9 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::i
                         "请输入短信验证码".toast(this)
                         return
                     }
+                    viewModel.requestOfLoginMessage(phone, message)
+                    viewBinding.LoginLoadingview.visibility = View.VISIBLE
                 }
-                MainActivity.startActivity(this)
-                this.finish()
             }
             R.id.login_forget_tv -> {  //忘记密码
                 ForgetActivity.startActivity(this)
@@ -233,6 +256,5 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::i
             }
         }
     }
-
 
 }

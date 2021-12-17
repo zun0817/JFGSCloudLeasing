@@ -105,10 +105,6 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:${versions.androidx_lifecycle}")
     implementation("androidx.activity:activity-ktx:${versions.androidx_activity_ktx}")
     implementation("androidx.fragment:fragment-ktx:${versions.androidx_fragment_ktx}")
-    implementation("androidx.room:room-runtime:${versions.androidx_room}")
-    implementation("androidx.room:room-rxjava2:${versions.androidx_room}")
-    implementation("androidx.room:room-ktx:${versions.androidx_room}")
-    kapt("androidx.room:room-compiler:${versions.androidx_room}")
     implementation("androidx.work:work-runtime:${versions.androidx_work_manager}")
     implementation("androidx.work:work-runtime-ktx:${versions.androidx_work_manager}")
 
@@ -138,12 +134,6 @@ dependencies {
     // RxJava
     implementation("io.reactivex.rxjava2:rxjava:${versions.rxjava2}")
     implementation("io.reactivex.rxjava2:rxandroid:${versions.rxandroid2}")
-
-    // 微信分享SDK
-    implementation("com.tencent.mm.opensdk:wechat-sdk-android-without-mta:${versions.wechat_sdk}")
-
-    // Gif
-    implementation("pl.droidsonroids.gif:android-gif-drawable:${versions.gif}")
 
     // Lottie
     implementation("com.airbnb.android:lottie:${versions.lottie}")

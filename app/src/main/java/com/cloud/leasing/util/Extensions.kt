@@ -14,7 +14,6 @@ import com.bumptech.glide.Glide
 import android.text.TextUtils
 import android.view.Gravity
 import android.widget.Toast
-import androidx.room.util.StringUtil
 import java.util.regex.Matcher
 import java.util.regex.Pattern
 
@@ -47,7 +46,7 @@ fun isMobileNO(mobiles: String): Boolean {
 }
 
 fun isMobilPhone(phone: String): Boolean {
-    val regex = "^((13[0-9])|(14[5|7])|(15([0-3]|[5-9]))|(17[013678])|(18[0,5-9]))\\d{8}$"
+    val regex = "^((13[0-9])|(14[5|7])|(15([0-3]|[5-9]))|(17[013678])|(18[0,25-9]))\\d{8}$"
     return if (phone.length != 11) {
         false
     } else {

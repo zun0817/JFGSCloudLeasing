@@ -57,7 +57,7 @@
             android:layout_toLeftOf="@+id/login_getsms_tv"
             android:background="@android:color/transparent"
             android:hint="请输入短信验证码"
-            android:imeOptions="actionNext"
+            android:imeOptions="actionDone"
             android:inputType="textPassword"
             android:maxLength="6"
             android:maxLines="1"
