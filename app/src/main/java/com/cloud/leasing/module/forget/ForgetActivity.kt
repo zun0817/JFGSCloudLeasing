@@ -24,8 +24,9 @@ class ForgetActivity : BaseActivity<ActivityForgetBinding>(ActivityForgetBinding
     View.OnClickListener, View.OnFocusChangeListener {
 
     companion object {
-        fun startActivity(activity: Activity) {
+        fun startActivity(activity: Activity, type: Int) {
             val intent = Intent()
+            intent.putExtra("type", type)
             intent.setClass(activity, ForgetActivity::class.java)
             activity.startActivity(intent)
         }
@@ -59,6 +60,11 @@ class ForgetActivity : BaseActivity<ActivityForgetBinding>(ActivityForgetBinding
     }
 
     private fun initView() {
+        when(intent.getIntExtra("type", -1)){
+            -1 -> viewBinding.forgetTv1.text = "重置密码"
+            0 -> viewBinding.forgetTv1.text = "忘记密码"
+            1 -> viewBinding.forgetTv1.text = "修改密码"
+        }
         viewBinding.forgetBtn.setOnClickListener(this)
         viewBinding.forgetBackImg.setOnClickListener(this)
         viewBinding.layoutForgetEditIn.forgetEyeImg1.setOnClickListener(this)

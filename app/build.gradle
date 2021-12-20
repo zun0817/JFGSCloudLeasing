@@ -168,4 +168,6 @@ dependencies {
     implementation project(':pictureLibrary')
 
     implementation project(':filepickerLibrary')
+
+    implementation project(':dialogLibrary')
 }

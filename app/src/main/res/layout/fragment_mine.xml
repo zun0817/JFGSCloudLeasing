@@ -75,6 +75,7 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/mine_issue_qty_tv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -104,6 +105,7 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/mine_follow_qty_tv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"

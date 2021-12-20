@@ -201,7 +201,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::i
                 }
             }
             R.id.login_forget_tv -> {  //忘记密码
-                ForgetActivity.startActivity(this)
+                ForgetActivity.startActivity(this, 0)
             }
             R.id.login_register_tv -> {  //免费注册
                 RegisterActivity.startActivity(this)

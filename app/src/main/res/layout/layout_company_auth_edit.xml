@@ -5,7 +5,8 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:paddingHorizontal="15dp"
-    android:paddingVertical="35dp">
+    android:paddingVertical="35dp"
+    android:id="@+id/company_auth_edit_ll">
 
     <TextView
         android:layout_width="wrap_content"

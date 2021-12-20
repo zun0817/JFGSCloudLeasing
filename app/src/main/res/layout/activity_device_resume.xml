@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_F2F4F6"
+    tools:context=".module.device.resume.DeviceResumeActivity">
+
+    <LinearLayout
+        android:id="@+id/device_resume_ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitXY"
+                android:src="@mipmap/icon_device_mask" />
+
+            <ImageView
+                android:id="@+id/device_resume_back_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="15dp"
+                android:src="@mipmap/icon_back_white" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center_vertical"
+                android:text="设备履历"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/white">
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/device_resume_tablayout"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                app:tabBackground="@color/white"
+                app:tabIndicator="@drawable/shape_tab_indicator"
+                app:tabIndicatorColor="@color/color_0E64BC"
+                app:tabIndicatorFullWidth="false"
+                app:tabIndicatorHeight="2dp"
+                app:tabSelectedTextColor="@color/color_0E64BC"
+                app:tabTextAppearance="@style/TabLayoutTheme"
+                app:tabTextColor="@color/color_999999">
+
+                <com.google.android.material.tabs.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="管理资料" />
+
+                <com.google.android.material.tabs.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="生产日报" />
+
+                <com.google.android.material.tabs.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="故障台账" />
+
+                <com.google.android.material.tabs.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="日常维保" />
+
+
+            </com.google.android.material.tabs.TabLayout>
+
+        </FrameLayout>
+
+    </LinearLayout>
+
+
+    <com.cloud.leasing.widget.JFGSNestedScrollView
+        android:id="@+id/device_detail_scrollview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/device_resume_ll"
+        android:scrollbars="none">
+
+
+
+    </com.cloud.leasing.widget.JFGSNestedScrollView>
+
+</RelativeLayout>

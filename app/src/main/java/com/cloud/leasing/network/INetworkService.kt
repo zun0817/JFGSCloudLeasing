@@ -1,5 +1,6 @@
 package com.cloud.leasing.network
 
+import com.cloud.leasing.bean.ProfileBean
 import com.cloud.leasing.bean.UserBean
 import com.cloud.leasing.bean.UserInfoBean
 import com.cloud.leasing.bean.VideoBean
@@ -31,4 +32,13 @@ interface INetworkService {
     @FormUrlEncoded
     @POST(Constant.PATH_QUERY_PROFILE)
     suspend fun requestOfQueryProfile(@FieldMap param: MutableMap<String, Any>): BaseResponse<UserInfoBean>
+
+    @POST(Constant.PATH_MINE_INFO)
+    suspend fun requestOfMineInfo(@Body requestBody: RequestBody): BaseResponse<ProfileBean>
+
+    @POST(Constant.PATH_LOGOUT)
+    suspend fun requestOfLogout(): BaseResponse<Int>
+
+    @POST(Constant.PATH_COMPANY_AUTH)
+    suspend fun requestOfCompanyAuth(@Body requestBody: RequestBody): BaseResponse<String>
 }
