@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.easylib" >
+    package="com.example.easylib">
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -7,8 +7,9 @@
     <application android:allowBackup="true">
 
         <activity
+            android:name="com.giftedcat.picture.lib.selector.MultiImageSelectorActivity"
             android:configChanges="orientation|screenSize"
-            android:name="com.giftedcat.picture.lib.selector.MultiImageSelectorActivity" />
+            android:screenOrientation="portrait" />
 
     </application>
 

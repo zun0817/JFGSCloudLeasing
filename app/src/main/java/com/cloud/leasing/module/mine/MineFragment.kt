@@ -19,6 +19,8 @@ import com.cloud.leasing.module.main.MainActivity
 import com.cloud.leasing.module.mine.about.AboutActivity
 import com.cloud.leasing.module.mine.auth.CompanyAuthActivity
 import com.cloud.leasing.module.mine.follow.MineFollowActivity
+import com.cloud.leasing.module.mine.profile.ProfileEditActivity
+import com.cloud.leasing.util.ViewTouchUtil
 import com.cloud.leasing.util.cleanInternalCache
 import com.cloud.leasing.util.toast
 import com.gyf.immersionbar.ktx.immersionBar
@@ -54,6 +56,8 @@ class MineFragment : BaseFragment<FragmentMineBinding>(FragmentMineBinding::infl
         viewBinding.mineClearCl.setOnClickListener(this)
         viewBinding.mineQuitCl.setOnClickListener(this)
         viewBinding.mineAuthTv.setOnClickListener(this)
+        viewBinding.mineProfileImg.setOnClickListener(this)
+        ViewTouchUtil.expandViewTouchDelegate(viewBinding.mineProfileImg)
     }
 
     private fun viewModelObserve() {
@@ -119,6 +123,7 @@ class MineFragment : BaseFragment<FragmentMineBinding>(FragmentMineBinding::infl
                 }
                 CompanyAuthActivity.startActivity(requireActivity(), isAttestation)
             }
+            R.id.mine_profile_img -> ProfileEditActivity.startActivity(requireActivity())
             R.id.mine_modify_cl -> ForgetActivity.startActivity(requireActivity(), 1)
             R.id.mine_about_cl -> AboutActivity.startActivity(requireActivity())
             R.id.mine_clear_cl -> showCleanDialog()

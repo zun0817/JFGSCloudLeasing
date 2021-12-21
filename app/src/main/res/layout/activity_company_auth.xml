@@ -41,8 +41,8 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/company_auth_cl"
         android:layout_above="@+id/company_auth_fl"
+        android:layout_below="@id/company_auth_cl"
         android:scrollbars="none">
 
         <LinearLayout
@@ -101,6 +101,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
+        android:visibility="gone" />
+
+    <include
+        android:id="@+id/layout_carema_view"
+        layout="@layout/layout_carema_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:visibility="gone"/>
 
 

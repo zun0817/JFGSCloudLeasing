@@ -66,7 +66,6 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:drawableEnd="@mipmap/icon_required"
             android:text="企业法人"
             android:textColor="@color/color_17191C"
             android:textSize="15sp" />
@@ -99,7 +98,6 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:drawableEnd="@mipmap/icon_required"
             android:text="企业法人身份证号"
             android:textColor="@color/color_17191C"
             android:textSize="15sp" />
@@ -133,7 +131,6 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:drawableEnd="@mipmap/icon_required"
             android:text="统一社会信用代码"
             android:textColor="@color/color_17191C"
             android:textSize="15sp" />
@@ -174,6 +171,7 @@
         android:padding="17dp">
 
         <ImageView
+            android:id="@+id/company_auth_picture_img"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

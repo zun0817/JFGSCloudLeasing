@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/zun/AndroidStudioProjects/JFGSCloudLeasing/app/src/main/res/drawable/sape_carema_white_view.xml" value="0.390625" />
         <entry key="..\:/Users/zun/AndroidStudioProjects/JFGSCloudLeasing/app/src/main/res/drawable/selector_btn_acgn.xml" value="0.390625" />
         <entry key="..\:/Users/zun/AndroidStudioProjects/JFGSCloudLeasing/app/src/main/res/drawable/selector_btn_gold.xml" value="0.29296875" />
         <entry key="..\:/Users/zun/AndroidStudioProjects/JFGSCloudLeasing/app/src/main/res/drawable/selector_btn_home.xml" value="0.29296875" />
@@ -13,6 +14,8 @@
         <entry key="..\:/Users/zun/AndroidStudioProjects/JFGSCloudLeasing/app/src/main/res/drawable/selector_main_textcolor.xml" value="0.29296875" />
         <entry key="..\:/Users/zun/AndroidStudioProjects/JFGSCloudLeasing/app/src/main/res/drawable/shape_btn_auth.xml" value="0.28957528957528955" />
         <entry key="..\:/Users/zun/AndroidStudioProjects/JFGSCloudLeasing/app/src/main/res/drawable/shape_btn_white.xml" value="0.29296875" />
+        <entry key="..\:/Users/zun/AndroidStudioProjects/JFGSCloudLeasing/app/src/main/res/drawable/shape_carema_595959_view.xml" value="0.390625" />
+        <entry key="..\:/Users/zun/AndroidStudioProjects/JFGSCloudLeasing/app/src/main/res/drawable/shape_carema_ededed_view.xml" value="0.390625" />
         <entry key="..\:/Users/zun/AndroidStudioProjects/JFGSCloudLeasing/app/src/main/res/drawable/shape_circle_0e64bc.xml" value="0.29296875" />
         <entry key="..\:/Users/zun/AndroidStudioProjects/JFGSCloudLeasing/app/src/main/res/drawable/shape_circle_e2e2e2.xml" value="0.29296875" />
         <entry key="..\:/Users/zun/AndroidStudioProjects/JFGSCloudLeasing/app/src/main/res/drawable/shape_dialog_0e64bc.xml" value="0.390625" />
@@ -48,6 +51,7 @@
         <entry key="..\:/Users/zun/AndroidStudioProjects/JFGSCloudLeasing/app/src/main/res/layout/activity_main.xml" value="0.16" />
         <entry key="..\:/Users/zun/AndroidStudioProjects/JFGSCloudLeasing/app/src/main/res/layout/activity_mine_follow.xml" value="0.25" />
         <entry key="..\:/Users/zun/AndroidStudioProjects/JFGSCloudLeasing/app/src/main/res/layout/activity_modify.xml" value="0.280859375" />
+        <entry key="..\:/Users/zun/AndroidStudioProjects/JFGSCloudLeasing/app/src/main/res/layout/activity_profile_edit.xml" value="0.37447916666666664" />
         <entry key="..\:/Users/zun/AndroidStudioProjects/JFGSCloudLeasing/app/src/main/res/layout/activity_publish.xml" value="0.280859375" />
         <entry key="..\:/Users/zun/AndroidStudioProjects/JFGSCloudLeasing/app/src/main/res/layout/activity_register.xml" value="0.280859375" />
         <entry key="..\:/Users/zun/AndroidStudioProjects/JFGSCloudLeasing/app/src/main/res/layout/activity_require_detail.xml" value="0.37447916666666664" />
@@ -77,6 +81,7 @@
         <entry key="..\:/Users/zun/AndroidStudioProjects/JFGSCloudLeasing/app/src/main/res/layout/layout_add_require_upload.xml" value="0.280859375" />
         <entry key="..\:/Users/zun/AndroidStudioProjects/JFGSCloudLeasing/app/src/main/res/layout/layout_add_require_user.xml" value="0.280859375" />
         <entry key="..\:/Users/zun/AndroidStudioProjects/JFGSCloudLeasing/app/src/main/res/layout/layout_banner_item.xml" value="0.280859375" />
+        <entry key="..\:/Users/zun/AndroidStudioProjects/JFGSCloudLeasing/app/src/main/res/layout/layout_carema_view.xml" value="0.37447916666666664" />
         <entry key="..\:/Users/zun/AndroidStudioProjects/JFGSCloudLeasing/app/src/main/res/layout/layout_company_auth_edit.xml" value="0.25" />
         <entry key="..\:/Users/zun/AndroidStudioProjects/JFGSCloudLeasing/app/src/main/res/layout/layout_company_auth_fail.xml" value="0.271484375" />
         <entry key="..\:/Users/zun/AndroidStudioProjects/JFGSCloudLeasing/app/src/main/res/layout/layout_company_auth_success.xml" value="0.280859375" />

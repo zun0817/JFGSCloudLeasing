@@ -2,3 +2,4 @@ rootProject.name = "JFGSCloudLeasing"
 include ':app', ':pictureLibrary'
 include ':filepickerLibrary'
 include ':dialogLibrary'
+include ':cameraLibrary'

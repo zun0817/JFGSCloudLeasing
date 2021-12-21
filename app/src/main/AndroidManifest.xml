@@ -10,6 +10,7 @@
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:name=".JFGSApplication"
@@ -23,9 +24,7 @@
         android:theme="@style/Theme.JFGSCloudLeasing"
         tools:replace="android:allowBackup,android:networkSecurityConfig,android:supportsRtl"
         tools:targetApi="n">
-        <activity
-            android:name=".module.device.resume.DeviceResumeActivity"
-            android:exported="true" />
+
         <activity
             android:name=".module.splash.SplashActivity"
             android:exported="true"
@@ -97,6 +96,7 @@
             android:theme="@style/ActivityTheme" />
         <activity
             android:name=".module.mine.auth.CompanyAuthActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
             android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@style/ActivityTheme" />
@@ -117,6 +117,16 @@
             android:theme="@style/ActivityTheme" />
         <activity
             android:name=".module.home.detail.RequireDetailActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/ActivityTheme" />
+        <activity
+            android:name=".module.mine.profile.ProfileEditActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/ActivityTheme" />
+        <activity
+            android:name=".module.device.resume.DeviceResumeActivity"
             android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@style/ActivityTheme" />

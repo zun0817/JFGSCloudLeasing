@@ -18,10 +18,12 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/provider_paths" />
         </provider>
+
         <activity
             android:name=".upload.LocalUpdateActivity"
             android:screenOrientation="portrait"
             android:theme="@style/ActivityTheme" />
+
     </application>
 
 </manifest>
