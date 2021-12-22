@@ -1,0 +1,41 @@
+package com.cloud.leasing.bean
+
+import java.io.Serializable
+
+data class FollowRequireBean(
+    val beamNum: String,
+    val corporateName: Any,
+    val createTime: String,
+    val cutterDiam: String,
+    val cutterType: String,
+    val cutterTypeName: Any,
+    val deleted: String,
+    val demandCity: Any,
+    val demandFileList: Any,
+    val demandNum: Int,
+    val demandProvince: Any,
+    val deviceBrand: String,
+    val deviceBrandName: Any,
+    val deviceType: String,
+    val deviceTypeName: Any,
+    val drivingTorque: String,
+    val focusStatus: Int,
+    val geologicalInfo: String,
+    val geologicalInfoName: Any,
+    val id: Int,
+    val isExamine: String,
+    val limitedRange: Any,
+    val matchStatus: String,
+    val mobile: Any,
+    val name: Any,
+    val openingRate: String,
+    val outerDiameter: String,
+    val projectLength: Double,
+    val projectLocation: String,
+    val propulsiveForce: String,
+    val province: Any,
+    val remarks: String,
+    val turningRadius: String,
+    val usageTime: String,
+    val userId: Int
+) : Serializable

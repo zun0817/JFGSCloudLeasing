@@ -2,43 +2,14 @@ package com.cloud.leasing.bean
 
 import java.io.Serializable
 
-data class MineDeviceBean(
-    val matchStatusCount: Int,
-    val pageInfo: PageInfo
-) : Serializable
-
-data class PageInfo(
-    val endRow: Int,
-    val hasNextPage: Boolean,
-    val hasPreviousPage: Boolean,
-    val isFirstPage: Boolean,
-    val isLastPage: Boolean,
-    val list: List<MineDevice>,
-    val navigateFirstPage: Int,
-    val navigateLastPage: Int,
-    val navigatePages: Int,
-    val navigatepageNums: List<Int>,
-    val nextPage: Int,
-    val pageNum: Int,
-    val pageSize: Int,
-    val pages: Int,
-    val prePage: Int,
-    val size: Int,
-    val startRow: Int,
-    val total: Int
-) : Serializable
-
-data class MineDevice(
-    var id: Int,
-    var isSelect: Boolean = false,
-    var isVisible: Boolean = false,
+data class FollowDeviceBean(
     val applicableStratum: String,
     val assetOwnership: String,
     val beamNum: String,
     val createTime: String,
     val cutterDiam: String,
     val cutterType: String,
-    val deleted: String,
+    var deleted: String,
     val deviceArea: String,
     val deviceBrand: String,
     val deviceMainFileUrl: String,
@@ -51,8 +22,9 @@ data class MineDevice(
     val drivingPosition: String,
     val drivingPower: String,
     val drivingTorque: String,
-    val focusStatus: Any,
+    var focusStatus: Int,
     val hingeForm: String,
+    val id: Int,
     val leaseTime: String,
     val matchStatus: String,
     val mileageUsed: String,

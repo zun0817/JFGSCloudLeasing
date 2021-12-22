@@ -49,4 +49,28 @@ object NetworkApi : BaseNetworkApi<INetworkService>(Constant.BASE_URL) {
     suspend fun requestOfCompanyAuth(requestBody: RequestBody) = getResult {
         service.requestOfCompanyAuth(requestBody)
     }
+
+    suspend fun requestOfDiviceFollow(requestBody: RequestBody) = getResult {
+        service.requestOfDiviceFollow(requestBody)
+    }
+
+    suspend fun requestOfRequireFollow(requestBody: RequestBody) = getResult {
+        service.requestOfRequireFollow(requestBody)
+    }
+
+    suspend fun requestOfAddFollow(requestBody: RequestBody) = getResult {
+        service.requestOfAddFollow(requestBody)
+    }
+
+    suspend fun requestOfUnfollow(requestBody: RequestBody) = getResult {
+        service.requestOfUnfollow(requestBody)
+    }
+
+    suspend fun requestOfMineDevice(requestBody: RequestBody) = getResult {
+        service.requestOfMineDevice(requestBody)
+    }
+
+    suspend fun requestOfMineRequire(requestBody: RequestBody) = getResult {
+        service.requestOfMineRequire(requestBody)
+    }
 }

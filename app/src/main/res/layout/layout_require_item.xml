@@ -45,10 +45,10 @@
 
     <TextView
         android:id="@+id/require_item_length_tv"
-        android:layout_width="50dp"
+        android:layout_width="75dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:text="50000"
+        android:text="500000.0"
         android:textColor="@color/color_010F1D"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="@id/require_item_length_lab"
@@ -59,7 +59,7 @@
         android:id="@+id/require_item_product_lab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="55dp"
+        android:layout_marginStart="40dp"
         android:layout_marginTop="12dp"
         android:text="设备品牌"
         android:textColor="@color/color_999999"
@@ -92,7 +92,7 @@
 
     <TextView
         android:id="@+id/require_item_num_tv"
-        android:layout_width="50dp"
+        android:layout_width="75dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:text="10"
@@ -106,7 +106,7 @@
         android:id="@+id/require_item_geology_lab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="55dp"
+        android:layout_marginStart="40dp"
         android:layout_marginTop="12dp"
         android:text="地质信息"
         android:textColor="@color/color_999999"

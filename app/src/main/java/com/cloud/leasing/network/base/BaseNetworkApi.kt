@@ -1,8 +1,11 @@
 package com.cloud.leasing.network.base
 
 import com.cloud.leasing.BuildConfig
+import com.cloud.leasing.JFGSApplication
 import com.cloud.leasing.bean.exception.NetworkException
+import com.cloud.leasing.constant.AppManager
 import com.cloud.leasing.constant.ErrorCode
+import com.cloud.leasing.module.login.LoginActivity
 import com.cloud.leasing.network.interceptor.CommonRequestInterceptor
 import com.cloud.leasing.network.interceptor.CommonResponseInterceptor
 import okhttp3.Interceptor
@@ -69,8 +72,10 @@ abstract class BaseNetworkApi<I>(private val baseUrl: String) : IService<I> {
                 if (throwable is NetworkException) {
                     return Result.failure(throwable)
                 }
-                if ((throwable is HttpException && throwable.code() == ErrorCode.UNAUTHORIZED)) {
+                if ((throwable is NetworkException && throwable.code == ErrorCode.UNAUTHORIZED)) {
                     // 这里刷新token，然后重试
+                    LoginActivity.startActivity(AppManager.getInstance().currentActivity())
+                    AppManager.getInstance().finishActivityOfOne(LoginActivity::class.java)
                 }
             }
         }

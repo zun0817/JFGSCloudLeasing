@@ -12,8 +12,10 @@ import androidx.activity.viewModels
 import com.cloud.leasing.R
 import com.cloud.leasing.base.BaseActivity
 import com.cloud.leasing.bean.exception.NetworkException
+import com.cloud.leasing.constant.Constant
 import com.cloud.leasing.constant.PageName
 import com.cloud.leasing.databinding.ActivityForgetBinding
+import com.cloud.leasing.persistence.XKeyValue
 import com.cloud.leasing.util.CountDownTimerUtils
 import com.cloud.leasing.util.ViewTouchUtil
 import com.cloud.leasing.util.isMobilPhone
@@ -87,6 +89,12 @@ class ForgetActivity : BaseActivity<ActivityForgetBinding>(ActivityForgetBinding
             password2TextWatcher
         )
         viewBinding.layoutForgetEditIn.forgetSmsEdit.addTextChangedListener(smscodeTextWatcher)
+
+        val phone = XKeyValue.getString(Constant.USER_PHONE)
+        if (phone.isNotBlank()) {
+            viewBinding.layoutForgetEditIn.forgetPhoneEdit.setText(phone)
+            viewBinding.layoutForgetEditIn.forgetPhoneEdit.setSelection(phone.length)
+        }
     }
 
     private fun viewModelObserve() {

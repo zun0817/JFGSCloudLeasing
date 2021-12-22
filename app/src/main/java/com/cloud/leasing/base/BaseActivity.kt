@@ -3,6 +3,8 @@ package com.cloud.leasing.base
 import android.os.Bundle
 import android.view.LayoutInflater
 import androidx.viewbinding.ViewBinding
+import com.cloud.leasing.constant.AppManager
+import com.cloud.leasing.util.toast
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import me.imid.swipebacklayout.lib.app.SwipeBackActivity
@@ -10,9 +12,12 @@ import me.imid.swipebacklayout.lib.app.SwipeBackActivity
 /**
  * Activity基类
  */
-abstract class BaseActivity<T : ViewBinding>(val inflater: (inflater: LayoutInflater) -> T) : SwipeBackActivity(),
+abstract class BaseActivity<T : ViewBinding>(val inflater: (inflater: LayoutInflater) -> T) :
+    SwipeBackActivity(),
     IGetPageName {
 
+
+    private var pressedTime = 0L
     protected lateinit var viewBinding: T
     private val compositeDisposable = CompositeDisposable()
 
@@ -21,6 +26,7 @@ abstract class BaseActivity<T : ViewBinding>(val inflater: (inflater: LayoutInfl
         viewBinding = inflater(layoutInflater)
         setContentView(viewBinding.root)
         setSwipeBackEnable(swipeBackEnable())
+        AppManager.getInstance().addActivity(this)
     }
 
     override fun onStart() {
@@ -49,4 +55,16 @@ abstract class BaseActivity<T : ViewBinding>(val inflater: (inflater: LayoutInfl
     protected fun addDisposable(disposable: Disposable) {
         compositeDisposable.add(disposable)
     }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        val currentTime = System.currentTimeMillis()
+        if (currentTime - pressedTime > 2000) {
+            "再按一次退出应用".toast(this)
+            pressedTime = currentTime
+        } else {
+            AppManager.getInstance().AppExit(this)
+        }
+    }
+
 }

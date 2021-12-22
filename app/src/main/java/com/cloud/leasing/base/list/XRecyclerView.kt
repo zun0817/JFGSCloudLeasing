@@ -550,7 +550,7 @@ class XRecyclerView @JvmOverloads constructor(
                 emptyMessage = context.resources.getString(R.string.page_state_empty)
             }
             if (emptyIcon == -1) {
-                emptyIcon = R.drawable.icon_empty
+                emptyIcon = R.mipmap.icon_no_data
             }
         }
     }

@@ -7,7 +7,7 @@ import androidx.annotation.IntDef
 annotation class ErrorCode {
     companion object {
         const val OK = 200
-        const val UNAUTHORIZED = 401
+        const val UNAUTHORIZED = 7000001
         const val CUSTOM_FIRST = 600
         const val VALUE_IS_NULL = CUSTOM_FIRST + 1
     }

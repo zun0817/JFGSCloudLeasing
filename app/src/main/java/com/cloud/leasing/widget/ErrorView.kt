@@ -22,7 +22,7 @@ class ErrorView @JvmOverloads constructor(
 
     val viewBinding = ViewErrorBinding.inflate(LayoutInflater.from(context), this, true)
 
-    fun showNoNetwork(@DrawableRes imageRes: Int = R.drawable.icon_no_network, message: String = resources.getString(R.string.page_state_no_network)) {
+    fun showNoNetwork(@DrawableRes imageRes: Int = R.mipmap.icon_network_error, message: String = resources.getString(R.string.page_state_no_network)) {
         viewBinding.run {
             ivEmpty.setImageResource(imageRes)
             tvEmpty.text = message
@@ -36,7 +36,7 @@ class ErrorView @JvmOverloads constructor(
         visibility = View.VISIBLE
     }
 
-    fun showEmpty(@DrawableRes imageRes: Int = R.drawable.icon_empty, message: String = resources.getString(R.string.page_state_empty)) {
+    fun showEmpty(@DrawableRes imageRes: Int = R.mipmap.icon_no_data, message: String = resources.getString(R.string.page_state_empty)) {
         viewBinding.run {
             ivEmpty.setImageResource(imageRes)
             tvEmpty.text = message
@@ -46,7 +46,7 @@ class ErrorView @JvmOverloads constructor(
         visibility = View.VISIBLE
     }
 
-    fun showNetworkError(retryOnClickListener: OnClickListener, @DrawableRes imageRes: Int = R.drawable.icon_network_error, message: String = resources.getString(R.string.page_state_network_error)) {
+    fun showNetworkError(retryOnClickListener: OnClickListener, @DrawableRes imageRes: Int = R.mipmap.icon_network_error, message: String = resources.getString(R.string.page_state_network_error)) {
         viewBinding.run {
             ivEmpty.setImageResource(imageRes)
             tvEmpty.text = message

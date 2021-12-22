@@ -3,10 +3,12 @@ package com.cloud.leasing.module.login
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
 import android.view.View
 import androidx.activity.viewModels
+import androidx.core.text.toSpannable
 import com.cloud.leasing.R
 import com.cloud.leasing.base.BaseActivity
 import com.cloud.leasing.constant.Constant
@@ -64,6 +66,19 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::i
         viewBinding.layoutMessageEditLoginIn.loginMessageEdit.onFocusChangeListener = this
         ViewTouchUtil.expandViewTouchDelegate(viewBinding.loginForgetTv)
         ViewTouchUtil.expandViewTouchDelegate(viewBinding.loginRegisterTv)
+        val phone = XKeyValue.getString(Constant.USER_PHONE)
+        val password = XKeyValue.getString(Constant.USER_PASSWORD)
+        if (phone.isNotBlank()) {
+            viewBinding.layoutPasswordEditLoginIn.loginPhoneEdit.setText(phone)
+            viewBinding.layoutPasswordEditLoginIn.loginPhoneEdit.setSelection(phone.length)
+
+            viewBinding.layoutMessageEditLoginIn.loginPhoneEdit2.setText(phone)
+            viewBinding.layoutMessageEditLoginIn.loginPhoneEdit2.setSelection(phone.length)
+        }
+        if (password.isNotBlank()) {
+            viewBinding.layoutPasswordEditLoginIn.loginPasswordEdit.setText(password)
+            viewBinding.layoutPasswordEditLoginIn.loginPasswordEdit.setSelection(password.length)
+        }
     }
 
     private fun viewModelObserve() {
@@ -85,6 +100,8 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::i
                     "登录成功".toast(this@LoginActivity)
                     XKeyValue.putInt(Constant.USER_ID, it.user.userId)
                     XKeyValue.putString(Constant.USER_TOKEN, it.token)
+                    XKeyValue.putString(Constant.USER_PHONE, it.user.mobile)
+                        XKeyValue.putString(Constant.USER_PASSWORD, it.user.password)
                     MainActivity.startActivity(this@LoginActivity)
                     this@LoginActivity.finish()
                 }
@@ -97,6 +114,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::i
                     "登录成功".toast(this@LoginActivity)
                     XKeyValue.putInt(Constant.USER_ID, it.user.userId)
                     XKeyValue.putString(Constant.USER_TOKEN, it.token)
+                    XKeyValue.putString(Constant.USER_PHONE, it.user.mobile)
                     MainActivity.startActivity(this@LoginActivity)
                     this@LoginActivity.finish()
                 }
