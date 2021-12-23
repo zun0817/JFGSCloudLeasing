@@ -131,13 +131,8 @@ class MineDeviceFragment :
     }
 
     private fun initData() {
-        viewModel.listData.observe(viewLifecycleOwner) { it ->
+        viewModel.listData.observe(viewLifecycleOwner) {
             datas = it
-            it.forEach {
-                it.value.isSelect = isAllSelect
-                it.value.isVisible = isAllVisible
-            }
-            viewBinding.mineDeviceRecyclerview.setViewData(it)
         }
     }
 

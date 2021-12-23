@@ -2,127 +2,61 @@ package com.cloud.leasing.module.home.publish
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.alibaba.fastjson.JSON
+import com.cloud.leasing.JFGSApplication
 import com.cloud.leasing.base.list.base.BaseRecyclerViewModel
-import com.cloud.leasing.base.list.base.BaseViewData
-import com.cloud.leasing.bean.MinePublishBean
+import com.cloud.leasing.bean.MineRequireBean
+import com.cloud.leasing.constant.Constant
 import com.cloud.leasing.constant.PageName
 import com.cloud.leasing.item.MinePublishItemViewData
-import kotlinx.coroutines.delay
+import com.cloud.leasing.network.NetworkApi
+import com.cloud.leasing.persistence.XKeyValue
+import com.cloud.leasing.util.toast
 import kotlinx.coroutines.launch
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.RequestBody
+import okhttp3.RequestBody.Companion.toRequestBody
 
 class MinePublishViewModel : BaseRecyclerViewModel() {
+
+    private val userId = XKeyValue.getInt(Constant.USER_ID)
 
     val listData = MutableLiveData<MutableList<MinePublishItemViewData>>()
 
     var list: MutableList<MinePublishItemViewData> = mutableListOf()
 
+    var alllist: MutableList<MinePublishItemViewData> = mutableListOf()
+
     override fun loadData(isLoadMore: Boolean, isReLoad: Boolean, page: Int) {
         viewModelScope.launch {
-            // 模拟网络数据加载
-            delay(1000L)
-
-            val viewDataList: List<BaseViewData<*>>
-            if (!isLoadMore) {
-                list.add(MinePublishItemViewData(MinePublishBean(
-                    isSelect = false,
-                    isVisible = false,
-                    name = "中国中铁"
-                )))
-
-                list.add(MinePublishItemViewData(MinePublishBean(
-                    isSelect = false,
-                    isVisible = false,
-                    name = "浙商中铁"
-                )))
-
-                list.add(MinePublishItemViewData(MinePublishBean(
-                    isSelect = false,
-                    isVisible = false,
-                    name = "中铁技服"
-                )))
-
-                list.add(MinePublishItemViewData(MinePublishBean(
-                    isSelect = false,
-                    isVisible = false,
-                    name = "无锡中铁"
-                )))
-
-                list.add(MinePublishItemViewData(MinePublishBean(
-                    isSelect = false,
-                    isVisible = false,
-                    name = "厦门中铁"
-                )))
-
-                list.add(MinePublishItemViewData(MinePublishBean(
-                    isSelect = false,
-                    isVisible = false,
-                    name = "中铁广发"
-                )))
-                list.add(MinePublishItemViewData(MinePublishBean(
-                    isSelect = false,
-                    isVisible = false,
-                    name = "铁建重工"
-                )))
-
-                list.add(MinePublishItemViewData(MinePublishBean(
-                    isSelect = false,
-                    isVisible = false,
-                    name = "辽宁三三"
-                )))
-            } else {
-                // 在第5页模拟网络异常
-                if (page == 5) {
-                    postData(isLoadMore, emptyList())
-                    return@launch
-                }
-                list.add(MinePublishItemViewData(MinePublishBean(
-                    isSelect = false,
-                    isVisible = false,
-                    name = "北方重工"
-                )))
-
-                list.add(MinePublishItemViewData(MinePublishBean(
-                    isSelect = false,
-                    isVisible = false,
-                    name = "山河智能"
-                )))
-                list.add(MinePublishItemViewData(MinePublishBean(
-                    isSelect = false,
-                    isVisible = false,
-                    name = "中交天和"
-                )))
-
-                list.add(MinePublishItemViewData(MinePublishBean(
-                    isSelect = false,
-                    isVisible = false,
-                    name = "隧道股份"
-                )))
-                list.add(MinePublishItemViewData(MinePublishBean(
-                    isSelect = false,
-                    isVisible = false,
-                    name = "济南重工"
-                )))
-
-                list.add(MinePublishItemViewData(MinePublishBean(
-                    isSelect = false,
-                    isVisible = false,
-                    name = "中船重工"
-                )))
-                list.add(MinePublishItemViewData(MinePublishBean(
-                    isSelect = false,
-                    isVisible = false,
-                    name = "德国海瑞克"
-                )))
-
-                list.add(MinePublishItemViewData(MinePublishBean(
-                    isSelect = false,
-                    isVisible = false,
-                    name = "小松工业"
-                )))
-            }
+            list.takeIf { it.size > 0 }?.apply { clear() }
+            val param = getMineRequireParam(page)
+            val result = NetworkApi.requestOfMineRequire(param)
+            showResult(result)
             postData(isLoadMore, list)
-            listData.value = list
+            alllist.addAll(list)
+            listData.value = alllist
         }
+    }
+
+    private fun showResult(result: Result<MineRequireBean>) {
+        result.onFailure {
+            it.toString().toast(JFGSApplication.instance)
+        }.onSuccess { mineRequireBean ->
+            mineRequireBean.list.forEach { bean ->
+                list.add(MinePublishItemViewData(bean))
+            }
+        }
+    }
+
+    private fun getMineRequireParam(pageNum: Int): RequestBody {
+        val map = mutableMapOf<String, Any>()
+        map["userId"] = userId
+        map["pageNum"] = pageNum
+        map["pageSize"] = 5
+        map["keyword"] = ""
+        val json = JSON.toJSONString(map)
+        return json.toRequestBody("application/json".toMediaTypeOrNull())
     }
 
     @PageName

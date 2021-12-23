@@ -11,6 +11,7 @@ data class ProfileBean(
     val mineUserName: Any,
     val mineCompany: Any,
     val isAttestation: String,
-    val minHeadImg: String
+    val minHeadImg: String,
+    val userStatus: String
 
 ) : Serializable

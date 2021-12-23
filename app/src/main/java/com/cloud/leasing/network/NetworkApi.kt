@@ -2,6 +2,7 @@ package com.cloud.leasing.network
 
 import com.cloud.leasing.constant.Constant
 import com.cloud.leasing.network.base.BaseNetworkApi
+import okhttp3.MultipartBody
 import okhttp3.RequestBody
 
 /**
@@ -72,5 +73,9 @@ object NetworkApi : BaseNetworkApi<INetworkService>(Constant.BASE_URL) {
 
     suspend fun requestOfMineRequire(requestBody: RequestBody) = getResult {
         service.requestOfMineRequire(requestBody)
+    }
+
+    suspend fun requestOfUploadFile(fileType: RequestBody, file: MultipartBody.Part) = getResult {
+        service.requestOfUploadFile(fileType, file)
     }
 }

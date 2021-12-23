@@ -26,29 +26,27 @@ class MineDeviceViewModel : BaseRecyclerViewModel() {
 
     var list: MutableList<MineDeviceItemViewData> = mutableListOf()
 
-    private var totalPage = 0
+    var alllist: MutableList<MineDeviceItemViewData> = mutableListOf()
 
     override fun loadData(isLoadMore: Boolean, isReLoad: Boolean, page: Int) {
         viewModelScope.launch {
-            if (!isLoadMore) {
-                val param = getMineDeviceParam(page)
-                val result = NetworkApi.requestOfMineDevice(param)
-                result.onFailure {
-                    it.toString().toast(JFGSApplication.instance)
-                }.onSuccess { mineDeviceBean ->
-                    totalPage = mineDeviceBean.pageInfo.endRow
-                    mineDeviceBean.pageInfo.list.forEach { bean ->
-                        list.add(MineDeviceItemViewData(bean))
-                    }
-                }
-            } else {
-                if (page == totalPage){
-                    postData(isLoadMore, emptyList())
-                    return@launch
-                }
-            }
+            list.takeIf { it.size > 0 }?.apply { clear() }
+            val param = getMineDeviceParam(page)
+            val result = NetworkApi.requestOfMineDevice(param)
+            showResult(result)
             postData(isLoadMore, list)
-            listData.value = list
+            alllist.addAll(list)
+            listData.value = alllist
+        }
+    }
+
+    private fun showResult(result: Result<MineDeviceBean>) {
+        result.onFailure {
+            it.toString().toast(JFGSApplication.instance)
+        }.onSuccess { mineDeviceBean ->
+            mineDeviceBean.pageInfo.list.forEach { bean ->
+                list.add(MineDeviceItemViewData(bean))
+            }
         }
     }
 

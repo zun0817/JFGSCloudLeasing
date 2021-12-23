@@ -1,5 +1,6 @@
 package com.cloud.leasing.module.home.publish
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -39,6 +40,7 @@ class MinePublishFragment :
         initData()
     }
 
+    @SuppressLint("UseCompatLoadingForDrawables")
     override fun onClick(v: View?) {
         when (v!!.id) {
             R.id.mine_publish_edit_tv -> {
@@ -92,22 +94,6 @@ class MinePublishFragment :
         viewBinding.minePublishRecyclerview.init(
             XRecyclerView.Config()
                 .setViewModel(viewModel)
-                .setOnItemClickListener(object : XRecyclerView.OnItemClickListener {
-                    override fun onItemClick(
-                        parent: RecyclerView,
-                        view: View,
-                        viewData: BaseViewData<*>,
-                        position: Int,
-                        id: Long
-                    ) {
-                        Toast.makeText(
-                            requireActivity(),
-                            "条目点击: ${viewData.value}",
-                            Toast.LENGTH_SHORT
-                        )
-                            .show()
-                    }
-                })
                 .setOnItemChildViewClickListener(object :
                     XRecyclerView.OnItemChildViewClickListener {
                     override fun onItemChildViewClick(
@@ -131,13 +117,8 @@ class MinePublishFragment :
     }
 
     private fun initData() {
-        viewModel.listData.observe(viewLifecycleOwner) { it ->
+        viewModel.listData.observe(viewLifecycleOwner) {
             datas = it
-            it.forEach {
-                it.value.isSelect = isAllSelect
-                it.value.isVisible = isAllVisible
-            }
-            viewBinding.minePublishRecyclerview.setViewData(it)
         }
     }
 

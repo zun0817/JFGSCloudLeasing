@@ -33,6 +33,8 @@ class MineFragment : BaseFragment<FragmentMineBinding>(FragmentMineBinding::infl
 
     private var isAttestation = "0"
 
+    private var userStatus = "0"
+
     @PageName
     override fun getPageName() = PageName.MINE
 
@@ -107,6 +109,15 @@ class MineFragment : BaseFragment<FragmentMineBinding>(FragmentMineBinding::infl
                             viewBinding.mineAuthTxtTv.setTextColor(resources.getColor(R.color.white))
                         }
                     }
+                    userStatus = it.userStatus
+                    if (it.userStatus == "1") {
+                        viewBinding.mineAuthTv.text = "已驳回"
+                        val spanString = SpannableString("已驳回，请重新提交")
+                        val span = ForegroundColorSpan(resources.getColor(R.color.color_fcff00))
+                        spanString.setSpan(span, 0, 4, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+                        viewBinding.mineAuthTxtTv.text = spanString
+                        viewBinding.mineAuthTxtTv.setTextColor(resources.getColor(R.color.white))
+                    }
                 }
             })
         }
@@ -121,7 +132,11 @@ class MineFragment : BaseFragment<FragmentMineBinding>(FragmentMineBinding::infl
                     "企业认证已成功".toast(requireActivity())
                     return
                 }
-                CompanyAuthActivity.startActivity(requireActivity(), isAttestation)
+                if (userStatus == "1") {
+                    CompanyAuthActivity.startActivity(requireActivity(), userStatus)
+                } else {
+                    CompanyAuthActivity.startActivity(requireActivity(), isAttestation)
+                }
             }
             R.id.mine_profile_img -> ProfileEditActivity.startActivity(requireActivity())
             R.id.mine_modify_cl -> ForgetActivity.startActivity(requireActivity(), 1)

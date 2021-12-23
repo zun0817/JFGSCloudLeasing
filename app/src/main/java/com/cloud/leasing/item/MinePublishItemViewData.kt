@@ -1,7 +1,7 @@
 package com.cloud.leasing.item
 
 import com.cloud.leasing.base.list.base.BaseViewData
-import com.cloud.leasing.bean.MinePublishBean
+import com.cloud.leasing.bean.MineRequire
 
-class MinePublishItemViewData(data: MinePublishBean) : BaseViewData<MinePublishBean>(data) {
+class MinePublishItemViewData(data: MineRequire) : BaseViewData<MineRequire>(data) {
 }

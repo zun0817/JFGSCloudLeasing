@@ -3,6 +3,7 @@ package com.cloud.leasing.network
 import com.cloud.leasing.bean.*
 import com.cloud.leasing.constant.Constant
 import com.cloud.leasing.network.base.BaseResponse
+import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.http.*
 
@@ -54,6 +55,13 @@ interface INetworkService {
     @POST(Constant.PATH_MINE_DEVICE)
     suspend fun requestOfMineDevice(@Body requestBody: RequestBody): BaseResponse<MineDeviceBean>
 
-    @POST(Constant.PATH_COMPANY_AUTH)
-    suspend fun requestOfMineRequire(@Body requestBody: RequestBody): BaseResponse<String>
+    @POST(Constant.PATH_MINE_REQUIRE)
+    suspend fun requestOfMineRequire(@Body requestBody: RequestBody): BaseResponse<MineRequireBean>
+
+    @Multipart
+    @POST(Constant.PATH_FILE_UPLOAD)
+    suspend fun requestOfUploadFile(
+        @Part("fileType") fileType: RequestBody,
+        @Part file: MultipartBody.Part
+    ): BaseResponse<CompanyFileBean>
 }

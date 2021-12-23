@@ -157,25 +157,24 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="45dp"
-        android:drawableEnd="@mipmap/icon_required"
         android:gravity="center_vertical"
         android:text="营业执照"
         android:textColor="@color/color_17191C"
-        android:textSize="15sp" />
+        android:textSize="15sp"
+        app:drawableEndCompat="@mipmap/icon_required" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="220dp"
         android:layout_marginTop="5dp"
         android:background="@mipmap/icon_auth_mask"
         android:padding="17dp">
 
         <ImageView
             android:id="@+id/company_auth_picture_img"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_gravity="center"
-            android:layout_marginHorizontal="17dp"
             android:scaleType="fitXY"
             android:src="@mipmap/icon_auth_picture"
             app:layout_constraintBottom_toBottomOf="parent"

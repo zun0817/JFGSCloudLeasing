@@ -52,6 +52,13 @@ class CompanyAuthActivity :
 
     private fun initView() {
         when (intent.getStringExtra("type")) {
+            "1" -> {
+                viewBinding.layoutCompanyAuthSuccess.companyAuthSuccessLl.visibility =
+                    View.GONE
+                viewBinding.companyAuthFl.visibility = View.GONE
+                viewBinding.layoutCompanyAuthEdit.companyAuthEditLl.visibility = View.GONE
+                viewBinding.layoutCompanyAuthFail.companyAuthFailLl.visibility = View.VISIBLE
+            }
             "2" -> {
                 viewBinding.layoutCompanyAuthSuccess.companyAuthSuccessLl.visibility =
                     View.VISIBLE
@@ -97,6 +104,13 @@ class CompanyAuthActivity :
                         View.VISIBLE
                     viewBinding.companyAuthFl.visibility = View.GONE
                     viewBinding.layoutCompanyAuthEdit.companyAuthEditLl.visibility = View.GONE
+                }
+            })
+            fileLiveData.observe(this@CompanyAuthActivity, { it ->
+                it.onFailure {
+                    it.toString().toast(this@CompanyAuthActivity)
+                }.onSuccess {
+                    "上传成功".toast(this@CompanyAuthActivity)
                 }
             })
         }
@@ -161,6 +175,9 @@ class CompanyAuthActivity :
     override fun onImageResult(file: File?) {
         file?.absolutePath?.toast(this)
         viewBinding.layoutCompanyAuthEdit.companyAuthPictureImg.setImageURI(Uri.fromFile(file))
+        file?.let {
+            viewModel.requestOfUploadFile(it)
+        }
     }
 
     override fun onPermissionRationale(permissions: MutableList<String>?) {

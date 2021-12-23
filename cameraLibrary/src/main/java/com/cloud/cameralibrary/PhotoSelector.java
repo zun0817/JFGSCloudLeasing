@@ -491,7 +491,7 @@ public class PhotoSelector {
         private boolean recycleCrop = true;
         private boolean recycleCompress = true;
 
-        private File directory = Environment.getExternalStoragePublicDirectory("JFGS");
+        private File directory = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM);
 
         private String fileNameFormat = "yyyyMMdd_hhmmss";
         private Bitmap.CompressFormat compressFormat = Bitmap.CompressFormat.JPEG;

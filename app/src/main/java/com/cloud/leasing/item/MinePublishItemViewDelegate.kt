@@ -22,7 +22,13 @@ class MinePublishItemViewDelegate :
 
     override fun onBindViewHolder(holder: ViewHolder, item: MinePublishItemViewData) {
         super.onBindViewHolder(holder, item)
-        holder.viewBinding.minepublishItemTypeTv.text = item.value.name
+        holder.viewBinding.minepublishItemTypeTv.text = item.value.deviceType
+        holder.viewBinding.minepublishItemCityTv.text = item.value.projectLocation
+        holder.viewBinding.minepublishItemLengthTv.text = item.value.projectLength.toString()
+        holder.viewBinding.minepublishItemProductTv.text = item.value.deviceBrand
+        holder.viewBinding.minepublishItemNumTv.text = item.value.demandNum.toString()
+        holder.viewBinding.minepublishItemGeologyTv.text = item.value.geologicalInfo
+        holder.viewBinding.minepublishItemTimeTv.text = item.value.usageTime
         if (item.value.isVisible) {
             holder.viewBinding.minepublishSelectImg.visibility = View.VISIBLE
         } else {
@@ -34,7 +40,7 @@ class MinePublishItemViewDelegate :
             holder.viewBinding.minepublishSelectImg.setImageResource(R.mipmap.icon_select_no)
         }
         holder.viewBinding.minepublishSelectImg.setOnClickListener {
-            performItemChildViewClick(it, item, holder, "选择")
+            performItemChildViewClick(it, item, holder, item.value)
         }
     }
 
