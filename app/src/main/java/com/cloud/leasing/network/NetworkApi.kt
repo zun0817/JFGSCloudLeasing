@@ -78,4 +78,12 @@ object NetworkApi : BaseNetworkApi<INetworkService>(Constant.BASE_URL) {
     suspend fun requestOfUploadFile(fileType: RequestBody, file: MultipartBody.Part) = getResult {
         service.requestOfUploadFile(fileType, file)
     }
+
+    suspend fun requestOfHomeDevices() = getResult {
+        service.requestOfHomeDevices()
+    }
+
+    suspend fun requestOfHomeRequires() = getResult {
+        service.requestOfHomeRequires()
+    }
 }

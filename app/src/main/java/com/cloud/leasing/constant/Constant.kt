@@ -38,7 +38,13 @@ object Constant {
 
     const val PATH_QUIT_FOLLOW = "/api/v1/business/mine/app/unfollow"
 
+    const val PATH_HOME_DEVICES = "/api/v1/rentDevice/app/homeRentDevList"
 
+    const val PATH_HOME_REQUIRES = "/api/v1/demand/app/homeTopDemandList"
+
+    const val PATH_HOME_DEVICE_DETAIL = "/api/v1/rentDevice/app/details"
+
+    const val PATH_HOME_REQUIRE_DETAIL = "/api/v1/demand/app/homeDemandDetails"
 
     /** 本地存储 */
 

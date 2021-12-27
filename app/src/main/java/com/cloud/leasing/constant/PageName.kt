@@ -28,6 +28,8 @@ import androidx.annotation.StringDef
     PageName.DEVICE_DETAIL,
     PageName.DEVICE_RESUME,
     PageName.PROFILE_EDIT,
+    PageName.MORE_DEVICE,
+    PageName.MORE_REQUIRE,
 
     PageName.ACGN,
     PageName.SMALL_VIDEO,
@@ -64,6 +66,8 @@ annotation class PageName {
         const val DEVICE_DETAIL = "device_detail"
         const val DEVICE_RESUME = "device_resume"
         const val PROFILE_EDIT = "profile_edit"
+        const val MORE_DEVICE = "more_device"
+        const val MORE_REQUIRE = "more_require"
 
         const val ACGN = "acgn"
         const val SMALL_VIDEO = "small_video"

@@ -58,6 +58,12 @@ interface INetworkService {
     @POST(Constant.PATH_MINE_REQUIRE)
     suspend fun requestOfMineRequire(@Body requestBody: RequestBody): BaseResponse<MineRequireBean>
 
+    @GET(Constant.PATH_HOME_DEVICES)
+    suspend fun requestOfHomeDevices(): BaseResponse<MutableList<HomeDeviceBean>>
+
+    @GET(Constant.PATH_HOME_REQUIRES)
+    suspend fun requestOfHomeRequires(): BaseResponse<MutableList<HomeRequireBean>>
+
     @Multipart
     @POST(Constant.PATH_FILE_UPLOAD)
     suspend fun requestOfUploadFile(

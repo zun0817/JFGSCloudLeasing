@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/layout_device_item_cl"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/color_F2F4F6">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="15dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/shape_item_white"
+        android:padding="10dp">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/device_item_img"
+            android:layout_width="92dp"
+            android:layout_height="92dp"
+            android:scaleType="fitXY"
+            android:src="@mipmap/icon_launcher_round"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:shapeAppearance="@style/roundedCornerStyle" />
+
+        <TextView
+            android:id="@+id/device_item_name_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:text="郑州·中国中铁"
+            android:textColor="@color/color_010F1D"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toRightOf="@id/device_item_img"
+            app:layout_constraintTop_toTopOf="@+id/device_item_img" />
+
+        <TextView
+            android:id="@+id/device_item_follow_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:drawablePadding="5dp"
+            android:gravity="center_vertical"
+            android:text="关注"
+            android:textColor="@color/color_262626"
+            android:textSize="14sp"
+            app:drawableStartCompat="@mipmap/icon_follow_no"
+            app:layout_constraintBottom_toBottomOf="@id/device_item_img"
+            app:layout_constraintLeft_toRightOf="@id/device_item_img" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="@id/device_item_img"
+            app:layout_constraintLeft_toRightOf="@id/device_item_img"
+            app:layout_constraintTop_toTopOf="@id/device_item_img">
+
+            <TextView
+                android:id="@+id/device_item_type_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="异型盾构"
+                android:textColor="@color/color_999999"
+                android:textSize="12sp" />
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="10dp"
+                android:layout_marginStart="10dp"
+                android:background="@color/color_BFBFBF" />
+
+            <TextView
+                android:id="@+id/device_item_diameter_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="刀片直径6986m"
+                android:textColor="@color/color_999999"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>

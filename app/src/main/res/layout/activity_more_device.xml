@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_F2F4F6"
+    tools:context=".module.home.more.MoreDeviceActivity">
+
+    <FrameLayout
+        android:id="@+id/more_device_fl"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/color_0E64BC"
+        android:paddingHorizontal="15dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="设备列表"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/more_device_back_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:src="@mipmap/icon_back_white" />
+
+        <ImageView
+            android:id="@+id/more_device_search_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|end"
+            android:src="@mipmap/icon_main_search"
+            android:visibility="gone" />
+
+    </FrameLayout>
+
+    <ListView
+        android:id="@+id/more_device_listview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/more_device_fl"
+        android:divider="@null"
+        android:scrollbars="none"
+        android:background="#00000000"
+        android:layout_marginBottom="10dp"/>
+
+    <com.cloud.leasing.widget.LoadingView
+        android:id="@+id/more_device_loadingview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:visibility="gone"/>
+
+</RelativeLayout>
