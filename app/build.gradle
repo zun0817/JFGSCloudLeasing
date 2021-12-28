@@ -172,4 +172,6 @@ dependencies {
     implementation project(':dialogLibrary')
 
     implementation project(':cameraLibrary')
+
+    implementation project(':popwindowLibrary')
 }

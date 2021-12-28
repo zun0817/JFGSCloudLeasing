@@ -46,6 +46,10 @@ object Constant {
 
     const val PATH_HOME_REQUIRE_DETAIL = "/api/v1/demand/app/homeDemandDetails"
 
+    const val PATH_NOTICE_SERVICE = "/api/v1/business/tnoTice/app/queryFirstTnoticeList"
+
+    const val PATH_BANNER = "/api/v1/business/tnoTice/app/bannerList"
+
     /** 本地存储 */
 
     const val USER_ID = "user_id"

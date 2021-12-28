@@ -3,6 +3,7 @@ package com.cloud.leasing.module.home
 import androidx.lifecycle.viewModelScope
 import com.alibaba.fastjson.JSON
 import com.cloud.leasing.base.BaseViewModel
+import com.cloud.leasing.bean.BannerBean
 import com.cloud.leasing.bean.HomeDeviceBean
 import com.cloud.leasing.bean.HomeRequireBean
 import com.cloud.leasing.constant.Constant
@@ -23,9 +24,18 @@ class HomeViewModel : BaseViewModel() {
 
     val deviceLiveData = MutableLiveData<Result<MutableList<HomeDeviceBean>>>()
 
+    val bannerLiveData = MutableLiveData<Result<MutableList<BannerBean>>>()
+
     val followLiveData = MutableLiveData<Result<String>>()
 
     val unfollowLiveData = MutableLiveData<Result<String>>()
+
+    fun requestOfBanner() {
+        viewModelScope.launch {
+            val result = NetworkApi.requestOfBanner()
+            bannerLiveData.value = result
+        }
+    }
 
     fun requestOfHomeDevices() {
         viewModelScope.launch {

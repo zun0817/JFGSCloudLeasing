@@ -15,6 +15,7 @@
             <option value="$PROJECT_DIR$/dialogLibrary" />
             <option value="$PROJECT_DIR$/filepickerLibrary" />
             <option value="$PROJECT_DIR$/pictureLibrary" />
+            <option value="$PROJECT_DIR$/popwindowLibrary" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

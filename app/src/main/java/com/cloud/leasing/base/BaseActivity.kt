@@ -26,7 +26,7 @@ abstract class BaseActivity<T : ViewBinding>(val inflater: (inflater: LayoutInfl
         viewBinding = inflater(layoutInflater)
         setContentView(viewBinding.root)
         setSwipeBackEnable(swipeBackEnable())
-        AppManager.getInstance().addActivity(this)
+        //AppManager.getInstance().addActivity(this)
     }
 
     override fun onStart() {
@@ -55,16 +55,4 @@ abstract class BaseActivity<T : ViewBinding>(val inflater: (inflater: LayoutInfl
     protected fun addDisposable(disposable: Disposable) {
         compositeDisposable.add(disposable)
     }
-
-    override fun onBackPressed() {
-        super.onBackPressed()
-        val currentTime = System.currentTimeMillis()
-        if (currentTime - pressedTime > 2000) {
-            "再按一次退出应用".toast(this)
-            pressedTime = currentTime
-        } else {
-            AppManager.getInstance().AppExit(this)
-        }
-    }
-
 }

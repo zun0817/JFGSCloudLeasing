@@ -11,6 +11,7 @@ import com.cloud.leasing.R
 import com.cloud.leasing.base.BaseActivity
 import com.cloud.leasing.base.list.XRecyclerView
 import com.cloud.leasing.base.list.base.BaseViewData
+import com.cloud.leasing.bean.NoticeServiceBean
 import com.cloud.leasing.constant.PageName
 import com.cloud.leasing.databinding.ActivityServiceBinding
 import com.cloud.leasing.util.ViewTouchUtil
@@ -43,6 +44,7 @@ class ServiceActivity : BaseActivity<ActivityServiceBinding>(ActivityServiceBind
         viewBinding.serviceRecyclerview.init(
             XRecyclerView.Config()
                 .setPullUploadMoreEnable(false)
+                .setPullRefreshEnable(false)
                 .setViewModel(viewModel)
                 .setOnItemClickListener(object : XRecyclerView.OnItemClickListener {
                     override fun onItemClick(
@@ -52,12 +54,15 @@ class ServiceActivity : BaseActivity<ActivityServiceBinding>(ActivityServiceBind
                         position: Int,
                         id: Long
                     ) {
-                        Toast.makeText(
+                        val bean = viewData.value as NoticeServiceBean
+                        ServiceDetailActivity.startActivity(
                             this@ServiceActivity,
-                            "条目点击: ${viewData.value}",
-                            Toast.LENGTH_SHORT
+                            bean.noticeTitle,
+                            bean.noticeContent,
+                            bean.contacts,
+                            bean.phone,
+                            bean.mailbox
                         )
-                            .show()
                     }
                 })
         )

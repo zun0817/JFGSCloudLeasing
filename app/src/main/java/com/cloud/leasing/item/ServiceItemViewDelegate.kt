@@ -22,12 +22,11 @@ class ServiceItemViewDelegate :
 
     override fun onBindViewHolder(holder: ViewHolder, item: ServiceItemViewData) {
         super.onBindViewHolder(holder, item)
-        holder.viewBinding.serviceItemNameTv.text = item.value.title
-        holder.viewBinding.serviceItemDescribeTv.text = item.value.describe
+        holder.viewBinding.serviceItemNameTv.text = item.value.noticeTitle
+        holder.viewBinding.serviceItemDescribeTv.text = item.value.noticeDesc
         when (item.value.id % 2) {
             0 -> holder.viewBinding.serviceItemImg.setImageResource(R.mipmap.icon_service)
             else -> holder.viewBinding.serviceItemImg.setImageResource(R.mipmap.icon_repair)
-
         }
     }
 

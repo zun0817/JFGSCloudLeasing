@@ -11,6 +11,7 @@ import com.cloud.leasing.JFGSApplication
 import com.cloud.leasing.R
 import com.cloud.leasing.adapter.SimpleAdapter
 import com.cloud.leasing.base.BaseFragment
+import com.cloud.leasing.bean.BannerBean
 import com.cloud.leasing.bean.HomeDeviceBean
 import com.cloud.leasing.bean.HomeRequireBean
 import com.cloud.leasing.bean.exception.NetworkException
@@ -18,11 +19,13 @@ import com.cloud.leasing.constant.PageName
 import com.cloud.leasing.databinding.FragmentHomeBinding
 import com.cloud.leasing.module.home.detail.DeviceDetailActivity
 import com.cloud.leasing.module.home.detail.RequireDetailActivity
+import com.cloud.leasing.module.home.have.AddDeviceActivity
 import com.cloud.leasing.module.home.have.HaveActivity
 import com.cloud.leasing.module.home.more.MoreDeviceActivity
 import com.cloud.leasing.module.home.more.MoreRequireActivity
 import com.cloud.leasing.module.home.publish.PublishActivity
 import com.cloud.leasing.module.home.service.ServiceActivity
+import com.cloud.leasing.module.home.want.AddRequireActivity
 import com.cloud.leasing.module.home.want.WantActivity
 import com.cloud.leasing.util.ViewTouchUtil
 import com.cloud.leasing.util.toast
@@ -56,18 +59,17 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         super.onViewCreated(view, savedInstanceState)
         initSystemBar()
         initView()
-        initViewPager()
         viewModelObserve()
     }
 
-    private fun initViewPager() {
+    private fun initViewPager(list: MutableList<BannerBean>) {
         viewBinding.mainBannerView.setLifecycleRegistry(lifecycle)
             .setAdapter(SimpleAdapter())
             .setIndicatorHeight(6)
             .setIndicatorSliderGap(8)
             .setIndicatorSliderRadius(10)
             .setIndicatorSliderWidth(36)
-            .create(getPicList())
+            .create(list)
     }
 
     private fun initSystemBar() {
@@ -83,6 +85,16 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
     @SuppressLint("UseCompatLoadingForDrawables", "SetTextI18n")
     private fun viewModelObserve() {
         viewModel.apply {
+            bannerLiveData.observe(viewLifecycleOwner, { it ->
+                viewBinding.homeLoadingview.visibility = View.GONE
+                it.onFailure {
+                    it.toString().toast(requireActivity())
+                }.onSuccess {
+                    it.takeIf { it.size > 0 }?.apply {
+                        initViewPager(this)
+                    }
+                }
+            })
             deviceLiveData.observe(viewLifecycleOwner, { it ->
                 it.onFailure {
                     it.toString().toast(requireActivity())
@@ -364,8 +376,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
 
     override fun onClick(v: View?) {
         when (v!!.id) {
-            R.id.home_want_tv -> WantActivity.startActivity(requireActivity())
-            R.id.home_have_tv -> HaveActivity.startActivity(requireActivity())
+            R.id.home_want_tv -> AddRequireActivity.startActivity(requireActivity())
+            R.id.home_have_tv -> AddDeviceActivity.startActivity(requireActivity())
             R.id.home_service_tv -> ServiceActivity.startActivity(requireActivity())
             R.id.home_publish_tv -> PublishActivity.startActivity(requireActivity())
             R.id.main_device_more_tv -> MoreDeviceActivity.startActivity(requireActivity())
@@ -379,7 +391,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
                 resources.getIdentifier("icon_banner", "mipmap", requireActivity().packageName)
             mPictureList.add(drawable)
         }
-        return mPictureList;
+        return mPictureList
     }
 
     private fun initView() {
@@ -420,8 +432,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             viewBinding.mainScrollview.setOnScrollChangeListener(this)
         }
+        viewModel.requestOfBanner()
         viewModel.requestOfHomeDevices()
         viewModel.requestOfHomeRequires()
+        viewBinding.homeLoadingview.visibility = View.VISIBLE
     }
 
     override fun onScrollChange(

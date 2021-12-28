@@ -64,6 +64,12 @@ interface INetworkService {
     @GET(Constant.PATH_HOME_REQUIRES)
     suspend fun requestOfHomeRequires(): BaseResponse<MutableList<HomeRequireBean>>
 
+    @POST(Constant.PATH_BANNER)
+    suspend fun requestOfBanner(): BaseResponse<MutableList<BannerBean>>
+
+    @POST(Constant.PATH_NOTICE_SERVICE)
+    suspend fun requestOfNoticeService(@Body requestBody: RequestBody): BaseResponse<ServiceBean>
+
     @Multipart
     @POST(Constant.PATH_FILE_UPLOAD)
     suspend fun requestOfUploadFile(

@@ -140,6 +140,11 @@
             android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@style/ActivityTheme" />
+        <activity
+            android:name=".module.home.service.ServiceDetailActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/ActivityTheme" />
     </application>
 
 </manifest>
