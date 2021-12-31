@@ -5,19 +5,31 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.Gravity
 import android.view.View
+import android.view.ViewGroup
+import android.view.WindowManager
+import androidx.activity.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.cloud.dialoglibrary.BaseDialog
 import com.cloud.leasing.R
 import com.cloud.leasing.adapter.*
 import com.cloud.leasing.base.BaseActivity
+import com.cloud.leasing.bean.CutterType
+import com.cloud.leasing.bean.DeviceBrand
+import com.cloud.leasing.bean.DeviceType
 import com.cloud.leasing.constant.PageName
 import com.cloud.leasing.databinding.ActivityAddDeviceBinding
+import com.cloud.leasing.util.ScreenUtils
 import com.cloud.leasing.util.ViewTouchUtil
+import com.cloud.leasing.util.toast
+import com.cloud.popwindow.WheelView
 import com.giftedcat.picture.lib.selector.MultiImageSelector
 import com.gyf.immersionbar.ktx.immersionBar
 import com.sky.filepicker.upload.Constants
 import com.sky.filepicker.upload.LocalUpdateActivity
+
 
 class AddDeviceActivity :
     BaseActivity<ActivityAddDeviceBinding>(ActivityAddDeviceBinding::inflate),
@@ -30,6 +42,8 @@ class AddDeviceActivity :
             activity.startActivity(intent)
         }
     }
+
+    private var dialog: BaseDialog? = null
 
     private val REQUEST_IMAGE_DEVICE = 1
 
@@ -59,6 +73,13 @@ class AddDeviceActivity :
 
     private lateinit var addCutterPictureAdapter: AddCutterPictureAdapter
 
+    private lateinit var typeList: MutableList<DeviceType>
+
+    private lateinit var brandList: MutableList<DeviceBrand>
+
+    private lateinit var cutterList: MutableList<CutterType>
+
+    private val viewModel: AddDeviceViewModel by viewModels()
 
     override fun getPageName() = PageName.ADDDEVICE
 
@@ -66,6 +87,7 @@ class AddDeviceActivity :
         super.onCreate(savedInstanceState)
         initSystemBar()
         initView()
+        viewModelObserve()
     }
 
     private fun initView() {
@@ -73,7 +95,24 @@ class AddDeviceActivity :
         viewBinding.addDeviceNextBtn.setOnClickListener(this)
         viewBinding.addDevicePreviousBtn.setOnClickListener(this)
         viewBinding.layoutAddDeviceUpload.addDeviceFileFl.setOnClickListener(this)
+        viewBinding.layoutAddDeviceInfo.addDeviceBrandCl.setOnClickListener(this)
+        viewBinding.layoutAddDeviceInfo.addDeviceTypeCl.setOnClickListener(this)
+        viewBinding.layoutAddDeviceInfo.addDeviceSiteCl.setOnClickListener(this)
+        viewBinding.layoutAddDeviceInfo.addDeviceKnifetypeCl.setOnClickListener(this)
+        viewBinding.layoutAddDeviceInfo.addDeviceLayerCl.setOnClickListener(this)
+        viewBinding.layoutAddDeviceInfo.addDeviceLeasetimeCl.setOnClickListener(this)
+        viewBinding.layoutAddDeviceInfo.addDeviceArticulateCl.setOnClickListener(this)
+        viewBinding.layoutAddDeviceInfo.addDeviceStatusCl.setOnClickListener(this)
+
         ViewTouchUtil.expandViewTouchDelegate(viewBinding.addDeviceBackImg)
+        ViewTouchUtil.expandViewTouchDelegate(viewBinding.layoutAddDeviceInfo.addDeviceBrandCl)
+        ViewTouchUtil.expandViewTouchDelegate(viewBinding.layoutAddDeviceInfo.addDeviceTypeCl)
+        ViewTouchUtil.expandViewTouchDelegate(viewBinding.layoutAddDeviceInfo.addDeviceSiteCl)
+        ViewTouchUtil.expandViewTouchDelegate(viewBinding.layoutAddDeviceInfo.addDeviceKnifetypeCl)
+        ViewTouchUtil.expandViewTouchDelegate(viewBinding.layoutAddDeviceInfo.addDeviceLayerCl)
+        ViewTouchUtil.expandViewTouchDelegate(viewBinding.layoutAddDeviceInfo.addDeviceLeasetimeCl)
+        ViewTouchUtil.expandViewTouchDelegate(viewBinding.layoutAddDeviceInfo.addDeviceArticulateCl)
+        ViewTouchUtil.expandViewTouchDelegate(viewBinding.layoutAddDeviceInfo.addDeviceStatusCl)
 
         viewBinding.layoutAddDeviceUpload.addDeviceFileRv.layoutManager =
             LinearLayoutManager(this)
@@ -84,6 +123,21 @@ class AddDeviceActivity :
         initMachineForm()
         initHostForm()
         initCutterForm()
+        viewModel.requestOfDeviceType()
+    }
+
+    private fun viewModelObserve() {
+        viewModel.apply {
+            deviceTypeLiveData.observe(this@AddDeviceActivity, { it ->
+                it.onFailure {
+                    it.toString().toast(this@AddDeviceActivity)
+                }.onSuccess {
+                    typeList = it.deviceType
+                    brandList = it.deviceBrand
+                    cutterList = it.cutterType
+                }
+            })
+        }
     }
 
     private fun initDeviceForm() {
@@ -294,8 +348,55 @@ class AddDeviceActivity :
                     viewBinding.addDeviceNextBtn.text = "下一步"
                 }
             }
+            R.id.add_device_brand_cl -> {
+                showTypeDialog()
+            }
+            R.id.add_device_type_cl -> {
+
+            }
+            R.id.add_device_site_cl -> {
+
+            }
+            R.id.add_device_knifetype_cl -> {
+
+            }
+            R.id.add_device_layer_cl -> {
+
+            }
+            R.id.add_device_leasetime_cl -> {
+
+            }
+            R.id.add_device_articulate_cl -> {
+
+            }
+            R.id.add_device_status_cl -> {
+
+            }
         }
     }
 
+    private fun showTypeDialog() {
+        val builder = BaseDialog.Builder(this)
+        dialog = builder
+            .setView(R.layout.layout_single_popwindow)
+            .addViewOnClick(R.id.popwindow_close_fl) {
+                dialog?.dismissDialog()
+            }
+            .addViewOnClick(R.id.popwindow_sure_fl) {
+
+            }
+            .setHeightdp(ScreenUtils.getScreenHeight(this) / 3)
+            .setWidthdp(ViewGroup.LayoutParams.MATCH_PARENT)
+            .setGravity(Gravity.BOTTOM)
+            .setStyle(R.style.DialogBottomAnim)
+            .build()
+        val lp: WindowManager.LayoutParams = dialog?.window!!.attributes
+        lp.dimAmount = 0.6f
+        dialog?.window!!.attributes = lp
+        dialog?.window!!.addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND)
+        val wheelview = builder.findViewById<WheelView>(R.id.popwindow_wheelview)
+        wheelview.setDataItems(typeList.map { it.name }.toMutableList())
+        dialog?.show()
+    }
 
 }

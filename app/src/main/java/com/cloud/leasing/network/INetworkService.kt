@@ -70,6 +70,9 @@ interface INetworkService {
     @POST(Constant.PATH_NOTICE_SERVICE)
     suspend fun requestOfNoticeService(@Body requestBody: RequestBody): BaseResponse<ServiceBean>
 
+    @GET(Constant.PATH_DEVICE_PARAM_LIST)
+    suspend fun requestOfDeviceType(): BaseResponse<DeviceTypeBean>
+
     @Multipart
     @POST(Constant.PATH_FILE_UPLOAD)
     suspend fun requestOfUploadFile(

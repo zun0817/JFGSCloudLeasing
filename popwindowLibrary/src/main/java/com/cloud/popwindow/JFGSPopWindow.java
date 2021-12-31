@@ -19,7 +19,7 @@ import androidx.annotation.RequiresApi;
 
 public class JFGSPopWindow implements PopupWindow.OnDismissListener{
     private static final String TAG = "CustomPopWindow";
-    private static final float DEFAULT_ALPHA = 0.7f;
+    private static final float DEFAULT_ALPHA = 0.4f;
     private Context mContext;
     private int mWidth;
     private int mHeight;

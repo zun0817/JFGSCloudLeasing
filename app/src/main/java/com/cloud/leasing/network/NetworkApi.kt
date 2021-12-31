@@ -94,4 +94,8 @@ object NetworkApi : BaseNetworkApi<INetworkService>(Constant.BASE_URL) {
     suspend fun requestOfNoticeService(requestBody: RequestBody) = getResult {
         service.requestOfNoticeService(requestBody)
     }
+
+    suspend fun requestOfDeviceType() = getResult {
+        service.requestOfDeviceType()
+    }
 }

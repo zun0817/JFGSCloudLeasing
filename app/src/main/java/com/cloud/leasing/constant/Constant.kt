@@ -50,6 +50,8 @@ object Constant {
 
     const val PATH_BANNER = "/api/v1/business/tnoTice/app/bannerList"
 
+    const val PATH_DEVICE_PARAM_LIST = "/sys/dict/getDistDeviceInfo"
+
     /** 本地存储 */
 
     const val USER_ID = "user_id"
