@@ -3,12 +3,14 @@ package com.cloud.leasing.module.home.have
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
+import android.widget.*
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -19,16 +21,23 @@ import com.cloud.leasing.base.BaseActivity
 import com.cloud.leasing.bean.CutterType
 import com.cloud.leasing.bean.DeviceBrand
 import com.cloud.leasing.bean.DeviceType
+import com.cloud.leasing.bean.ProvinceBean
 import com.cloud.leasing.constant.PageName
 import com.cloud.leasing.databinding.ActivityAddDeviceBinding
 import com.cloud.leasing.util.ScreenUtils
 import com.cloud.leasing.util.ViewTouchUtil
+import com.cloud.leasing.util.getTime
 import com.cloud.leasing.util.toast
+import com.cloud.pickerviewlibrary.builder.TimePickerBuilder
+import com.cloud.pickerviewlibrary.listener.CustomListener
+import com.cloud.pickerviewlibrary.listener.OnTimeSelectListener
+import com.cloud.pickerviewlibrary.view.TimePickerView
 import com.cloud.popwindow.WheelView
 import com.giftedcat.picture.lib.selector.MultiImageSelector
 import com.gyf.immersionbar.ktx.immersionBar
 import com.sky.filepicker.upload.Constants
 import com.sky.filepicker.upload.LocalUpdateActivity
+import java.util.*
 
 
 class AddDeviceActivity :
@@ -43,7 +52,23 @@ class AddDeviceActivity :
         }
     }
 
+    private var deviceType = ""
+
+    private var deviceBrand = ""
+
+    private var cutterType = ""
+
+    private var deviceSite = ""
+
+    private var articulate = ""
+
+    private var deviceStatus = ""
+
+    private var leasingdate = ""
+
     private var dialog: BaseDialog? = null
+
+    private lateinit var timePickerView: TimePickerView
 
     private val REQUEST_IMAGE_DEVICE = 1
 
@@ -62,6 +87,8 @@ class AddDeviceActivity :
     private var mHostPicList = mutableListOf<String>()
 
     private var mCutterPicList = mutableListOf<String>()
+
+    private var provinceList = mutableListOf<ProvinceBean>()
 
     private lateinit var addDeviceFileAdapter: AddDeviceFileAdapter
 
@@ -87,6 +114,7 @@ class AddDeviceActivity :
         super.onCreate(savedInstanceState)
         initSystemBar()
         initView()
+        initDateDialog()
         viewModelObserve()
     }
 
@@ -99,7 +127,6 @@ class AddDeviceActivity :
         viewBinding.layoutAddDeviceInfo.addDeviceTypeCl.setOnClickListener(this)
         viewBinding.layoutAddDeviceInfo.addDeviceSiteCl.setOnClickListener(this)
         viewBinding.layoutAddDeviceInfo.addDeviceKnifetypeCl.setOnClickListener(this)
-        viewBinding.layoutAddDeviceInfo.addDeviceLayerCl.setOnClickListener(this)
         viewBinding.layoutAddDeviceInfo.addDeviceLeasetimeCl.setOnClickListener(this)
         viewBinding.layoutAddDeviceInfo.addDeviceArticulateCl.setOnClickListener(this)
         viewBinding.layoutAddDeviceInfo.addDeviceStatusCl.setOnClickListener(this)
@@ -123,7 +150,9 @@ class AddDeviceActivity :
         initMachineForm()
         initHostForm()
         initCutterForm()
+        viewModel.requestOfDeviceSite()
         viewModel.requestOfDeviceType()
+        viewBinding.addDeviceLoadingview.visibility = View.VISIBLE
     }
 
     private fun viewModelObserve() {
@@ -135,6 +164,14 @@ class AddDeviceActivity :
                     typeList = it.deviceType
                     brandList = it.deviceBrand
                     cutterList = it.cutterType
+                }
+            })
+            provinceLiveData.observe(this@AddDeviceActivity, { it ->
+                viewBinding.addDeviceLoadingview.visibility = View.GONE
+                it.onFailure {
+                    it.toString().toast(this@AddDeviceActivity)
+                }.onSuccess {
+                    provinceList = it
                 }
             })
         }
@@ -306,6 +343,7 @@ class AddDeviceActivity :
                 if (viewBinding.layoutAddDeviceInfo.addDeviceInfoScrollview.visibility ==
                     View.VISIBLE
                 ) {
+                    checkDeviceInfoOfNull()
                     viewBinding.layoutAddDeviceInfo.addDeviceInfoScrollview.visibility = View.GONE
                     viewBinding.layoutAddDeviceUpload.addDeviceUploadScrollview.visibility =
                         View.VISIBLE
@@ -313,6 +351,7 @@ class AddDeviceActivity :
                     viewBinding.addDeviceTxtTv2.setTextColor(resources.getColor(R.color.color_0E64BC))
                     viewBinding.addDevicePreviousBtn.visibility = View.VISIBLE
                     viewBinding.addDeviceView1.setBackgroundResource(R.drawable.shape_view_0e64bc)
+
                 } else if (viewBinding.layoutAddDeviceUpload.addDeviceUploadScrollview.visibility == View.VISIBLE) {
                     viewBinding.layoutAddDeviceInfo.addDeviceInfoScrollview.visibility = View.GONE
                     viewBinding.layoutAddDeviceUpload.addDeviceUploadScrollview.visibility =
@@ -349,54 +388,316 @@ class AddDeviceActivity :
                 }
             }
             R.id.add_device_brand_cl -> {
-                showTypeDialog()
+                showBrandDialog()
             }
             R.id.add_device_type_cl -> {
-
+                showTypeDialog()
             }
             R.id.add_device_site_cl -> {
-
+                showCityDialog()
             }
             R.id.add_device_knifetype_cl -> {
-
-            }
-            R.id.add_device_layer_cl -> {
-
+                showCutterDialog()
             }
             R.id.add_device_leasetime_cl -> {
-
+                timePickerView.show()
             }
             R.id.add_device_articulate_cl -> {
-
+                showJiaojieDialog()
             }
             R.id.add_device_status_cl -> {
-
+                showStatusDialog()
             }
+        }
+    }
+
+    private fun checkDeviceInfoOfNull() {
+        when {
+            deviceBrand.isBlank() -> {
+                "请选择设备品牌".toast(this)
+                return
+            }
+            deviceType.isBlank() -> {
+                "请选择设备类型".toast(this)
+                return
+            }
+            deviceSite.isBlank() -> {
+                "请选择设备位置".toast(this)
+                return
+            }
+            cutterType.isBlank() -> {
+                "请选择刀盘类型".toast(this)
+                return
+            }
+            leasingdate.isBlank() -> {
+                "请选择可租赁时间".toast(this)
+                return
+            }
+            articulate.isBlank() -> {
+                "请选择铰接形式".toast(this)
+                return
+            }
+            deviceStatus.isBlank() -> {
+                "请选择设备状态".toast(this)
+                return
+            }
+            viewBinding.layoutAddDeviceInfo.addDeviceDevicenoEt.text.trim().toString().isBlank() -> {
+                "请输入设备编号".toast(this)
+                return
+            }
+            viewBinding.layoutAddDeviceInfo.addDeviceDiameterEt.text.trim().toString().isBlank() -> {
+                "请输入刀盘直径".toast(this)
+                return
+            }
+            viewBinding.layoutAddDeviceInfo.addDeviceBeamEt.text.trim().toString().isBlank() -> {
+                "请输入主梁数量".toast(this)
+                return
+            }
+            viewBinding.layoutAddDeviceInfo.addDevicePropelEt.text.trim().toString().isBlank() -> {
+                "请输入总推进力".toast(this)
+                return
+            }
+            viewBinding.layoutAddDeviceInfo.addDeviceBeamEt.text.trim().toString().isBlank() -> {
+                "请输入主梁数量".toast(this)
+                return
+            }
+            viewBinding.layoutAddDeviceInfo.addDeviceTorqueEt.text.trim().toString().isBlank() -> {
+                "请输入驱动扭矩".toast(this)
+                return
+            }
+            viewBinding.layoutAddDeviceInfo.addDevicePowerEt.text.trim().toString().isBlank() -> {
+                "请输入驱动功率".toast(this)
+                return
+            }
+            viewBinding.layoutAddDeviceInfo.addDeviceDrivemodelEt.text.trim().toString().isBlank() -> {
+                "请输入设备型号".toast(this)
+                return
+            }
+            viewBinding.layoutAddDeviceInfo.addDeviceLayerEt.text.trim().toString().isBlank() -> {
+                "请输入适用地层".toast(this)
+                return
+            }
+        }
+    }
+
+    private fun showBrandDialog() {
+        val builder = BaseDialog.Builder(this)
+        dialog = builder
+            .setViewId(R.layout.layout_single_popwindow)
+            .setWidthHeightpx(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+            )
+            .setGravity(Gravity.BOTTOM)
+            .setAnimation(R.style.Bottom_Top_aniamtion)
+            .isOnTouchCanceled(false)
+            .setPaddingdp(10, 10, 10, 10)
+            .addViewOnClickListener(R.id.popwindow_close_fl) {
+                dialog!!.dismiss()
+            }.builder()
+        val wheelview = dialog!!.getView<WheelView>(R.id.popwindow_wheelview)
+        val sureview = dialog!!.getView<FrameLayout>(R.id.popwindow_sure_fl)
+        val titleview = dialog!!.getView<TextView>(R.id.popwindow_title_tv)
+        titleview.text = "设备品牌"
+        wheelview.setTextAlign(WheelView.TEXT_ALIGN_CENTER)
+        wheelview.setDataItems(brandList.map { it.name }.toMutableList())
+        dialog?.show()
+        sureview.setOnClickListener {
+            dialog?.dismiss()
+            deviceBrand = wheelview.getSelectedItemData().toString()
+            viewBinding.layoutAddDeviceInfo.addDeviceBrandTv.text = deviceBrand
+            viewBinding.layoutAddDeviceInfo.addDeviceBrandTv.setTextColor(resources.getColor(R.color.color_262626))
         }
     }
 
     private fun showTypeDialog() {
         val builder = BaseDialog.Builder(this)
         dialog = builder
-            .setView(R.layout.layout_single_popwindow)
-            .addViewOnClick(R.id.popwindow_close_fl) {
-                dialog?.dismissDialog()
-            }
-            .addViewOnClick(R.id.popwindow_sure_fl) {
-
-            }
-            .setHeightdp(ScreenUtils.getScreenHeight(this) / 3)
-            .setWidthdp(ViewGroup.LayoutParams.MATCH_PARENT)
+            .setViewId(R.layout.layout_single_popwindow)
+            .setWidthHeightpx(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+            )
             .setGravity(Gravity.BOTTOM)
-            .setStyle(R.style.DialogBottomAnim)
-            .build()
-        val lp: WindowManager.LayoutParams = dialog?.window!!.attributes
-        lp.dimAmount = 0.6f
-        dialog?.window!!.attributes = lp
-        dialog?.window!!.addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND)
-        val wheelview = builder.findViewById<WheelView>(R.id.popwindow_wheelview)
+            .setAnimation(R.style.Bottom_Top_aniamtion)
+            .isOnTouchCanceled(false)
+            .setPaddingdp(10, 10, 10, 10)
+            .addViewOnClickListener(R.id.popwindow_close_fl) {
+                dialog!!.dismiss()
+            }.builder()
+        val wheelview = dialog!!.getView<WheelView>(R.id.popwindow_wheelview)
+        val sureview = dialog!!.getView<FrameLayout>(R.id.popwindow_sure_fl)
+        val titleview = dialog!!.getView<TextView>(R.id.popwindow_title_tv)
+        titleview.text = "设备类型"
+        wheelview.setTextAlign(WheelView.TEXT_ALIGN_CENTER)
         wheelview.setDataItems(typeList.map { it.name }.toMutableList())
         dialog?.show()
+        sureview.setOnClickListener {
+            dialog?.dismiss()
+            deviceType = wheelview.getSelectedItemData().toString()
+            viewBinding.layoutAddDeviceInfo.addDeviceTypeTv.text = deviceType
+            viewBinding.layoutAddDeviceInfo.addDeviceTypeTv.setTextColor(resources.getColor(R.color.color_262626))
+        }
+    }
+
+    private fun showCutterDialog() {
+        val builder = BaseDialog.Builder(this)
+        dialog = builder
+            .setViewId(R.layout.layout_single_popwindow)
+            .setWidthHeightpx(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+            )
+            .setGravity(Gravity.BOTTOM)
+            .setAnimation(R.style.Bottom_Top_aniamtion)
+            .isOnTouchCanceled(false)
+            .setPaddingdp(10, 10, 10, 10)
+            .addViewOnClickListener(R.id.popwindow_close_fl) {
+                dialog!!.dismiss()
+            }.builder()
+        val wheelview = dialog!!.getView<WheelView>(R.id.popwindow_wheelview)
+        val sureview = dialog!!.getView<FrameLayout>(R.id.popwindow_sure_fl)
+        val titleview = dialog!!.getView<TextView>(R.id.popwindow_title_tv)
+        titleview.text = "刀盘类型"
+        wheelview.setTextAlign(WheelView.TEXT_ALIGN_CENTER)
+        wheelview.setDataItems(cutterList.map { it.name }.toMutableList())
+        dialog?.show()
+        sureview.setOnClickListener {
+            dialog?.dismiss()
+            cutterType = wheelview.getSelectedItemData().toString()
+            viewBinding.layoutAddDeviceInfo.addDeviceKnifetypeTv.text = cutterType
+            viewBinding.layoutAddDeviceInfo.addDeviceKnifetypeTv.setTextColor(resources.getColor(R.color.color_262626))
+        }
+    }
+
+    private fun showCityDialog() {
+        val builder = BaseDialog.Builder(this)
+        dialog = builder
+            .setViewId(R.layout.layout_city_popwindow)
+            .setWidthHeightpx(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+            )
+            .setGravity(Gravity.BOTTOM)
+            .setAnimation(R.style.Bottom_Top_aniamtion)
+            .isOnTouchCanceled(false)
+            .setPaddingdp(10, 10, 10, 10)
+            .addViewOnClickListener(R.id.site_popwindow_close_fl) {
+                dialog!!.dismiss()
+            }.builder()
+        val provincewheelview = dialog!!.getView<WheelView>(R.id.province_wheel_view)
+        val citywheelview = dialog!!.getView<WheelView>(R.id.city_wheel_view)
+        val sureview = dialog!!.getView<FrameLayout>(R.id.site_popwindow_sure_fl)
+        val titleview = dialog!!.getView<TextView>(R.id.site_popwindow_title_tv)
+        titleview.text = "设备位置"
+        provincewheelview.setTextAlign(WheelView.TEXT_ALIGN_CENTER)
+        provincewheelview.setDataItems(provinceList.map { it.label }.toMutableList())
+        citywheelview.setTextAlign(WheelView.TEXT_ALIGN_CENTER)
+        provincewheelview.setOnItemSelectedListener(object : WheelView.OnItemSelectedListener {
+            override fun onItemSelected(wheelView: WheelView, data: Any, position: Int) {
+                citywheelview.setDataItems(provinceList[position].children.map { it.label }
+                    .toMutableList())
+            }
+        })
+        dialog?.show()
+        sureview.setOnClickListener {
+            dialog?.dismiss()
+            deviceSite = provincewheelview.getSelectedItemData()
+                .toString() + citywheelview.getSelectedItemData().toString()
+            viewBinding.layoutAddDeviceInfo.addDeviceSiteTv.text = deviceSite
+            viewBinding.layoutAddDeviceInfo.addDeviceSiteTv.setTextColor(resources.getColor(R.color.color_262626))
+        }
+    }
+
+    private fun showJiaojieDialog() {
+        val builder = BaseDialog.Builder(this)
+        dialog = builder
+            .setViewId(R.layout.layout_single_popwindow)
+            .setWidthHeightpx(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+            )
+            .setGravity(Gravity.BOTTOM)
+            .setAnimation(R.style.Bottom_Top_aniamtion)
+            .isOnTouchCanceled(false)
+            .setPaddingdp(10, 10, 10, 10)
+            .addViewOnClickListener(R.id.popwindow_close_fl) {
+                dialog!!.dismiss()
+            }.builder()
+        val wheelview = dialog!!.getView<WheelView>(R.id.popwindow_wheelview)
+        val sureview = dialog!!.getView<FrameLayout>(R.id.popwindow_sure_fl)
+        val titleview = dialog!!.getView<TextView>(R.id.popwindow_title_tv)
+        titleview.text = "铰接形式"
+        wheelview.setTextAlign(WheelView.TEXT_ALIGN_CENTER)
+        val list = resources.getStringArray(R.array.jiaojie)
+        wheelview.setDataItems(list.toMutableList())
+        dialog?.show()
+        sureview.setOnClickListener {
+            dialog?.dismiss()
+            articulate = wheelview.getSelectedItemData().toString()
+            viewBinding.layoutAddDeviceInfo.addDeviceArticulateTv.text = articulate
+            viewBinding.layoutAddDeviceInfo.addDeviceArticulateTv.setTextColor(resources.getColor(R.color.color_262626))
+        }
+    }
+
+    private fun showStatusDialog() {
+        val builder = BaseDialog.Builder(this)
+        dialog = builder
+            .setViewId(R.layout.layout_single_popwindow)
+            .setWidthHeightpx(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+            )
+            .setGravity(Gravity.BOTTOM)
+            .setAnimation(R.style.Bottom_Top_aniamtion)
+            .isOnTouchCanceled(false)
+            .setPaddingdp(10, 10, 10, 10)
+            .addViewOnClickListener(R.id.popwindow_close_fl) {
+                dialog!!.dismiss()
+            }.builder()
+        val wheelview = dialog!!.getView<WheelView>(R.id.popwindow_wheelview)
+        val sureview = dialog!!.getView<FrameLayout>(R.id.popwindow_sure_fl)
+        val titleview = dialog!!.getView<TextView>(R.id.popwindow_title_tv)
+        titleview.text = "设备状态"
+        wheelview.setTextAlign(WheelView.TEXT_ALIGN_CENTER)
+        val list = resources.getStringArray(R.array.devicestatus)
+        wheelview.setDataItems(list.toMutableList())
+        dialog?.show()
+        sureview.setOnClickListener {
+            dialog?.dismiss()
+            deviceStatus = wheelview.getSelectedItemData().toString()
+            viewBinding.layoutAddDeviceInfo.addDeviceStatusTv.text = deviceStatus
+            viewBinding.layoutAddDeviceInfo.addDeviceStatusTv.setTextColor(resources.getColor(R.color.color_262626))
+            viewBinding.layoutAddDeviceInfo.addDeviceStatusTv.setTextColor(resources.getColor(R.color.color_262626))
+        }
+    }
+
+    private fun initDateDialog() {
+        val selectedDate = Calendar.getInstance()
+        val startDate = Calendar.getInstance()
+        startDate.time = Date(System.currentTimeMillis())
+        val endDate = Calendar.getInstance()
+        endDate.set(2029, 12, 31)
+        timePickerView = TimePickerBuilder(this) { date, _ ->
+            leasingdate = getTime(date)
+            viewBinding.layoutAddDeviceInfo.addDeviceLeasetimeTv.text = getTime(date)
+            viewBinding.layoutAddDeviceInfo.addDeviceLeasetimeTv.setTextColor(resources.getColor(R.color.color_262626))
+        }.setDate(selectedDate).setRangDate(startDate, endDate)
+            .setLayoutRes(R.layout.layout_date_popwindow) { v ->
+                val tvSubmit = v.findViewById<FrameLayout>(R.id.date_popwindow_sure_fl)
+                val ivCancel = v.findViewById<FrameLayout>(R.id.date_popwindow_close_fl)
+                tvSubmit.setOnClickListener {
+                    timePickerView.returnData()
+                    timePickerView.dismiss()
+                }
+                ivCancel.setOnClickListener { timePickerView.dismiss() }
+            }
+            .setType(booleanArrayOf(true, true, true, false, false, false))
+            .setLineSpacingMultiplier(2.2f)
+            .isCenterLabel(false)
+            .setOutSideCancelable(false)
+            .setDividerColor(Color.WHITE)
+            .build()
     }
 
 }

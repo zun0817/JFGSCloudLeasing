@@ -14,6 +14,7 @@
             <option value="$PROJECT_DIR$/cameraLibrary" />
             <option value="$PROJECT_DIR$/dialogLibrary" />
             <option value="$PROJECT_DIR$/filepickerLibrary" />
+            <option value="$PROJECT_DIR$/pickerviewLibrary" />
             <option value="$PROJECT_DIR$/pictureLibrary" />
             <option value="$PROJECT_DIR$/popwindowLibrary" />
           </set>

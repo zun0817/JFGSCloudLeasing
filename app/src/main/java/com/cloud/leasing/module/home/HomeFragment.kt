@@ -24,6 +24,7 @@ import com.cloud.leasing.module.home.have.HaveActivity
 import com.cloud.leasing.module.home.more.MoreDeviceActivity
 import com.cloud.leasing.module.home.more.MoreRequireActivity
 import com.cloud.leasing.module.home.publish.PublishActivity
+import com.cloud.leasing.module.home.search.SearchActivity
 import com.cloud.leasing.module.home.service.ServiceActivity
 import com.cloud.leasing.module.home.want.AddRequireActivity
 import com.cloud.leasing.module.home.want.WantActivity
@@ -382,6 +383,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
             R.id.home_publish_tv -> PublishActivity.startActivity(requireActivity())
             R.id.main_device_more_tv -> MoreDeviceActivity.startActivity(requireActivity())
             R.id.main_require_more_tv -> MoreRequireActivity.startActivity(requireActivity())
+            R.id.main_search_tv, R.id.main_search_img -> SearchActivity.startActivity(
+                requireActivity()
+            )
         }
     }
 
@@ -401,6 +405,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         viewBinding.homeServiceTv.setOnClickListener(this)
         viewBinding.mainDeviceMoreTv.setOnClickListener(this)
         viewBinding.mainRequireMoreTv.setOnClickListener(this)
+        viewBinding.mainSearchTv.setOnClickListener(this)
+        viewBinding.mainSearchImg.setOnClickListener(this)
         viewBinding.layoutRequireItemOne.requireItemLookTv.setOnClickListener {
             RequireDetailActivity.startActivity(requireActivity())
         }

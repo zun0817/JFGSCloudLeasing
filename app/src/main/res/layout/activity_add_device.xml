@@ -244,4 +244,11 @@
         android:layout_marginVertical="12dp"
         android:visibility="gone" />
 
+    <com.cloud.leasing.widget.LoadingView
+        android:id="@+id/add_device_loadingview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone"/>
+
 </RelativeLayout>

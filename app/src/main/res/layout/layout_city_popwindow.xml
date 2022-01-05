@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/transparent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/layout_rounded_white"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:id="@+id/popwindow_frame"
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+
+            <TextView
+                android:id="@+id/site_popwindow_title_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="设备位置"
+                android:textColor="@color/color_262626"
+                android:textSize="17dp"
+                android:textStyle="bold" />
+
+            <FrameLayout
+                android:id="@+id/site_popwindow_sure_fl"
+                android:layout_width="60dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="end|center_vertical">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:src="@mipmap/icon_sure" />
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/site_popwindow_close_fl"
+                android:layout_width="60dp"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:src="@mipmap/icon_close" />
+
+            </FrameLayout>
+
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <com.cloud.popwindow.WheelView
+                android:id="@+id/province_wheel_view"
+                android:layout_width="0dp"
+                android:layout_height="180dp"
+                android:layout_weight="1"
+                app:wv_autoFitTextSize="true"
+                app:wv_cyclic="false"
+                app:wv_lineSpacing="20dp"
+                app:wv_normalItemTextColor="@color/color_999999"
+                app:wv_selectedItemPosition="0"
+                app:wv_selectedItemTextColor="@color/color_262626"
+                app:wv_showDivider="false"
+                app:wv_textSize="18sp"
+                app:wv_visibleItems="5"
+                app:wv_curvedArcDirection="center"/>
+
+            <com.cloud.popwindow.WheelView
+                android:id="@+id/city_wheel_view"
+                android:layout_width="0dp"
+                android:layout_height="180dp"
+                android:layout_weight="1"
+                app:wv_autoFitTextSize="true"
+                app:wv_cyclic="false"
+                app:wv_lineSpacing="20dp"
+                app:wv_normalItemTextColor="@color/color_999999"
+                app:wv_selectedItemPosition="0"
+                app:wv_selectedItemTextColor="@color/color_262626"
+                app:wv_showDivider="false"
+                app:wv_textSize="18sp"
+                app:wv_visibleItems="5"
+                app:wv_curvedArcDirection="center"/>
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

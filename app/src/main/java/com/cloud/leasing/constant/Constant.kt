@@ -52,6 +52,12 @@ object Constant {
 
     const val PATH_DEVICE_PARAM_LIST = "/sys/dict/getDistDeviceInfo"
 
+    const val PATH_DEVICE_SITE = "/sys/area/list"
+
+    const val PATH_DEVICE_ADD = "/api/v1/rentDevice/app/save"
+
+    const val PATH_QUERY_DATA = "/api/v1/es/app/queryData"
+
     /** 本地存储 */
 
     const val USER_ID = "user_id"

@@ -73,6 +73,15 @@ interface INetworkService {
     @GET(Constant.PATH_DEVICE_PARAM_LIST)
     suspend fun requestOfDeviceType(): BaseResponse<DeviceTypeBean>
 
+    @GET(Constant.PATH_DEVICE_SITE)
+    suspend fun requestOfDeviceSite(): BaseResponse<MutableList<ProvinceBean>>
+
+    @GET(Constant.PATH_DEVICE_ADD)
+    suspend fun requestOfAddDevice(@QueryMap param: MutableMap<String, Any>): BaseResponse<String>
+
+    @GET(Constant.PATH_QUERY_DATA)
+    suspend fun requestOfQueryData(@QueryMap param: MutableMap<String, Any>): BaseResponse<String>
+
     @Multipart
     @POST(Constant.PATH_FILE_UPLOAD)
     suspend fun requestOfUploadFile(

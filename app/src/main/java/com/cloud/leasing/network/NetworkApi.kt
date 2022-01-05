@@ -98,4 +98,8 @@ object NetworkApi : BaseNetworkApi<INetworkService>(Constant.BASE_URL) {
     suspend fun requestOfDeviceType() = getResult {
         service.requestOfDeviceType()
     }
+
+    suspend fun requestOfDeviceSite() = getResult {
+        service.requestOfDeviceSite()
+    }
 }

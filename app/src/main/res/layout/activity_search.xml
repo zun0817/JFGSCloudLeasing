@@ -35,7 +35,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
-                android:id="@+id/search_search_tv"
+                android:id="@+id/search_search_et"
                 android:layout_width="0dp"
                 android:layout_height="36dp"
                 android:layout_marginStart="5dp"
@@ -48,6 +48,7 @@
                 android:textColor="@color/color_262626"
                 android:textColorHint="@color/color_BFBFBF"
                 android:textSize="14sp"
+                android:imeOptions="actionDone"
                 app:drawableLeftCompat="@mipmap/icon_search"
                 app:layout_constraintBottom_toBottomOf="@id/search_mask_img"
                 app:layout_constraintLeft_toLeftOf="parent"

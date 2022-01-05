@@ -12,8 +12,11 @@ import android.view.View
 import android.widget.ImageView
 import com.bumptech.glide.Glide
 import android.text.TextUtils
+import android.util.Log
 import android.view.Gravity
 import android.widget.Toast
+import java.text.SimpleDateFormat
+import java.util.*
 import java.util.regex.Matcher
 import java.util.regex.Pattern
 
@@ -61,6 +64,12 @@ fun Any.toast(context: Context, duration: Int = Toast.LENGTH_SHORT): Toast {
         setGravity(Gravity.CENTER, 0, 0)
         show()
     }
+}
+
+fun getTime(date: Date): String {
+    Log.d("getTime()", "choice date millis: " + date.time)
+    val format = SimpleDateFormat("yyyy-MM-dd")
+    return format.format(date)
 }
 
 val Float.dp: Float
