@@ -55,9 +55,10 @@
             android:layout_marginTop="25dp"
             android:background="@color/transparent"
             android:hint="联系人"
+            android:textColorHint="@color/color_BFBFBF"
             android:imeOptions="actionNext"
             android:inputType="text"
-            android:textColor="@color/black"
+            android:textColor="@color/color_262626"
             android:textSize="15sp" />
 
     </LinearLayout>
@@ -86,7 +87,9 @@
             android:hint="手机号码"
             android:imeOptions="actionNext"
             android:inputType="phone"
-            android:textColor="@color/black"
+            android:maxEms="11"
+            android:textColorHint="@color/color_BFBFBF"
+            android:textColor="@color/color_262626"
             android:textSize="15sp" />
 
     </LinearLayout>
@@ -115,7 +118,8 @@
             android:hint="工作单位"
             android:imeOptions="actionDone"
             android:inputType="text"
-            android:textColor="@color/black"
+            android:textColorHint="@color/color_BFBFBF"
+            android:textColor="@color/color_262626"
             android:textSize="15sp" />
 
     </LinearLayout>

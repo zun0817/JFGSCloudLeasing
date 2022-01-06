@@ -3,7 +3,7 @@ package com.cloud.leasing.bean
 import java.io.Serializable
 
 data class CompanyFileBean(
-    val filePath: String,
+    val fileUrl: String,
     val fileSize: String,
-    val fileName: String
+    val originalFileName: String
 ) : Serializable

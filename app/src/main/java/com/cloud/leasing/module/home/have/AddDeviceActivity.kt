@@ -18,10 +18,8 @@ import com.cloud.dialoglibrary.BaseDialog
 import com.cloud.leasing.R
 import com.cloud.leasing.adapter.*
 import com.cloud.leasing.base.BaseActivity
-import com.cloud.leasing.bean.CutterType
-import com.cloud.leasing.bean.DeviceBrand
-import com.cloud.leasing.bean.DeviceType
-import com.cloud.leasing.bean.ProvinceBean
+import com.cloud.leasing.bean.*
+import com.cloud.leasing.bean.exception.NetworkException
 import com.cloud.leasing.constant.PageName
 import com.cloud.leasing.databinding.ActivityAddDeviceBinding
 import com.cloud.leasing.util.ScreenUtils
@@ -60,9 +58,13 @@ class AddDeviceActivity :
 
     private var deviceSite = ""
 
+    private var deviceArea = ""
+
+    private var drivingPosition = ""
+
     private var articulate = ""
 
-    private var deviceStatus = ""
+    private var deviceRentStatus = ""
 
     private var leasingdate = ""
 
@@ -88,7 +90,7 @@ class AddDeviceActivity :
 
     private var mCutterPicList = mutableListOf<String>()
 
-    private var provinceList = mutableListOf<ProvinceBean>()
+    private var rentDeviceFileList = mutableListOf<UploadFileBean>()
 
     private lateinit var addDeviceFileAdapter: AddDeviceFileAdapter
 
@@ -99,6 +101,8 @@ class AddDeviceActivity :
     private lateinit var addHostPictureAdapter: AddHostPictureAdapter
 
     private lateinit var addCutterPictureAdapter: AddCutterPictureAdapter
+
+    private lateinit var provinceList: MutableList<ProvinceBean>
 
     private lateinit var typeList: MutableList<DeviceType>
 
@@ -174,6 +178,20 @@ class AddDeviceActivity :
                     provinceList = it
                 }
             })
+            addDeviceLiveData.observe(this@AddDeviceActivity, { it ->
+                viewBinding.addDeviceLoadingview.visibility = View.GONE
+                it.onFailure {
+                    if ((it as NetworkException).code == 200) {
+                        "添加设备成功".toast(this@AddDeviceActivity)
+                        this@AddDeviceActivity.finish()
+                    } else {
+                        it.toString().toast(this@AddDeviceActivity)
+                    }
+                }.onSuccess {
+                    "添加设备成功".toast(this@AddDeviceActivity)
+                    this@AddDeviceActivity.finish()
+                }
+            })
         }
     }
 
@@ -197,7 +215,7 @@ class AddDeviceActivity :
             GridLayoutManager(this, 3)
         addMachinePictureAdapter = AddMachinePictureAdapter(
             this,
-            mDevicePicList,
+            mMachinePicList,
             viewBinding.layoutAddDeviceUpload.addMachinePictureRv
         )
         addMachinePictureAdapter.setMaxSize(3)
@@ -212,7 +230,7 @@ class AddDeviceActivity :
             GridLayoutManager(this, 3)
         addHostPictureAdapter = AddHostPictureAdapter(
             this,
-            mDevicePicList,
+            mHostPicList,
             viewBinding.layoutAddDeviceUpload.addHostPictureRv
         )
         addHostPictureAdapter.setMaxSize(3)
@@ -227,7 +245,7 @@ class AddDeviceActivity :
             GridLayoutManager(this, 3)
         addCutterPictureAdapter = AddCutterPictureAdapter(
             this,
-            mDevicePicList,
+            mCutterPicList,
             viewBinding.layoutAddDeviceUpload.addCutterPictureRv
         )
         addCutterPictureAdapter.setMaxSize(3)
@@ -341,9 +359,8 @@ class AddDeviceActivity :
             }
             R.id.add_device_next_btn -> {
                 if (viewBinding.layoutAddDeviceInfo.addDeviceInfoScrollview.visibility ==
-                    View.VISIBLE
+                    View.VISIBLE && !checkDeviceInfoOfNull()
                 ) {
-                    checkDeviceInfoOfNull()
                     viewBinding.layoutAddDeviceInfo.addDeviceInfoScrollview.visibility = View.GONE
                     viewBinding.layoutAddDeviceUpload.addDeviceUploadScrollview.visibility =
                         View.VISIBLE
@@ -351,41 +368,22 @@ class AddDeviceActivity :
                     viewBinding.addDeviceTxtTv2.setTextColor(resources.getColor(R.color.color_0E64BC))
                     viewBinding.addDevicePreviousBtn.visibility = View.VISIBLE
                     viewBinding.addDeviceView1.setBackgroundResource(R.drawable.shape_view_0e64bc)
+                    viewBinding.addDeviceNextBtn.text = "确定"
 
                 } else if (viewBinding.layoutAddDeviceUpload.addDeviceUploadScrollview.visibility == View.VISIBLE) {
-                    viewBinding.layoutAddDeviceInfo.addDeviceInfoScrollview.visibility = View.GONE
-                    viewBinding.layoutAddDeviceUpload.addDeviceUploadScrollview.visibility =
-                        View.GONE
-                    viewBinding.layoutAddDeviceUser.addDeviceUserLl.visibility = View.VISIBLE
-                    viewBinding.addDeviceCircleTv3.setBackgroundResource(R.drawable.shape_circle_0e64bc)
-                    viewBinding.addDeviceTxtTv3.setTextColor(resources.getColor(R.color.color_0E64BC))
-                    viewBinding.addDevicePreviousBtn.visibility = View.VISIBLE
-                    viewBinding.addRequireView2.setBackgroundResource(R.drawable.shape_view_0e64bc)
-                    viewBinding.addDeviceNextBtn.text = "确定"
+                    requestOfAddDevice()
                 }
             }
             R.id.add_device_previous_btn -> {
-                if (viewBinding.layoutAddDeviceUpload.addDeviceUploadScrollview.visibility ==
+                viewBinding.layoutAddDeviceInfo.addDeviceInfoScrollview.visibility =
                     View.VISIBLE
-                ) {
-                    viewBinding.layoutAddDeviceInfo.addDeviceInfoScrollview.visibility =
-                        View.VISIBLE
-                    viewBinding.layoutAddDeviceUpload.addDeviceUploadScrollview.visibility =
-                        View.GONE
-                    viewBinding.addDeviceCircleTv2.setBackgroundResource(R.drawable.shape_circle_e2e2e2)
-                    viewBinding.addDeviceTxtTv2.setTextColor(resources.getColor(R.color.color_BFBFBF))
-                    viewBinding.addDeviceView1.setBackgroundResource(R.drawable.shape_view_eaeaea)
-                    viewBinding.addDevicePreviousBtn.visibility = View.GONE
-                } else if (viewBinding.layoutAddDeviceUser.addDeviceUserLl.visibility == View.VISIBLE) {
-                    viewBinding.layoutAddDeviceUser.addDeviceUserLl.visibility = View.GONE
-                    viewBinding.layoutAddDeviceUpload.addDeviceUploadScrollview.visibility =
-                        View.VISIBLE
-                    viewBinding.addDeviceCircleTv3.setBackgroundResource(R.drawable.shape_circle_e2e2e2)
-                    viewBinding.addDeviceTxtTv3.setTextColor(resources.getColor(R.color.color_BFBFBF))
-                    viewBinding.addRequireView2.setBackgroundResource(R.drawable.shape_view_eaeaea)
-                    viewBinding.addDevicePreviousBtn.visibility = View.VISIBLE
-                    viewBinding.addDeviceNextBtn.text = "下一步"
-                }
+                viewBinding.layoutAddDeviceUpload.addDeviceUploadScrollview.visibility =
+                    View.GONE
+                viewBinding.addDeviceCircleTv2.setBackgroundResource(R.drawable.shape_circle_e2e2e2)
+                viewBinding.addDeviceTxtTv2.setTextColor(resources.getColor(R.color.color_BFBFBF))
+                viewBinding.addDeviceView1.setBackgroundResource(R.drawable.shape_view_eaeaea)
+                viewBinding.addDevicePreviousBtn.visibility = View.GONE
+                viewBinding.addDeviceNextBtn.text = "下一步"
             }
             R.id.add_device_brand_cl -> {
                 showBrandDialog()
@@ -411,73 +409,149 @@ class AddDeviceActivity :
         }
     }
 
-    private fun checkDeviceInfoOfNull() {
+    private fun requestOfAddDevice() {
+        val deviceNo = viewBinding.layoutAddDeviceInfo.addDeviceDevicenoEt.text.trim().toString()
+        val cutterDiam = viewBinding.layoutAddDeviceInfo.addDeviceDiameterEt.text.trim().toString()
+        val beamNum = viewBinding.layoutAddDeviceInfo.addDeviceBeamEt.text.trim().toString()
+        val propulsiveForce =
+            viewBinding.layoutAddDeviceInfo.addDevicePropelEt.text.trim().toString()
+        val drivingTorque = viewBinding.layoutAddDeviceInfo.addDeviceTorqueEt.text.trim().toString()
+        val drivingPower = viewBinding.layoutAddDeviceInfo.addDevicePowerEt.text.trim().toString()
+        val assetOwnership =
+            viewBinding.layoutAddDeviceInfo.addDeviceAscriptionEt.text.trim().toString()
+        val applicableStratum =
+            viewBinding.layoutAddDeviceInfo.addDeviceLayerEt.text.trim().toString()
+        val outerDiameter = viewBinding.layoutAddDeviceInfo.addDeviceOuterEt.text.trim().toString()
+        val deviceModel =
+            viewBinding.layoutAddDeviceInfo.addDeviceDrivemodelEt.text.trim().toString()
+        val drivingForm =
+            viewBinding.layoutAddDeviceInfo.addDeviceDriveformEt.text.trim().toString()
+        val openingRate = viewBinding.layoutAddDeviceInfo.addDeviceOpenrateEt.text.trim().toString()
+        val turningRadius = viewBinding.layoutAddDeviceInfo.addDeviceRadiusEt.text.trim().toString()
+        val mileageUsed = viewBinding.layoutAddDeviceInfo.addDeviceMileageEt.text.trim().toString()
+        val deviceResume = viewBinding.layoutAddDeviceInfo.addDeviceResumeEt.text.trim().toString()
+        val remarks = viewBinding.layoutAddDeviceInfo.addDeviceRemarkEt.text.trim().toString()
+        val workingDiam = ""
+        val propertyOwner = ""
+        val deviceStatus = "0"
+        viewModel.requestOfAddDevice(
+            deviceNo,
+            deviceBrand,
+            deviceType,
+            deviceArea,
+            cutterDiam,
+            beamNum,
+            propulsiveForce,
+            articulate,
+            cutterType,
+            propertyOwner,
+            drivingTorque,
+            drivingPower,
+            assetOwnership,
+            applicableStratum,
+            outerDiameter,
+            deviceModel,
+            drivingForm,
+            openingRate,
+            turningRadius,
+            mileageUsed,
+            drivingPosition,
+            leasingdate,
+            deviceRentStatus,
+            deviceResume,
+            deviceStatus,
+            workingDiam,
+            remarks
+        )
+        viewBinding.addDeviceLoadingview.visibility = View.VISIBLE
+    }
+
+    private fun checkDeviceInfoOfNull(): Boolean {
         when {
             deviceBrand.isBlank() -> {
                 "请选择设备品牌".toast(this)
-                return
+                return true
             }
             deviceType.isBlank() -> {
                 "请选择设备类型".toast(this)
-                return
+                return true
             }
             deviceSite.isBlank() -> {
                 "请选择设备位置".toast(this)
-                return
+                return true
             }
             cutterType.isBlank() -> {
                 "请选择刀盘类型".toast(this)
-                return
+                return true
             }
             leasingdate.isBlank() -> {
                 "请选择可租赁时间".toast(this)
-                return
+                return true
             }
             articulate.isBlank() -> {
                 "请选择铰接形式".toast(this)
-                return
+                return true
             }
-            deviceStatus.isBlank() -> {
+            deviceRentStatus.isBlank() -> {
                 "请选择设备状态".toast(this)
-                return
+                return true
             }
-            viewBinding.layoutAddDeviceInfo.addDeviceDevicenoEt.text.trim().toString().isBlank() -> {
+            viewBinding.layoutAddDeviceInfo.addDeviceDevicenoEt.text.trim().toString()
+                .isBlank() -> {
                 "请输入设备编号".toast(this)
-                return
+                return true
             }
-            viewBinding.layoutAddDeviceInfo.addDeviceDiameterEt.text.trim().toString().isBlank() -> {
+            viewBinding.layoutAddDeviceInfo.addDeviceDiameterEt.text.trim().toString()
+                .isBlank() -> {
                 "请输入刀盘直径".toast(this)
-                return
+                return true
             }
             viewBinding.layoutAddDeviceInfo.addDeviceBeamEt.text.trim().toString().isBlank() -> {
                 "请输入主梁数量".toast(this)
-                return
+                return true
             }
             viewBinding.layoutAddDeviceInfo.addDevicePropelEt.text.trim().toString().isBlank() -> {
                 "请输入总推进力".toast(this)
-                return
+                return true
             }
             viewBinding.layoutAddDeviceInfo.addDeviceBeamEt.text.trim().toString().isBlank() -> {
                 "请输入主梁数量".toast(this)
-                return
+                return true
             }
             viewBinding.layoutAddDeviceInfo.addDeviceTorqueEt.text.trim().toString().isBlank() -> {
                 "请输入驱动扭矩".toast(this)
-                return
+                return true
             }
             viewBinding.layoutAddDeviceInfo.addDevicePowerEt.text.trim().toString().isBlank() -> {
                 "请输入驱动功率".toast(this)
-                return
+                return true
             }
-            viewBinding.layoutAddDeviceInfo.addDeviceDrivemodelEt.text.trim().toString().isBlank() -> {
-                "请输入设备型号".toast(this)
-                return
-            }
-            viewBinding.layoutAddDeviceInfo.addDeviceLayerEt.text.trim().toString().isBlank() -> {
-                "请输入适用地层".toast(this)
-                return
+            viewBinding.layoutAddDeviceInfo.addDeviceLayerEt.text.trim().toString()
+                .isBlank() -> {
+                "请输入适用地质".toast(this)
+                return true
             }
         }
+        return false
+    }
+
+    private fun checkUserInfoOfNull(): Boolean {
+        when {
+            viewBinding.layoutAddDeviceUser.addDeviceUsernameEt.text.trim().toString()
+                .isBlank() -> {
+                "请填写联系人".toast(this)
+                return true
+            }
+            viewBinding.layoutAddDeviceUser.addDevicePhoneEt.text.trim().toString().isBlank() -> {
+                "请填写手机号码".toast(this)
+                return true
+            }
+            viewBinding.layoutAddDeviceUser.addDevicePlaceEt.text.trim().toString().isBlank() -> {
+                "请填写工作单位".toast(this)
+                return true
+            }
+        }
+        return false
     }
 
     private fun showBrandDialog() {
@@ -595,8 +669,14 @@ class AddDeviceActivity :
         citywheelview.setTextAlign(WheelView.TEXT_ALIGN_CENTER)
         provincewheelview.setOnItemSelectedListener(object : WheelView.OnItemSelectedListener {
             override fun onItemSelected(wheelView: WheelView, data: Any, position: Int) {
+                deviceArea = provinceList[position].value
                 citywheelview.setDataItems(provinceList[position].children.map { it.label }
                     .toMutableList())
+            }
+        })
+        citywheelview.setOnItemSelectedListener(object : WheelView.OnItemSelectedListener {
+            override fun onItemSelected(wheelView: WheelView, data: Any, position: Int) {
+                drivingPosition = provinceList[position].children[position].value
             }
         })
         dialog?.show()
@@ -665,8 +745,14 @@ class AddDeviceActivity :
         dialog?.show()
         sureview.setOnClickListener {
             dialog?.dismiss()
-            deviceStatus = wheelview.getSelectedItemData().toString()
-            viewBinding.layoutAddDeviceInfo.addDeviceStatusTv.text = deviceStatus
+            deviceRentStatus = wheelview.getSelectedItemData().toString()
+            when (wheelview.getSelectedItemData().toString()) {
+                "维修" -> deviceRentStatus = "1"
+                "使用" -> deviceRentStatus = "2"
+                "存放" -> deviceRentStatus = "3"
+            }
+            viewBinding.layoutAddDeviceInfo.addDeviceStatusTv.text =
+                wheelview.getSelectedItemData().toString()
             viewBinding.layoutAddDeviceInfo.addDeviceStatusTv.setTextColor(resources.getColor(R.color.color_262626))
             viewBinding.layoutAddDeviceInfo.addDeviceStatusTv.setTextColor(resources.getColor(R.color.color_262626))
         }

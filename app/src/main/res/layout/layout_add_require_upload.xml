@@ -38,8 +38,7 @@
                     android:text="上传照片"
                     android:textColor="@color/color_010F1D"
                     android:textSize="15sp"
-                    android:textStyle="bold"
-                    app:drawableEndCompat="@mipmap/icon_required" />
+                    android:textStyle="bold" />
 
             </LinearLayout>
 
@@ -76,8 +75,7 @@
                     android:text="上传文件"
                     android:textColor="@color/color_010F1D"
                     android:textSize="15sp"
-                    android:textStyle="bold"
-                    app:drawableEndCompat="@mipmap/icon_required" />
+                    android:textStyle="bold"/>
 
             </LinearLayout>
 

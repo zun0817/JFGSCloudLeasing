@@ -10,6 +10,8 @@ object Constant {
 
     const val PATH_FILE_UPLOAD = "/file/upload"
 
+    const val PATH_FILE_DELETE = "/file/deleteFile"
+
     const val PATH_REGISTER = "/api/v1/business/user/app/save"
 
     const val PATH_SMSCODE = "/api/v1/business/user/app/authCode"
@@ -56,9 +58,29 @@ object Constant {
 
     const val PATH_DEVICE_ADD = "/api/v1/rentDevice/app/save"
 
+    const val PATH_REQUIRE_ADD = "/api/v1/demand/app/save"
+
     const val PATH_QUERY_DATA = "/api/v1/es/app/queryData"
 
     /** 本地存储 */
+
+    const val FILE_AVATAR = "10"
+
+    const val FILE_CONSULT  = "20"
+
+    const val FILE_DEVICE  = "30"
+
+    const val FILE_REQUIRE  = "40"
+
+    const val FILE_BANNER  = "50"
+
+    const val FILE_DATA  = "60"
+
+    const val FILE_RESUME  = "70"
+
+    const val FILE_IMAGE  = "80"
+
+    const val FILE_CYCLE  = "90"
 
     const val USER_ID = "user_id"
 

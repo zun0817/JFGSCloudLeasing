@@ -47,7 +47,7 @@
             android:layout_width="match_parent"
             android:layout_height="80dp"
             android:background="@mipmap/icon_add_require_mask"
-            android:paddingHorizontal="40dp">
+            android:paddingHorizontal="70dp">
 
             <LinearLayout
                 android:id="@+id/add_require_ll1"
@@ -89,7 +89,8 @@
                 android:orientation="vertical"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toTopOf="parent"
+                android:visibility="gone">
 
                 <TextView
                     android:id="@+id/add_require_circle_tv3"
@@ -121,7 +122,6 @@
                 android:orientation="vertical"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
@@ -148,7 +148,7 @@
 
             <View
                 android:id="@+id/add_require_view1"
-                android:layout_width="80dp"
+                android:layout_width="100dp"
                 android:layout_height="2dp"
                 android:background="@drawable/shape_view_eaeaea"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -164,7 +164,8 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toRightOf="@id/add_require_ll2"
                 app:layout_constraintRight_toLeftOf="@id/add_require_ll3"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                android:visibility="gone"/>
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -243,5 +244,11 @@
         android:layout_marginVertical="12dp"
         android:visibility="gone" />
 
+    <com.cloud.leasing.widget.LoadingView
+        android:id="@+id/add_require_loadingview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone"/>
 
 </RelativeLayout>

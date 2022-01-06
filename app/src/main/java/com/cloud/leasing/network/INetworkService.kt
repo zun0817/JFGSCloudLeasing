@@ -76,11 +76,20 @@ interface INetworkService {
     @GET(Constant.PATH_DEVICE_SITE)
     suspend fun requestOfDeviceSite(): BaseResponse<MutableList<ProvinceBean>>
 
-    @GET(Constant.PATH_DEVICE_ADD)
-    suspend fun requestOfAddDevice(@QueryMap param: MutableMap<String, Any>): BaseResponse<String>
+    @POST(Constant.PATH_DEVICE_ADD)
+    suspend fun requestOfAddDevice(@Body requestBody: RequestBody): BaseResponse<String>
 
-    @GET(Constant.PATH_QUERY_DATA)
-    suspend fun requestOfQueryData(@QueryMap param: MutableMap<String, Any>): BaseResponse<String>
+    @POST(Constant.PATH_REQUIRE_ADD)
+    suspend fun requestOfAddRequire(@Body requestBody: RequestBody): BaseResponse<String>
+
+    @POST(Constant.PATH_QUERY_DATA)
+    suspend fun requestOfQueryData(@Body requestBody: RequestBody): BaseResponse<String>
+
+    @POST(Constant.PATH_HOME_DEVICE_DETAIL)
+    suspend fun requestOfDeviceDetail(@Body requestBody: RequestBody): BaseResponse<String>
+
+    @POST(Constant.PATH_HOME_REQUIRE_DETAIL)
+    suspend fun requestOfRequireDetail(@Body requestBody: RequestBody): BaseResponse<String>
 
     @Multipart
     @POST(Constant.PATH_FILE_UPLOAD)

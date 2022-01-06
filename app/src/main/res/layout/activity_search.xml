@@ -95,7 +95,7 @@
                     android:id="@+id/search_device_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="设备信息(10)"
+                    android:text="设备信息"
                     android:textColor="@color/color_0E64BC"
                     android:textSize="15sp"
                     android:textStyle="bold" />
@@ -122,7 +122,7 @@
                     android:id="@+id/search_require_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="需求信息(10)"
+                    android:text="需求信息"
                     android:textColor="@color/color_999999"
                     android:textSize="15sp"
                     android:textStyle="bold" />

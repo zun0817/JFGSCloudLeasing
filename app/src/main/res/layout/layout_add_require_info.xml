@@ -165,6 +165,14 @@
 
             </FrameLayout>
 
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/icon_arrow_gray"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
             <TextView
                 android:id="@+id/add_require_site_tv"
                 android:layout_width="wrap_content"
@@ -207,13 +215,17 @@
 
             </FrameLayout>
 
-            <TextView
-                android:id="@+id/add_require_length_tv"
+            <EditText
+                android:id="@+id/add_require_length_et"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
-                android:text="项目长度(m)"
-                android:textColor="@color/color_BFBFBF"
+                android:hint="项目长度(m)"
+                android:textColor="@color/color_262626"
+                android:textColorHint="@color/color_BFBFBF"
+                android:background="@android:color/transparent"
+                android:imeOptions="actionNext"
+                android:inputType="numberDecimal"
                 android:textSize="15sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toRightOf="@id/add_require_length_frame"
@@ -249,13 +261,17 @@
 
             </FrameLayout>
 
-            <TextView
-                android:id="@+id/add_require_geology_tv"
+            <EditText
+                android:id="@+id/add_require_geology_et"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
-                android:text="地质信息"
-                android:textColor="@color/color_BFBFBF"
+                android:hint="地质信息"
+                android:textColor="@color/color_262626"
+                android:textColorHint="@color/color_BFBFBF"
+                android:background="@android:color/transparent"
+                android:imeOptions="actionNext"
+                android:inputType="text"
                 android:textSize="15sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toRightOf="@id/add_require_geology_frame"
@@ -291,96 +307,20 @@
 
             </FrameLayout>
 
-            <TextView
-                android:id="@+id/add_require_amount_tv"
+            <EditText
+                android:id="@+id/add_require_amount_et"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
-                android:text="需求数量(台)"
-                android:textColor="@color/color_BFBFBF"
+                android:hint="需求数量(台)"
+                android:textColor="@color/color_262626"
+                android:textColorHint="@color/color_BFBFBF"
+                android:background="@android:color/transparent"
+                android:imeOptions="actionNext"
+                android:inputType="number"
                 android:textSize="15sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toRightOf="@id/add_require_amount_frame"
-                app:layout_constraintTop_toTopOf="parent" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/add_require_diameter_cl"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="25dp">
-
-            <FrameLayout
-                android:id="@+id/add_require_diameter_frame"
-                android:layout_width="115dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="7dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <TextView
-                    android:id="@+id/add_require_diameter_label_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="刀盘直径(m)"
-                    android:textColor="@color/color_17191C"
-                    android:textSize="15sp"
-                    android:textStyle="bold" />
-
-            </FrameLayout>
-
-            <TextView
-                android:id="@+id/add_require_diameter_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="30dp"
-                android:text="刀盘直径(m)"
-                android:textColor="@color/color_BFBFBF"
-                android:textSize="15sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toRightOf="@id/add_require_diameter_frame"
-                app:layout_constraintTop_toTopOf="parent" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/add_require_radius_cl"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="25dp">
-
-            <FrameLayout
-                android:id="@+id/add_require_radius_frame"
-                android:layout_width="115dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="7dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <TextView
-                    android:id="@+id/add_require_radius_label_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="最小转弯半径(m)"
-                    android:textColor="@color/color_17191C"
-                    android:textSize="15sp"
-                    android:textStyle="bold" />
-
-            </FrameLayout>
-
-            <TextView
-                android:id="@+id/add_require_radius_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="30dp"
-                android:text="最小转弯半径(m)"
-                android:textColor="@color/color_BFBFBF"
-                android:textSize="15sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toRightOf="@id/add_require_radius_frame"
                 app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -407,17 +347,23 @@
                     android:text="管片外径(m)"
                     android:textColor="@color/color_17191C"
                     android:textSize="15sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:drawablePadding="2dp"
+                    app:drawableEndCompat="@mipmap/icon_required"/>
 
             </FrameLayout>
 
-            <TextView
-                android:id="@+id/add_require_outer_tv"
+            <EditText
+                android:id="@+id/add_require_outer_et"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
-                android:text="管片外径(m)"
-                android:textColor="@color/color_BFBFBF"
+                android:hint="管片外径(m)"
+                android:textColor="@color/color_262626"
+                android:textColorHint="@color/color_BFBFBF"
+                android:background="@android:color/transparent"
+                android:imeOptions="actionNext"
+                android:inputType="numberDecimal"
                 android:textSize="15sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toRightOf="@id/add_require_outer_frame"
@@ -426,13 +372,13 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/add_require_openrate_cl"
+            android:id="@+id/add_require_mileage_cl"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="25dp">
 
             <FrameLayout
-                android:id="@+id/add_require_openrate_frame"
+                android:id="@+id/add_require_mileage_frame"
                 android:layout_width="115dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="7dp"
@@ -441,26 +387,32 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
-                    android:id="@+id/add_require_openrate_label_tv"
+                    android:id="@+id/add_require_mileage_label_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="刀盘开口率(%)"
+                    android:drawablePadding="2dp"
+                    android:text="限定里程(m)"
                     android:textColor="@color/color_17191C"
                     android:textSize="15sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    app:drawableEndCompat="@mipmap/icon_required" />
 
             </FrameLayout>
 
-            <TextView
-                android:id="@+id/add_require_openrate_tv"
+            <EditText
+                android:id="@+id/add_require_mileage_et"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
-                android:text="刀盘开口率(%)"
-                android:textColor="@color/color_BFBFBF"
+                android:hint="限定里程(m)"
+                android:textColor="@color/color_262626"
+                android:textColorHint="@color/color_BFBFBF"
+                android:background="@android:color/transparent"
+                android:imeOptions="actionDone"
+                android:inputType="numberDecimal"
                 android:textSize="15sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toRightOf="@id/add_require_openrate_frame"
+                app:layout_constraintLeft_toRightOf="@id/add_require_mileage_frame"
                 app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -484,14 +436,22 @@
                     android:id="@+id/add_require_usetime_label_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:drawablePadding="2dp"
                     android:text="预计使用时间"
                     android:textColor="@color/color_17191C"
                     android:textSize="15sp"
                     android:textStyle="bold"
+                    android:drawablePadding="2dp"
                     app:drawableEndCompat="@mipmap/icon_required" />
 
             </FrameLayout>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/icon_arrow_gray"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/add_require_usetime_tv"
@@ -529,7 +489,9 @@
                     android:text="刀盘类型"
                     android:textColor="@color/color_17191C"
                     android:textSize="15sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:drawablePadding="2dp"
+                    app:drawableEndCompat="@mipmap/icon_required" />
 
             </FrameLayout>
 
@@ -551,6 +513,94 @@
                 android:textSize="15sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toRightOf="@id/add_require_knifetype_frame"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/add_require_diameter_cl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp">
+
+            <FrameLayout
+                android:id="@+id/add_require_diameter_frame"
+                android:layout_width="115dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="7dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/add_require_diameter_label_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="刀盘直径(m)"
+                    android:textColor="@color/color_17191C"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+            </FrameLayout>
+
+            <EditText
+                android:id="@+id/add_require_diameter_et"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:hint="刀盘直径(m)"
+                android:textColor="@color/color_262626"
+                android:textColorHint="@color/color_BFBFBF"
+                android:background="@android:color/transparent"
+                android:imeOptions="actionNext"
+                android:inputType="numberDecimal"
+                android:textSize="15sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toRightOf="@id/add_require_diameter_frame"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/add_require_radius_cl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp">
+
+            <FrameLayout
+                android:id="@+id/add_require_radius_frame"
+                android:layout_width="115dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="7dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/add_require_radius_label_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="最小转弯半径(m)"
+                    android:textColor="@color/color_17191C"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+            </FrameLayout>
+
+            <EditText
+                android:id="@+id/add_require_radius_et"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:hint="最小转弯半径(m)"
+                android:textColor="@color/color_262626"
+                android:textColorHint="@color/color_BFBFBF"
+                android:background="@android:color/transparent"
+                android:imeOptions="actionNext"
+                android:inputType="numberDecimal"
+                android:textSize="15sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toRightOf="@id/add_require_radius_frame"
                 app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -581,16 +631,64 @@
 
             </FrameLayout>
 
-            <TextView
-                android:id="@+id/add_require_torque_tv"
+            <EditText
+                android:id="@+id/add_require_torque_et"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
-                android:text="驱动扭矩(kN·m)"
-                android:textColor="@color/color_BFBFBF"
+                android:hint="驱动扭矩(kN·m)"
+                android:textColor="@color/color_262626"
+                android:textColorHint="@color/color_BFBFBF"
+                android:background="@android:color/transparent"
+                android:imeOptions="actionNext"
+                android:inputType="numberDecimal"
                 android:textSize="15sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toRightOf="@id/add_require_torque_frame"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/add_require_openrate_cl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp">
+
+            <FrameLayout
+                android:id="@+id/add_require_openrate_frame"
+                android:layout_width="115dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="7dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/add_require_openrate_label_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="刀盘开口率(%)"
+                    android:textColor="@color/color_17191C"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+            </FrameLayout>
+
+            <EditText
+                android:id="@+id/add_require_openrate_et"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:hint="刀盘开口率(%)"
+                android:textColor="@color/color_262626"
+                android:textColorHint="@color/color_BFBFBF"
+                android:background="@android:color/transparent"
+                android:imeOptions="actionNext"
+                android:inputType="numberDecimal"
+                android:textSize="15sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toRightOf="@id/add_require_openrate_frame"
                 app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -621,13 +719,17 @@
 
             </FrameLayout>
 
-            <TextView
-                android:id="@+id/add_require_thrust_tv"
+            <EditText
+                android:id="@+id/add_require_thrust_et"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
-                android:text="总推进力(T)"
-                android:textColor="@color/color_BFBFBF"
+                android:hint="总推进力(T)"
+                android:textColor="@color/color_262626"
+                android:textColorHint="@color/color_BFBFBF"
+                android:background="@android:color/transparent"
+                android:imeOptions="actionDone"
+                android:inputType="numberDecimal"
                 android:textSize="15sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toRightOf="@id/add_require_thrust_frame"
