@@ -86,7 +86,7 @@
                     app:layout_constraintTop_toBottomOf="@id/title1" />
 
                 <TextView
-                    android:id="@+id/require_detail_place_tv"
+                    android:id="@+id/device_detail_place_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
@@ -113,7 +113,7 @@
                     app:layout_constraintTop_toBottomOf="@id/title2" />
 
                 <TextView
-                    android:id="@+id/require_detail_beam_tv"
+                    android:id="@+id/device_detail_beam_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
@@ -124,7 +124,7 @@
                     android:textSize="12sp"
                     app:layout_constrainedWidth="true"
                     app:layout_constraintLeft_toRightOf="@id/title3"
-                    app:layout_constraintTop_toBottomOf="@id/require_detail_place_tv" />
+                    app:layout_constraintTop_toBottomOf="@id/device_detail_place_tv" />
 
                 <TextView
                     android:id="@+id/title4"
@@ -140,7 +140,7 @@
                     app:layout_constraintTop_toBottomOf="@id/title3" />
 
                 <TextView
-                    android:id="@+id/require_detail_jiaojie_tv"
+                    android:id="@+id/device_detail_jiaojie_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
@@ -151,7 +151,7 @@
                     android:textSize="12sp"
                     app:layout_constrainedWidth="true"
                     app:layout_constraintLeft_toRightOf="@id/title4"
-                    app:layout_constraintTop_toBottomOf="@id/require_detail_beam_tv" />
+                    app:layout_constraintTop_toBottomOf="@id/device_detail_beam_tv" />
 
                 <TextView
                     android:id="@+id/title5"
@@ -167,7 +167,7 @@
                     app:layout_constraintTop_toBottomOf="@id/title4" />
 
                 <TextView
-                    android:id="@+id/require_detail_power_tv"
+                    android:id="@+id/device_detail_power_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
@@ -178,7 +178,7 @@
                     android:textSize="12sp"
                     app:layout_constrainedWidth="true"
                     app:layout_constraintLeft_toRightOf="@id/title5"
-                    app:layout_constraintTop_toBottomOf="@id/require_detail_jiaojie_tv" />
+                    app:layout_constraintTop_toBottomOf="@id/device_detail_jiaojie_tv" />
 
                 <TextView
                     android:id="@+id/title6"
@@ -194,7 +194,7 @@
                     app:layout_constraintTop_toBottomOf="@id/title5" />
 
                 <TextView
-                    android:id="@+id/require_detail_assets_tv"
+                    android:id="@+id/device_detail_assets_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
@@ -205,7 +205,7 @@
                     android:textSize="12sp"
                     app:layout_constrainedWidth="true"
                     app:layout_constraintLeft_toRightOf="@id/title6"
-                    app:layout_constraintTop_toBottomOf="@id/require_detail_power_tv" />
+                    app:layout_constraintTop_toBottomOf="@id/device_detail_power_tv" />
 
                 <TextView
                     android:id="@+id/title7"
@@ -221,7 +221,7 @@
                     app:layout_constraintTop_toBottomOf="@id/title6" />
 
                 <TextView
-                    android:id="@+id/require_detail_outer_tv"
+                    android:id="@+id/device_detail_outer_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
@@ -232,7 +232,7 @@
                     android:textSize="12sp"
                     app:layout_constrainedWidth="true"
                     app:layout_constraintLeft_toRightOf="@id/title7"
-                    app:layout_constraintTop_toBottomOf="@id/require_detail_assets_tv" />
+                    app:layout_constraintTop_toBottomOf="@id/device_detail_assets_tv" />
 
                 <TextView
                     android:id="@+id/title15"
@@ -248,7 +248,7 @@
                     app:layout_constraintTop_toBottomOf="@id/title7" />
 
                 <TextView
-                    android:id="@+id/require_detail_opening_tv"
+                    android:id="@+id/device_detail_opening_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
@@ -259,7 +259,7 @@
                     android:textSize="12sp"
                     app:layout_constrainedWidth="true"
                     app:layout_constraintLeft_toRightOf="@id/title7"
-                    app:layout_constraintTop_toBottomOf="@id/require_detail_outer_tv" />
+                    app:layout_constraintTop_toBottomOf="@id/device_detail_outer_tv" />
 
                 <TextView
                     android:id="@+id/title16"
@@ -275,7 +275,7 @@
                     app:layout_constraintTop_toBottomOf="@id/title15" />
 
                 <TextView
-                    android:id="@+id/require_detail_cuttertype_tv"
+                    android:id="@+id/device_detail_cuttertype_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
@@ -286,7 +286,7 @@
                     android:textSize="12sp"
                     app:layout_constrainedWidth="true"
                     app:layout_constraintLeft_toRightOf="@id/title16"
-                    app:layout_constraintTop_toBottomOf="@id/require_detail_opening_tv" />
+                    app:layout_constraintTop_toBottomOf="@id/device_detail_opening_tv" />
 
                 <TextView
                     android:id="@+id/title17"
@@ -302,7 +302,7 @@
                     app:layout_constraintTop_toBottomOf="@id/title16" />
 
                 <TextView
-                    android:id="@+id/require_detail_radius_tv"
+                    android:id="@+id/device_detail_radius_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
@@ -313,7 +313,7 @@
                     android:textSize="12sp"
                     app:layout_constrainedWidth="true"
                     app:layout_constraintLeft_toRightOf="@id/title17"
-                    app:layout_constraintTop_toBottomOf="@id/require_detail_cuttertype_tv" />
+                    app:layout_constraintTop_toBottomOf="@id/device_detail_cuttertype_tv" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -336,7 +336,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/require_detail_type_tv"
+                    android:id="@+id/device_detail_type_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
@@ -362,7 +362,7 @@
                     app:layout_constraintTop_toBottomOf="@id/title8" />
 
                 <TextView
-                    android:id="@+id/require_detail_diameter_tv"
+                    android:id="@+id/device_detail_diameter_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
@@ -373,7 +373,7 @@
                     android:textSize="12sp"
                     app:layout_constrainedWidth="true"
                     app:layout_constraintLeft_toRightOf="@id/title9"
-                    app:layout_constraintTop_toBottomOf="@id/require_detail_type_tv" />
+                    app:layout_constraintTop_toBottomOf="@id/device_detail_type_tv" />
 
                 <TextView
                     android:id="@+id/title10"
@@ -389,7 +389,7 @@
                     app:layout_constraintTop_toBottomOf="@id/title9" />
 
                 <TextView
-                    android:id="@+id/require_detail_thrust_tv"
+                    android:id="@+id/device_detail_thrust_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
@@ -400,7 +400,7 @@
                     android:textSize="12sp"
                     app:layout_constrainedWidth="true"
                     app:layout_constraintLeft_toRightOf="@id/title10"
-                    app:layout_constraintTop_toBottomOf="@id/require_detail_diameter_tv" />
+                    app:layout_constraintTop_toBottomOf="@id/device_detail_diameter_tv" />
 
                 <TextView
                     android:id="@+id/title11"
@@ -416,7 +416,7 @@
                     app:layout_constraintTop_toBottomOf="@id/title10" />
 
                 <TextView
-                    android:id="@+id/require_detail_torque_tv"
+                    android:id="@+id/device_detail_torque_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
@@ -427,7 +427,7 @@
                     android:textSize="12sp"
                     app:layout_constrainedWidth="true"
                     app:layout_constraintLeft_toRightOf="@id/title11"
-                    app:layout_constraintTop_toBottomOf="@id/require_detail_thrust_tv" />
+                    app:layout_constraintTop_toBottomOf="@id/device_detail_thrust_tv" />
 
                 <TextView
                     android:id="@+id/title12"
@@ -443,7 +443,7 @@
                     app:layout_constraintTop_toBottomOf="@id/title11" />
 
                 <TextView
-                    android:id="@+id/require_detail_deviceno_tv"
+                    android:id="@+id/device_detail_deviceno_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
@@ -454,7 +454,7 @@
                     android:textSize="12sp"
                     app:layout_constrainedWidth="true"
                     app:layout_constraintLeft_toRightOf="@id/title12"
-                    app:layout_constraintTop_toBottomOf="@id/require_detail_torque_tv" />
+                    app:layout_constraintTop_toBottomOf="@id/device_detail_torque_tv" />
 
                 <TextView
                     android:id="@+id/title13"
@@ -470,7 +470,7 @@
                     app:layout_constraintTop_toBottomOf="@id/title12" />
 
                 <TextView
-                    android:id="@+id/require_detail_layer_tv"
+                    android:id="@+id/device_detail_layer_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
@@ -481,7 +481,7 @@
                     android:textSize="12sp"
                     app:layout_constrainedWidth="true"
                     app:layout_constraintLeft_toRightOf="@id/title13"
-                    app:layout_constraintTop_toBottomOf="@id/require_detail_deviceno_tv" />
+                    app:layout_constraintTop_toBottomOf="@id/device_detail_deviceno_tv" />
 
                 <TextView
                     android:id="@+id/title14"
@@ -497,7 +497,7 @@
                     app:layout_constraintTop_toBottomOf="@id/title13" />
 
                 <TextView
-                    android:id="@+id/require_detail_drive_tv"
+                    android:id="@+id/device_detail_drive_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
@@ -508,7 +508,7 @@
                     android:textSize="12sp"
                     app:layout_constrainedWidth="true"
                     app:layout_constraintLeft_toRightOf="@id/title14"
-                    app:layout_constraintTop_toBottomOf="@id/require_detail_layer_tv" />
+                    app:layout_constraintTop_toBottomOf="@id/device_detail_layer_tv" />
 
                 <TextView
                     android:id="@+id/title18"
@@ -524,7 +524,7 @@
                     app:layout_constraintTop_toBottomOf="@id/title14" />
 
                 <TextView
-                    android:id="@+id/require_detail_mileage_tv"
+                    android:id="@+id/device_detail_mileage_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
@@ -535,7 +535,7 @@
                     android:textSize="12sp"
                     app:layout_constrainedWidth="true"
                     app:layout_constraintLeft_toRightOf="@id/title14"
-                    app:layout_constraintTop_toBottomOf="@id/require_detail_drive_tv" />
+                    app:layout_constraintTop_toBottomOf="@id/device_detail_drive_tv" />
 
                 <TextView
                     android:id="@+id/title19"
@@ -551,7 +551,7 @@
                     app:layout_constraintTop_toBottomOf="@id/title18" />
 
                 <TextView
-                    android:id="@+id/require_detail_status_tv"
+                    android:id="@+id/device_detail_status_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
@@ -562,7 +562,7 @@
                     android:textSize="12sp"
                     app:layout_constrainedWidth="true"
                     app:layout_constraintLeft_toRightOf="@id/title18"
-                    app:layout_constraintTop_toBottomOf="@id/require_detail_mileage_tv" />
+                    app:layout_constraintTop_toBottomOf="@id/device_detail_mileage_tv" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -571,7 +571,7 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/require_detail_label_tv"
+        android:id="@+id/device_detail_label_tv"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:background="@drawable/shape_want_label_ffaa33"

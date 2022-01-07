@@ -4,12 +4,14 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import androidx.activity.viewModels
 import androidx.core.widget.NestedScrollView
 import com.cloud.leasing.R
 import com.cloud.leasing.base.BaseActivity
 import com.cloud.leasing.constant.PageName
 import com.cloud.leasing.databinding.ActivityDeviceDetailBinding
 import com.cloud.leasing.util.ViewTouchUtil
+import com.cloud.leasing.util.toast
 import com.google.android.material.tabs.TabLayout
 import com.gyf.immersionbar.ktx.immersionBar
 
@@ -18,9 +20,10 @@ class DeviceDetailActivity :
     View.OnClickListener, TabLayout.OnTabSelectedListener, NestedScrollView.OnScrollChangeListener {
 
     companion object {
-        fun startActivity(activity: Activity) {
+        fun startActivity(activity: Activity, deviceId: Int) {
             val intent = Intent()
             intent.setClass(activity, DeviceDetailActivity::class.java)
+            intent.putExtra("id", deviceId)
             activity.startActivity(intent)
         }
     }
@@ -29,19 +32,83 @@ class DeviceDetailActivity :
 
     private var scrollviewFlag = false
 
+    private val viewModel: DeviceDetailViewModel by viewModels()
+
     override fun getPageName() = PageName.DEVICE_DETAIL
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initSystemBar()
         initView()
+        viewModelObserve()
     }
 
     private fun initView() {
+        val deviceId = intent.getIntExtra("id", 0)
         viewBinding.deviceDetailBackImg.setOnClickListener(this)
         viewBinding.deviceDetailScrollview.setOnScrollChangeListener(this)
         viewBinding.deviceDetailTablayout.addOnTabSelectedListener(this)
         ViewTouchUtil.expandViewTouchDelegate(viewBinding.deviceDetailBackImg)
+        viewModel.requestOfAddFollow(deviceId)
+        viewBinding.deviceDetailLoadingview.visibility = View.VISIBLE
+    }
+
+    private fun viewModelObserve() {
+        viewModel.apply {
+            deviceDetailLiveData.observe(this@DeviceDetailActivity, { it ->
+                viewBinding.deviceDetailLoadingview.visibility = View.GONE
+                it.onFailure {
+                    it.toString().toast(this@DeviceDetailActivity)
+                }.onSuccess {
+                    viewBinding.layoutDeviceDetailInfo.deviceDetailNameTv.text = it.deviceBrandName
+                    viewBinding.layoutDeviceDetailInfo.deviceDetailDateTv.text =
+                        it.createTime.split(" ")[0]
+                    viewBinding.layoutDeviceDetailInfo.deviceDetailBrandTv.text = it.deviceBrandName
+                    viewBinding.layoutDeviceDetailInfo.deviceDetailTypeTv.text = it.deviceTypeName
+                    viewBinding.layoutDeviceDetailInfo.deviceDetailPlaceTv.text = it.deviceCity
+                    viewBinding.layoutDeviceDetailInfo.deviceDetailDiameterTv.text =
+                        it.cutterDiam + "m"
+                    viewBinding.layoutDeviceDetailInfo.deviceDetailBeamTv.text = it.beamNum + "个"
+                    viewBinding.layoutDeviceDetailInfo.deviceDetailThrustTv.text =
+                        it.propulsiveForce + "T"
+                    viewBinding.layoutDeviceDetailInfo.deviceDetailJiaojieTv.text = it.hingeFormName
+                    viewBinding.layoutDeviceDetailInfo.deviceDetailTorqueTv.text =
+                        it.drivingTorque + "KN·m"
+                    viewBinding.layoutDeviceDetailInfo.deviceDetailPowerTv.text =
+                        it.drivingPower + "KW"
+                    viewBinding.layoutDeviceDetailInfo.deviceDetailDevicenoTv.text = it.deviceNo
+                    viewBinding.layoutDeviceDetailInfo.deviceDetailAssetsTv.text = it.assetOwnership
+                    viewBinding.layoutDeviceDetailInfo.deviceDetailLayerTv.text =
+                        it.applicableStratum
+                    viewBinding.layoutDeviceDetailInfo.deviceDetailOuterTv.text =
+                        it.outerDiameter + "m"
+                    viewBinding.layoutDeviceDetailInfo.deviceDetailDriveTv.text = it.drivingForm
+                    viewBinding.layoutDeviceDetailInfo.deviceDetailOpeningTv.text =
+                        if (it.openingRate.isBlank()) "无" else it.openingRate + "%"
+                    viewBinding.layoutDeviceDetailInfo.deviceDetailMileageTv.text =
+                        it.mileageUsed + "m"
+                    viewBinding.layoutDeviceDetailInfo.deviceDetailCuttertypeTv.text = it.cutterType
+                    viewBinding.layoutDeviceDetailInfo.deviceDetailStatusTv.text =
+                        when (it.deviceRentStatus) {
+                            "1" -> {
+                                "维修中"
+                            }
+                            "2" -> {
+                                "使用中"
+                            }
+                            else -> {
+                                "存放"
+                            }
+                        }
+                    viewBinding.layoutDeviceDetailInfo.deviceDetailRadiusTv.text =
+                        it.turningRadius + "m"
+                    viewBinding.layoutDeviceDetailRemark.deviceDetailRemarkTv.text =
+                        if (it.remarks.isBlank()) "无" else it.remarks
+                    viewBinding.layoutDeviceDetailResume.deviceDetailResumeTv.text =
+                        if (it.deviceResume.isBlank()) "无" else it.deviceResume
+                }
+            })
+        }
     }
 
     private fun initSystemBar() {

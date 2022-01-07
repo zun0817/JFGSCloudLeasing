@@ -11,14 +11,17 @@ import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.cloud.leasing.R
-import com.cloud.leasing.bean.HomeDeviceBean
+import com.cloud.leasing.bean.Search
+import com.cloud.leasing.callback.OnItemChildrenListener
 import com.cloud.leasing.constant.Constant
 import com.google.android.material.imageview.ShapeableImageView
 
-class MoreDeviceAdapter(val context: Context, var list: MutableList<HomeDeviceBean>) :
+class SearchDeviceAdapter(val context: Context, var list: MutableList<Search>) :
     BaseAdapter() {
 
-    fun refreshData(list: MutableList<HomeDeviceBean>){
+    var onItemChildrenListener: OnItemChildrenListener? = null
+
+    fun refreshData(list: MutableList<Search>) {
         this.list = list
         notifyDataSetChanged()
     }
@@ -47,19 +50,19 @@ class MoreDeviceAdapter(val context: Context, var list: MutableList<HomeDeviceBe
             viewHoler = view.tag as ViewHoler
         }
         viewHoler.device_item_name_tv!!.text =
-            list[position].deviceCity + "·" + list[position].deviceBrandName
-        viewHoler.device_item_type_tv!!.text = list[position].deviceTypeName
+            list[position].deviceCity + "·" + list[position].deviceBrand
+        viewHoler.device_item_type_tv!!.text = list[position].deviceType
         viewHoler.device_item_diameter_tv!!.text = "管片外径 " + list[position].outerDiameter + "m"
         viewHoler.device_item_img?.let {
             Glide.with(context)
-                .load(Constant.BASE_FILE_URL + list[position].deviceMainFileUrl)
+                .load(Constant.BASE_FILE_URL + list[position].filePath)
                 .centerCrop()
                 .placeholder(R.mipmap.icon_launcher_round)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(it)
         }
         when (list[position].focusStatus) {
-            0 -> {
+            "0" -> {
                 viewHoler.device_item_follow_tv?.let {
                     val drawableLeft: Drawable =
                         context.resources.getDrawable(
@@ -73,7 +76,7 @@ class MoreDeviceAdapter(val context: Context, var list: MutableList<HomeDeviceBe
                     it.compoundDrawablePadding = 10
                 }
             }
-            1 -> {
+            "1" -> {
                 viewHoler.device_item_follow_tv?.let {
                     val drawableLeft: Drawable =
                         context.resources.getDrawable(
@@ -90,7 +93,7 @@ class MoreDeviceAdapter(val context: Context, var list: MutableList<HomeDeviceBe
         }
         viewHoler.device_item_follow_tv?.let {
             it.setOnClickListener {
-
+                onItemChildrenListener?.onChildren(position, list[position])
             }
         }
         return view!!

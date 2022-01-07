@@ -31,6 +31,8 @@ import androidx.annotation.StringDef
     PageName.MORE_DEVICE,
     PageName.MORE_REQUIRE,
     PageName.SERVICE_DETAIL,
+    PageName.SEARCH_DEVICE,
+    PageName.SEARCH_REQUIRE,
 
     PageName.ACGN,
     PageName.SMALL_VIDEO,
@@ -70,6 +72,8 @@ annotation class PageName {
         const val MORE_DEVICE = "more_device"
         const val MORE_REQUIRE = "more_require"
         const val SERVICE_DETAIL = "service_detail"
+        const val SEARCH_DEVICE = "search_device"
+        const val SEARCH_REQUIRE = "search_require"
 
         const val ACGN = "acgn"
         const val SMALL_VIDEO = "small_video"

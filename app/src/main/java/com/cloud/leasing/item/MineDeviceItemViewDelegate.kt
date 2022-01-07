@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.cloud.leasing.JFGSApplication
 import com.cloud.leasing.R
 import com.cloud.leasing.base.list.base.BaseItemViewDelegate
@@ -58,9 +59,12 @@ class MineDeviceItemViewDelegate :
         holder.viewBinding.minedeviceSelectImg.setOnClickListener {
             performItemChildViewClick(it, item, holder, item.value)
         }
-//        Glide.with(JFGSApplication.instance)
-//            .load(Constant.BASE_FILE_URL + item.value.deviceMainFileUrl)
-//            .into(holder.viewBinding.minedeviceItemImg)
+        Glide.with(JFGSApplication.instance)
+            .load(Constant.BASE_FILE_URL + item.value.deviceMainFileUrl)
+            .centerCrop()
+            .placeholder(R.mipmap.icon_launcher_round)
+            .diskCacheStrategy(DiskCacheStrategy.ALL)
+            .into(holder.viewBinding.minedeviceItemImg)
         holder.viewBinding.minedeviceItemNameTv.text = item.value.deviceBrand
         holder.viewBinding.minedeviceItemTypeTv.text = item.value.deviceType
         holder.viewBinding.minedeviceItemDiameterTv.text = "刀盘直径 " + item.value.cutterDiam + "m"

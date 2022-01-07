@@ -231,7 +231,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:gravity="center_vertical"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:visibility="gone">
 
                 <View
                     android:layout_width="2dp"
@@ -254,10 +255,18 @@
                 layout="@layout/layout_device_detail_user"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp" />
+                android:layout_marginTop="12dp"
+                android:visibility="gone" />
 
         </LinearLayout>
 
     </com.cloud.leasing.widget.JFGSNestedScrollView>
+
+    <com.cloud.leasing.widget.LoadingView
+        android:id="@+id/device_detail_loadingview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone" />
 
 </RelativeLayout>

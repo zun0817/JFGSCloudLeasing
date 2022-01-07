@@ -14,6 +14,7 @@ import com.bumptech.glide.Glide
 import android.text.TextUtils
 import android.util.Log
 import android.view.Gravity
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import java.text.SimpleDateFormat
 import java.util.*
@@ -64,6 +65,34 @@ fun Any.toast(context: Context, duration: Int = Toast.LENGTH_SHORT): Toast {
         setGravity(Gravity.CENTER, 0, 0)
         show()
     }
+}
+
+/**
+ * 打开软键盘
+ */
+fun View.showKeyboard(): Boolean {
+    val imm = context
+        .getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+    requestFocus()
+    return imm.showSoftInput(this, InputMethodManager.RESULT_UNCHANGED_SHOWN)
+}
+
+/**
+ * 关闭软键盘
+ */
+fun View.hideKeyboard(): Boolean {
+    val imm = context
+        .getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+    return imm.hideSoftInputFromWindow(this.windowToken, InputMethodManager.RESULT_UNCHANGED_SHOWN)
+}
+
+/**
+ * 根据当前软键盘的状态做取反操作
+ */
+fun View.toggleKeyboard() {
+    val imm = context
+        .getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+    imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.RESULT_UNCHANGED_SHOWN)
 }
 
 fun getTime(date: Date): String {

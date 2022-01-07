@@ -83,13 +83,13 @@ interface INetworkService {
     suspend fun requestOfAddRequire(@Body requestBody: RequestBody): BaseResponse<String>
 
     @POST(Constant.PATH_QUERY_DATA)
-    suspend fun requestOfQueryData(@Body requestBody: RequestBody): BaseResponse<String>
+    suspend fun requestOfQueryData(@Body requestBody: RequestBody): BaseResponse<SearchBean>
 
-    @POST(Constant.PATH_HOME_DEVICE_DETAIL)
-    suspend fun requestOfDeviceDetail(@Body requestBody: RequestBody): BaseResponse<String>
+    @GET(Constant.PATH_HOME_DEVICE_DETAIL)
+    suspend fun requestOfDeviceDetail(@Query("deviceId") deviceId: Int): BaseResponse<DeviceDetailBean>
 
     @POST(Constant.PATH_HOME_REQUIRE_DETAIL)
-    suspend fun requestOfRequireDetail(@Body requestBody: RequestBody): BaseResponse<String>
+    suspend fun requestOfRequireDetail(@Query("demandId") demandId: Int): BaseResponse<RequireDetailBean>
 
     @Multipart
     @POST(Constant.PATH_FILE_UPLOAD)

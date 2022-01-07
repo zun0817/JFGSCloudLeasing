@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.cloud.leasing.JFGSApplication
 import com.cloud.leasing.R
 import com.cloud.leasing.base.list.base.BaseItemViewDelegate
@@ -61,6 +62,9 @@ class EquipmentItemViewDelegate :
         }
         Glide.with(JFGSApplication.instance)
             .load(Constant.BASE_FILE_URL + item.value.deviceMainFileUrl)
+            .centerCrop()
+            .placeholder(R.mipmap.icon_launcher_round)
+            .diskCacheStrategy(DiskCacheStrategy.ALL)
             .into(holder.viewBinding.deviceItemImg)
     }
 

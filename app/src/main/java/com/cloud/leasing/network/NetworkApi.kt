@@ -115,11 +115,11 @@ object NetworkApi : BaseNetworkApi<INetworkService>(Constant.BASE_URL) {
         service.requestOfQueryData(requestBody)
     }
 
-    suspend fun requestOfDeviceDetail(requestBody: RequestBody) = getResult {
-        service.requestOfDeviceDetail(requestBody)
+    suspend fun requestOfDeviceDetail(deviceId: Int) = getResult {
+        service.requestOfDeviceDetail(deviceId)
     }
 
-    suspend fun requestOfRequireDetail(requestBody: RequestBody) = getResult {
-        service.requestOfRequireDetail(requestBody)
+    suspend fun requestOfRequireDetail(demandId: Int) = getResult {
+        service.requestOfRequireDetail(demandId)
     }
 }
