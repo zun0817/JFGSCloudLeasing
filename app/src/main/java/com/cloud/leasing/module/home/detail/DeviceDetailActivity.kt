@@ -6,8 +6,13 @@ import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
 import androidx.core.widget.NestedScrollView
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.cloud.leasing.R
+import com.cloud.leasing.adapter.DetailFileAdapter
+import com.cloud.leasing.adapter.DetailPictureAdapter
 import com.cloud.leasing.base.BaseActivity
+import com.cloud.leasing.bean.RentDeviceFile
 import com.cloud.leasing.constant.PageName
 import com.cloud.leasing.databinding.ActivityDeviceDetailBinding
 import com.cloud.leasing.util.ViewTouchUtil
@@ -32,6 +37,14 @@ class DeviceDetailActivity :
 
     private var scrollviewFlag = false
 
+    private val fileList = mutableListOf<RentDeviceFile>()
+
+    private val pictureList = mutableListOf<RentDeviceFile>()
+
+    private lateinit var detailFileAdapter: DetailFileAdapter
+
+    private lateinit var detailPictureAdapter: DetailPictureAdapter
+
     private val viewModel: DeviceDetailViewModel by viewModels()
 
     override fun getPageName() = PageName.DEVICE_DETAIL
@@ -51,6 +64,12 @@ class DeviceDetailActivity :
         ViewTouchUtil.expandViewTouchDelegate(viewBinding.deviceDetailBackImg)
         viewModel.requestOfAddFollow(deviceId)
         viewBinding.deviceDetailLoadingview.visibility = View.VISIBLE
+
+        val gridLayoutManager = GridLayoutManager(this, 3)
+        viewBinding.layoutDeviceDetailFile.deviceDetailPictureRv.layoutManager = gridLayoutManager
+
+        val linearLayoutManager = LinearLayoutManager(this)
+        viewBinding.layoutDeviceDetailFile.deviceDetailFileRv.layoutManager = linearLayoutManager
     }
 
     private fun viewModelObserve() {
@@ -59,10 +78,10 @@ class DeviceDetailActivity :
                 viewBinding.deviceDetailLoadingview.visibility = View.GONE
                 it.onFailure {
                     it.toString().toast(this@DeviceDetailActivity)
-                }.onSuccess {
+                }.onSuccess { it ->
                     viewBinding.layoutDeviceDetailInfo.deviceDetailNameTv.text = it.deviceBrandName
-                    viewBinding.layoutDeviceDetailInfo.deviceDetailDateTv.text =
-                        it.createTime.split(" ")[0]
+                    viewBinding.layoutDeviceDetailInfo.deviceDetailDateTv.text = "创建时间："
+                    it.createTime.split(" ")[0]
                     viewBinding.layoutDeviceDetailInfo.deviceDetailBrandTv.text = it.deviceBrandName
                     viewBinding.layoutDeviceDetailInfo.deviceDetailTypeTv.text = it.deviceTypeName
                     viewBinding.layoutDeviceDetailInfo.deviceDetailPlaceTv.text = it.deviceCity
@@ -77,17 +96,20 @@ class DeviceDetailActivity :
                     viewBinding.layoutDeviceDetailInfo.deviceDetailPowerTv.text =
                         it.drivingPower + "KW"
                     viewBinding.layoutDeviceDetailInfo.deviceDetailDevicenoTv.text = it.deviceNo
-                    viewBinding.layoutDeviceDetailInfo.deviceDetailAssetsTv.text = it.assetOwnership
+                    viewBinding.layoutDeviceDetailInfo.deviceDetailAssetsTv.text =
+                        if (it.assetOwnership.isBlank()) "无" else it.assetOwnership
                     viewBinding.layoutDeviceDetailInfo.deviceDetailLayerTv.text =
                         it.applicableStratum
                     viewBinding.layoutDeviceDetailInfo.deviceDetailOuterTv.text =
                         it.outerDiameter + "m"
-                    viewBinding.layoutDeviceDetailInfo.deviceDetailDriveTv.text = it.drivingForm
+                    viewBinding.layoutDeviceDetailInfo.deviceDetailDriveTv.text =
+                        if (it.drivingForm.isBlank()) "无" else it.drivingForm
                     viewBinding.layoutDeviceDetailInfo.deviceDetailOpeningTv.text =
                         if (it.openingRate.isBlank()) "无" else it.openingRate + "%"
                     viewBinding.layoutDeviceDetailInfo.deviceDetailMileageTv.text =
-                        it.mileageUsed + "m"
-                    viewBinding.layoutDeviceDetailInfo.deviceDetailCuttertypeTv.text = it.cutterType
+                        if (it.mileageUsed.isBlank()) "无" else it.mileageUsed + "m"
+                    viewBinding.layoutDeviceDetailInfo.deviceDetailCuttertypeTv.text =
+                        it.cutterTypeName
                     viewBinding.layoutDeviceDetailInfo.deviceDetailStatusTv.text =
                         when (it.deviceRentStatus) {
                             "1" -> {
@@ -101,11 +123,33 @@ class DeviceDetailActivity :
                             }
                         }
                     viewBinding.layoutDeviceDetailInfo.deviceDetailRadiusTv.text =
-                        it.turningRadius + "m"
+                        if (it.turningRadius.isBlank()) "无" else it.turningRadius + "m"
                     viewBinding.layoutDeviceDetailRemark.deviceDetailRemarkTv.text =
                         if (it.remarks.isBlank()) "无" else it.remarks
                     viewBinding.layoutDeviceDetailResume.deviceDetailResumeTv.text =
                         if (it.deviceResume.isBlank()) "无" else it.deviceResume
+                    it.rentDeviceFileList.takeIf { it.isNotEmpty() }?.onEach {
+                        when (it.fileType) {
+                            "1" -> {
+                                fileList.add(it)
+                            }
+                            else -> {
+                                pictureList.add(it)
+                            }
+                        }
+                    }
+                    detailPictureAdapter =
+                        DetailPictureAdapter(this@DeviceDetailActivity, pictureList)
+                    viewBinding.layoutDeviceDetailFile.deviceDetailPictureRv.adapter =
+                        detailPictureAdapter
+                    if (fileList.size > 0) {
+                        viewBinding.layoutDeviceDetailFile.deviceDetailFileRv.visibility =
+                            View.VISIBLE
+                        detailFileAdapter =
+                            DetailFileAdapter(this@DeviceDetailActivity, fileList)
+                        viewBinding.layoutDeviceDetailFile.deviceDetailFileRv.adapter =
+                            detailFileAdapter
+                    }
                 }
             })
         }
@@ -148,12 +192,12 @@ class DeviceDetailActivity :
                         viewBinding.deviceDetailAnnexLl.top
                     )
                 }
-                3 -> {
-                    viewBinding.deviceDetailScrollview.scrollTo(
-                        0,
-                        viewBinding.deviceDetailUserLl.top
-                    )
-                }
+//                3 -> {
+//                    viewBinding.deviceDetailScrollview.scrollTo(
+//                        0,
+//                        viewBinding.deviceDetailUserLl.top
+//                    )
+//                }
             }
         }
         scrollviewFlag = false
@@ -192,7 +236,7 @@ class DeviceDetailActivity :
                     )
                 )
             }
-        } else if (scrollY >= viewBinding.deviceDetailAnnexLl.top && scrollY < viewBinding.deviceDetailUserLl.top) {
+        } else if (scrollY >= viewBinding.deviceDetailAnnexLl.top) {
             if (tabIndex != 2) {
                 viewBinding.deviceDetailTablayout.selectTab(
                     viewBinding.deviceDetailTablayout.getTabAt(
@@ -200,15 +244,16 @@ class DeviceDetailActivity :
                     )
                 )
             }
-        } else if (scrollY >= viewBinding.deviceDetailUserLl.top) {
-            if (tabIndex != 3) {
-                viewBinding.deviceDetailTablayout.selectTab(
-                    viewBinding.deviceDetailTablayout.getTabAt(
-                        3
-                    )
-                )
-            }
         }
+//        else if (scrollY >= viewBinding.deviceDetailUserLl.top) {
+//            if (tabIndex != 3) {
+//                viewBinding.deviceDetailTablayout.selectTab(
+//                    viewBinding.deviceDetailTablayout.getTabAt(
+//                        3
+//                    )
+//                )
+//            }
+//        }
         scrollviewFlag = false
     }
 

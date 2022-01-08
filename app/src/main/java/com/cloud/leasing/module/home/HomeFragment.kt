@@ -414,10 +414,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
             RequireDetailActivity.startActivity(requireActivity())
         }
         viewBinding.layoutDeviceItemOne.layoutDeviceItemCl.setOnClickListener {
-            DeviceDetailActivity.startActivity(requireActivity())
+            DeviceDetailActivity.startActivity(requireActivity(), homeDeviceBeanOne.id)
         }
         viewBinding.layoutDeviceItemTwo.layoutDeviceItemCl.setOnClickListener {
-            DeviceDetailActivity.startActivity(requireActivity())
+            DeviceDetailActivity.startActivity(requireActivity(), homeDeviceBeanTwo.id)
         }
         viewBinding.layoutDeviceItemOne.deviceItemFollowTv.setOnClickListener {
             isFlag = 1
