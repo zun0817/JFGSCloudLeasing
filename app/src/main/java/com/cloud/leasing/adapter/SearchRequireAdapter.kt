@@ -1,6 +1,7 @@
 package com.cloud.leasing.adapter
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -10,11 +11,10 @@ import android.widget.TextView
 import com.cloud.leasing.R
 import com.cloud.leasing.bean.Search
 import com.cloud.leasing.callback.OnItemChildrenListener
+import com.cloud.leasing.module.home.detail.RequireDetailActivity
 
 class SearchRequireAdapter(val context: Context, var list: MutableList<Search>) :
     BaseAdapter() {
-
-    var onItemChildrenListener: OnItemChildrenListener? = null
 
     fun refreshData(list: MutableList<Search>){
         this.list = list
@@ -56,7 +56,7 @@ class SearchRequireAdapter(val context: Context, var list: MutableList<Search>) 
         viewHoler.require_item_time_tv!!.text = list[position].usageTime.toString().split(" ")[0]
         viewHoler.require_item_look_tv?.let {
             it.setOnClickListener {
-                onItemChildrenListener?.onChildren(position, list[position])
+                RequireDetailActivity.startActivity(context as Activity, list[position].id)
             }
         }
         return view!!

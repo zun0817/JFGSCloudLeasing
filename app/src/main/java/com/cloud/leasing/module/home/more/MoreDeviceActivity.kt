@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.AdapterView
 import androidx.activity.viewModels
 import com.cloud.leasing.R
 import com.cloud.leasing.adapter.MoreDeviceAdapter
@@ -11,13 +12,14 @@ import com.cloud.leasing.base.BaseActivity
 import com.cloud.leasing.bean.HomeDeviceBean
 import com.cloud.leasing.constant.PageName
 import com.cloud.leasing.databinding.ActivityMoreDeviceBinding
+import com.cloud.leasing.module.home.detail.DeviceDetailActivity
 import com.cloud.leasing.util.ViewTouchUtil
 import com.cloud.leasing.util.toast
 import com.gyf.immersionbar.ktx.immersionBar
 
 class MoreDeviceActivity :
     BaseActivity<ActivityMoreDeviceBinding>(ActivityMoreDeviceBinding::inflate),
-    View.OnClickListener {
+    View.OnClickListener, AdapterView.OnItemClickListener {
 
     companion object {
         fun startActivity(activity: Activity) {
@@ -50,6 +52,7 @@ class MoreDeviceActivity :
         viewBinding.moreDeviceListview.adapter = moreDeviceAdapter
         viewModel.requestOfHomeDevices()
         viewBinding.moreDeviceLoadingview.visibility = View.VISIBLE
+        viewBinding.moreDeviceListview.onItemClickListener = this
     }
 
     private fun initSystemBar() {
@@ -70,6 +73,7 @@ class MoreDeviceActivity :
                     it.onFailure {
                         it.toString().toast(this@MoreDeviceActivity)
                     }.onSuccess {
+                        list = it
                         moreDeviceAdapter.refreshData(it)
                     }
                 })
@@ -80,5 +84,9 @@ class MoreDeviceActivity :
         when (v!!.id) {
             R.id.more_device_back_img -> this.finish()
         }
+    }
+
+    override fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+        DeviceDetailActivity.startActivity(this, list[position].id)
     }
 }

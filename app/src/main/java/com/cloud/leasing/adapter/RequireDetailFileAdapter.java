@@ -5,20 +5,21 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.cloud.leasing.R;
+import com.cloud.leasing.bean.DemandFile;
 import com.cloud.leasing.bean.RentDeviceFile;
 import com.zhy.adapter.recyclerview.CommonAdapter;
 import com.zhy.adapter.recyclerview.base.ViewHolder;
 
 import java.util.List;
 
-public class DetailFileAdapter extends CommonAdapter<RentDeviceFile> {
+public class RequireDetailFileAdapter extends CommonAdapter<DemandFile> {
 
-    public DetailFileAdapter(Context context, List<RentDeviceFile> selectPath) {
+    public RequireDetailFileAdapter(Context context, List<DemandFile> selectPath) {
         super(context, R.layout.layout_detail_file_item, selectPath);
     }
 
     @Override
-    protected void convert(ViewHolder viewHolder, RentDeviceFile item, final int position) {
+    protected void convert(ViewHolder viewHolder, DemandFile item, final int position) {
         TextView detail_file_name_tv = viewHolder.getView(R.id.detail_file_name_tv);
         TextView detail_file_size_tv = viewHolder.getView(R.id.detail_file_size_tv);
         ImageView detail_file_cache_img = viewHolder.getView(R.id.detail_file_cache_img);

@@ -408,10 +408,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         viewBinding.mainSearchTv.setOnClickListener(this)
         viewBinding.mainSearchImg.setOnClickListener(this)
         viewBinding.layoutRequireItemOne.requireItemLookTv.setOnClickListener {
-            RequireDetailActivity.startActivity(requireActivity())
+            RequireDetailActivity.startActivity(requireActivity(), homeRequireBeanOne.id)
         }
         viewBinding.layoutRequireItemTwo.requireItemLookTv.setOnClickListener {
-            RequireDetailActivity.startActivity(requireActivity())
+            RequireDetailActivity.startActivity(requireActivity(), homeRequireBeanTwo.id)
         }
         viewBinding.layoutDeviceItemOne.layoutDeviceItemCl.setOnClickListener {
             DeviceDetailActivity.startActivity(requireActivity(), homeDeviceBeanOne.id)

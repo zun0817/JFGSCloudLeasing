@@ -97,7 +97,8 @@ class MineFragment : BaseFragment<FragmentMineBinding>(FragmentMineBinding::infl
                         }
                         "1" -> {
                             viewBinding.mineAuthTv.text = "已认证"
-                            viewBinding.mineAuthTxtTv.text = it.mineCompany.toString()
+                            viewBinding.mineAuthTxtTv.text = if (it.mineCompany == null
+                            ) "暂无" else it.mineCompany.toString()
                             viewBinding.mineAuthTxtTv.setTextColor(resources.getColor(R.color.white))
                         }
                         "2" -> {

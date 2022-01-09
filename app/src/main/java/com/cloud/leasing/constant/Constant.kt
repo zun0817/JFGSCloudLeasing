@@ -62,6 +62,7 @@ object Constant {
 
     const val PATH_QUERY_DATA = "/api/v1/es/app/queryData"
 
+
     /** 本地存储 */
 
     const val FILE_AVATAR = "10"

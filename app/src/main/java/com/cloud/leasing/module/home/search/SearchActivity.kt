@@ -28,6 +28,8 @@ class SearchActivity : BaseActivity<ActivitySearchBinding>(ActivitySearchBinding
         }
     }
 
+    private var isFlag = 1
+
     private var searchDeviceFragment: SearchDeviceFragment? = null
 
     private var searchRequireFragment: SearchRequireFragment? = null
@@ -89,8 +91,41 @@ class SearchActivity : BaseActivity<ActivitySearchBinding>(ActivitySearchBinding
         viewBinding.searchDeviceLl.setOnClickListener(this)
         viewBinding.searchRequireLl.setOnClickListener(this)
         viewBinding.searchTv.setOnClickListener(this)
+        viewBinding.layoutDeviceFilter.deviceFilterCloseImg.setOnClickListener(this)
+        viewBinding.layoutRequireFilter.requireFilterCloseImg.setOnClickListener(this)
+        viewBinding.layoutDeviceFilter.deviceFilterResetTv.setOnClickListener(this)
+        viewBinding.layoutDeviceFilter.deviceFilterSureTv.setOnClickListener(this)
+        viewBinding.layoutRequireFilter.requireFilterResetTv.setOnClickListener(this)
+        viewBinding.layoutRequireFilter.requireFilterSureTv.setOnClickListener(this)
+
+        viewBinding.layoutDeviceFilter.deviceFilterCuttertypeTv.setOnClickListener(this)
+        viewBinding.layoutDeviceFilter.deviceFilterBrandTv.setOnClickListener(this)
+        viewBinding.layoutDeviceFilter.deviceFilterDevicetypeTv.setOnClickListener(this)
+        viewBinding.layoutDeviceFilter.deviceFilterDevicestatusTv.setOnClickListener(this)
+        viewBinding.layoutDeviceFilter.deviceFilterDevicesiteTv.setOnClickListener(this)
+
+        viewBinding.layoutRequireFilter.requireFilterPlaceTv.setOnClickListener(this)
+        viewBinding.layoutRequireFilter.requireFilterBrandTv.setOnClickListener(this)
+        viewBinding.layoutRequireFilter.requireFilterDevicetypeTv.setOnClickListener(this)
+        viewBinding.layoutRequireFilter.requireFilterUsageTv.setOnClickListener(this)
+        viewBinding.layoutRequireFilter.requireFilterCuttertypeTv.setOnClickListener(this)
+
         ViewTouchUtil.expandViewTouchDelegate(viewBinding.searchBackImg)
         ViewTouchUtil.expandViewTouchDelegate(viewBinding.searchFilterTv)
+        ViewTouchUtil.expandViewTouchDelegate(viewBinding.layoutDeviceFilter.deviceFilterCloseImg)
+        ViewTouchUtil.expandViewTouchDelegate(viewBinding.layoutRequireFilter.requireFilterCloseImg)
+
+        ViewTouchUtil.expandViewTouchDelegate(viewBinding.layoutDeviceFilter.deviceFilterCuttertypeTv)
+        ViewTouchUtil.expandViewTouchDelegate(viewBinding.layoutDeviceFilter.deviceFilterBrandTv)
+        ViewTouchUtil.expandViewTouchDelegate(viewBinding.layoutDeviceFilter.deviceFilterDevicetypeTv)
+        ViewTouchUtil.expandViewTouchDelegate(viewBinding.layoutDeviceFilter.deviceFilterDevicestatusTv)
+        ViewTouchUtil.expandViewTouchDelegate(viewBinding.layoutDeviceFilter.deviceFilterDevicesiteTv)
+
+        ViewTouchUtil.expandViewTouchDelegate(viewBinding.layoutRequireFilter.requireFilterPlaceTv)
+        ViewTouchUtil.expandViewTouchDelegate(viewBinding.layoutRequireFilter.requireFilterBrandTv)
+        ViewTouchUtil.expandViewTouchDelegate(viewBinding.layoutRequireFilter.requireFilterDevicetypeTv)
+        ViewTouchUtil.expandViewTouchDelegate(viewBinding.layoutRequireFilter.requireFilterUsageTv)
+        ViewTouchUtil.expandViewTouchDelegate(viewBinding.layoutRequireFilter.requireFilterCuttertypeTv)
     }
 
     override fun onClick(v: View?) {
@@ -98,9 +133,15 @@ class SearchActivity : BaseActivity<ActivitySearchBinding>(ActivitySearchBinding
         when (v!!.id) {
             R.id.service_back_img -> this.finish()
             R.id.search_filter_tv -> {
-
+                when (isFlag) {
+                    1 -> viewBinding.layoutDeviceFilter.layoutDeviceFilterFrame.visibility =
+                        View.VISIBLE
+                    2 -> viewBinding.layoutRequireFilter.layoutRequireFilterFrame.visibility =
+                        View.VISIBLE
+                }
             }
             R.id.search_device_ll -> {
+                isFlag = 1
                 viewBinding.searchDeviceTv.setTextColor(resources.getColor(R.color.color_0E64BC))
                 viewBinding.searchDeviceView.visibility = View.VISIBLE
                 viewBinding.searchRequireTv.setTextColor(resources.getColor(R.color.color_999999))
@@ -111,6 +152,7 @@ class SearchActivity : BaseActivity<ActivitySearchBinding>(ActivitySearchBinding
                 fragmentTransaction.commitAllowingStateLoss()
             }
             R.id.search_require_ll -> {
+                isFlag = 2
                 viewBinding.searchRequireTv.setTextColor(resources.getColor(R.color.color_0E64BC))
                 viewBinding.searchRequireView.visibility = View.VISIBLE
                 viewBinding.searchDeviceTv.setTextColor(resources.getColor(R.color.color_999999))
@@ -126,6 +168,42 @@ class SearchActivity : BaseActivity<ActivitySearchBinding>(ActivitySearchBinding
                 viewModel.requestOfQueryData(1, keyWord)
                 viewModel.requestOfQueryData(2, keyWord)
                 viewBinding.searchLoadingview.visibility = View.VISIBLE
+            }
+            R.id.device_filter_close_img -> {
+                viewBinding.layoutDeviceFilter.layoutDeviceFilterFrame.visibility = View.GONE
+            }
+            R.id.require_filter_close_img -> {
+                viewBinding.layoutRequireFilter.layoutRequireFilterFrame.visibility = View.GONE
+            }
+            R.id.device_filter_reset_tv -> {
+
+            }
+            R.id.device_filter_sure_tv -> {
+
+            }
+            R.id.require_filter_reset_tv -> {
+
+            }
+            R.id.require_filter_sure_tv -> {
+
+            }
+            R.id.require_detail_place_tv, R.id.device_filter_devicesite_tv -> {
+
+            }
+            R.id.require_filter_devicetype_tv, R.id.device_filter_devicetype_tv -> {
+
+            }
+            R.id.require_filter_cuttertype_tv, R.id.device_filter_cuttertype_tv -> {
+
+            }
+            R.id.require_filter_brand_tv, R.id.device_filter_brand_tv -> {
+
+            }
+            R.id.require_filter_usage_tv -> {
+
+            }
+            R.id.device_filter_devicestatus_tv -> {
+
             }
         }
     }

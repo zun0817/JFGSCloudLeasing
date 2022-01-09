@@ -8,10 +8,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.cloud.leasing.base.BaseFragment
 import com.cloud.leasing.base.list.XRecyclerView
 import com.cloud.leasing.base.list.base.BaseViewData
+import com.cloud.leasing.bean.FollowRequireBean
 import com.cloud.leasing.bean.exception.NetworkException
 import com.cloud.leasing.constant.PageName
 import com.cloud.leasing.databinding.FragmentRequireBinding
 import com.cloud.leasing.item.RequireItemViewData
+import com.cloud.leasing.module.home.detail.RequireDetailActivity
 import com.cloud.leasing.util.toast
 
 
@@ -48,9 +50,8 @@ class RequireFragment : BaseFragment<FragmentRequireBinding>(FragmentRequireBind
                         id: Long,
                         extra: Any?
                     ) {
-                        if (extra is String) {
-                            Toast.makeText(context, "条目子View点击: $extra", Toast.LENGTH_SHORT).show()
-                        }
+                        val bean = viewData.value as FollowRequireBean
+                        RequireDetailActivity.startActivity(requireActivity(), bean.id)
                     }
                 })
         )

@@ -2,7 +2,6 @@ package com.cloud.leasing.module.mine.follow
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.RecyclerView
 import com.cloud.leasing.base.BaseFragment
@@ -13,6 +12,7 @@ import com.cloud.leasing.bean.exception.NetworkException
 import com.cloud.leasing.constant.PageName
 import com.cloud.leasing.databinding.FragmentEquipmentBinding
 import com.cloud.leasing.item.EquipmentItemViewData
+import com.cloud.leasing.module.home.detail.DeviceDetailActivity
 import com.cloud.leasing.util.toast
 
 class EquipmentFragment :
@@ -49,8 +49,8 @@ class EquipmentFragment :
                         position: Int,
                         id: Long
                     ) {
-                        Toast.makeText(context, "条目点击: ${viewData.value}", Toast.LENGTH_SHORT)
-                            .show()
+                        val bean = viewData.value as FollowDeviceBean
+                        DeviceDetailActivity.startActivity(requireActivity(), bean.id)
                     }
                 })
                 .setOnItemChildViewClickListener(object :

@@ -9,7 +9,7 @@ data class RequireDetailBean(
     val cutterTypeName: String,
     val deleted: String,
     val demandCity: String,
-    val demandFileList: List<Any>,
+    val demandFileList: List<DemandFile>,
     val demandNum: Int,
     val demandProvince: String,
     val deviceBrand: String,
@@ -36,4 +36,19 @@ data class RequireDetailBean(
     val turningRadius: String,
     val usageTime: String,
     val userId: Int
+)
+
+data class DemandFile(
+    val createTime: String,
+    val deleteTime: Any,
+    val deleted: String,
+    val demandFileType: String,
+    val demandId: Int,
+    val fileName: String,
+    val filePath: String,
+    val fileSize: String,
+    val fileSort: Int,
+    val fileSuffix: String,
+    val fileType: String,
+    val id: Int
 )

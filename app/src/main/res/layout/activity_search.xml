@@ -176,6 +176,20 @@
         android:layout_below="@id/search_ll"
         android:scrollbars="none" />
 
+    <include
+        android:id="@+id/layout_device_filter"
+        layout="@layout/layout_device_filter"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone" />
+
+    <include
+        android:id="@+id/layout_require_filter"
+        layout="@layout/layout_require_filter"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone" />
+
     <com.cloud.leasing.widget.LoadingView
         android:id="@+id/search_loadingview"
         android:layout_width="wrap_content"

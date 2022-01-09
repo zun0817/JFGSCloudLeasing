@@ -15,7 +15,7 @@ class DeviceDetailViewModel : BaseViewModel() {
     @PageName
     override fun getPageName() = PageName.DEVICE_DETAIL
 
-    fun requestOfAddFollow(deviceId: Int) {
+    fun requestOfDeviceDetail(deviceId: Int) {
         viewModelScope.launch {
             val result = NetworkApi.requestOfDeviceDetail(deviceId)
             deviceDetailLiveData.value = result

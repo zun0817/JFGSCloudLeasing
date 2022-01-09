@@ -88,7 +88,7 @@ interface INetworkService {
     @GET(Constant.PATH_HOME_DEVICE_DETAIL)
     suspend fun requestOfDeviceDetail(@Query("deviceId") deviceId: Int): BaseResponse<DeviceDetailBean>
 
-    @POST(Constant.PATH_HOME_REQUIRE_DETAIL)
+    @GET(Constant.PATH_HOME_REQUIRE_DETAIL)
     suspend fun requestOfRequireDetail(@Query("demandId") demandId: Int): BaseResponse<RequireDetailBean>
 
     @Multipart

@@ -20,7 +20,8 @@
         android:layout_height="60dp"
         android:layout_alignParentBottom="true"
         android:background="@color/white"
-        android:paddingHorizontal="20dp">
+        android:paddingHorizontal="20dp"
+        android:visibility="gone">
 
         <TextView
             android:id="@+id/mine_publish_edit_tv"

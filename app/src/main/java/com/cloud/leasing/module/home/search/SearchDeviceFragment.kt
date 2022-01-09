@@ -2,6 +2,7 @@ package com.cloud.leasing.module.home.search
 
 import android.os.Bundle
 import android.view.View
+import android.widget.AdapterView
 import androidx.fragment.app.viewModels
 import com.cloud.leasing.adapter.SearchDeviceAdapter
 import com.cloud.leasing.base.BaseFragment
@@ -10,15 +11,17 @@ import com.cloud.leasing.bean.exception.NetworkException
 import com.cloud.leasing.callback.OnItemChildrenListener
 import com.cloud.leasing.constant.PageName
 import com.cloud.leasing.databinding.FragmentSearchDeviceBinding
+import com.cloud.leasing.module.home.detail.DeviceDetailActivity
 import com.cloud.leasing.util.toast
 
 
 class SearchDeviceFragment :
-    BaseFragment<FragmentSearchDeviceBinding>(FragmentSearchDeviceBinding::inflate) {
+    BaseFragment<FragmentSearchDeviceBinding>(FragmentSearchDeviceBinding::inflate),
+    AdapterView.OnItemClickListener {
 
     private var select = 0
 
-    private var datas: MutableList<Search>? = null
+    private lateinit var datas: MutableList<Search>
 
     private lateinit var searchDeviceAdapter: SearchDeviceAdapter
 
@@ -36,6 +39,7 @@ class SearchDeviceFragment :
         searchDeviceAdapter = SearchDeviceAdapter(requireActivity(), mutableListOf())
         viewBinding.searchDeviceListview.adapter = searchDeviceAdapter
         searchDeviceAdapter.onItemChildrenListener = onItemChildrenListener
+        viewBinding.searchDeviceListview.onItemClickListener = this
     }
 
     private fun viewModelObserve() {
@@ -45,7 +49,7 @@ class SearchDeviceFragment :
                     if ((it as NetworkException).code == 200) {
                         "关注成功".toast(requireActivity())
                         datas?.forEachIndexed { index, search ->
-                            if (select == index){
+                            if (select == index) {
                                 search.focusStatus = "1"
                             }
                         }
@@ -56,7 +60,7 @@ class SearchDeviceFragment :
                 }.onSuccess {
                     "关注成功".toast(requireActivity())
                     datas?.forEachIndexed { index, search ->
-                        if (select == index){
+                        if (select == index) {
                             search.focusStatus = "1"
                         }
                     }
@@ -68,7 +72,7 @@ class SearchDeviceFragment :
                     if ((it as NetworkException).code == 200) {
                         "取消关注".toast(requireActivity())
                         datas?.forEachIndexed { index, search ->
-                            if (select == index){
+                            if (select == index) {
                                 search.focusStatus = "0"
                             }
                         }
@@ -79,7 +83,7 @@ class SearchDeviceFragment :
                 }.onSuccess {
                     "取消关注".toast(requireActivity())
                     datas?.forEachIndexed { index, search ->
-                        if (select == index){
+                        if (select == index) {
                             search.focusStatus = "0"
                         }
                     }
@@ -106,5 +110,9 @@ class SearchDeviceFragment :
 
     companion object {
         fun newInstance() = SearchDeviceFragment()
+    }
+
+    override fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+        DeviceDetailActivity.startActivity(requireActivity(), datas[position].id)
     }
 }

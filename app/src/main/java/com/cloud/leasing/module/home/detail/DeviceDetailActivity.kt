@@ -9,8 +9,8 @@ import androidx.core.widget.NestedScrollView
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.cloud.leasing.R
-import com.cloud.leasing.adapter.DetailFileAdapter
-import com.cloud.leasing.adapter.DetailPictureAdapter
+import com.cloud.leasing.adapter.DeviceDetailFileAdapter
+import com.cloud.leasing.adapter.DeviceDetailPictureAdapter
 import com.cloud.leasing.base.BaseActivity
 import com.cloud.leasing.bean.RentDeviceFile
 import com.cloud.leasing.constant.PageName
@@ -41,9 +41,9 @@ class DeviceDetailActivity :
 
     private val pictureList = mutableListOf<RentDeviceFile>()
 
-    private lateinit var detailFileAdapter: DetailFileAdapter
+    private lateinit var detailFileAdapter: DeviceDetailFileAdapter
 
-    private lateinit var detailPictureAdapter: DetailPictureAdapter
+    private lateinit var detailPictureAdapter: DeviceDetailPictureAdapter
 
     private val viewModel: DeviceDetailViewModel by viewModels()
 
@@ -62,7 +62,7 @@ class DeviceDetailActivity :
         viewBinding.deviceDetailScrollview.setOnScrollChangeListener(this)
         viewBinding.deviceDetailTablayout.addOnTabSelectedListener(this)
         ViewTouchUtil.expandViewTouchDelegate(viewBinding.deviceDetailBackImg)
-        viewModel.requestOfAddFollow(deviceId)
+        viewModel.requestOfDeviceDetail(deviceId)
         viewBinding.deviceDetailLoadingview.visibility = View.VISIBLE
 
         val gridLayoutManager = GridLayoutManager(this, 3)
@@ -139,14 +139,20 @@ class DeviceDetailActivity :
                         }
                     }
                     detailPictureAdapter =
-                        DetailPictureAdapter(this@DeviceDetailActivity, pictureList)
+                        DeviceDetailPictureAdapter(
+                            this@DeviceDetailActivity,
+                            pictureList
+                        )
                     viewBinding.layoutDeviceDetailFile.deviceDetailPictureRv.adapter =
                         detailPictureAdapter
                     if (fileList.size > 0) {
                         viewBinding.layoutDeviceDetailFile.deviceDetailFileRv.visibility =
                             View.VISIBLE
                         detailFileAdapter =
-                            DetailFileAdapter(this@DeviceDetailActivity, fileList)
+                            DeviceDetailFileAdapter(
+                                this@DeviceDetailActivity,
+                                fileList
+                            )
                         viewBinding.layoutDeviceDetailFile.deviceDetailFileRv.adapter =
                             detailFileAdapter
                     }

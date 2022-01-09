@@ -17,9 +17,9 @@ import com.zhy.adapter.recyclerview.base.ViewHolder;
 
 import java.util.List;
 
-public class DetailPictureAdapter extends CommonAdapter<RentDeviceFile> {
+public class DeviceDetailPictureAdapter extends CommonAdapter<RentDeviceFile> {
 
-    public DetailPictureAdapter(Context context, List<RentDeviceFile> selectPath) {
+    public DeviceDetailPictureAdapter(Context context, List<RentDeviceFile> selectPath) {
         super(context, R.layout.layout_detail_picture_item, selectPath);
     }
 

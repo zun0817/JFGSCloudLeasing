@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.AdapterView
 import androidx.activity.viewModels
 import com.cloud.leasing.R
 import com.cloud.leasing.adapter.MoreDeviceAdapter
@@ -12,12 +13,14 @@ import com.cloud.leasing.base.BaseActivity
 import com.cloud.leasing.bean.HomeRequireBean
 import com.cloud.leasing.constant.PageName
 import com.cloud.leasing.databinding.ActivityMoreRequireBinding
+import com.cloud.leasing.module.home.detail.RequireDetailActivity
 import com.cloud.leasing.util.ViewTouchUtil
 import com.cloud.leasing.util.toast
 import com.gyf.immersionbar.ktx.immersionBar
 
 class MoreRequireActivity :
-    BaseActivity<ActivityMoreRequireBinding>(ActivityMoreRequireBinding::inflate), View.OnClickListener {
+    BaseActivity<ActivityMoreRequireBinding>(ActivityMoreRequireBinding::inflate),
+    View.OnClickListener, AdapterView.OnItemClickListener {
 
     companion object {
         fun startActivity(activity: Activity) {
@@ -50,6 +53,7 @@ class MoreRequireActivity :
         viewBinding.moreRequireListview.adapter = moreRequireAdapter
         viewModel.requestOfHomeRequires()
         viewBinding.moreRequireLoadingview.visibility = View.VISIBLE
+        viewBinding.moreRequireListview.onItemClickListener = this
     }
 
     private fun initSystemBar() {
@@ -70,6 +74,7 @@ class MoreRequireActivity :
                     it.onFailure {
                         it.toString().toast(this@MoreRequireActivity)
                     }.onSuccess {
+                        list = it
                         moreRequireAdapter.refreshData(it)
                     }
                 })
@@ -77,8 +82,12 @@ class MoreRequireActivity :
     }
 
     override fun onClick(v: View?) {
-        when(v!!.id){
+        when (v!!.id) {
             R.id.more_require_back_img -> this.finish()
         }
+    }
+
+    override fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+        RequireDetailActivity.startActivity(this, list[position].id)
     }
 }
