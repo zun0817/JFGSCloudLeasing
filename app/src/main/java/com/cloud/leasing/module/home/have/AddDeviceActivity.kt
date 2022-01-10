@@ -8,8 +8,6 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Gravity
 import android.view.View
-import android.view.ViewGroup
-import android.view.WindowManager
 import android.widget.*
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
@@ -22,19 +20,17 @@ import com.cloud.leasing.bean.*
 import com.cloud.leasing.bean.exception.NetworkException
 import com.cloud.leasing.constant.PageName
 import com.cloud.leasing.databinding.ActivityAddDeviceBinding
-import com.cloud.leasing.util.ScreenUtils
 import com.cloud.leasing.util.ViewTouchUtil
 import com.cloud.leasing.util.getTime
 import com.cloud.leasing.util.toast
 import com.cloud.pickerviewlibrary.builder.TimePickerBuilder
-import com.cloud.pickerviewlibrary.listener.CustomListener
-import com.cloud.pickerviewlibrary.listener.OnTimeSelectListener
 import com.cloud.pickerviewlibrary.view.TimePickerView
 import com.cloud.popwindow.WheelView
 import com.giftedcat.picture.lib.selector.MultiImageSelector
 import com.gyf.immersionbar.ktx.immersionBar
 import com.sky.filepicker.upload.Constants
 import com.sky.filepicker.upload.LocalUpdateActivity
+import java.io.File
 import java.util.*
 
 
@@ -157,6 +153,10 @@ class AddDeviceActivity :
         viewModel.requestOfDeviceSite()
         viewModel.requestOfDeviceType()
         viewBinding.addDeviceLoadingview.visibility = View.VISIBLE
+
+        addDeviceFileAdapter.setOnDeleteFileListener {
+
+        }
     }
 
     private fun viewModelObserve() {
@@ -192,6 +192,13 @@ class AddDeviceActivity :
                     this@AddDeviceActivity.finish()
                 }
             })
+            fileLiveData.observe(this@AddDeviceActivity, { it ->
+                it.onFailure {
+                    it.toString().toast(this@AddDeviceActivity)
+                }.onSuccess {
+                    "上传成功".toast(this@AddDeviceActivity)
+                }
+            })
         }
     }
 
@@ -207,6 +214,9 @@ class AddDeviceActivity :
         viewBinding.layoutAddDeviceUpload.addDevicePictureRv.adapter = addDevicePictureAdapter
         addDevicePictureAdapter.setOnAddPicturesListener {
             pickImageOfDevice()
+        }
+        addDevicePictureAdapter.setOnDeleteFileListener {
+
         }
     }
 
@@ -268,8 +278,8 @@ class AddDeviceActivity :
     private fun pickImageOfDevice() {
         val selector = MultiImageSelector.create(this)
         selector.showCamera(true)
-        selector.count(5)
-        selector.multi()
+        selector.count(1)
+        selector.single()
         selector.origin(mDevicePicList)
         selector.start(this, REQUEST_IMAGE_DEVICE)
     }
@@ -277,8 +287,8 @@ class AddDeviceActivity :
     private fun pickImageOfMachine() {
         val selector = MultiImageSelector.create(this)
         selector.showCamera(true)
-        selector.count(3)
-        selector.multi()
+        selector.count(1)
+        selector.single()
         selector.origin(mMachinePicList)
         selector.start(this, REQUEST_IMAGE_MACHINE)
     }
@@ -286,8 +296,8 @@ class AddDeviceActivity :
     private fun pickImageOfHost() {
         val selector = MultiImageSelector.create(this)
         selector.showCamera(true)
-        selector.count(3)
-        selector.multi()
+        selector.count(1)
+        selector.single()
         selector.origin(mHostPicList)
         selector.start(this, REQUEST_IMAGE_HOST)
     }
@@ -295,8 +305,8 @@ class AddDeviceActivity :
     private fun pickImageOfCutter() {
         val selector = MultiImageSelector.create(this)
         selector.showCamera(true)
-        selector.count(3)
-        selector.multi()
+        selector.count(1)
+        selector.single()
         selector.origin(mCutterPicList)
         selector.start(this, REQUEST_IMAGE_CUTTER)
     }
@@ -308,33 +318,41 @@ class AddDeviceActivity :
             data?.let {
                 val select: MutableList<String> =
                     it.getStringArrayListExtra(MultiImageSelector.EXTRA_RESULT) as MutableList<String>
-                mDevicePicList.clear()
+                //mDevicePicList.clear()
                 mDevicePicList.addAll(select)
                 addDevicePictureAdapter.notifyDataSetChanged()
+                val file = File(select[0])
+                viewModel.requestOfUploadFile(file, "30")
             }
         } else if (requestCode == REQUEST_IMAGE_MACHINE && resultCode == RESULT_OK) {
             data?.let {
                 val select: MutableList<String> =
                     it.getStringArrayListExtra(MultiImageSelector.EXTRA_RESULT) as MutableList<String>
-                mMachinePicList.clear()
+                //mMachinePicList.clear()
                 mMachinePicList.addAll(select)
                 addMachinePictureAdapter.notifyDataSetChanged()
+                val file = File(select[0])
+                viewModel.requestOfUploadFile(file, "30")
             }
         } else if (requestCode == REQUEST_IMAGE_HOST && resultCode == RESULT_OK) {
             data?.let {
                 val select: MutableList<String> =
                     it.getStringArrayListExtra(MultiImageSelector.EXTRA_RESULT) as MutableList<String>
-                mHostPicList.clear()
+                //mHostPicList.clear()
                 mHostPicList.addAll(select)
                 addHostPictureAdapter.notifyDataSetChanged()
+                val file = File(select[0])
+                viewModel.requestOfUploadFile(file, "30")
             }
         } else if (requestCode == REQUEST_IMAGE_CUTTER && resultCode == RESULT_OK) {
             data?.let {
                 val select: MutableList<String> =
                     it.getStringArrayListExtra(MultiImageSelector.EXTRA_RESULT) as MutableList<String>
-                mCutterPicList.clear()
+                //mCutterPicList.clear()
                 mCutterPicList.addAll(select)
                 addCutterPictureAdapter.notifyDataSetChanged()
+                val file = File(select[0])
+                viewModel.requestOfUploadFile(file, "30")
             }
         } else if (requestCode == Constants.UPLOAD_FILE_REQUEST && resultCode == Constants.UPLOAD_FILE_RESULT) {
             data?.let { it ->
@@ -344,6 +362,8 @@ class AddDeviceActivity :
                 addDeviceFileAdapter.notifyDataSetChanged()
                 list.forEach {
                     Log.d("地址：", it)
+                    val file = File(it)
+                    viewModel.requestOfUploadFile(file, "30")
                 }
             }
         }
@@ -576,10 +596,15 @@ class AddDeviceActivity :
         wheelview.setTextAlign(WheelView.TEXT_ALIGN_CENTER)
         wheelview.setDataItems(brandList.map { it.name }.toMutableList())
         dialog?.show()
+        wheelview.setOnItemSelectedListener(object : WheelView.OnItemSelectedListener {
+            override fun onItemSelected(wheelView: WheelView, data: Any, position: Int) {
+                deviceBrand = brandList[position].value
+            }
+        })
         sureview.setOnClickListener {
             dialog?.dismiss()
-            deviceBrand = wheelview.getSelectedItemData().toString()
-            viewBinding.layoutAddDeviceInfo.addDeviceBrandTv.text = deviceBrand
+            viewBinding.layoutAddDeviceInfo.addDeviceBrandTv.text =
+                wheelview.getSelectedItemData().toString()
             viewBinding.layoutAddDeviceInfo.addDeviceBrandTv.setTextColor(resources.getColor(R.color.color_262626))
         }
     }
@@ -606,10 +631,15 @@ class AddDeviceActivity :
         wheelview.setTextAlign(WheelView.TEXT_ALIGN_CENTER)
         wheelview.setDataItems(typeList.map { it.name }.toMutableList())
         dialog?.show()
+        wheelview.setOnItemSelectedListener(object : WheelView.OnItemSelectedListener {
+            override fun onItemSelected(wheelView: WheelView, data: Any, position: Int) {
+                deviceType = typeList[position].value
+            }
+        })
         sureview.setOnClickListener {
             dialog?.dismiss()
-            deviceType = wheelview.getSelectedItemData().toString()
-            viewBinding.layoutAddDeviceInfo.addDeviceTypeTv.text = deviceType
+            viewBinding.layoutAddDeviceInfo.addDeviceTypeTv.text =
+                wheelview.getSelectedItemData().toString()
             viewBinding.layoutAddDeviceInfo.addDeviceTypeTv.setTextColor(resources.getColor(R.color.color_262626))
         }
     }
@@ -636,10 +666,15 @@ class AddDeviceActivity :
         wheelview.setTextAlign(WheelView.TEXT_ALIGN_CENTER)
         wheelview.setDataItems(cutterList.map { it.name }.toMutableList())
         dialog?.show()
+        wheelview.setOnItemSelectedListener(object : WheelView.OnItemSelectedListener {
+            override fun onItemSelected(wheelView: WheelView, data: Any, position: Int) {
+                cutterType = cutterList[position].value
+            }
+        })
         sureview.setOnClickListener {
             dialog?.dismiss()
-            cutterType = wheelview.getSelectedItemData().toString()
-            viewBinding.layoutAddDeviceInfo.addDeviceKnifetypeTv.text = cutterType
+            viewBinding.layoutAddDeviceInfo.addDeviceKnifetypeTv.text =
+                wheelview.getSelectedItemData().toString()
             viewBinding.layoutAddDeviceInfo.addDeviceKnifetypeTv.setTextColor(resources.getColor(R.color.color_262626))
         }
     }
@@ -753,7 +788,6 @@ class AddDeviceActivity :
             }
             viewBinding.layoutAddDeviceInfo.addDeviceStatusTv.text =
                 wheelview.getSelectedItemData().toString()
-            viewBinding.layoutAddDeviceInfo.addDeviceStatusTv.setTextColor(resources.getColor(R.color.color_262626))
             viewBinding.layoutAddDeviceInfo.addDeviceStatusTv.setTextColor(resources.getColor(R.color.color_262626))
         }
     }

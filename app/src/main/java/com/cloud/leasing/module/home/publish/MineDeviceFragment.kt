@@ -1,23 +1,23 @@
 package com.cloud.leasing.module.home.publish
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import android.widget.Toast
+import android.widget.AdapterView
 import androidx.fragment.app.viewModels
-import androidx.recyclerview.widget.RecyclerView
+import com.cloud.leasing.JFGSApplication
 import com.cloud.leasing.R
+import com.cloud.leasing.adapter.MineDeviceAdapter
 import com.cloud.leasing.base.BaseFragment
-import com.cloud.leasing.base.list.XRecyclerView
-import com.cloud.leasing.base.list.base.BaseViewData
+import com.cloud.leasing.bean.MineDevice
 import com.cloud.leasing.constant.PageName
 import com.cloud.leasing.databinding.FragmentMineDeviceBinding
-import com.cloud.leasing.item.MineDeviceItemViewData
+import com.cloud.leasing.module.home.detail.DeviceDetailActivity
+import com.cloud.leasing.util.toast
 
 
 class MineDeviceFragment :
     BaseFragment<FragmentMineDeviceBinding>(FragmentMineDeviceBinding::inflate),
-    View.OnClickListener {
+    View.OnClickListener, AdapterView.OnItemClickListener {
 
     companion object {
         fun newInstance() = MineDeviceFragment()
@@ -27,7 +27,9 @@ class MineDeviceFragment :
 
     private var isAllVisible = false
 
-    private var datas: MutableList<MineDeviceItemViewData> = mutableListOf()
+    private lateinit var mineDeviceAdapter: MineDeviceAdapter
+
+    private lateinit var list: MutableList<MineDevice>
 
     private val viewModel: MineDeviceViewModel by viewModels()
 
@@ -36,7 +38,30 @@ class MineDeviceFragment :
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initView()
-        initData()
+        viewModelObserve()
+    }
+
+    private fun viewModelObserve() {
+        viewModel.apply {
+            mineDeviceLiveData.observe(viewLifecycleOwner, { it ->
+                it.onFailure {
+                    it.toString().toast(requireActivity())
+                }.onSuccess { mineDeviceBean ->
+                    if (mineDeviceBean.pageInfo.list.isNotEmpty()) {
+                        list = mineDeviceBean.pageInfo.list
+                        mineDeviceAdapter =
+                            MineDeviceAdapter(requireActivity(), mineDeviceBean.pageInfo.list)
+                        viewBinding.mineDeviceListview.adapter = mineDeviceAdapter
+                        viewBinding.mineDeviceListview.visibility = View.VISIBLE
+                        viewBinding.errorView.visibility = View.GONE
+                    } else {
+                        viewBinding.mineDeviceListview.visibility = View.GONE
+                        viewBinding.errorView.visibility = View.VISIBLE
+                        viewBinding.errorView.showEmpty()
+                    }
+                }
+            })
+        }
     }
 
     override fun onClick(v: View?) {
@@ -44,7 +69,6 @@ class MineDeviceFragment :
             R.id.mine_device_edit_tv -> {
                 viewBinding.mineDeviceEditTv.visibility = View.GONE
                 viewBinding.mineDeviceDeleteCl.visibility = View.VISIBLE
-                refreshVisibleData(true)
                 isAllVisible = true
             }
             R.id.mine_device_selectall_tv -> {
@@ -67,7 +91,6 @@ class MineDeviceFragment :
                         null
                     )
                 }
-                refershSelectData(!isAllSelect)
                 isAllSelect = !isAllSelect
             }
             R.id.mine_device_deleteall_tv -> {
@@ -76,8 +99,6 @@ class MineDeviceFragment :
             R.id.mine_device_cancel_tv -> {
                 viewBinding.mineDeviceEditTv.visibility = View.VISIBLE
                 viewBinding.mineDeviceDeleteCl.visibility = View.GONE
-                refreshVisibleData(false)
-                refershSelectData(false)
                 isAllVisible = false
                 isAllSelect = false
             }
@@ -89,78 +110,22 @@ class MineDeviceFragment :
         viewBinding.mineDeviceCancelTv.setOnClickListener(this)
         viewBinding.mineDeviceDeleteallTv.setOnClickListener(this)
         viewBinding.mineDeviceSelectallTv.setOnClickListener(this)
-        viewBinding.mineDeviceRecyclerview.init(
-            XRecyclerView.Config()
-                .setViewModel(viewModel)
-                .setOnItemClickListener(object : XRecyclerView.OnItemClickListener {
-                    override fun onItemClick(
-                        parent: RecyclerView,
-                        view: View,
-                        viewData: BaseViewData<*>,
-                        position: Int,
-                        id: Long
-                    ) {
-                        Toast.makeText(
-                            requireActivity(),
-                            "条目点击: ${viewData.value}",
-                            Toast.LENGTH_SHORT
-                        )
-                            .show()
-                    }
-                })
-                .setOnItemChildViewClickListener(object :
-                    XRecyclerView.OnItemChildViewClickListener {
-                    override fun onItemChildViewClick(
-                        parent: RecyclerView,
-                        view: View,
-                        viewData: BaseViewData<*>,
-                        position: Int,
-                        id: Long,
-                        extra: Any?
-                    ) {
-                        if (extra is String) {
-                            Toast.makeText(
-                                requireActivity(),
-                                "条目子View点击: $extra",
-                                Toast.LENGTH_SHORT
-                            ).show()
-                        }
-                    }
-                })
-        )
-    }
-
-    private fun initData() {
-        viewModel.listData.observe(viewLifecycleOwner) {
-            datas = it
-        }
-    }
-
-    private fun refershSelectData(isSelect: Boolean) {
-        datas.forEach {
-            it.value.isSelect = isSelect
-        }
-        viewBinding.mineDeviceRecyclerview.setViewData(viewModel.list)
-    }
-
-    private fun refreshVisibleData(isVisible: Boolean) {
-        datas.forEach {
-            it.value.isVisible = isVisible
-        }
-        viewBinding.mineDeviceRecyclerview.setViewData(viewModel.list)
+        viewBinding.mineDeviceListview.onItemClickListener = this
+        viewModel.requestOfMineDevice()
     }
 
     override fun onHiddenChanged(hidden: Boolean) {
         super.onHiddenChanged(hidden)
-        Log.e("***device", hidden.toString())
         if (hidden) {
             viewBinding.mineDeviceEditTv.visibility = View.VISIBLE
             viewBinding.mineDeviceDeleteCl.visibility = View.GONE
-            refreshVisibleData(false)
-            refershSelectData(false)
             isAllVisible = false
             isAllSelect = false
         }
+    }
+
+    override fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+        DeviceDetailActivity.startActivity(requireActivity(), list[position].id)
     }
 
 }

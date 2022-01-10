@@ -40,8 +40,6 @@ class DeviceFragment : BaseFragment<FragmentDeviceBinding>(FragmentDeviceBinding
                         position: Int,
                         id: Long
                     ) {
-//                        Toast.makeText(context, "条目点击: ${viewData.value}", Toast.LENGTH_SHORT)
-//                            .show()
                         DeviceDetailActivity.startActivity(requireActivity(), 27)
                     }
                 })

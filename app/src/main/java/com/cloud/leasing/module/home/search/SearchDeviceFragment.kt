@@ -48,46 +48,46 @@ class SearchDeviceFragment :
                 it.onFailure {
                     if ((it as NetworkException).code == 200) {
                         "关注成功".toast(requireActivity())
-                        datas?.forEachIndexed { index, search ->
+                        datas.forEachIndexed { index, search ->
                             if (select == index) {
                                 search.focusStatus = "1"
                             }
                         }
-                        datas?.apply { searchDeviceAdapter.refreshData(this) }
+                        searchDeviceAdapter.refreshData(datas)
                     } else {
                         it.toString().toast(requireActivity())
                     }
                 }.onSuccess {
                     "关注成功".toast(requireActivity())
-                    datas?.forEachIndexed { index, search ->
+                    datas.forEachIndexed { index, search ->
                         if (select == index) {
                             search.focusStatus = "1"
                         }
                     }
-                    datas?.apply { searchDeviceAdapter.refreshData(this) }
+                    searchDeviceAdapter.refreshData(datas)
                 }
             })
             unfollowLiveData.observe(viewLifecycleOwner, { it ->
                 it.onFailure {
                     if ((it as NetworkException).code == 200) {
                         "取消关注".toast(requireActivity())
-                        datas?.forEachIndexed { index, search ->
+                        datas.forEachIndexed { index, search ->
                             if (select == index) {
                                 search.focusStatus = "0"
                             }
                         }
-                        datas?.apply { searchDeviceAdapter.refreshData(this) }
+                        searchDeviceAdapter.refreshData(datas)
                     } else {
                         it.toString().toast(requireActivity())
                     }
                 }.onSuccess {
                     "取消关注".toast(requireActivity())
-                    datas?.forEachIndexed { index, search ->
+                    datas.forEachIndexed { index, search ->
                         if (select == index) {
                             search.focusStatus = "0"
                         }
                     }
-                    datas?.apply { searchDeviceAdapter.refreshData(this) }
+                    searchDeviceAdapter.refreshData(datas)
                 }
             })
         }
@@ -95,7 +95,16 @@ class SearchDeviceFragment :
 
     fun refreshData(list: MutableList<Search>) {
         datas = list
-        searchDeviceAdapter.refreshData(list)
+        if (datas.size > 0) {
+            searchDeviceAdapter.refreshData(list)
+            viewBinding.searchDeviceListview.visibility = View.VISIBLE
+            viewBinding.errorView.visibility = View.GONE
+        } else {
+            searchDeviceAdapter.refreshData(list)
+            viewBinding.searchDeviceListview.visibility = View.GONE
+            viewBinding.errorView.visibility = View.VISIBLE
+            viewBinding.errorView.showEmpty()
+        }
     }
 
     private val onItemChildrenListener =

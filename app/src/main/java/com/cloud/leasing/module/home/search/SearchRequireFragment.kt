@@ -22,13 +22,22 @@ class SearchRequireFragment :
         initView()
     }
 
-    private fun initView(){
+    private fun initView() {
         searchRequireAdapter = SearchRequireAdapter(requireActivity(), mutableListOf())
         viewBinding.searchRequireListview.adapter = searchRequireAdapter
     }
 
-    fun refreshData(list: MutableList<Search>){
-        searchRequireAdapter.refreshData(list)
+    fun refreshData(list: MutableList<Search>) {
+        if (list.size > 0) {
+            searchRequireAdapter.refreshData(list)
+            viewBinding.searchRequireListview.visibility = View.VISIBLE
+            viewBinding.errorView.visibility = View.GONE
+        } else {
+            searchRequireAdapter.refreshData(list)
+            viewBinding.searchRequireListview.visibility = View.GONE
+            viewBinding.errorView.visibility = View.VISIBLE
+            viewBinding.errorView.showEmpty()
+        }
     }
 
     companion object {

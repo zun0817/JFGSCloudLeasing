@@ -7,12 +7,22 @@
     android:background="@color/color_F2F4F6"
     tools:context=".module.home.publish.MinePublishFragment">
 
-    <com.cloud.leasing.base.list.XRecyclerView
-        android:id="@+id/mine_publish_recyclerview"
+    <ListView
+        android:id="@+id/mine_publish_listview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/mine_publish_fl"
-        android:scrollbars="none" />
+        android:scrollbars="none"
+        android:divider="@color/color_F2F4F6"
+        android:dividerHeight="10dp"
+        android:paddingVertical="15dp"/>
+
+    <com.cloud.leasing.widget.ErrorView
+        android:id="@+id/error_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_gravity="center"/>
 
     <FrameLayout
         android:id="@+id/mine_publish_fl"

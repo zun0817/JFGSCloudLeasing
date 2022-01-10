@@ -13,7 +13,7 @@ data class PageInfo(
     val hasPreviousPage: Boolean,
     val isFirstPage: Boolean,
     val isLastPage: Boolean,
-    val list: List<MineDevice>,
+    val list: MutableList<MineDevice>,
     val navigateFirstPage: Int,
     val navigateLastPage: Int,
     val navigatePages: Int,

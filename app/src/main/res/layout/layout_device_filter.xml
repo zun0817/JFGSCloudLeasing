@@ -535,7 +535,7 @@
                         android:layout_gravity="end|center_vertical"
                         android:drawablePadding="5dp"
                         android:text="选择"
-                        android:textColor="@color/black"
+                        android:textColor="@color/color_BFBFBF"
                         android:textSize="14sp"
                         android:textStyle="bold"
                         app:drawableEndCompat="@mipmap/icon_detail_arrow" />
@@ -568,7 +568,7 @@
                         android:layout_gravity="end|center_vertical"
                         android:drawablePadding="5dp"
                         android:text="选择"
-                        android:textColor="@color/black"
+                        android:textColor="@color/color_BFBFBF"
                         android:textSize="14sp"
                         android:textStyle="bold"
                         app:drawableEndCompat="@mipmap/icon_detail_arrow" />
@@ -601,7 +601,7 @@
                         android:layout_gravity="end|center_vertical"
                         android:drawablePadding="5dp"
                         android:text="选择"
-                        android:textColor="@color/black"
+                        android:textColor="@color/color_BFBFBF"
                         android:textSize="14sp"
                         android:textStyle="bold"
                         app:drawableEndCompat="@mipmap/icon_detail_arrow" />
@@ -634,7 +634,7 @@
                         android:layout_gravity="end|center_vertical"
                         android:drawablePadding="5dp"
                         android:text="选择"
-                        android:textColor="@color/black"
+                        android:textColor="@color/color_BFBFBF"
                         android:textSize="14sp"
                         android:textStyle="bold"
                         app:drawableEndCompat="@mipmap/icon_detail_arrow" />
@@ -667,7 +667,7 @@
                         android:layout_gravity="end|center_vertical"
                         android:drawablePadding="5dp"
                         android:text="选择"
-                        android:textColor="@color/black"
+                        android:textColor="@color/color_BFBFBF"
                         android:textSize="14sp"
                         android:textStyle="bold"
                         app:drawableEndCompat="@mipmap/icon_detail_arrow" />

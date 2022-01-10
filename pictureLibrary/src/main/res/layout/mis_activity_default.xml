@@ -16,7 +16,7 @@
 
         <Button
             android:id="@+id/commit"
-            android:background="@drawable/mis_action_btn"
+            android:button="@drawable/mis_action_btn"
             android:minHeight="1dp"
             android:minWidth="1dp"
             android:layout_marginRight="16dp"
@@ -25,7 +25,8 @@
             android:paddingTop="5dp"
             android:paddingBottom="5dp"
             android:textColor="@color/mis_default_text_color"
-            android:textSize="14sp"
+            android:textSize="15sp"
+            android:enabled="false"
             android:layout_gravity="right"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />

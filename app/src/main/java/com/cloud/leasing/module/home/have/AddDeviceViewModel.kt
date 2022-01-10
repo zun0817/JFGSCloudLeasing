@@ -25,6 +25,8 @@ class AddDeviceViewModel : BaseViewModel() {
 
     val fileLiveData = MutableLiveData<Result<CompanyFileBean>>()
 
+    val deleteFileLiveData = MutableLiveData<Result<String>>()
+
     val addDeviceLiveData = MutableLiveData<Result<String>>()
 
     val deviceTypeLiveData = MutableLiveData<Result<DeviceTypeBean>>()
@@ -55,6 +57,20 @@ class AddDeviceViewModel : BaseViewModel() {
             val result = NetworkApi.requestOfUploadFile(param, mfile)
             fileLiveData.value = result
         }
+    }
+
+    fun requestOfDeleteFile(filePath: String) {
+        viewModelScope.launch {
+            val param = getQueryProfileParam(filePath)
+            val result = NetworkApi.requestOfDeleteFile(param)
+            deleteFileLiveData.value = result
+        }
+    }
+
+    private fun getQueryProfileParam(filePath: String): MutableMap<String, Any> {
+        val map = mutableMapOf<String, Any>()
+        map["path"] = filePath
+        return map
     }
 
     private fun getUploadFile(file: File): MultipartBody.Part {

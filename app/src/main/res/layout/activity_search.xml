@@ -58,6 +58,7 @@
                     android:hint="输入搜索关键词"
                     android:imeOptions="actionDone"
                     android:paddingStart="15dp"
+                    android:singleLine="true"
                     android:textColor="@color/color_262626"
                     android:textColorHint="@color/color_BFBFBF"
                     android:textSize="14sp"

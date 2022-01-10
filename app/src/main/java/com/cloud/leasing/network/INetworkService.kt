@@ -91,6 +91,10 @@ interface INetworkService {
     @GET(Constant.PATH_HOME_REQUIRE_DETAIL)
     suspend fun requestOfRequireDetail(@Query("demandId") demandId: Int): BaseResponse<RequireDetailBean>
 
+    @FormUrlEncoded
+    @POST(Constant.PATH_FILE_DELETE)
+    suspend fun requestOfDeleteFile(@FieldMap param: MutableMap<String, Any>): BaseResponse<String>
+
     @Multipart
     @POST(Constant.PATH_FILE_UPLOAD)
     suspend fun requestOfUploadFile(

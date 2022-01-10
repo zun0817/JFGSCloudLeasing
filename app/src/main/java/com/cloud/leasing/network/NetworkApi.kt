@@ -122,4 +122,8 @@ object NetworkApi : BaseNetworkApi<INetworkService>(Constant.BASE_URL) {
     suspend fun requestOfRequireDetail(demandId: Int) = getResult {
         service.requestOfRequireDetail(demandId)
     }
+
+    suspend fun requestOfDeleteFile(param: MutableMap<String, Any>) = getResult {
+        service.requestOfDeleteFile(param)
+    }
 }

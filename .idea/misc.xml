@@ -139,7 +139,12 @@
         <entry key="..\:/Users/zun/AndroidStudioProjects/JFGSCloudLeasing/dialogLibrary/src/main/res/drawable/shape_view_ffffff.xml" value="0.390625" />
         <entry key="..\:/Users/zun/AndroidStudioProjects/JFGSCloudLeasing/dialogLibrary/src/main/res/layout/awesome_dilaog.xml" value="0.37447916666666664" />
         <entry key="..\:/Users/zun/AndroidStudioProjects/JFGSCloudLeasing/filepickerLibrary/src/main/res/layout/activity_local_upload.xml" value="0.280859375" />
+        <entry key="..\:/Users/zun/AndroidStudioProjects/JFGSCloudLeasing/pictureLibrary/src/main/res/drawable/mis_action_btn.xml" value="0.390625" />
         <entry key="..\:/Users/zun/AndroidStudioProjects/JFGSCloudLeasing/pictureLibrary/src/main/res/layout/mis_activity_default.xml" value="0.280859375" />
+        <entry key="..\:/Users/zun/AndroidStudioProjects/JFGSCloudLeasing/pictureLibrary/src/main/res/layout/mis_cmp_customer_actionbar.xml" value="0.37447916666666664" />
+        <entry key="..\:/Users/zun/AndroidStudioProjects/JFGSCloudLeasing/pictureLibrary/src/main/res/layout/mis_fragment_multi_image.xml" value="0.37447916666666664" />
+        <entry key="..\:/Users/zun/AndroidStudioProjects/JFGSCloudLeasing/pictureLibrary/src/main/res/layout/mis_list_item_camera.xml" value="0.37447916666666664" />
+        <entry key="..\:/Users/zun/AndroidStudioProjects/JFGSCloudLeasing/pictureLibrary/src/main/res/layout/mis_list_item_image.xml" value="0.37447916666666664" />
       </map>
     </option>
   </component>

@@ -25,23 +25,13 @@ import java.util.ArrayList;
 
 import com.giftedcat.picture.lib.selector.utils.PermissionUtils;
 
-/**
- * Multi image selector
- * Created by Nereo on 2015/4/7.
- * Updated by nereo on 2016/1/19.
- * Updated by nereo on 2016/5/18.
- */
 public class MultiImageSelectorActivity extends AppCompatActivity
         implements MultiImageSelectorFragment.Callback {
 
-    /**
-     * 权限申请返回
-     */
     protected static final int REQUEST_STORAGE_READ_ACCESS_PERMISSION = 101;
 
-    // Single choice
     public static final int MODE_SINGLE = 0;
-    // Multi choice
+
     public static final int MODE_MULTI = 1;
 
     /**
@@ -82,12 +72,8 @@ public class MultiImageSelectorActivity extends AppCompatActivity
         this.savedInstanceState = savedInstanceState;
 
         checkPermission();
-
     }
 
-    /**
-     * 初始化
-     */
     private void init() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             getWindow().setStatusBarColor(Color.BLACK);
@@ -119,17 +105,7 @@ public class MultiImageSelectorActivity extends AppCompatActivity
         if (mode == MODE_MULTI) {
             updateDoneText(resultList);
             mSubmitButton.setVisibility(View.VISIBLE);
-            mSubmitButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    if (resultList != null && resultList.size() > 0) {
-                        // Notify success
-                        backWithData();
-                    } else {
-                        backWithData();
-                    }
-                }
-            });
+            mSubmitButton.setOnClickListener(view -> backWithData());
         } else {
             mSubmitButton.setVisibility(View.GONE);
         }

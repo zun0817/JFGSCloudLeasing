@@ -8,7 +8,7 @@ data class MineRequireBean(
     val hasPreviousPage: Boolean,
     val isFirstPage: Boolean,
     val isLastPage: Boolean,
-    val list: List<MineRequire>,
+    val list: MutableList<MineRequire>,
     val navigateFirstPage: Int,
     val navigateLastPage: Int,
     val navigatePages: Int,

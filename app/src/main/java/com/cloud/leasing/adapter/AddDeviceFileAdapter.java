@@ -5,6 +5,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.cloud.leasing.R;
+import com.cloud.leasing.callback.OnDeleteFileListener;
 import com.cloud.leasing.util.FileUtilKt;
 import com.zhy.adapter.recyclerview.CommonAdapter;
 import com.zhy.adapter.recyclerview.base.ViewHolder;
@@ -16,9 +17,15 @@ public class AddDeviceFileAdapter extends CommonAdapter<String> {
 
     private Context context;
 
+    OnDeleteFileListener onDeleteFileListener;
+
     public AddDeviceFileAdapter(Context context, List<String> selectPath) {
         super(context, R.layout.layout_add_file_item, selectPath);
         this.context = context;
+    }
+
+    public void setOnDeleteFileListener(OnDeleteFileListener listener) {
+        this.onDeleteFileListener = listener;
     }
 
     @Override
@@ -36,6 +43,7 @@ public class AddDeviceFileAdapter extends CommonAdapter<String> {
         add_file_delete_img.setOnClickListener(v -> {
             getDatas().remove(position);
             notifyDataSetChanged();
+            onDeleteFileListener.onDelete(position);
         });
     }
 }

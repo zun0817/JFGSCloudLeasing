@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.cloud.leasing.R;
 import com.cloud.leasing.callback.OnAddPicturesListener;
+import com.cloud.leasing.callback.OnDeleteFileListener;
 import com.giftedcat.picture.lib.photoview.GlideImageLoader;
 import com.giftedcat.picture.lib.photoview.style.index.NumberIndexIndicator;
 import com.giftedcat.picture.lib.photoview.style.progress.ProgressBarIndicator;
@@ -26,6 +27,8 @@ public class AddDevicePictureAdapter extends CommonAdapter<String> {
     private Context context;
 
     OnAddPicturesListener listener;
+
+    OnDeleteFileListener onDeleteFileListener;
 
     protected Transferee transferee;
 
@@ -45,13 +48,13 @@ public class AddDevicePictureAdapter extends CommonAdapter<String> {
         config.setMax(maxNum);
     }
 
-    /**
-     * 设置点击添加按钮的监听
-     */
     public void setOnAddPicturesListener(OnAddPicturesListener listener) {
         this.listener = listener;
     }
 
+    public void setOnDeleteFileListener(OnDeleteFileListener listener) {
+        this.onDeleteFileListener = listener;
+    }
 
     /**
      * 初始化大图查看控件
@@ -121,6 +124,7 @@ public class AddDevicePictureAdapter extends CommonAdapter<String> {
                         getDatas().add("");
                     }
                     notifyDataSetChanged();
+                    onDeleteFileListener.onDelete(position);
                     break;
             }
         }

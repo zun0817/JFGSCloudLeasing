@@ -4,17 +4,14 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.Toast
 import androidx.fragment.app.viewModels
-import androidx.recyclerview.widget.RecyclerView
 import com.cloud.leasing.R
+import com.cloud.leasing.adapter.MineRequireAdapter
 import com.cloud.leasing.base.BaseFragment
-import com.cloud.leasing.base.list.XRecyclerView
-import com.cloud.leasing.base.list.base.BaseViewData
+import com.cloud.leasing.bean.MineRequire
 import com.cloud.leasing.constant.PageName
 import com.cloud.leasing.databinding.FragmentMinePublishBinding
-import com.cloud.leasing.item.MineDeviceItemViewData
-import com.cloud.leasing.item.MinePublishItemViewData
+import com.cloud.leasing.util.toast
 
 class MinePublishFragment :
     BaseFragment<FragmentMinePublishBinding>(FragmentMinePublishBinding::inflate),
@@ -28,7 +25,9 @@ class MinePublishFragment :
 
     private var isAllVisible = false
 
-    private var datas: MutableList<MinePublishItemViewData> = mutableListOf()
+    private lateinit var list: MutableList<MineRequire>
+
+    private lateinit var mineRequireAdapter: MineRequireAdapter
 
     private val viewModel: MinePublishViewModel by viewModels()
 
@@ -37,7 +36,30 @@ class MinePublishFragment :
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initView()
-        initData()
+        viewModelObserve()
+    }
+
+    private fun viewModelObserve() {
+        viewModel.apply {
+            mineRequireLiveData.observe(viewLifecycleOwner, { it ->
+                it.onFailure {
+                    it.toString().toast(requireActivity())
+                }.onSuccess { mineRequireBean ->
+                    if (mineRequireBean.list.isNotEmpty()) {
+                        list = mineRequireBean.list
+                        mineRequireAdapter =
+                            MineRequireAdapter(requireActivity(), mineRequireBean.list)
+                        viewBinding.minePublishListview.adapter = mineRequireAdapter
+                        viewBinding.minePublishListview.visibility = View.VISIBLE
+                        viewBinding.errorView.visibility = View.GONE
+                    } else {
+                        viewBinding.minePublishListview.visibility = View.GONE
+                        viewBinding.errorView.visibility = View.VISIBLE
+                        viewBinding.errorView.showEmpty()
+                    }
+                }
+            })
+        }
     }
 
     @SuppressLint("UseCompatLoadingForDrawables")
@@ -46,7 +68,6 @@ class MinePublishFragment :
             R.id.mine_publish_edit_tv -> {
                 viewBinding.minePublishEditTv.visibility = View.GONE
                 viewBinding.minePublishDeleteCl.visibility = View.VISIBLE
-                refreshVisibleData(true)
                 isAllVisible = true
             }
             R.id.mine_publish_selectall_tv -> {
@@ -69,7 +90,6 @@ class MinePublishFragment :
                         null
                     )
                 }
-                refershSelectData(!isAllSelect)
                 isAllSelect = !isAllSelect
             }
             R.id.mine_publish_deleteall_tv -> {
@@ -78,8 +98,6 @@ class MinePublishFragment :
             R.id.mine_publish_cancel_tv -> {
                 viewBinding.minePublishEditTv.visibility = View.VISIBLE
                 viewBinding.minePublishDeleteCl.visibility = View.GONE
-                refreshVisibleData(false)
-                refershSelectData(false)
                 isAllVisible = false
                 isAllSelect = false
             }
@@ -91,49 +109,7 @@ class MinePublishFragment :
         viewBinding.minePublishCancelTv.setOnClickListener(this)
         viewBinding.minePublishDeleteallTv.setOnClickListener(this)
         viewBinding.minePublishSelectallTv.setOnClickListener(this)
-        viewBinding.minePublishRecyclerview.init(
-            XRecyclerView.Config()
-                .setViewModel(viewModel)
-                .setOnItemChildViewClickListener(object :
-                    XRecyclerView.OnItemChildViewClickListener {
-                    override fun onItemChildViewClick(
-                        parent: RecyclerView,
-                        view: View,
-                        viewData: BaseViewData<*>,
-                        position: Int,
-                        id: Long,
-                        extra: Any?
-                    ) {
-                        if (extra is String) {
-                            Toast.makeText(
-                                requireActivity(),
-                                "条目子View点击: $extra",
-                                Toast.LENGTH_SHORT
-                            ).show()
-                        }
-                    }
-                })
-        )
-    }
-
-    private fun initData() {
-        viewModel.listData.observe(viewLifecycleOwner) {
-            datas = it
-        }
-    }
-
-    private fun refershSelectData(isSelect: Boolean) {
-        datas.forEach {
-            it.value.isSelect = isSelect
-        }
-        viewBinding.minePublishRecyclerview.setViewData(viewModel.list)
-    }
-
-    private fun refreshVisibleData(isVisible: Boolean) {
-        datas.forEach {
-            it.value.isVisible = isVisible
-        }
-        viewBinding.minePublishRecyclerview.setViewData(viewModel.list)
+        viewModel.requestOfMineRequire()
     }
 
     override fun onHiddenChanged(hidden: Boolean) {
@@ -142,8 +118,6 @@ class MinePublishFragment :
         if (hidden) {
             viewBinding.minePublishEditTv.visibility = View.VISIBLE
             viewBinding.minePublishDeleteCl.visibility = View.GONE
-            refreshVisibleData(false)
-            refershSelectData(false)
             isAllVisible = false
             isAllSelect = false
         }

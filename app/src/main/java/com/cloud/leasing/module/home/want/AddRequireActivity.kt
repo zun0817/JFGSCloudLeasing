@@ -36,6 +36,7 @@ import com.giftedcat.picture.lib.selector.MultiImageSelector
 import com.gyf.immersionbar.ktx.immersionBar
 import com.sky.filepicker.upload.Constants
 import com.sky.filepicker.upload.LocalUpdateActivity
+import java.io.File
 import java.util.*
 
 
@@ -188,8 +189,8 @@ class AddRequireActivity :
     private fun pickImage() {
         val selector = MultiImageSelector.create(this)
         selector.showCamera(true)
-        selector.count(5)
-        selector.multi()
+        selector.count(1)
+        selector.single()
         selector.origin(mSelectList)
         selector.start(this, REQUEST_IMAGE)
     }
@@ -201,9 +202,11 @@ class AddRequireActivity :
             data?.let {
                 val select: MutableList<String> =
                     it.getStringArrayListExtra(MultiImageSelector.EXTRA_RESULT) as MutableList<String>
-                mSelectList.clear()
+                //mSelectList.clear()
                 mSelectList.addAll(select)
                 addRequirePictureAdapter.notifyDataSetChanged()
+                val file = File(select[0])
+                viewModel.requestOfUploadFile(file, "40")
             }
         } else if (requestCode == Constants.UPLOAD_FILE_REQUEST && resultCode == Constants.UPLOAD_FILE_RESULT) {
             data?.let { it ->
@@ -213,6 +216,8 @@ class AddRequireActivity :
                 addRequireFileAdapter.notifyDataSetChanged()
                 list.forEach {
                     Log.d("地址：", it)
+                    val file = File(it)
+                    viewModel.requestOfUploadFile(file, "40")
                 }
             }
         }
@@ -335,10 +340,14 @@ class AddRequireActivity :
         wheelview.setTextAlign(WheelView.TEXT_ALIGN_CENTER)
         wheelview.setDataItems(brandList.map { it.name }.toMutableList())
         dialog?.show()
+        wheelview.setOnItemSelectedListener(object : WheelView.OnItemSelectedListener {
+            override fun onItemSelected(wheelView: WheelView, data: Any, position: Int) {
+                deviceBrand = brandList[position].value
+            }
+        })
         sureview.setOnClickListener {
             dialog?.dismiss()
-            deviceBrand = wheelview.getSelectedItemData().toString()
-            viewBinding.layoutAddRequireInfo.addRequireBrandTv.text = deviceBrand
+            viewBinding.layoutAddRequireInfo.addRequireBrandTv.text = wheelview.getSelectedItemData().toString()
             viewBinding.layoutAddRequireInfo.addRequireBrandTv.setTextColor(resources.getColor(R.color.color_262626))
         }
     }
@@ -365,10 +374,14 @@ class AddRequireActivity :
         wheelview.setTextAlign(WheelView.TEXT_ALIGN_CENTER)
         wheelview.setDataItems(typeList.map { it.name }.toMutableList())
         dialog?.show()
+        wheelview.setOnItemSelectedListener(object : WheelView.OnItemSelectedListener {
+            override fun onItemSelected(wheelView: WheelView, data: Any, position: Int) {
+                deviceType = typeList[position].value
+            }
+        })
         sureview.setOnClickListener {
             dialog?.dismiss()
-            deviceType = wheelview.getSelectedItemData().toString()
-            viewBinding.layoutAddRequireInfo.addRequireTypeTv.text = deviceType
+            viewBinding.layoutAddRequireInfo.addRequireTypeTv.text = wheelview.getSelectedItemData().toString()
             viewBinding.layoutAddRequireInfo.addRequireTypeTv.setTextColor(resources.getColor(R.color.color_262626))
         }
     }
@@ -395,10 +408,14 @@ class AddRequireActivity :
         wheelview.setTextAlign(WheelView.TEXT_ALIGN_CENTER)
         wheelview.setDataItems(cutterList.map { it.name }.toMutableList())
         dialog?.show()
+        wheelview.setOnItemSelectedListener(object : WheelView.OnItemSelectedListener {
+            override fun onItemSelected(wheelView: WheelView, data: Any, position: Int) {
+                cutterType = cutterList[position].value
+            }
+        })
         sureview.setOnClickListener {
             dialog?.dismiss()
-            cutterType = wheelview.getSelectedItemData().toString()
-            viewBinding.layoutAddRequireInfo.addRequireKnifetypeTv.text = cutterType
+            viewBinding.layoutAddRequireInfo.addRequireKnifetypeTv.text = wheelview.getSelectedItemData().toString()
             viewBinding.layoutAddRequireInfo.addRequireKnifetypeTv.setTextColor(resources.getColor(R.color.color_262626))
         }
     }
