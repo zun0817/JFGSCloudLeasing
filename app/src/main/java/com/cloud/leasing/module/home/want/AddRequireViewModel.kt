@@ -6,6 +6,7 @@ import com.cloud.leasing.base.BaseViewModel
 import com.cloud.leasing.bean.CompanyFileBean
 import com.cloud.leasing.bean.DeviceTypeBean
 import com.cloud.leasing.bean.ProvinceBean
+import com.cloud.leasing.bean.UploadFileBean
 import com.cloud.leasing.constant.Constant
 import com.cloud.leasing.constant.PageName
 import com.cloud.leasing.eventbus.core.MutableLiveData
@@ -25,7 +26,11 @@ class AddRequireViewModel : BaseViewModel() {
 
     val fileLiveData = MutableLiveData<Result<CompanyFileBean>>()
 
+    val pictureLiveData = MutableLiveData<Result<CompanyFileBean>>()
+
     val deleteFileLiveData = MutableLiveData<Result<String>>()
+
+    val deletePictureLiveData = MutableLiveData<Result<String>>()
 
     val addRequireLiveData = MutableLiveData<Result<String>>()
 
@@ -59,11 +64,28 @@ class AddRequireViewModel : BaseViewModel() {
         }
     }
 
+    fun requestOfUploadPicture(file: File, fileType: String) {
+        viewModelScope.launch {
+            val mfile = getUploadFile(file)
+            val param = getUploadParam(fileType)
+            val result = NetworkApi.requestOfUploadFile(param, mfile)
+            pictureLiveData.value = result
+        }
+    }
+
     fun requestOfDeleteFile(filePath: String) {
         viewModelScope.launch {
             val param = getQueryProfileParam(filePath)
             val result = NetworkApi.requestOfDeleteFile(param)
             deleteFileLiveData.value = result
+        }
+    }
+
+    fun requestOfDeletePicture(filePath: String) {
+        viewModelScope.launch {
+            val param = getQueryProfileParam(filePath)
+            val result = NetworkApi.requestOfDeleteFile(param)
+            deletePictureLiveData.value = result
         }
     }
 
@@ -98,7 +120,8 @@ class AddRequireViewModel : BaseViewModel() {
         cutterType: String,
         drivingTorque: String,
         propulsiveForce: String,
-        limitedRange: String
+        limitedRange: String,
+        demandFileList: MutableList<UploadFileBean>
     ) {
         viewModelScope.launch {
             val params = getAddRequireParam(
@@ -117,7 +140,8 @@ class AddRequireViewModel : BaseViewModel() {
                 cutterType,
                 drivingTorque,
                 propulsiveForce,
-                limitedRange
+                limitedRange,
+                demandFileList
             )
             val result = NetworkApi.requestOfAddRequire(params)
             addRequireLiveData.value = result
@@ -140,7 +164,8 @@ class AddRequireViewModel : BaseViewModel() {
         cutterType: String,
         drivingTorque: String,
         propulsiveForce: String,
-        limitedRange: String
+        limitedRange: String,
+        demandFileList: MutableList<UploadFileBean>
     ): RequestBody {
         val map = mutableMapOf<String, Any?>()
         map["userId"] = userId
@@ -160,6 +185,7 @@ class AddRequireViewModel : BaseViewModel() {
         map["drivingTorque"] = drivingTorque
         map["propulsiveForce"] = propulsiveForce
         map["limitedRange"] = limitedRange
+        map["demandFileList"] = demandFileList
         val json = JSON.toJSONString(map)
         return json.toRequestBody("application/json".toMediaTypeOrNull())
     }

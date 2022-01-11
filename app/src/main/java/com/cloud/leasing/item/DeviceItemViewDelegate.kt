@@ -21,7 +21,9 @@ class DeviceItemViewDelegate :
 
     override fun onBindViewHolder(holder: ViewHolder, item: DeviceItemViewData) {
         super.onBindViewHolder(holder, item)
-        holder.viewBinding.deviceItemNameTv.text = item.value
+        holder.viewBinding.deviceItemNameTv.text = item.value.drivingPosition + "·" + item.value.deviceNo
+        holder.viewBinding.deviceItemTypeTv.text = item.value.deviceTypeName
+        holder.viewBinding.deviceItemDiameterTv.text = "刀盘直径：无"
     }
 
     class ViewHolder(val viewBinding: LayoutDeviceItemBinding) :

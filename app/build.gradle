@@ -165,6 +165,8 @@ dependencies {
     // 万能适配器
     implementation ("com.zhy:base-rvadapter:${versions.rvadapter}")
 
+    implementation 'com.github.getActivity:XXPermissions:13.2'
+
     implementation project(':pictureLibrary')
 
     implementation project(':filepickerLibrary')

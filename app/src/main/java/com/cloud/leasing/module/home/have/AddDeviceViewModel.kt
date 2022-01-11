@@ -6,6 +6,7 @@ import com.cloud.leasing.base.BaseViewModel
 import com.cloud.leasing.bean.CompanyFileBean
 import com.cloud.leasing.bean.DeviceTypeBean
 import com.cloud.leasing.bean.ProvinceBean
+import com.cloud.leasing.bean.UploadFileBean
 import com.cloud.leasing.constant.Constant
 import com.cloud.leasing.constant.PageName
 import com.cloud.leasing.eventbus.core.MutableLiveData
@@ -25,7 +26,23 @@ class AddDeviceViewModel : BaseViewModel() {
 
     val fileLiveData = MutableLiveData<Result<CompanyFileBean>>()
 
+    val deviceLiveData = MutableLiveData<Result<CompanyFileBean>>()
+
+    val machineLiveData = MutableLiveData<Result<CompanyFileBean>>()
+
+    val hostLiveData = MutableLiveData<Result<CompanyFileBean>>()
+
+    val cutterLiveData = MutableLiveData<Result<CompanyFileBean>>()
+
     val deleteFileLiveData = MutableLiveData<Result<String>>()
+
+    val deleteDeviceLiveData = MutableLiveData<Result<String>>()
+
+    val deleteMachineLiveData = MutableLiveData<Result<String>>()
+
+    val deleteHostLiveData = MutableLiveData<Result<String>>()
+
+    val deleteCutterLiveData = MutableLiveData<Result<String>>()
 
     val addDeviceLiveData = MutableLiveData<Result<String>>()
 
@@ -59,11 +76,79 @@ class AddDeviceViewModel : BaseViewModel() {
         }
     }
 
+    fun requestOfUploadDevice(file: File, fileType: String) {
+        viewModelScope.launch {
+            val mfile = getUploadFile(file)
+            val param = getUploadParam(fileType)
+            val result = NetworkApi.requestOfUploadFile(param, mfile)
+            deviceLiveData.value = result
+        }
+    }
+
+    fun requestOfUploadMachine(file: File, fileType: String) {
+        viewModelScope.launch {
+            val mfile = getUploadFile(file)
+            val param = getUploadParam(fileType)
+            val result = NetworkApi.requestOfUploadFile(param, mfile)
+            machineLiveData.value = result
+        }
+    }
+
+    fun requestOfUploadHost(file: File, fileType: String) {
+        viewModelScope.launch {
+            val mfile = getUploadFile(file)
+            val param = getUploadParam(fileType)
+            val result = NetworkApi.requestOfUploadFile(param, mfile)
+            hostLiveData.value = result
+        }
+    }
+
+    fun requestOfUploadCutter(file: File, fileType: String) {
+        viewModelScope.launch {
+            val mfile = getUploadFile(file)
+            val param = getUploadParam(fileType)
+            val result = NetworkApi.requestOfUploadFile(param, mfile)
+            cutterLiveData.value = result
+        }
+    }
+
     fun requestOfDeleteFile(filePath: String) {
         viewModelScope.launch {
             val param = getQueryProfileParam(filePath)
             val result = NetworkApi.requestOfDeleteFile(param)
             deleteFileLiveData.value = result
+        }
+    }
+
+    fun requestOfDeleteDevice(filePath: String) {
+        viewModelScope.launch {
+            val param = getQueryProfileParam(filePath)
+            val result = NetworkApi.requestOfDeleteFile(param)
+            deleteDeviceLiveData.value = result
+        }
+    }
+
+    fun requestOfDeleteMachine(filePath: String) {
+        viewModelScope.launch {
+            val param = getQueryProfileParam(filePath)
+            val result = NetworkApi.requestOfDeleteFile(param)
+            deleteMachineLiveData.value = result
+        }
+    }
+
+    fun requestOfDeleteHost(filePath: String) {
+        viewModelScope.launch {
+            val param = getQueryProfileParam(filePath)
+            val result = NetworkApi.requestOfDeleteFile(param)
+            deleteHostLiveData.value = result
+        }
+    }
+
+    fun requestOfDeleteCutter(filePath: String) {
+        viewModelScope.launch {
+            val param = getQueryProfileParam(filePath)
+            val result = NetworkApi.requestOfDeleteFile(param)
+            deleteCutterLiveData.value = result
         }
     }
 
@@ -109,7 +194,8 @@ class AddDeviceViewModel : BaseViewModel() {
         deviceResume: String,
         deviceStatus: String,
         workingDiam: String,
-        remarks: String
+        remarks: String,
+        rentDeviceFileList: MutableList<UploadFileBean>
     ) {
         viewModelScope.launch {
             val params = getAddDeviceParam(
@@ -139,7 +225,8 @@ class AddDeviceViewModel : BaseViewModel() {
                 deviceResume,
                 deviceStatus,
                 workingDiam,
-                remarks
+                remarks,
+                rentDeviceFileList
             )
             val result = NetworkApi.requestOfAddDevice(params)
             addDeviceLiveData.value = result
@@ -173,7 +260,8 @@ class AddDeviceViewModel : BaseViewModel() {
         deviceResume: String,
         deviceStatus: String,
         workingDiam: String,
-        remarks: String
+        remarks: String,
+        rentDeviceFileList: MutableList<UploadFileBean>
     ): RequestBody {
         val map = mutableMapOf<String, Any?>()
         map["userId"] = userId
@@ -204,6 +292,7 @@ class AddDeviceViewModel : BaseViewModel() {
         map["deviceStatus"] = deviceStatus
         map["workingDiam"] = workingDiam
         map["remarks"] = remarks
+        map["rentDeviceFileList"] = rentDeviceFileList
         val json = JSON.toJSONString(map)
         return json.toRequestBody("application/json".toMediaTypeOrNull())
     }

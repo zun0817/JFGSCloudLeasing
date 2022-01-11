@@ -6,6 +6,7 @@
     android:scrollbars="none"
     android:paddingHorizontal="16dp"
     android:paddingVertical="18dp"
+    android:fillViewport="true"
     android:background="@drawable/shape_item_white"
     android:id="@+id/add_require_upload_scrollview">
 
@@ -18,7 +19,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:descendantFocusability="blocksDescendants">
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -55,7 +57,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="18dp"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:descendantFocusability="blocksDescendants">
 
             <LinearLayout
                 android:layout_width="wrap_content"

@@ -19,10 +19,7 @@ import com.cloud.leasing.R
 import com.cloud.leasing.adapter.AddRequireFileAdapter
 import com.cloud.leasing.adapter.AddRequirePictureAdapter
 import com.cloud.leasing.base.BaseActivity
-import com.cloud.leasing.bean.CutterType
-import com.cloud.leasing.bean.DeviceBrand
-import com.cloud.leasing.bean.DeviceType
-import com.cloud.leasing.bean.ProvinceBean
+import com.cloud.leasing.bean.*
 import com.cloud.leasing.bean.exception.NetworkException
 import com.cloud.leasing.constant.PageName
 import com.cloud.leasing.databinding.ActivityAddRequireBinding
@@ -66,9 +63,17 @@ class AddRequireActivity :
 
     private var usageTime = ""
 
+    private var deleteFileIndex = 0
+
+    private var deletePictureIndex = 0
+
     private var mPathList = mutableListOf<String>()
 
     private var mSelectList = mutableListOf<String>()
+
+    private var pictureList = mutableListOf<CompanyFileBean>()
+
+    private var fileList = mutableListOf<CompanyFileBean>()
 
     private var dialog: BaseDialog? = null
 
@@ -81,6 +86,8 @@ class AddRequireActivity :
     private lateinit var brandList: MutableList<DeviceBrand>
 
     private lateinit var cutterList: MutableList<CutterType>
+
+    private var rentRequireFileList = mutableListOf<UploadFileBean>()
 
     private lateinit var addRequireFileAdapter: AddRequireFileAdapter
 
@@ -130,10 +137,23 @@ class AddRequireActivity :
             pickImage()
         }
 
+        addRequirePictureAdapter.setOnDeleteFileListener {
+            deletePictureIndex = it - 1
+            Log.e("******", it.toString())
+            Log.e("******", deletePictureIndex.toString())
+            Log.e("******", pictureList.size.toString())
+            viewModel.requestOfDeletePicture(pictureList[deletePictureIndex].filePath)
+        }
+
         viewBinding.layoutAddRequireUpload.addRequireFileRv.layoutManager =
             LinearLayoutManager(this)
         addRequireFileAdapter = AddRequireFileAdapter(this, mPathList)
         viewBinding.layoutAddRequireUpload.addRequireFileRv.adapter = addRequireFileAdapter
+
+        addRequireFileAdapter.setOnDeleteFileListener {
+            deleteFileIndex = it
+            viewModel.requestOfDeleteFile(fileList[it].filePath)
+        }
 
         viewModel.requestOfDeviceSite()
         viewModel.requestOfDeviceType()
@@ -173,6 +193,38 @@ class AddRequireActivity :
                     this@AddRequireActivity.finish()
                 }
             })
+            pictureLiveData.observe(this@AddRequireActivity, { it ->
+                it.onFailure {
+                    it.toString().toast(this@AddRequireActivity)
+                }.onSuccess {
+                    "上传成功".toast(this@AddRequireActivity)
+                    pictureList.add(it)
+                }
+            })
+            fileLiveData.observe(this@AddRequireActivity, { it ->
+                it.onFailure {
+                    it.toString().toast(this@AddRequireActivity)
+                }.onSuccess {
+                    "上传成功".toast(this@AddRequireActivity)
+                    fileList.add(it)
+                }
+            })
+            deleteFileLiveData.observe(this@AddRequireActivity, { it ->
+                it.onFailure {
+                    it.toString().toast(this@AddRequireActivity)
+                }.onSuccess {
+                    "删除文件成功".toast(this@AddRequireActivity)
+                    fileList.removeAt(deleteFileIndex)
+                }
+            })
+            deletePictureLiveData.observe(this@AddRequireActivity, { it ->
+                it.onFailure {
+                    it.toString().toast(this@AddRequireActivity)
+                }.onSuccess {
+                    "删除文件成功".toast(this@AddRequireActivity)
+                    pictureList.removeAt(deletePictureIndex)
+                }
+            })
         }
     }
 
@@ -206,7 +258,7 @@ class AddRequireActivity :
                 mSelectList.addAll(select)
                 addRequirePictureAdapter.notifyDataSetChanged()
                 val file = File(select[0])
-                viewModel.requestOfUploadFile(file, "40")
+                viewModel.requestOfUploadPicture(file, "40")
             }
         } else if (requestCode == Constants.UPLOAD_FILE_REQUEST && resultCode == Constants.UPLOAD_FILE_RESULT) {
             data?.let { it ->
@@ -297,6 +349,24 @@ class AddRequireActivity :
         val limitedRange =
             viewBinding.layoutAddRequireInfo.addRequireMileageEt.text.trim().toString()
 
+        pictureList.takeIf { it.size > 0 }?.onEach {
+            val uplaodFileBean = UploadFileBean(
+                "1",
+                it.fileName, it.filePath,
+                it.fileSize, "0"
+            )
+            rentRequireFileList.add(uplaodFileBean)
+        }
+
+        fileList.takeIf { it.size > 0 }?.onEach {
+            val uplaodFileBean = UploadFileBean(
+                "5",
+                it.fileName, it.filePath,
+                it.fileSize, "1"
+            )
+            rentRequireFileList.add(uplaodFileBean)
+        }
+
         viewModel.requestOfAddRequire(
             deviceBrand,
             deviceType,
@@ -313,7 +383,8 @@ class AddRequireActivity :
             cutterType,
             drivingTorque,
             propulsiveForce,
-            limitedRange
+            limitedRange,
+            rentRequireFileList
         )
         viewBinding.addRequireLoadingview.visibility = View.VISIBLE
     }
@@ -347,7 +418,8 @@ class AddRequireActivity :
         })
         sureview.setOnClickListener {
             dialog?.dismiss()
-            viewBinding.layoutAddRequireInfo.addRequireBrandTv.text = wheelview.getSelectedItemData().toString()
+            viewBinding.layoutAddRequireInfo.addRequireBrandTv.text =
+                wheelview.getSelectedItemData().toString()
             viewBinding.layoutAddRequireInfo.addRequireBrandTv.setTextColor(resources.getColor(R.color.color_262626))
         }
     }
@@ -381,7 +453,8 @@ class AddRequireActivity :
         })
         sureview.setOnClickListener {
             dialog?.dismiss()
-            viewBinding.layoutAddRequireInfo.addRequireTypeTv.text = wheelview.getSelectedItemData().toString()
+            viewBinding.layoutAddRequireInfo.addRequireTypeTv.text =
+                wheelview.getSelectedItemData().toString()
             viewBinding.layoutAddRequireInfo.addRequireTypeTv.setTextColor(resources.getColor(R.color.color_262626))
         }
     }
@@ -415,7 +488,8 @@ class AddRequireActivity :
         })
         sureview.setOnClickListener {
             dialog?.dismiss()
-            viewBinding.layoutAddRequireInfo.addRequireKnifetypeTv.text = wheelview.getSelectedItemData().toString()
+            viewBinding.layoutAddRequireInfo.addRequireKnifetypeTv.text =
+                wheelview.getSelectedItemData().toString()
             viewBinding.layoutAddRequireInfo.addRequireKnifetypeTv.setTextColor(resources.getColor(R.color.color_262626))
         }
     }

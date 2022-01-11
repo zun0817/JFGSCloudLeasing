@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.cloud.leasing.R;
 import com.cloud.leasing.callback.OnAddPicturesListener;
+import com.cloud.leasing.callback.OnDeleteFileListener;
 import com.giftedcat.picture.lib.photoview.GlideImageLoader;
 import com.giftedcat.picture.lib.photoview.style.index.NumberIndexIndicator;
 import com.giftedcat.picture.lib.photoview.style.progress.ProgressBarIndicator;
@@ -26,6 +27,8 @@ public class AddRequirePictureAdapter extends CommonAdapter<String> {
     private Context context;
 
     OnAddPicturesListener listener;
+
+    OnDeleteFileListener onDeleteFileListener;
 
     protected Transferee transferee;
 
@@ -52,6 +55,9 @@ public class AddRequirePictureAdapter extends CommonAdapter<String> {
         this.listener = listener;
     }
 
+    public void setOnDeleteFileListener(OnDeleteFileListener listener) {
+        this.onDeleteFileListener = listener;
+    }
 
     /**
      * 初始化大图查看控件
@@ -66,7 +72,6 @@ public class AddRequirePictureAdapter extends CommonAdapter<String> {
                 .setJustLoadHitImage(true)
                 .bindRecyclerView(rvImages, R.id.add_picture_img);
     }
-
 
     @Override
     protected void convert(ViewHolder viewHolder, String item, final int position) {
@@ -116,11 +121,12 @@ public class AddRequirePictureAdapter extends CommonAdapter<String> {
                     break;
                 case R.id.add_picture_delete_img:
                     getDatas().remove(position);
-                    if (!getDatas().get(getDatas().size() - 1).equals("")) {
-                        //列表最后一张不是添加按钮时，加入添加按钮
-                        getDatas().add("");
-                    }
+//                    if (!getDatas().get(getDatas().size() - 1).equals("")) {
+//                        //列表最后一张不是添加按钮时，加入添加按钮
+//                        getDatas().add("");
+//                    }
                     notifyDataSetChanged();
+                    onDeleteFileListener.onDelete(position);
                     break;
             }
         }

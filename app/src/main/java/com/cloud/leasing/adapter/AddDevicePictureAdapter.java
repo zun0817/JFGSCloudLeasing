@@ -119,10 +119,10 @@ public class AddDevicePictureAdapter extends CommonAdapter<String> {
                     break;
                 case R.id.add_picture_delete_img:
                     getDatas().remove(position);
-                    if (!getDatas().get(getDatas().size() - 1).equals("")) {
-                        //列表最后一张不是添加按钮时，加入添加按钮
-                        getDatas().add("");
-                    }
+//                    if (!getDatas().get(getDatas().size() - 1).equals("")) {
+//                        //列表最后一张不是添加按钮时，加入添加按钮
+//                        getDatas().add("");
+//                    }
                     notifyDataSetChanged();
                     onDeleteFileListener.onDelete(position);
                     break;

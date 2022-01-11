@@ -126,4 +126,8 @@ object NetworkApi : BaseNetworkApi<INetworkService>(Constant.BASE_URL) {
     suspend fun requestOfDeleteFile(param: MutableMap<String, Any>) = getResult {
         service.requestOfDeleteFile(param)
     }
+
+    suspend fun requestOfDeviceManagerForm(param: MutableMap<String, Any?>) = getResult {
+        service.requestOfDeviceManagerForm(param)
+    }
 }

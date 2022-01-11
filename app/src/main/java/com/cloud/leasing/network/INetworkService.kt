@@ -95,6 +95,9 @@ interface INetworkService {
     @POST(Constant.PATH_FILE_DELETE)
     suspend fun requestOfDeleteFile(@FieldMap param: MutableMap<String, Any>): BaseResponse<String>
 
+    @GET(Constant.PATH_DEVICE_MANAGE_LIST)
+    suspend fun requestOfDeviceManagerForm(@QueryMap param: MutableMap<String, Any?>): BaseResponse<DeviceManagerFormBean>
+
     @Multipart
     @POST(Constant.PATH_FILE_UPLOAD)
     suspend fun requestOfUploadFile(

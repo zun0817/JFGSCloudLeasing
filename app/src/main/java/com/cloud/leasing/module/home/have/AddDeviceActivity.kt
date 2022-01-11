@@ -46,6 +46,16 @@ class AddDeviceActivity :
         }
     }
 
+    private var deleteFileIndex = 0
+
+    private var deleteDeviceIndex = 0
+
+    private var deleteMachineIndex = 0
+
+    private var deleteHostIndex = 0
+
+    private var deleteCutterIndex = 0
+
     private var deviceType = ""
 
     private var deviceBrand = ""
@@ -75,6 +85,16 @@ class AddDeviceActivity :
     private val REQUEST_IMAGE_HOST = 3
 
     private val REQUEST_IMAGE_CUTTER = 4
+
+    private var fileList = mutableListOf<CompanyFileBean>()
+
+    private var deviceList = mutableListOf<CompanyFileBean>()
+
+    private var machineList = mutableListOf<CompanyFileBean>()
+
+    private var hostList = mutableListOf<CompanyFileBean>()
+
+    private var cutterpicList = mutableListOf<CompanyFileBean>()
 
     private var mPathList = mutableListOf<String>()
 
@@ -153,9 +173,9 @@ class AddDeviceActivity :
         viewModel.requestOfDeviceSite()
         viewModel.requestOfDeviceType()
         viewBinding.addDeviceLoadingview.visibility = View.VISIBLE
-
         addDeviceFileAdapter.setOnDeleteFileListener {
-
+            deleteFileIndex = it
+            viewModel.requestOfDeleteFile(fileList[it].filePath)
         }
     }
 
@@ -197,6 +217,79 @@ class AddDeviceActivity :
                     it.toString().toast(this@AddDeviceActivity)
                 }.onSuccess {
                     "上传成功".toast(this@AddDeviceActivity)
+                    fileList.add(it)
+                }
+            })
+            deviceLiveData.observe(this@AddDeviceActivity, { it ->
+                it.onFailure {
+                    it.toString().toast(this@AddDeviceActivity)
+                }.onSuccess {
+                    "上传成功".toast(this@AddDeviceActivity)
+                    deviceList.add(it)
+                }
+            })
+            machineLiveData.observe(this@AddDeviceActivity, { it ->
+                it.onFailure {
+                    it.toString().toast(this@AddDeviceActivity)
+                }.onSuccess {
+                    "上传成功".toast(this@AddDeviceActivity)
+                    machineList.add(it)
+                }
+            })
+            hostLiveData.observe(this@AddDeviceActivity, { it ->
+                it.onFailure {
+                    it.toString().toast(this@AddDeviceActivity)
+                }.onSuccess {
+                    "上传成功".toast(this@AddDeviceActivity)
+                    hostList.add(it)
+                }
+            })
+            cutterLiveData.observe(this@AddDeviceActivity, { it ->
+                it.onFailure {
+                    it.toString().toast(this@AddDeviceActivity)
+                }.onSuccess {
+                    "上传成功".toast(this@AddDeviceActivity)
+                    cutterpicList.add(it)
+                }
+            })
+            deleteFileLiveData.observe(this@AddDeviceActivity, { it ->
+                it.onFailure {
+                    it.toString().toast(this@AddDeviceActivity)
+                }.onSuccess {
+                    "删除文件成功".toast(this@AddDeviceActivity)
+                    fileList.removeAt(deleteFileIndex)
+                }
+            })
+            deleteDeviceLiveData.observe(this@AddDeviceActivity, { it ->
+                it.onFailure {
+                    it.toString().toast(this@AddDeviceActivity)
+                }.onSuccess {
+                    "删除文件成功".toast(this@AddDeviceActivity)
+                    deviceList.removeAt(deleteDeviceIndex)
+                }
+            })
+            deleteMachineLiveData.observe(this@AddDeviceActivity, { it ->
+                it.onFailure {
+                    it.toString().toast(this@AddDeviceActivity)
+                }.onSuccess {
+                    "删除文件成功".toast(this@AddDeviceActivity)
+                    machineList.removeAt(deleteMachineIndex)
+                }
+            })
+            deleteHostLiveData.observe(this@AddDeviceActivity, { it ->
+                it.onFailure {
+                    it.toString().toast(this@AddDeviceActivity)
+                }.onSuccess {
+                    "删除文件成功".toast(this@AddDeviceActivity)
+                    hostList.removeAt(deleteHostIndex)
+                }
+            })
+            deleteCutterLiveData.observe(this@AddDeviceActivity, { it ->
+                it.onFailure {
+                    it.toString().toast(this@AddDeviceActivity)
+                }.onSuccess {
+                    "删除文件成功".toast(this@AddDeviceActivity)
+                    cutterpicList.removeAt(deleteCutterIndex)
                 }
             })
         }
@@ -216,7 +309,8 @@ class AddDeviceActivity :
             pickImageOfDevice()
         }
         addDevicePictureAdapter.setOnDeleteFileListener {
-
+            deleteDeviceIndex = it - 1
+            viewModel.requestOfDeleteDevice(deviceList[deleteDeviceIndex].filePath)
         }
     }
 
@@ -233,6 +327,10 @@ class AddDeviceActivity :
         addMachinePictureAdapter.setOnAddPicturesListener {
             pickImageOfMachine()
         }
+        addMachinePictureAdapter.setOnDeleteFileListener {
+            deleteMachineIndex = it - 1
+            viewModel.requestOfDeleteMachine(machineList[deleteMachineIndex].filePath)
+        }
     }
 
     private fun initHostForm() {
@@ -248,6 +346,11 @@ class AddDeviceActivity :
         addHostPictureAdapter.setOnAddPicturesListener {
             pickImageOfHost()
         }
+
+        addHostPictureAdapter.setOnDeleteFileListener {
+            deleteHostIndex = it - 1
+            viewModel.requestOfDeleteHost(hostList[deleteHostIndex].filePath)
+        }
     }
 
     private fun initCutterForm() {
@@ -262,6 +365,10 @@ class AddDeviceActivity :
         viewBinding.layoutAddDeviceUpload.addCutterPictureRv.adapter = addCutterPictureAdapter
         addCutterPictureAdapter.setOnAddPicturesListener {
             pickImageOfCutter()
+        }
+        addCutterPictureAdapter.setOnDeleteFileListener {
+            deleteCutterIndex = it - 1
+            viewModel.requestOfDeleteCutter(cutterpicList[deleteCutterIndex].filePath)
         }
     }
 
@@ -322,7 +429,7 @@ class AddDeviceActivity :
                 mDevicePicList.addAll(select)
                 addDevicePictureAdapter.notifyDataSetChanged()
                 val file = File(select[0])
-                viewModel.requestOfUploadFile(file, "30")
+                viewModel.requestOfUploadDevice(file, "30")
             }
         } else if (requestCode == REQUEST_IMAGE_MACHINE && resultCode == RESULT_OK) {
             data?.let {
@@ -332,7 +439,7 @@ class AddDeviceActivity :
                 mMachinePicList.addAll(select)
                 addMachinePictureAdapter.notifyDataSetChanged()
                 val file = File(select[0])
-                viewModel.requestOfUploadFile(file, "30")
+                viewModel.requestOfUploadMachine(file, "30")
             }
         } else if (requestCode == REQUEST_IMAGE_HOST && resultCode == RESULT_OK) {
             data?.let {
@@ -342,7 +449,7 @@ class AddDeviceActivity :
                 mHostPicList.addAll(select)
                 addHostPictureAdapter.notifyDataSetChanged()
                 val file = File(select[0])
-                viewModel.requestOfUploadFile(file, "30")
+                viewModel.requestOfUploadHost(file, "30")
             }
         } else if (requestCode == REQUEST_IMAGE_CUTTER && resultCode == RESULT_OK) {
             data?.let {
@@ -352,7 +459,7 @@ class AddDeviceActivity :
                 mCutterPicList.addAll(select)
                 addCutterPictureAdapter.notifyDataSetChanged()
                 val file = File(select[0])
-                viewModel.requestOfUploadFile(file, "30")
+                viewModel.requestOfUploadCutter(file, "30")
             }
         } else if (requestCode == Constants.UPLOAD_FILE_REQUEST && resultCode == Constants.UPLOAD_FILE_RESULT) {
             data?.let { it ->
@@ -454,6 +561,52 @@ class AddDeviceActivity :
         val workingDiam = ""
         val propertyOwner = ""
         val deviceStatus = "0"
+
+        deviceList.takeIf { it.size > 0 }?.onEach {
+            val uplaodFileBean = UploadFileBean(
+                "1",
+                it.fileName, it.filePath,
+                it.fileSize, "0"
+            )
+            rentDeviceFileList.add(uplaodFileBean)
+        }
+
+        machineList.takeIf { it.size > 0 }?.onEach {
+            val uplaodFileBean = UploadFileBean(
+                "2",
+                it.fileName, it.filePath,
+                it.fileSize, "0"
+            )
+            rentDeviceFileList.add(uplaodFileBean)
+        }
+
+        hostList.takeIf { it.size > 0 }?.onEach {
+            val uplaodFileBean = UploadFileBean(
+                "2",
+                it.fileName, it.filePath,
+                it.fileSize, "0"
+            )
+            rentDeviceFileList.add(uplaodFileBean)
+        }
+
+        cutterpicList.takeIf { it.size > 0 }?.onEach {
+            val uplaodFileBean = UploadFileBean(
+                "3",
+                it.fileName, it.filePath,
+                it.fileSize, "0"
+            )
+            rentDeviceFileList.add(uplaodFileBean)
+        }
+
+        fileList.takeIf { it.size > 0 }?.onEach {
+            val uplaodFileBean = UploadFileBean(
+                "5",
+                it.fileName, it.filePath,
+                it.fileSize, "1"
+            )
+            rentDeviceFileList.add(uplaodFileBean)
+        }
+
         viewModel.requestOfAddDevice(
             deviceNo,
             deviceBrand,
@@ -481,7 +634,8 @@ class AddDeviceActivity :
             deviceResume,
             deviceStatus,
             workingDiam,
-            remarks
+            remarks,
+            rentDeviceFileList
         )
         viewBinding.addDeviceLoadingview.visibility = View.VISIBLE
     }
