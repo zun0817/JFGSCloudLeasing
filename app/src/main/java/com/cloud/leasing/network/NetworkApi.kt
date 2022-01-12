@@ -130,4 +130,13 @@ object NetworkApi : BaseNetworkApi<INetworkService>(Constant.BASE_URL) {
     suspend fun requestOfDeviceManagerForm(param: MutableMap<String, Any?>) = getResult {
         service.requestOfDeviceManagerForm(param)
     }
+
+    suspend fun requestOfDeviceManageDetail(deviceId: Int) = getResult {
+        service.requestOfDeviceManageDetail(deviceId)
+    }
+
+    suspend fun requestOfDeviceResume(deviceId: Int) = getResult {
+        service.requestOfDeviceResume(deviceId)
+    }
+
 }

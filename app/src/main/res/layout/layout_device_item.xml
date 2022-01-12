@@ -43,6 +43,23 @@
         android:textColor="@color/color_262626"
         android:textSize="14sp"
         app:drawableStartCompat="@mipmap/icon_follow_no"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="@id/device_item_img"
+        app:layout_constraintLeft_toRightOf="@id/device_item_img" />
+
+    <TextView
+        android:id="@+id/device_item_resume_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:gravity="center_vertical"
+        android:text="设备履历"
+        android:paddingHorizontal="8dp"
+        android:paddingVertical="5dp"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        android:visibility="gone"
+        android:background="@drawable/shape_look_0e64bc"
         app:layout_constraintBottom_toBottomOf="@id/device_item_img"
         app:layout_constraintLeft_toRightOf="@id/device_item_img" />
 

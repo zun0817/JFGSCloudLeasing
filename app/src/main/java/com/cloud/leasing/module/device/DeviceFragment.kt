@@ -5,18 +5,19 @@ import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.RecyclerView
+import com.alibaba.fastjson.JSON
 import com.cloud.leasing.R
 import com.cloud.leasing.base.BaseFragment
 import com.cloud.leasing.base.list.XRecyclerView
 import com.cloud.leasing.base.list.base.BaseViewData
-import com.cloud.leasing.bean.CutterType
-import com.cloud.leasing.bean.DeviceBrand
-import com.cloud.leasing.bean.DeviceType
-import com.cloud.leasing.bean.Record
+import com.cloud.leasing.bean.*
+import com.cloud.leasing.constant.Constant
 import com.cloud.leasing.constant.PageName
 import com.cloud.leasing.databinding.FragmentDeviceBinding
 import com.cloud.leasing.item.DeviceItemViewData
+import com.cloud.leasing.module.device.resume.DeviceResumeActivity
 import com.cloud.leasing.module.home.detail.DeviceDetailActivity
+import com.cloud.leasing.persistence.XKeyValue
 import com.cloud.leasing.util.toast
 import com.gyf.immersionbar.ktx.immersionBar
 
@@ -50,6 +51,8 @@ class DeviceFragment : BaseFragment<FragmentDeviceBinding>(FragmentDeviceBinding
         viewBinding.deviceRecyclerview.init(
             XRecyclerView.Config()
                 .setViewModel(viewModel)
+                .setPullRefreshEnable(false)
+                .setPullUploadMoreEnable(false)
                 .setOnItemClickListener(object : XRecyclerView.OnItemClickListener {
                     override fun onItemClick(
                         parent: RecyclerView,
@@ -58,7 +61,7 @@ class DeviceFragment : BaseFragment<FragmentDeviceBinding>(FragmentDeviceBinding
                         position: Int,
                         id: Long
                     ) {
-                        val bean = viewData as Record
+                        val bean = viewData.value as Record
                         DeviceDetailActivity.startActivity(requireActivity(), bean.id)
                     }
                 })
@@ -72,9 +75,8 @@ class DeviceFragment : BaseFragment<FragmentDeviceBinding>(FragmentDeviceBinding
                         id: Long,
                         extra: Any?
                     ) {
-                        if (extra is String) {
-                            Toast.makeText(context, "条目子View点击: $extra", Toast.LENGTH_SHORT).show()
-                        }
+                        val deviceId = (viewData.value as Record).id
+                        DeviceResumeActivity.startActivity(requireActivity(), deviceId)
                     }
                 })
         )
@@ -85,6 +87,7 @@ class DeviceFragment : BaseFragment<FragmentDeviceBinding>(FragmentDeviceBinding
             deviceLiveData.observe(viewLifecycleOwner, { it ->
                 it.onFailure {
                     it.toString().toast(requireActivity())
+                    viewModel.firstViewDataLiveData.postValue(LoadError)
                 }.onSuccess { formBean ->
                     list.takeIf { it.size > 0 }?.apply { clear() }
                     datas = formBean.records
@@ -115,6 +118,12 @@ class DeviceFragment : BaseFragment<FragmentDeviceBinding>(FragmentDeviceBinding
                     typeList = it.deviceType
                     brandList = it.deviceBrand
                     cutterList = it.cutterType
+                    val typejson = JSON.toJSON(typeList).toString()
+                    val brandjson = JSON.toJSON(brandList).toString()
+                    val cutterjson = JSON.toJSON(cutterList).toString()
+                    XKeyValue.putString(Constant.DEVICE_TYPE, typejson)
+                    XKeyValue.putString(Constant.DEVICE_BRAND, brandjson)
+                    XKeyValue.putString(Constant.DEVICE_CUTTER, cutterjson)
                 }
             })
         }

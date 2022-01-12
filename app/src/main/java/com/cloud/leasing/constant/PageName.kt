@@ -33,6 +33,7 @@ import androidx.annotation.StringDef
     PageName.SERVICE_DETAIL,
     PageName.SEARCH_DEVICE,
     PageName.SEARCH_REQUIRE,
+    PageName.DEVICE_RESUME_DETAIL,
 
     PageName.ACGN,
     PageName.SMALL_VIDEO,
@@ -74,6 +75,7 @@ annotation class PageName {
         const val SERVICE_DETAIL = "service_detail"
         const val SEARCH_DEVICE = "search_device"
         const val SEARCH_REQUIRE = "search_require"
+        const val DEVICE_RESUME_DETAIL = "device_resume_detail"
 
         const val ACGN = "acgn"
         const val SMALL_VIDEO = "small_video"

@@ -1,0 +1,40 @@
+package com.cloud.leasing.bean
+
+import java.io.Serializable
+
+data class DeviceManageDetailBean(
+    val applicableStratum: String,
+    val assetOwnership: String,
+    val beamNum: String,
+    val checkWorkMileage: Any,
+    val contractAmount: Any,
+    val createTime: String,
+    val cutterDiam: String,
+    val cutterType: String,
+    var cutterTypeName: String,
+    val deleted: String,
+    val deviceArea: String,
+    val deviceBrand: String,
+    var deviceBrandName: String,
+    val deviceImageUrl: String,
+    val deviceNo: String,
+    val deviceStatus: Int,
+    val deviceType: String,
+    var deviceTypeName: String,
+    val drivingForm: String,
+    val drivingPosition: String,
+    val drivingPower: String,
+    val drivingTorque: String,
+    val hingeForm: String,
+    val id: Int,
+    val leaseTime: String,
+    val mileageUsed: String,
+    val openingRate: String,
+    val outTorque: String,
+    val outerDiameter: String,
+    val propertyOwner: String,
+    val propulsiveForce: String,
+    val remarks: String,
+    val turningRadius: String,
+    val userId: Int
+) : Serializable

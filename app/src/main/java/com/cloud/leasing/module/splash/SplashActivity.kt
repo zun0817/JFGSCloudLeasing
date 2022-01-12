@@ -30,6 +30,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(ActivitySplashBinding
         viewModel.startTimer(this, viewBinding.splashTimerTv)
         viewBinding.splashTimerTv.setOnClickListener {
             LoginActivity.startActivity(this)
+            this.finish()
             viewModel.cancel()
         }
     }

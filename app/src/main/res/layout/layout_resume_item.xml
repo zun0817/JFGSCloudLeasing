@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="15dp"
+    android:layout_marginTop="10dp"
+    android:background="@drawable/shape_item_white"
+    android:paddingHorizontal="10dp"
+    android:paddingVertical="13dp">
+
+    <TextView
+        android:id="@+id/resume_item_no_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="异型盾构"
+        android:textColor="@color/color_010F1D"
+        android:textSize="17sp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/resume_item_status_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:background="@drawable/shape_view_ffaa33_2"
+        android:paddingHorizontal="5dp"
+        android:paddingVertical="2dp"
+        android:text="存放"
+        android:textColor="@color/white"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toBottomOf="@id/resume_item_no_tv"
+        app:layout_constraintLeft_toRightOf="@id/resume_item_no_tv"
+        app:layout_constraintTop_toTopOf="@id/resume_item_no_tv" />
+
+    <TextView
+        android:id="@+id/resume_item_tunnemeters_lab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="掘进里程(m)"
+        android:textColor="@color/color_999999"
+        android:textSize="13sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/resume_item_no_tv" />
+
+    <TextView
+        android:id="@+id/resume_item_tunnemeters_tv"
+        android:layout_width="75dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:text="500000.0"
+        android:textColor="@color/color_010F1D"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@id/resume_item_tunnemeters_lab"
+        app:layout_constraintLeft_toRightOf="@id/resume_item_tunnemeters_lab"
+        app:layout_constraintTop_toTopOf="@id/resume_item_tunnemeters_lab" />
+
+    <TextView
+        android:id="@+id/resume_item_tunnemeterstotal_lab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="12dp"
+        android:text="累计里程(m)"
+        android:textColor="@color/color_999999"
+        android:textSize="13sp"
+        app:layout_constraintLeft_toRightOf="@id/resume_item_tunnemeters_tv"
+        app:layout_constraintTop_toBottomOf="@id/resume_item_no_tv" />
+
+    <TextView
+        android:id="@+id/resume_item_tunnemeterstotal_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:text="1000"
+        android:textColor="@color/color_010F1D"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@id/resume_item_tunnemeters_lab"
+        app:layout_constraintLeft_toRightOf="@id/resume_item_tunnemeterstotal_lab"
+        app:layout_constraintTop_toTopOf="@id/resume_item_tunnemeters_lab" />
+
+    <TextView
+        android:id="@+id/resume_item_workingdiam_lab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="开挖直径(m)"
+        android:textColor="@color/color_999999"
+        android:textSize="13sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/resume_item_tunnemeters_lab" />
+
+    <TextView
+        android:id="@+id/resume_item_workingdiam_tv"
+        android:layout_width="75dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:text="10"
+        android:textColor="@color/color_010F1D"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@id/resume_item_workingdiam_lab"
+        app:layout_constraintLeft_toRightOf="@id/resume_item_workingdiam_lab"
+        app:layout_constraintTop_toTopOf="@id/resume_item_workingdiam_lab" />
+
+    <View
+        android:id="@+id/resume_view"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/color_14707070"
+        app:layout_constraintTop_toBottomOf="@id/resume_item_workingdiam_lab" />
+
+    <TextView
+        android:id="@+id/resume_item_time_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="2021-11-30~2021-11-30"
+        android:textColor="@color/color_999999"
+        android:textSize="13sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/resume_view" />
+
+    <TextView
+        android:id="@+id/resume_item_look_tv"
+        android:layout_width="65dp"
+        android:layout_height="27dp"
+        android:background="@drawable/shape_look_0e64bc"
+        android:gravity="center"
+        android:text="管理履历"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/resume_item_time_tv"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/resume_item_time_tv" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

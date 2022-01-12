@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".module.home.service.ServiceDetailActivity">
 
     <FrameLayout
@@ -69,7 +70,7 @@
                         android:id="@+id/service_detail_name_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="XXX"
+                        android:text="朱君"
                         android:textColor="@color/color_262626"
                         android:textSize="20sp"
                         android:textStyle="bold"

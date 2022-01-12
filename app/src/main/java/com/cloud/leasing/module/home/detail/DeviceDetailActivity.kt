@@ -80,7 +80,7 @@ class DeviceDetailActivity :
                     it.toString().toast(this@DeviceDetailActivity)
                 }.onSuccess { it ->
                     viewBinding.layoutDeviceDetailInfo.deviceDetailNameTv.text = it.deviceBrandName
-                    viewBinding.layoutDeviceDetailInfo.deviceDetailDateTv.text = "创建时间："
+                    viewBinding.layoutDeviceDetailInfo.deviceDetailDateTv.text = "创建时间：" +
                     it.createTime.split(" ")[0]
                     viewBinding.layoutDeviceDetailInfo.deviceDetailBrandTv.text = it.deviceBrandName
                     viewBinding.layoutDeviceDetailInfo.deviceDetailTypeTv.text = it.deviceTypeName
@@ -113,10 +113,10 @@ class DeviceDetailActivity :
                     viewBinding.layoutDeviceDetailInfo.deviceDetailStatusTv.text =
                         when (it.deviceRentStatus) {
                             "1" -> {
-                                "维修中"
+                                "维修"
                             }
                             "2" -> {
-                                "使用中"
+                                "使用"
                             }
                             else -> {
                                 "存放"

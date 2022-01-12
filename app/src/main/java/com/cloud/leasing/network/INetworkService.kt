@@ -98,6 +98,12 @@ interface INetworkService {
     @GET(Constant.PATH_DEVICE_MANAGE_LIST)
     suspend fun requestOfDeviceManagerForm(@QueryMap param: MutableMap<String, Any?>): BaseResponse<DeviceManagerFormBean>
 
+    @GET(Constant.PATH_DEVICE_MANAGE_DETAIL)
+    suspend fun requestOfDeviceManageDetail(@Query("deviceId") deviceId: Int): BaseResponse<DeviceManageDetailBean>
+
+    @GET(Constant.PATH_DEVICE_MANAGE_RESUME)
+    suspend fun requestOfDeviceResume(@Query("deviceId") deviceId: Int): BaseResponse<MutableList<DeviceResumeBean>>
+
     @Multipart
     @POST(Constant.PATH_FILE_UPLOAD)
     suspend fun requestOfUploadFile(

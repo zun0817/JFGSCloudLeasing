@@ -18,11 +18,11 @@ import com.cloud.leasing.module.forget.ForgetActivity
 import com.cloud.leasing.module.main.MainActivity
 import com.cloud.leasing.module.register.RegisterActivity
 import com.cloud.leasing.persistence.XKeyValue
-import com.cloud.leasing.util.CountDownTimerUtils
-import com.cloud.leasing.util.ViewTouchUtil
-import com.cloud.leasing.util.isMobilPhone
-import com.cloud.leasing.util.toast
+import com.cloud.leasing.util.*
 import com.gyf.immersionbar.ktx.immersionBar
+import com.hjq.permissions.OnPermissionCallback
+import com.hjq.permissions.Permission
+import com.hjq.permissions.XXPermissions
 import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::inflate),
@@ -45,6 +45,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::i
         initSystemBar()
         initView()
         viewModelObserve()
+        initPermission()
     }
 
     override fun getPageName() = PageName.LOGIN
@@ -216,6 +217,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::i
                     }
                     viewModel.requestOfLoginMessage(phone, message)
                     viewBinding.LoginLoadingview.visibility = View.VISIBLE
+                    viewBinding.layoutMessageEditLoginIn.loginMessageEdit.hideKeyboard()
                 }
             }
             R.id.login_forget_tv -> {  //忘记密码
@@ -273,6 +275,28 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::i
                 }
             }
         }
+    }
+
+    private fun initPermission() {
+        XXPermissions.with(this).permission(Permission.CAMERA).permission(Permission.Group.STORAGE)
+            .request(object : OnPermissionCallback {
+                override fun onGranted(permissions: MutableList<String>?, all: Boolean) {
+                    if (all) {
+                        "获取相机和读写权限成功".toast(this@LoginActivity)
+                    } else {
+                        "获取部分权限成功，但部分权限未正常授予".toast(this@LoginActivity)
+                    }
+                }
+
+                override fun onDenied(permissions: MutableList<String>?, never: Boolean) {
+                    super.onDenied(permissions, never)
+                    if (never) {
+                        "被永久拒绝授权，请手动授予相机和读写权限".toast(this@LoginActivity)
+                    } else {
+                        "获取相机和读写权限失败".toast(this@LoginActivity)
+                    }
+                }
+            })
     }
 
 }

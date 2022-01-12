@@ -55,7 +55,7 @@ class ServiceDetailActivity :
         viewBinding.serviceDetailBackImg.setOnClickListener(this)
         ViewTouchUtil.expandViewTouchDelegate(viewBinding.serviceDetailBackImg)
         viewBinding.serviceDetailTitleTv.text = intent.getStringExtra("title")
-        viewBinding.serviceDetailNameTv.text = intent.getStringExtra("name")
+        //viewBinding.serviceDetailNameTv.text = intent.getStringExtra("name")
         viewBinding.serviceDetailPhoneTv.text = intent.getStringExtra("phone")
         viewBinding.serviceDetailEmailTv.text = intent.getStringExtra("email")
         val content = intent.getStringExtra("content")

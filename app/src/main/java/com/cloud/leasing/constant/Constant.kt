@@ -18,7 +18,7 @@ object Constant {
 
     const val PATH_RESET = "/api/v1/business/user/app/resetPassword"
 
-    const val PATH_LOGIN = "/api/v1/business/user/app/login"
+    const val PATH_LOGIN = "/login"
 
     const val PATH_LOGIN_MESSAGE = "/api/v1/business/user/app/loginMessage"
 
@@ -64,26 +64,30 @@ object Constant {
 
     const val PATH_DEVICE_MANAGE_LIST = "/api/v1/device/app/list"
 
+    const val PATH_DEVICE_MANAGE_DETAIL = "/api/v1/device/app/machineDetails"
+
+    const val PATH_DEVICE_MANAGE_RESUME = "/api/v1/deviceResume/pc/getResumeBydeviceId"
+
 
     /** 本地存储 */
 
     const val FILE_AVATAR = "10"
 
-    const val FILE_CONSULT  = "20"
+    const val FILE_CONSULT = "20"
 
-    const val FILE_DEVICE  = "30"
+    const val FILE_DEVICE = "30"
 
-    const val FILE_REQUIRE  = "40"
+    const val FILE_REQUIRE = "40"
 
-    const val FILE_BANNER  = "50"
+    const val FILE_BANNER = "50"
 
-    const val FILE_DATA  = "60"
+    const val FILE_DATA = "60"
 
-    const val FILE_RESUME  = "70"
+    const val FILE_RESUME = "70"
 
-    const val FILE_IMAGE  = "80"
+    const val FILE_IMAGE = "80"
 
-    const val FILE_CYCLE  = "90"
+    const val FILE_CYCLE = "90"
 
     const val USER_ID = "user_id"
 
@@ -92,5 +96,11 @@ object Constant {
     const val USER_PHONE = "user_phone"
 
     const val USER_PASSWORD = "user_password"
+
+    const val DEVICE_TYPE = "device_type"
+
+    const val DEVICE_BRAND = "device_brand"
+
+    const val DEVICE_CUTTER = "device_cutter"
 
 }

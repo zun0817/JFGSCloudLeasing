@@ -51,8 +51,9 @@ class LoginViewModel : BaseViewModel() {
         passWord: String
     ): RequestBody {
         val map = mutableMapOf<String, String>()
-        map["phoneNumber"] = mobile
-        map["passWord"] = passWord
+        map["username"] = mobile
+        map["password"] = passWord
+        map["userType"] = "2"
         val json = JSON.toJSONString(map)
         return json.toRequestBody("application/json".toMediaTypeOrNull())
     }
@@ -64,6 +65,7 @@ class LoginViewModel : BaseViewModel() {
         val map = mutableMapOf<String, String>()
         map["phoneNumber"] = phoneNumber
         map["messageRandCode"] = messageRandCode
+        map["userType"] = "2"
         val json = JSON.toJSONString(map)
         return json.toRequestBody("application/json".toMediaTypeOrNull())
     }

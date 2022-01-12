@@ -112,7 +112,7 @@ class RequireDetailActivity :
                     viewBinding.layoutRequireDetailUser.requireDetailUsernameTv.text = it.name
                     viewBinding.layoutRequireDetailUser.requireDetailPhoneTv.text = it.mobile
                     viewBinding.layoutRequireDetailUser.requireDetailPlaceTv.text =
-                        if (it.corporateName.isBlank()) "无" else it.corporateName
+                        it.corporateName ?: "无"
                     it.demandFileList.takeIf { it.isNotEmpty() }?.onEach {
                         when (it.fileType) {
                             "1" -> {

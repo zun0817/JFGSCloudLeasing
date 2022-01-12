@@ -2,7 +2,7 @@ package com.cloud.leasing.bean
 
 data class RequireDetailBean(
     val beamNum: Any,
-    val corporateName: String,
+    val corporateName: String?,
     val createTime: String,
     val cutterDiam: String,
     val cutterType: String,

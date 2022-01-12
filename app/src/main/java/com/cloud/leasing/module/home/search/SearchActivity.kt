@@ -215,7 +215,7 @@ class SearchActivity : BaseActivity<ActivitySearchBinding>(ActivitySearchBinding
     override fun onClick(v: View?) {
         val fragmentTransaction = supportFragmentManager.beginTransaction()
         when (v!!.id) {
-            R.id.service_back_img -> this.finish()
+            R.id.search_back_img -> this.finish()
             R.id.search_filter_tv -> {
                 when (isFlag) {
                     1 -> viewBinding.layoutDeviceFilter.layoutDeviceFilterFrame.visibility =

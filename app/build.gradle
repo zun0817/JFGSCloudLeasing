@@ -31,9 +31,9 @@ android {
             jniDebuggable true
             minifyEnabled false
             shrinkResources false
-            manifestPlaceholders = [
-                    networkSecurityConfig: "@xml/network_security_config_test"
-            ]
+//            manifestPlaceholders = [
+//                    networkSecurityConfig: "@xml/network_security_config_test"
+//            ]
         }
         release {
             debuggable false
@@ -41,10 +41,10 @@ android {
             minifyEnabled true
             shrinkResources true
             zipAlignEnabled true
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            manifestPlaceholders = [
-                    networkSecurityConfig: "@xml/network_security_config"
-            ]
+//            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+//            manifestPlaceholders = [
+//                    networkSecurityConfig: "@xml/network_security_config"
+//            ]
         }
     }
     android.applicationVariants.all { variant ->
@@ -112,7 +112,7 @@ dependencies {
     implementation("com.tencent:mmkv:${versions.mmkv}")
 
     // LeakCanary
-    debugImplementation "com.squareup.leakcanary:leakcanary-android:${versions.leakcanary}"
+    //debugImplementation "com.squareup.leakcanary:leakcanary-android:${versions.leakcanary}"
 
     // JSON
     implementation("com.alibaba:fastjson:${versions.fastjson}")
