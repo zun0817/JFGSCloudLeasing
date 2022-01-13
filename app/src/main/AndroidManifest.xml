@@ -26,7 +26,9 @@
         android:usesCleartextTraffic="true"
         tools:replace="android:allowBackup,android:supportsRtl"
         tools:targetApi="n">
-
+        <activity
+            android:name=".module.device.resume.UseResumeLifecycleActivity"
+            android:exported="true" />
         <!-- 表示当前项目已经适配了分区存储特性 -->
         <meta-data
             android:name="ScopedStorage"
