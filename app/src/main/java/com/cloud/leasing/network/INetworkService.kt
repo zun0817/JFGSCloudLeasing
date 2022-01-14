@@ -104,6 +104,9 @@ interface INetworkService {
     @GET(Constant.PATH_DEVICE_MANAGE_RESUME)
     suspend fun requestOfDeviceResume(@Query("deviceId") deviceId: Int): BaseResponse<MutableList<DeviceResumeBean>>
 
+    @GET(Constant.PATH_DEVICE_RESUME_DETAIL)
+    suspend fun requestOfResumeDetail(@Query("resumeId") resumeId: Int): BaseResponse<ResumeDetailBean>
+
     @Multipart
     @POST(Constant.PATH_FILE_UPLOAD)
     suspend fun requestOfUploadFile(

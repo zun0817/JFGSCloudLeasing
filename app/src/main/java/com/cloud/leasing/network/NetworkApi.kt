@@ -139,4 +139,8 @@ object NetworkApi : BaseNetworkApi<INetworkService>(Constant.BASE_URL) {
         service.requestOfDeviceResume(deviceId)
     }
 
+    suspend fun requestOfResumeDetail(resumeId: Int) = getResult {
+        service.requestOfResumeDetail(resumeId)
+    }
+
 }

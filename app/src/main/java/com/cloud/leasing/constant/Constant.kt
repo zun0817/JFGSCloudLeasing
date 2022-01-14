@@ -68,6 +68,8 @@ object Constant {
 
     const val PATH_DEVICE_MANAGE_RESUME = "/api/v1/deviceResume/pc/getResumeBydeviceId"
 
+    const val PATH_DEVICE_RESUME_DETAIL = "/api/v1/deviceResume/app/resumeDetails"
+
 
     /** 本地存储 */
 

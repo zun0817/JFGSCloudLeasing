@@ -8,20 +8,20 @@ data class DeviceTypeBean(
     val deviceType: MutableList<DeviceType>
 ) : Serializable
 
-data class CutterType(
-    val id: Int,
-    val name: String,
-    val value: String
+data class CutterType constructor(
+    var id: Int = 0,
+    var name: String = "",
+    var value: String = ""
 ) : Serializable
 
-data class DeviceBrand(
-    val id: Int,
-    val name: String,
-    val value: String
+data class DeviceBrand constructor(
+    var id: Int = 0,
+    var name: String = "",
+    var value: String = ""
 ) : Serializable
 
-data class DeviceType(
-    val id: Int,
-    val name: String,
-    val value: String
+data class DeviceType constructor(
+    var id: Int = 0,
+    var name: String = "",
+    var value: String = ""
 ) : Serializable

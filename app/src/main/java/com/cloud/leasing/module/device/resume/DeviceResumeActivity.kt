@@ -4,10 +4,12 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.AdapterView
 import androidx.activity.viewModels
 import com.cloud.leasing.R
 import com.cloud.leasing.adapter.DeviceResumeAdapter
 import com.cloud.leasing.base.BaseActivity
+import com.cloud.leasing.bean.DeviceResumeBean
 import com.cloud.leasing.constant.PageName
 import com.cloud.leasing.databinding.ActivityDeviceResumeBinding
 import com.cloud.leasing.util.ViewTouchUtil
@@ -16,7 +18,7 @@ import com.gyf.immersionbar.ktx.immersionBar
 
 class DeviceResumeActivity :
     BaseActivity<ActivityDeviceResumeBinding>(ActivityDeviceResumeBinding::inflate),
-    View.OnClickListener {
+    View.OnClickListener, AdapterView.OnItemClickListener {
 
     companion object {
         fun startActivity(activity: Activity, deviceId: Int) {
@@ -28,6 +30,8 @@ class DeviceResumeActivity :
     }
 
     private var deviceId = 0
+
+    private lateinit var list: MutableList<DeviceResumeBean>
 
     private lateinit var deviceResumeAdapter: DeviceResumeAdapter
 
@@ -50,6 +54,7 @@ class DeviceResumeActivity :
         viewBinding.deviceResumeListview.adapter = deviceResumeAdapter
         viewModel.requestOfDeviceResume(deviceId)
         viewBinding.deviceResumeLoadingview.visibility = View.VISIBLE
+        viewBinding.deviceResumeListview.onItemClickListener = this
     }
 
     private fun viewModelObserve() {
@@ -64,6 +69,7 @@ class DeviceResumeActivity :
                     })
                 }.onSuccess {
                     if (it.size > 0) {
+                        list = it
                         deviceResumeAdapter.refreshData(it)
                     } else {
                         viewBinding.deviceResumeErrorview.showEmpty()
@@ -84,7 +90,18 @@ class DeviceResumeActivity :
     }
 
     override fun onClick(v: View?) {
+        when (v!!.id) {
+            R.id.device_resume_back_img -> this.finish()
+        }
+    }
 
+    override fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+        DeviceResumeDetailActivity.startActivity(
+            this,
+            list[position].id,
+            list[position].deviceResumeStatus,
+            list[position].deviceNo
+        )
     }
 
 }

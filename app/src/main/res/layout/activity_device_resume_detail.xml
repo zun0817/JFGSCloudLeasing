@@ -50,11 +50,37 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:paddingHorizontal="15dp"
-            android:paddingVertical="10dp">
+            android:paddingVertical="15dp">
 
+            <include
+                android:id="@+id/layout_resume_detail_info"
+                layout="@layout/layout_resume_detail_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone" />
+
+            <include
+                android:id="@+id/layout_resume_detail_use_info"
+                layout="@layout/layout_resume_detail_use_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <include
+                android:id="@+id/layout_resume_detail_file"
+                layout="@layout/layout_resume_detail_file"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp" />
 
         </LinearLayout>
 
     </com.cloud.leasing.widget.JFGSNestedScrollView>
+
+    <com.cloud.leasing.widget.LoadingView
+        android:id="@+id/resume_detail_loadingview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone" />
 
 </RelativeLayout>

@@ -167,6 +167,8 @@ dependencies {
 
     implementation 'com.github.getActivity:XXPermissions:13.2'
 
+    implementation 'org.jetbrains.kotlin:kotlin-reflect:1.5.30'
+
     implementation project(':pictureLibrary')
 
     implementation project(':filepickerLibrary')

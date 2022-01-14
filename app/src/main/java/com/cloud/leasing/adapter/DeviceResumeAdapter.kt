@@ -85,7 +85,12 @@ class DeviceResumeAdapter(val context: Context, var list: MutableList<DeviceResu
         }
         viewHoler.resume_item_look_tv?.let {
             it.setOnClickListener {
-                DeviceResumeDetailActivity.startActivity(context as Activity, list[position].id)
+                DeviceResumeDetailActivity.startActivity(
+                    context as Activity,
+                    list[position].id,
+                    list[position].deviceResumeStatus,
+                    list[position].deviceNo
+                )
             }
         }
         return view!!
