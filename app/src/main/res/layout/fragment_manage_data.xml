@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.cloud.leasing.widget.JFGSNestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:scrollbars="none"
+    tools:context=".module.device.resume.use.ManageDataFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingHorizontal="15dp"
+        android:paddingVertical="10dp">
+
+        <include layout="@layout/layout_resume_data_upload"/>
+
+    </LinearLayout>
+
+
+</com.cloud.leasing.widget.JFGSNestedScrollView>

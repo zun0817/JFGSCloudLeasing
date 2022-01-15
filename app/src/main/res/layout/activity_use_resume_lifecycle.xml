@@ -8,7 +8,7 @@
     tools:context=".module.device.resume.UseResumeLifecycleActivity">
 
     <LinearLayout
-        android:id="@+id/device_resume_ll"
+        android:id="@+id/use_resume_ll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
@@ -24,7 +24,7 @@
                 android:src="@mipmap/icon_device_mask" />
 
             <ImageView
-                android:id="@+id/device_resume_detail_back_img"
+                android:id="@+id/use_resume_back_img"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
@@ -36,7 +36,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="center_vertical"
-                android:text="设备履历"
+                android:text="管理履历"
                 android:textColor="@color/white"
                 android:textSize="18sp"
                 android:textStyle="bold" />
@@ -49,7 +49,7 @@
             android:background="@color/white">
 
             <com.google.android.material.tabs.TabLayout
-                android:id="@+id/device_resume_tablayout"
+                android:id="@+id/use_resume_tablayout"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 app:tabBackground="@color/white"
@@ -88,25 +88,12 @@
 
     </LinearLayout>
 
-
-    <com.cloud.leasing.widget.JFGSNestedScrollView
-        android:id="@+id/device_detail_scrollview"
+    <FrameLayout
+        android:id="@+id/use_resume_frame"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/device_resume_ll"
-        android:scrollbars="none">
+        android:layout_below="@id/use_resume_ll">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:paddingHorizontal="15dp"
-            android:paddingVertical="10dp">
-
-            <include layout="@layout/layout_resume_data_upload"/>
-
-        </LinearLayout>
-
-    </com.cloud.leasing.widget.JFGSNestedScrollView>
+    </FrameLayout>
 
 </RelativeLayout>

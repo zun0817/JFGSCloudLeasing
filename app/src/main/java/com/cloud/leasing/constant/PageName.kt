@@ -35,6 +35,16 @@ import androidx.annotation.StringDef
     PageName.SEARCH_REQUIRE,
     PageName.DEVICE_RESUME_DETAIL,
     PageName.USE_RESUME,
+    PageName.STORE_RESUME,
+    PageName.REPAIR_RESUME,
+    PageName.MANAGE_DATA,
+    PageName.PRODUCT_DAILY,
+    PageName.FAULT_LEDGER,
+    PageName.MAINTENANCE,
+    PageName.STORE_DATA,
+    PageName.DAILY_CHECK,
+    PageName.FAULT_DATA,
+    PageName.FAULT_DAILY,
 
     PageName.ACGN,
     PageName.SMALL_VIDEO,
@@ -78,6 +88,16 @@ annotation class PageName {
         const val SEARCH_REQUIRE = "search_require"
         const val DEVICE_RESUME_DETAIL = "device_resume_detail"
         const val USE_RESUME = "use_resume"
+        const val STORE_RESUME = "use_resume"
+        const val REPAIR_RESUME = "use_resume"
+        const val MANAGE_DATA = "manage_data"
+        const val PRODUCT_DAILY = "product_daily"
+        const val FAULT_LEDGER = "fault_ledger"
+        const val MAINTENANCE = "maintenance"
+        const val STORE_DATA = "store_data"
+        const val DAILY_CHECK = "daily_check"
+        const val FAULT_DATA = "fault_data"
+        const val FAULT_DAILY = "fault_daily"
 
         const val ACGN = "acgn"
         const val SMALL_VIDEO = "small_video"
