@@ -70,6 +70,18 @@ object Constant {
 
     const val PATH_DEVICE_RESUME_DETAIL = "/api/v1/deviceResume/app/resumeDetails"
 
+    const val PATH_RESUME_PRODUCT_DAILY = "/api/v1/produceDaily/app/list"
+
+    const val PATH_RESUME_FAULT_LEDGER = "/api/v1/produceDailyFault/app/list"
+
+    const val PATH_RESUME_MAINTENANCE = "/api/v1/usedMaintenance/app/list"
+
+    const val PATH_FAULT_DAILY = "/api/v1/repairMaintenance/app/list"
+
+    const val PATH_STORE_DAILY = "/api/v1/depositMaintenance/app/list"
+
+    const val PATH_ADD_PRODUCT_DAILY = "/api/v1/produceDaily/app/save"
+
 
     /** 本地存储 */
 

@@ -143,4 +143,24 @@ object NetworkApi : BaseNetworkApi<INetworkService>(Constant.BASE_URL) {
         service.requestOfResumeDetail(resumeId)
     }
 
+    suspend fun requestOfResumeProductDaily(resumeId: Int) = getResult {
+        service.requestOfResumeProductDaily(resumeId)
+    }
+
+    suspend fun requestOfResumeFaultLedger(resumeId: Int) = getResult {
+        service.requestOfResumeFaultLedger(resumeId)
+    }
+
+    suspend fun requestOfResumeMaintenance(resumeId: Int) = getResult {
+        service.requestOfResumeMaintenance(resumeId)
+    }
+
+    suspend fun requestOfResumeFaultDaily(resumeId: Int) = getResult {
+        service.requestOfResumeFaultDaily(resumeId)
+    }
+
+    suspend fun requestOfResumeStoreDaily(resumeId: Int) = getResult {
+        service.requestOfResumeStoreDaily(resumeId)
+    }
+
 }

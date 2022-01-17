@@ -1,14 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/color_F2F4F6"
     tools:context=".module.device.resume.use.ProductDailyFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ListView
+        android:id="@+id/product_daily_listview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:scrollbars="none"
+        android:dividerHeight="10dp"
+        android:divider="@color/color_F2F4F6"
+        android:padding="15dp"
+        android:layout_above="@id/product_daily_fl"/>
 
-</FrameLayout>
+    <com.cloud.leasing.widget.ErrorView
+        android:id="@+id/product_daily_errorview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone"/>
+
+    <FrameLayout
+        android:id="@+id/product_daily_fl"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/white"
+        android:layout_alignParentBottom="true">
+
+        <TextView
+            android:id="@+id/product_daily_add_btn"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="新增生产日报"
+            android:textSize="15sp"
+            android:textColor="@color/white"
+            android:background="@drawable/shape_login_0e64bc"
+            android:layout_marginHorizontal="15dp" />
+
+    </FrameLayout>
+
+</RelativeLayout>

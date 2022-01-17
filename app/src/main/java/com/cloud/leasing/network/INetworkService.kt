@@ -107,6 +107,25 @@ interface INetworkService {
     @GET(Constant.PATH_DEVICE_RESUME_DETAIL)
     suspend fun requestOfResumeDetail(@Query("resumeId") resumeId: Int): BaseResponse<ResumeDetailBean>
 
+    @GET(Constant.PATH_RESUME_PRODUCT_DAILY)
+    suspend fun requestOfResumeProductDaily(@Query("resumeId") resumeId: Int): BaseResponse<ProductDailyBean>
+
+    @GET(Constant.PATH_RESUME_FAULT_LEDGER)
+    suspend fun requestOfResumeFaultLedger(@Query("resumeId") resumeId: Int): BaseResponse<FaultLedgerBean>
+
+    @GET(Constant.PATH_RESUME_MAINTENANCE)
+    suspend fun requestOfResumeMaintenance(@Query("resumeId") resumeId: Int): BaseResponse<MaintenanceBean>
+
+    @GET(Constant.PATH_FAULT_DAILY)
+    suspend fun requestOfResumeFaultDaily(@Query("resumeId") resumeId: Int): BaseResponse<RepairDailyBean>
+
+    @GET(Constant.PATH_STORE_DAILY)
+    suspend fun requestOfResumeStoreDaily(@Query("resumeId") resumeId: Int): BaseResponse<StoreDailyBean>
+
+    @FormUrlEncoded
+    @POST(Constant.PATH_ADD_PRODUCT_DAILY)
+    suspend fun requestOfAddProductDaily(@FieldMap param: MutableMap<String, Any>): BaseResponse<String>
+
     @Multipart
     @POST(Constant.PATH_FILE_UPLOAD)
     suspend fun requestOfUploadFile(

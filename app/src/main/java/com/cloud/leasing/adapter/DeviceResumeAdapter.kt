@@ -10,11 +10,9 @@ import android.widget.BaseAdapter
 import android.widget.TextView
 import com.cloud.leasing.R
 import com.cloud.leasing.bean.DeviceResumeBean
-import com.cloud.leasing.bean.MineRequire
-import com.cloud.leasing.bean.Search
-import com.cloud.leasing.callback.OnItemChildrenListener
-import com.cloud.leasing.module.device.resume.DeviceResumeDetailActivity
-import com.cloud.leasing.module.home.detail.RequireDetailActivity
+import com.cloud.leasing.module.device.resume.RepairResumeLifecycleActivity
+import com.cloud.leasing.module.device.resume.StoreResumeLifecycleActivity
+import com.cloud.leasing.module.device.resume.UseResumeLifecycleActivity
 
 class DeviceResumeAdapter(val context: Context, var list: MutableList<DeviceResumeBean>) :
     BaseAdapter() {
@@ -85,12 +83,24 @@ class DeviceResumeAdapter(val context: Context, var list: MutableList<DeviceResu
         }
         viewHoler.resume_item_look_tv?.let {
             it.setOnClickListener {
-                DeviceResumeDetailActivity.startActivity(
-                    context as Activity,
-                    list[position].id,
-                    list[position].deviceResumeStatus,
-                    list[position].deviceNo
-                )
+                when (list[position].deviceResumeStatus) {
+                    "1" -> {
+                        StoreResumeLifecycleActivity.startActivity(
+                            context as Activity,
+                            list[position].id
+                        )
+                    }
+                    "2" -> UseResumeLifecycleActivity.startActivity(
+                        context as Activity,
+                        list[position].id
+                    )
+                    "3" -> {
+                        RepairResumeLifecycleActivity.startActivity(
+                            context as Activity,
+                            list[position].id
+                        )
+                    }
+                }
             }
         }
         return view!!

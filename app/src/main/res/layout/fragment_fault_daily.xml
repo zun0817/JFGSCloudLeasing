@@ -3,12 +3,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/color_F2F4F6"
     tools:context=".module.device.resume.repair.FaultDailyFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ListView
+        android:id="@+id/fault_daily_listview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:scrollbars="none"
+        android:dividerHeight="10dp"
+        android:divider="@color/color_F2F4F6"
+        android:padding="15dp"/>
+
+    <com.cloud.leasing.widget.ErrorView
+        android:id="@+id/fault_daily_errorview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone"/>
 
 </FrameLayout>

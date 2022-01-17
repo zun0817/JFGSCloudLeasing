@@ -63,6 +63,7 @@ class UseResumeLifecycleActivity :
     }
 
     private fun initFragment() {
+        val resumeId= intent.getIntExtra("resumeId", 0)
         manageDataFragment = ManageDataFragment.newInstance()
         productDailyFragment = ProductDailyFragment.newInstance()
         faultLedgerFragment = FaultLedgerFragment.newInstance()
@@ -81,6 +82,12 @@ class UseResumeLifecycleActivity :
             .commitAllowingStateLoss()
         supportFragmentManager.beginTransaction().hide(maintenanceFragment)
             .commitAllowingStateLoss()
+
+        val bundle = Bundle()
+        bundle.putInt("resumeId", resumeId)
+        productDailyFragment.arguments = bundle
+        faultLedgerFragment.arguments = bundle
+        maintenanceFragment.arguments = bundle
     }
 
     override fun onClick(v: View?) {
@@ -124,10 +131,10 @@ class UseResumeLifecycleActivity :
     }
 
     override fun onTabUnselected(tab: TabLayout.Tab) {
-        TODO("Not yet implemented")
+
     }
 
     override fun onTabReselected(tab: TabLayout.Tab) {
-        TODO("Not yet implemented")
+
     }
 }
