@@ -33,10 +33,14 @@ class ProductDailyFragment :
 
     private fun initView() {
         resumeId = requireArguments().getInt("resumeId")
-        viewModel.requestOfResumeProductDaily(resumeId)
         viewBinding.productDailyAddBtn.setOnClickListener(this)
         productDailyAdapter = ProductDailyAdapter(requireActivity(), list)
         viewBinding.productDailyListview.adapter = productDailyAdapter
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.requestOfResumeProductDaily(resumeId)
     }
 
     private fun viewModelObserve() {
@@ -67,7 +71,7 @@ class ProductDailyFragment :
 
     override fun onClick(v: View?) {
         when(v!!.id){
-            R.id.product_daily_add_btn -> {}
+            R.id.product_daily_add_btn -> AddProductDailyActivity.startActivity(requireActivity(), resumeId)
         }
     }
 }

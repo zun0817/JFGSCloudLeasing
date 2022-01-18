@@ -4,6 +4,7 @@ import com.cloud.leasing.constant.Constant
 import com.cloud.leasing.network.base.BaseNetworkApi
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
+import retrofit2.http.Body
 
 /**
  * 网络请求具体实现
@@ -161,6 +162,10 @@ object NetworkApi : BaseNetworkApi<INetworkService>(Constant.BASE_URL) {
 
     suspend fun requestOfResumeStoreDaily(resumeId: Int) = getResult {
         service.requestOfResumeStoreDaily(resumeId)
+    }
+
+    suspend fun requestOfAddProductDaily(requestBody: RequestBody) = getResult {
+        service.requestOfAddProductDaily(requestBody)
     }
 
 }

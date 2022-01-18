@@ -122,9 +122,8 @@ interface INetworkService {
     @GET(Constant.PATH_STORE_DAILY)
     suspend fun requestOfResumeStoreDaily(@Query("resumeId") resumeId: Int): BaseResponse<StoreDailyBean>
 
-    @FormUrlEncoded
     @POST(Constant.PATH_ADD_PRODUCT_DAILY)
-    suspend fun requestOfAddProductDaily(@FieldMap param: MutableMap<String, Any>): BaseResponse<String>
+    suspend fun requestOfAddProductDaily(@Body requestBody: RequestBody): BaseResponse<String>
 
     @Multipart
     @POST(Constant.PATH_FILE_UPLOAD)

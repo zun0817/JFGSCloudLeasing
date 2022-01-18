@@ -41,7 +41,7 @@
 
     <TextView
         android:id="@+id/product_daily_item_length_tv"
-        android:layout_width="75dp"
+        android:layout_width="65dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:text="500000.0"
@@ -88,7 +88,7 @@
 
     <TextView
         android:id="@+id/product_daily_item_rings_tv"
-        android:layout_width="75dp"
+        android:layout_width="65dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:text="10"

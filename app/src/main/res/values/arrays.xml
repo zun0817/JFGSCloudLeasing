@@ -12,4 +12,12 @@
         <item>存放</item>
     </string-array>
 
+    <string-array name="drivingtype">
+        <item>土压</item>
+        <item>泥水</item>
+        <item>TBM</item>
+        <item>顶管</item>
+        <item>竖井</item>
+    </string-array>
+
 </resources>

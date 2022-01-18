@@ -26,21 +26,21 @@
     <FrameLayout
         android:id="@+id/product_daily_fl"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@color/white"
-        android:layout_alignParentBottom="true">
+        android:layout_height="65dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white">
 
         <TextView
             android:id="@+id/product_daily_add_btn"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="50dp"
             android:layout_gravity="center"
+            android:layout_marginHorizontal="15dp"
+            android:background="@drawable/shape_login_0e64bc"
             android:gravity="center"
             android:text="新增生产日报"
-            android:textSize="15sp"
             android:textColor="@color/white"
-            android:background="@drawable/shape_login_0e64bc"
-            android:layout_marginHorizontal="15dp" />
+            android:textSize="15sp" />
 
     </FrameLayout>
 
