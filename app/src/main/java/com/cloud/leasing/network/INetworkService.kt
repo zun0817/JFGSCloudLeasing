@@ -125,6 +125,15 @@ interface INetworkService {
     @POST(Constant.PATH_ADD_PRODUCT_DAILY)
     suspend fun requestOfAddProductDaily(@Body requestBody: RequestBody): BaseResponse<String>
 
+    @GET(Constant.PATH_MANAGE_DATA)
+    suspend fun requestOfManageData(@Query("resumeId") resumeId: Int): BaseResponse<MutableList<ManageDataBean>>
+
+    @GET(Constant.PATH_MANAGE_FILE)
+    suspend fun requestOfManageFile(@Query("manageId") manageId: Int): BaseResponse<MutableList<ManageFileBean>>
+
+    @POST(Constant.PATH_FAULT_ADD)
+    suspend fun requestOfAddFaultDaily(@Body requestBody: RequestBody): BaseResponse<String>
+
     @Multipart
     @POST(Constant.PATH_FILE_UPLOAD)
     suspend fun requestOfUploadFile(

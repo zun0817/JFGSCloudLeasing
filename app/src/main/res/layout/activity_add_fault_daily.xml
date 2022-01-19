@@ -4,10 +4,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/color_F2F4F6"
-    tools:context=".module.device.resume.use.AddFaultActivity">
+    tools:context=".module.device.resume.repair.AddFaultDailyActivity">
 
     <FrameLayout
-        android:id="@+id/add_fault_title_frame"
+        android:id="@+id/add_fault_title_fl"
         android:layout_width="match_parent"
         android:layout_height="50dp">
 
@@ -30,7 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center_vertical"
-            android:text="新增故障信息"
+            android:text="新增维修日报"
             android:textColor="@color/white"
             android:textSize="18sp"
             android:textStyle="bold" />
@@ -38,7 +38,7 @@
     </FrameLayout>
 
     <FrameLayout
-        android:id="@+id/add_fault_save_frame"
+        android:id="@+id/add_fault_add_fl"
         android:layout_width="match_parent"
         android:layout_height="65dp"
         android:layout_alignParentBottom="true"
@@ -59,11 +59,11 @@
     </FrameLayout>
 
     <com.cloud.leasing.widget.JFGSNestedScrollView
+        android:id="@+id/add_fault_scrollview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/add_fault_title_frame"
-        android:layout_above="@id/add_fault_save_frame"
-        android:scrollbars="none">
+        android:layout_above="@id/add_fault_add_fl"
+        android:layout_below="@id/add_fault_title_fl">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -71,19 +71,26 @@
             android:orientation="vertical">
 
             <include
-                android:id="@+id/layout_add_fault_info"
-                layout="@layout/layout_add_fault_info"
+                android:id="@+id/layout_repair_daily_info"
+                layout="@layout/layout_repair_daily_info"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
             <include
-                android:id="@+id/layout_add_fault_upload"
-                layout="@layout/layout_add_fault_upload"
+                android:id="@+id/layout_repair_daily_upload"
+                layout="@layout/layout_repair_daily_upload"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
         </LinearLayout>
 
     </com.cloud.leasing.widget.JFGSNestedScrollView>
+
+    <com.cloud.leasing.widget.LoadingView
+        android:id="@+id/add_fault_loadingview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone" />
 
 </RelativeLayout>

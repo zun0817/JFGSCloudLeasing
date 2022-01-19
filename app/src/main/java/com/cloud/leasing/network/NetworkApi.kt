@@ -168,4 +168,16 @@ object NetworkApi : BaseNetworkApi<INetworkService>(Constant.BASE_URL) {
         service.requestOfAddProductDaily(requestBody)
     }
 
+    suspend fun requestOfManageData(resumeId: Int) = getResult {
+        service.requestOfManageData(resumeId)
+    }
+
+    suspend fun requestOfManageFile(manageId: Int) = getResult {
+        service.requestOfManageFile(manageId)
+    }
+
+    suspend fun requestOfAddFaultDaily(requestBody: RequestBody) = getResult {
+        service.requestOfAddFaultDaily(requestBody)
+    }
+
 }

@@ -3,6 +3,7 @@ package com.cloud.leasing.module.device.resume.repair
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
+import com.cloud.leasing.R
 import com.cloud.leasing.adapter.FaultDailyAdapter
 import com.cloud.leasing.base.BaseFragment
 import com.cloud.leasing.bean.RepairDaily
@@ -11,7 +12,7 @@ import com.cloud.leasing.databinding.FragmentFaultDailyBinding
 import com.cloud.leasing.util.toast
 
 class FaultDailyFragment :
-    BaseFragment<FragmentFaultDailyBinding>(FragmentFaultDailyBinding::inflate) {
+    BaseFragment<FragmentFaultDailyBinding>(FragmentFaultDailyBinding::inflate), View.OnClickListener {
 
     private var resumeId = 0
 
@@ -30,11 +31,18 @@ class FaultDailyFragment :
     }
 
     private fun initView() {
+        viewBinding.faultDailyAddBtn.setOnClickListener(this)
         resumeId = requireArguments().getInt("resumeId")
         viewModel.requestOfResumeFaultDaily(resumeId)
 
         faultDailyAdapter = FaultDailyAdapter(requireActivity(), list)
         viewBinding.faultDailyListview.adapter = faultDailyAdapter
+    }
+
+    override fun onClick(v: View?) {
+        when(v!!.id){
+            R.id.fault_daily_add_btn  -> AddFaultDailyActivity.startActivity(requireActivity(), resumeId)
+        }
     }
 
     private fun viewModelObserve() {
@@ -62,4 +70,5 @@ class FaultDailyFragment :
     companion object {
         fun newInstance() = FaultDailyFragment()
     }
+
 }

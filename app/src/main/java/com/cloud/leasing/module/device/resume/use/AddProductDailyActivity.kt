@@ -11,10 +11,13 @@ import android.widget.LinearLayout
 import android.widget.RadioGroup
 import android.widget.TextView
 import androidx.activity.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.cloud.dialoglibrary.BaseDialog
 import com.cloud.leasing.R
+import com.cloud.leasing.adapter.AddFaultAdapter
 import com.cloud.leasing.base.BaseActivity
 import com.cloud.leasing.bean.ProductDailyFaultBean
+import com.cloud.leasing.bean.exception.NetworkException
 import com.cloud.leasing.constant.PageName
 import com.cloud.leasing.databinding.ActivityAddProductDailyBinding
 import com.cloud.leasing.util.ViewTouchUtil
@@ -51,6 +54,8 @@ class AddProductDailyActivity :
 
     private lateinit var timePickerView: TimePickerView
 
+    private lateinit var addFaultAdapter: AddFaultAdapter
+
     private var faultlist = mutableListOf<ProductDailyFaultBean>()
 
     private val viewModel: AddProductDailyViewModel by viewModels()
@@ -72,7 +77,7 @@ class AddProductDailyActivity :
             R.id.add_daily_paramtype_cl -> dialog.show()
             R.id.add_daily_creattime_cl -> timePickerView.show()
             R.id.add_daily_save_btn -> requestOfAddProductDaily()
-            R.id.add_daily_fault_fl -> AddFaultActivity.startActivityForResult(this)
+            R.id.add_daily_fault_fl -> AddFaultActivity.startActivityForResult(this, resumeId)
         }
     }
 
@@ -81,7 +86,12 @@ class AddProductDailyActivity :
             addDailyLiveData.observe(this@AddProductDailyActivity, { it ->
                 viewBinding.addDailyLoadingview.visibility = View.GONE
                 it.onFailure {
-                    it.toString().toast(this@AddProductDailyActivity)
+                    if ((it as NetworkException).code == 200) {
+                        "添加日报成功".toast(this@AddProductDailyActivity)
+                        this@AddProductDailyActivity.finish()
+                    } else {
+                        it.toString().toast(this@AddProductDailyActivity)
+                    }
                 }.onSuccess {
                     "添加日报成功".toast(this@AddProductDailyActivity)
                     this@AddProductDailyActivity.finish()
@@ -113,6 +123,7 @@ class AddProductDailyActivity :
             data?.let {
                 val bean = it.getSerializableExtra("bean") as ProductDailyFaultBean
                 faultlist.add(bean)
+                addFaultAdapter.notifyDataSetChanged()
             }
         }
     }
@@ -199,6 +210,12 @@ class AddProductDailyActivity :
         ViewTouchUtil.expandViewTouchDelegate(viewBinding.addDailyBackImg)
         ViewTouchUtil.expandViewTouchDelegate(viewBinding.layoutAddDailyInfo.addDailyCreattimeCl)
         ViewTouchUtil.expandViewTouchDelegate(viewBinding.layoutAddDailyInfo.addDailyParamtypeCl)
+        val linearLayoutManager = LinearLayoutManager(this)
+        linearLayoutManager.isAutoMeasureEnabled = true
+        viewBinding.layoutAddDailyFault.addDailyRv.layoutManager = linearLayoutManager
+        addFaultAdapter = AddFaultAdapter(this, faultlist)
+        viewBinding.layoutAddDailyFault.addDailyRv.adapter = addFaultAdapter
+
     }
 
     private fun initSystemBar() {

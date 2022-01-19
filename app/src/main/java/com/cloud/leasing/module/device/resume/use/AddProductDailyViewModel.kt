@@ -20,7 +20,7 @@ class AddProductDailyViewModel : BaseViewModel() {
 
     fun requestOfAddProductDaily(
         resumeId: Int,
-        enterTime: String?,
+        dateTime: String?,
         tunneMeters: String?,
         currentGeology: String?,
         progressRatio: String?,
@@ -39,7 +39,7 @@ class AddProductDailyViewModel : BaseViewModel() {
         viewModelScope.launch {
             val param = getAddDailyParam(
                 resumeId,
-                enterTime,
+                dateTime,
                 tunneMeters,
                 currentGeology,
                 progressRatio,
@@ -62,7 +62,7 @@ class AddProductDailyViewModel : BaseViewModel() {
 
     private fun getAddDailyParam(
         resumeId: Int,
-        enterTime: String?,
+        dateTime: String?,
         tunneMeters: String?,
         currentGeology: String?,
         progressRatio: String?,
@@ -80,7 +80,7 @@ class AddProductDailyViewModel : BaseViewModel() {
     ): RequestBody {
         val map = mutableMapOf<String, Any?>()
         map["resumeId"] = resumeId
-        map["enterTime"] = enterTime
+        map["dateTime"] = dateTime
         map["tunneMeters"] = tunneMeters
         map["currentGeology"] = currentGeology
         map["progressRatio"] = progressRatio
