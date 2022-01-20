@@ -88,6 +88,8 @@ object Constant {
 
     const val PATH_FAULT_ADD = "/api/v1/repairMaintenance/app/save"
 
+    const val PATH_STORE_CHECK = "/api/v1/depositCheckItem/app/list"
+
 
     /** 本地存储 */
 

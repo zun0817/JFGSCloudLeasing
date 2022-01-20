@@ -3,11 +3,9 @@ package com.cloud.leasing.module.device.resume.use
 import androidx.lifecycle.viewModelScope
 import com.cloud.leasing.base.BaseViewModel
 import com.cloud.leasing.bean.CompanyFileBean
-import com.cloud.leasing.constant.Constant
 import com.cloud.leasing.constant.PageName
 import com.cloud.leasing.eventbus.core.MutableLiveData
 import com.cloud.leasing.network.NetworkApi
-import com.cloud.leasing.persistence.XKeyValue
 import kotlinx.coroutines.launch
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
@@ -19,8 +17,6 @@ import java.io.File
 class AddFaultViewModel : BaseViewModel() {
 
     val fileLiveData = MutableLiveData<Result<CompanyFileBean>>()
-
-    val deviceLiveData = MutableLiveData<Result<CompanyFileBean>>()
 
     val deleteFileLiveData = MutableLiveData<Result<String>>()
 

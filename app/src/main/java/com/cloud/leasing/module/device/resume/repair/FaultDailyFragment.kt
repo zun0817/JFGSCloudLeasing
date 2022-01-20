@@ -33,10 +33,14 @@ class FaultDailyFragment :
     private fun initView() {
         viewBinding.faultDailyAddBtn.setOnClickListener(this)
         resumeId = requireArguments().getInt("resumeId")
-        viewModel.requestOfResumeFaultDaily(resumeId)
 
         faultDailyAdapter = FaultDailyAdapter(requireActivity(), list)
         viewBinding.faultDailyListview.adapter = faultDailyAdapter
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.requestOfResumeFaultDaily(resumeId)
     }
 
     override fun onClick(v: View?) {

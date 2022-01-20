@@ -134,6 +134,9 @@ interface INetworkService {
     @POST(Constant.PATH_FAULT_ADD)
     suspend fun requestOfAddFaultDaily(@Body requestBody: RequestBody): BaseResponse<String>
 
+    @GET(Constant.PATH_STORE_CHECK)
+    suspend fun requestOfStoreCheck(@Query("resumeId") resumeId: Int): BaseResponse<MutableList<CheckDailyItemBean>>
+
     @Multipart
     @POST(Constant.PATH_FILE_UPLOAD)
     suspend fun requestOfUploadFile(

@@ -3,6 +3,7 @@ package com.cloud.leasing.module.device.resume.store
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
+import com.cloud.leasing.R
 import com.cloud.leasing.adapter.DailyCheckAdapter
 import com.cloud.leasing.base.BaseFragment
 import com.cloud.leasing.bean.RepairDaily
@@ -12,7 +13,7 @@ import com.cloud.leasing.databinding.FragmentDailyCheckBinding
 import com.cloud.leasing.util.toast
 
 class DailyCheckFragment :
-    BaseFragment<FragmentDailyCheckBinding>(FragmentDailyCheckBinding::inflate) {
+    BaseFragment<FragmentDailyCheckBinding>(FragmentDailyCheckBinding::inflate), View.OnClickListener {
 
     private var resumeId = 0
 
@@ -31,11 +32,21 @@ class DailyCheckFragment :
     }
 
     private fun initView(){
+        viewBinding.dailyCheckAddBtn.setOnClickListener(this)
         resumeId = requireArguments().getInt("resumeId")
-        viewModel.requestOfResumeStoreDaily(resumeId)
-
         dailyCheckAdapter = DailyCheckAdapter(requireActivity(), list)
         viewBinding.dailyCheckListview.adapter = dailyCheckAdapter
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.requestOfResumeStoreDaily(resumeId)
+    }
+
+    override fun onClick(v: View?) {
+        when(v!!.id){
+            R.id.daily_check_add_btn -> AddCheckDailyActivity.startActivity(requireActivity(), resumeId)
+        }
     }
 
     private fun viewModelObserve() {
@@ -63,4 +74,5 @@ class DailyCheckFragment :
     companion object {
         fun newInstance() = DailyCheckFragment()
     }
+
 }

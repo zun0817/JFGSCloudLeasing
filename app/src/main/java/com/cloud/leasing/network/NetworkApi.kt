@@ -180,4 +180,8 @@ object NetworkApi : BaseNetworkApi<INetworkService>(Constant.BASE_URL) {
         service.requestOfAddFaultDaily(requestBody)
     }
 
+    suspend fun requestOfStoreCheck(resumeId: Int) = getResult {
+        service.requestOfStoreCheck(resumeId)
+    }
+
 }
