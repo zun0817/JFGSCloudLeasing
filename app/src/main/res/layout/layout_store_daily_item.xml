@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="15dp"
@@ -11,94 +10,31 @@
     android:paddingVertical="13dp">
 
     <TextView
-        android:id="@+id/fault_ledger_item_creattime_tv"
+        android:id="@+id/store_daily_item_name_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="录入时间"
-        android:textColor="@color/color_999999"
-        android:textSize="14sp"
-        android:textStyle="bold"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:text="检查项"
+        android:textColor="@color/color_17191C"
+        android:textSize="15sp"
+        android:textStyle="bold" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="12dp"
-        android:background="@color/color_14707070"/>
-
-    <LinearLayout
-        android:layout_width="match_parent"
+    <ImageView
+        android:id="@+id/store_daily_item_img"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
+        android:src="@mipmap/icon_arrow_gray"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"/>
 
-        <TextView
-            android:layout_width="75dp"
-            android:layout_height="wrap_content"
-            android:text="环&#8195;&#8195;数"
-            android:textColor="@color/color_999999"
-            android:textSize="13sp" />
-
-        <TextView
-            android:id="@+id/fault_ledger_item_ring_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:text="5"
-            android:textColor="@color/color_010F1D"
-            android:textSize="14sp" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/store_daily_item_status_tv"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal">
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="13dp"
+        android:layout_toStartOf="@id/store_daily_item_img"
+        android:text=""
+        android:textColor="@color/color_17191C"
+        android:textSize="13sp" />
 
-        <TextView
-            android:layout_width="75dp"
-            android:layout_height="wrap_content"
-            android:text="故障部位"
-            android:textColor="@color/color_999999"
-            android:textSize="13sp" />
-
-        <TextView
-            android:id="@+id/fault_ledger_item_site_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:text="故障部位"
-            android:textColor="@color/color_010F1D"
-            android:textSize="14sp" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="75dp"
-            android:layout_height="wrap_content"
-            android:text="故障描述"
-            android:textColor="@color/color_999999"
-            android:textSize="13sp" />
-
-        <TextView
-            android:id="@+id/fault_ledger_item_desc_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:text="故障描述"
-            android:textColor="@color/color_010F1D"
-            android:textSize="14sp" />
-
-    </LinearLayout>
-
-
-</LinearLayout>
+</RelativeLayout>

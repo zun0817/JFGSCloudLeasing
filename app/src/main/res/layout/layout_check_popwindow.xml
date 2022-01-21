@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/transparent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="15dp"
+        android:background="@drawable/layout_rounded_white">
+
+        <FrameLayout
+            android:id="@+id/check_popwindow_frame"
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+
+            <TextView
+                android:id="@+id/popwindow_title_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="检查项"
+                android:textColor="@color/color_262626"
+                android:textSize="17dp"
+                android:textStyle="bold" />
+
+            <FrameLayout
+                android:id="@+id/check_popwindow_sure_fl"
+                android:layout_width="60dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="end|center_vertical">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:src="@mipmap/icon_sure" />
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/check_popwindow_close_fl"
+                android:layout_width="60dp"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:src="@mipmap/icon_close" />
+
+            </FrameLayout>
+
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingHorizontal="20dp">
+
+            <TextView
+                android:layout_width="82dp"
+                android:layout_height="wrap_content"
+                android:text="是否异常"
+                android:textColor="@color/color_17191C"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:drawableEnd="@mipmap/icon_required"/>
+
+            <RadioGroup
+                android:id="@+id/check_rg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/check_yes_rb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="25dp"
+                    android:button="@null"
+                    android:drawableStart="@drawable/selector_checkbox"
+                    android:drawablePadding="8dp"
+                    android:text="是"
+                    android:textColor="@color/color_262626"
+                    android:textSize="15sp" />
+
+                <RadioButton
+                    android:id="@+id/check_no_rb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="25dp"
+                    android:button="@null"
+                    android:checked="true"
+                    android:drawableStart="@drawable/selector_checkbox"
+                    android:drawablePadding="8dp"
+                    android:text="否"
+                    android:textColor="@color/color_262626"
+                    android:textSize="15sp" />
+
+            </RadioGroup>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingHorizontal="20dp">
+
+            <TextView
+                android:layout_width="82dp"
+                android:layout_height="wrap_content"
+                android:text="异常描述"
+                android:textColor="@color/color_17191C"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:layout_gravity="center_vertical"
+                app:drawableEndCompat="@mipmap/icon_required" />
+
+            <EditText
+                android:id="@+id/check_desc_et"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="@drawable/shape_view_f2f4f6"
+                android:gravity="top"
+                android:hint="请输入异常描述..."
+                android:imeOptions="actionDone"
+                android:inputType="textMultiLine"
+                android:padding="10dp"
+                android:textColor="@color/color_262626"
+                android:textColorHint="@color/color_BFBFBF"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingHorizontal="20dp"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:layout_width="82dp"
+                android:layout_height="wrap_content"
+                android:text="备&#8195;&#8195;注"
+                android:textColor="@color/color_17191C"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:layout_gravity="center_vertical"/>
+
+            <EditText
+                android:id="@+id/check_remark_et"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="@drawable/shape_view_f2f4f6"
+                android:gravity="top"
+                android:hint="请输入备注..."
+                android:imeOptions="actionDone"
+                android:inputType="textMultiLine"
+                android:padding="10dp"
+                android:textColor="@color/color_262626"
+                android:textColorHint="@color/color_BFBFBF"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

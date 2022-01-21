@@ -158,12 +158,9 @@ public class BaseDialog extends Dialog {
 
     public void close() {
         if (!((Activity) mContext).isFinishing()) {
-            ((Activity) mContext).runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    if (isShowing()) {
-                        dismiss();
-                    }
+            ((Activity) mContext).runOnUiThread(() -> {
+                if (isShowing()) {
+                    dismiss();
                 }
             });
         }

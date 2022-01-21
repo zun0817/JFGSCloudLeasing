@@ -9,5 +9,8 @@ data class CheckDailyItemBean(
     val pageNo: Any,
     val pageSize: Any,
     val resumeId: Int,
-    val sort: Int
+    val sort: Int,
+    var deviceStatus: Int,
+    var coordinateMatter: String?,
+    var exceptionDetails: String?
 ) : Serializable
