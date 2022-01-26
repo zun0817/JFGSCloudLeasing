@@ -1,6 +1,7 @@
 package com.cloud.leasing.adapter
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +10,7 @@ import android.widget.BaseAdapter
 import android.widget.TextView
 import com.cloud.leasing.R
 import com.cloud.leasing.bean.HomeRequireBean
+import com.cloud.leasing.module.home.detail.RequireDetailActivity
 
 class MoreRequireAdapter(val context: Context, var list: MutableList<HomeRequireBean>) :
     BaseAdapter() {
@@ -53,7 +55,7 @@ class MoreRequireAdapter(val context: Context, var list: MutableList<HomeRequire
         viewHoler.require_item_time_tv!!.text = list[position].usageTime
         viewHoler.require_item_look_tv?.let {
             it.setOnClickListener {
-
+                RequireDetailActivity.startActivity(context as Activity, list[position].id)
             }
         }
         return view!!

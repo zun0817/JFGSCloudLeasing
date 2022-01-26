@@ -144,7 +144,7 @@
             android:id="@+id/login_protocol_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="《用户服务协议》"
+            android:text="《用户隐私协议》"
             android:textColor="@color/color_0E64BC"
             android:textSize="14sp" />
 

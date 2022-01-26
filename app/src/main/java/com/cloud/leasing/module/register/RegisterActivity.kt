@@ -14,6 +14,7 @@ import com.cloud.leasing.base.BaseActivity
 import com.cloud.leasing.bean.exception.NetworkException
 import com.cloud.leasing.constant.PageName
 import com.cloud.leasing.databinding.ActivityRegisterBinding
+import com.cloud.leasing.module.login.PolicyActivity
 import com.cloud.leasing.util.CountDownTimerUtils
 import com.cloud.leasing.util.ViewTouchUtil
 import com.cloud.leasing.util.isMobilPhone
@@ -160,7 +161,7 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>(ActivityRegisterB
                 viewModel.requestOfSmsCode(phone)
             }
             R.id.register_protocol_tv -> {
-
+                PolicyActivity.startActivity(this, 1)
             }
             R.id.register_btn -> {
                 if (password1 != password2) {

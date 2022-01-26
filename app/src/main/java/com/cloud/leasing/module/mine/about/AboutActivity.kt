@@ -8,7 +8,9 @@ import com.cloud.leasing.R
 import com.cloud.leasing.base.BaseActivity
 import com.cloud.leasing.constant.PageName
 import com.cloud.leasing.databinding.ActivityAboutBinding
+import com.cloud.leasing.module.login.PolicyActivity
 import com.cloud.leasing.util.ViewTouchUtil
+import com.cloud.leasing.util.toast
 import com.gyf.immersionbar.ktx.immersionBar
 
 class AboutActivity : BaseActivity<ActivityAboutBinding>(ActivityAboutBinding::inflate),
@@ -52,9 +54,9 @@ class AboutActivity : BaseActivity<ActivityAboutBinding>(ActivityAboutBinding::i
     override fun onClick(v: View?) {
         when(v!!.id){
             R.id.about_back_img -> this.finish()
-            R.id.about_law_cl -> {}
-            R.id.about_user_agreement_cl -> {}
-            R.id.about_update_version_cl -> {}
+            R.id.about_law_cl -> PolicyActivity.startActivity(this, 2)
+            R.id.about_user_agreement_cl -> PolicyActivity.startActivity(this, 1)
+            R.id.about_update_version_cl -> "已是最新版本".toast(this)
         }
     }
 

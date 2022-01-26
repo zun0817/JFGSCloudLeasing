@@ -7,6 +7,8 @@ import android.os.Bundle
 import android.view.View
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.viewModels
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.cloud.leasing.JFGSApplication
 import com.cloud.leasing.R
 import com.cloud.leasing.adapter.SimpleAdapter
@@ -15,6 +17,7 @@ import com.cloud.leasing.bean.BannerBean
 import com.cloud.leasing.bean.HomeDeviceBean
 import com.cloud.leasing.bean.HomeRequireBean
 import com.cloud.leasing.bean.exception.NetworkException
+import com.cloud.leasing.constant.Constant
 import com.cloud.leasing.constant.PageName
 import com.cloud.leasing.databinding.FragmentHomeBinding
 import com.cloud.leasing.module.home.detail.DeviceDetailActivity
@@ -110,7 +113,13 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
                                     viewBinding.layoutDeviceItemOne.deviceItemTypeTv.text =
                                         homeDeviceBean.deviceTypeName
                                     viewBinding.layoutDeviceItemOne.deviceItemDiameterTv.text =
-                                        "管片外径 " + homeDeviceBean.outerDiameter + "m"
+                                        "适用管片 " + homeDeviceBean.outerDiameter + "m"
+                                    Glide.with(requireActivity())
+                                        .load(Constant.BASE_FILE_URL + homeDeviceBean.deviceMainFileUrl)
+                                        .centerCrop()
+                                        .placeholder(R.mipmap.icon_launcher_round)
+                                        .diskCacheStrategy(DiskCacheStrategy.ALL)
+                                        .into(viewBinding.layoutDeviceItemOne.deviceItemImg)
                                     if (homeDeviceBean.focusStatus == 0) {
                                         val drawableLeft: Drawable =
                                             requireActivity().resources.getDrawable(
@@ -148,7 +157,13 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
                                     viewBinding.layoutDeviceItemTwo.deviceItemTypeTv.text =
                                         homeDeviceBean.deviceTypeName
                                     viewBinding.layoutDeviceItemTwo.deviceItemDiameterTv.text =
-                                        "管片外径 " + homeDeviceBean.outerDiameter + "m"
+                                        "适用管片 " + homeDeviceBean.outerDiameter + "m"
+                                    Glide.with(requireActivity())
+                                        .load(Constant.BASE_FILE_URL + homeDeviceBean.deviceMainFileUrl)
+                                        .centerCrop()
+                                        .placeholder(R.mipmap.icon_launcher_round)
+                                        .diskCacheStrategy(DiskCacheStrategy.ALL)
+                                        .into(viewBinding.layoutDeviceItemTwo.deviceItemImg)
                                     if (homeDeviceBean.focusStatus == 0) {
                                         val drawableLeft: Drawable =
                                             requireActivity().resources.getDrawable(

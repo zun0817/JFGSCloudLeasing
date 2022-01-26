@@ -128,7 +128,7 @@
 
     </LinearLayout>
 
-    <FrameLayout
+    <RelativeLayout
         android:id="@+id/mine_frame"
         android:layout_width="match_parent"
         android:layout_height="60dp"
@@ -142,8 +142,11 @@
             android:id="@+id/mine_auth_txt_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
             android:layout_marginStart="15dp"
+            android:layout_marginEnd="12dp"
+            android:layout_toLeftOf="@id/mine_auth_tv"
             android:text="您还没有企业认证"
             android:textColor="@color/color_fcff00"
             android:textSize="16sp"
@@ -153,7 +156,8 @@
             android:id="@+id/mine_auth_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical|end"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
             android:layout_marginEnd="15dp"
             android:background="@drawable/shape_btn_auth"
             android:paddingStart="15dp"
@@ -165,7 +169,7 @@
             android:textSize="13sp"
             android:textStyle="bold" />
 
-    </FrameLayout>
+    </RelativeLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/mine_modify_cl"

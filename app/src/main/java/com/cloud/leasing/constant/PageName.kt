@@ -49,6 +49,7 @@ import androidx.annotation.StringDef
     PageName.ADD_FAULT,
     PageName.ADD_FAULT_DAILY,
     PageName.STORE_CHECK_DAILY,
+    PageName.POLICY,
 
     PageName.ACGN,
     PageName.SMALL_VIDEO,
@@ -106,6 +107,7 @@ annotation class PageName {
         const val ADD_FAULT = "add_fault"
         const val ADD_FAULT_DAILY = "add_fault_daily"
         const val STORE_CHECK_DAILY = "store_check_daily"
+        const val POLICY = "policy"
 
         const val ACGN = "acgn"
         const val SMALL_VIDEO = "small_video"

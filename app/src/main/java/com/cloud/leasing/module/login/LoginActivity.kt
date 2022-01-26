@@ -227,7 +227,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::i
                 RegisterActivity.startActivity(this)
             }
             R.id.login_protocol_tv -> {  //用户协议
-
+                PolicyActivity.startActivity(this, 1)
             }
         }
     }

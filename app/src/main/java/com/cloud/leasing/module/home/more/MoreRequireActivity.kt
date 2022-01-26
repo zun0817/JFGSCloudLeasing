@@ -88,6 +88,6 @@ class MoreRequireActivity :
     }
 
     override fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-        RequireDetailActivity.startActivity(this, list[position].id)
+
     }
 }

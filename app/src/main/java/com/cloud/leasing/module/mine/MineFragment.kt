@@ -199,6 +199,7 @@ class MineFragment : BaseFragment<FragmentMineBinding>(FragmentMineBinding::infl
                 textColor = ContextCompat.getColor(requireActivity(), android.R.color.white)
             ) {
                 cleanInternalCache(requireActivity())
+                "缓存已清除".toast(requireActivity())
             }
             .onNegative(
                 "取消",

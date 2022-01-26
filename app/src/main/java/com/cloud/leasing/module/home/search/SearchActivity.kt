@@ -26,11 +26,12 @@ import com.cloud.leasing.util.toast
 import com.cloud.pickerviewlibrary.builder.TimePickerBuilder
 import com.cloud.pickerviewlibrary.view.TimePickerView
 import com.cloud.popwindow.WheelView
+import com.google.android.material.tabs.TabLayout
 import com.gyf.immersionbar.ktx.immersionBar
 import java.util.*
 
 class SearchActivity : BaseActivity<ActivitySearchBinding>(ActivitySearchBinding::inflate),
-    View.OnClickListener {
+    View.OnClickListener, TabLayout.OnTabSelectedListener {
 
     companion object {
         fun startActivity(activity: Activity) {
@@ -55,6 +56,8 @@ class SearchActivity : BaseActivity<ActivitySearchBinding>(ActivitySearchBinding
     private var leasingdate = ""
 
     private var deviceStatus = ""
+
+    private var tabPosition = 0
 
     private var dialog: BaseDialog? = null
 
@@ -191,6 +194,8 @@ class SearchActivity : BaseActivity<ActivitySearchBinding>(ActivitySearchBinding
         viewBinding.layoutRequireFilter.requireFilterUsageTv.setOnClickListener(this)
         viewBinding.layoutRequireFilter.requireFilterCuttertypeTv.setOnClickListener(this)
 
+        viewBinding.searchTablayout.addOnTabSelectedListener(this)
+
         ViewTouchUtil.expandViewTouchDelegate(viewBinding.searchBackImg)
         ViewTouchUtil.expandViewTouchDelegate(viewBinding.searchFilterTv)
         ViewTouchUtil.expandViewTouchDelegate(viewBinding.layoutDeviceFilter.deviceFilterCloseImg)
@@ -248,9 +253,27 @@ class SearchActivity : BaseActivity<ActivitySearchBinding>(ActivitySearchBinding
             }
             R.id.search_tv -> {
                 viewBinding.searchSearchEt.hideKeyboard()
-                val keyWord = viewBinding.searchSearchEt.text.trim().toString()
-                viewModel.requestOfQueryData(1, keyWord)
-                viewModel.requestOfQueryData(2, keyWord)
+                var key = ""
+                when (tabPosition) {
+                    0 -> {
+                        key = "keyWord"
+                    }
+                    1 -> {
+                        key = "outerDiameter"
+                    }
+                    2 -> {
+                        key = "deviceType"
+                    }
+                    3 -> {
+                        key = "cutterType"
+                    }
+                    4 -> {
+                        key = "applicableStratum"
+                    }
+                }
+                val value = viewBinding.searchSearchEt.text.trim().toString()
+                viewModel.requestOfQueryData(1, key, value)
+                viewModel.requestOfQueryData(2, key, value)
                 viewBinding.searchLoadingview.visibility = View.VISIBLE
             }
             R.id.device_filter_close_img -> {
@@ -802,5 +825,32 @@ class SearchActivity : BaseActivity<ActivitySearchBinding>(ActivitySearchBinding
             .setOutSideCancelable(false)
             .setDividerColor(Color.WHITE)
             .build()
+    }
+
+    override fun onTabSelected(tab: TabLayout.Tab) {
+        tabPosition = tab.position
+        when (tab.position) {
+            0 -> {
+                viewBinding.searchSearchEt.hint = "请输入搜索关键词"
+            }
+            1 -> {
+                viewBinding.searchSearchEt.hint = "请输入适用管片"
+            }
+            2 -> {
+                viewBinding.searchSearchEt.hint = "请输入设备类型"
+            }
+            3 -> {
+                viewBinding.searchSearchEt.hint = "请输入刀盘类型"
+            }
+            4 -> {
+                viewBinding.searchSearchEt.hint = "请输入适用地层"
+            }
+        }
+    }
+
+    override fun onTabUnselected(tab: TabLayout.Tab?) {
+    }
+
+    override fun onTabReselected(tab: TabLayout.Tab?) {
     }
 }

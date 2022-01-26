@@ -86,7 +86,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="法律声明"
+            android:text="隐私协议"
             android:textColor="@color/color_17191C"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"

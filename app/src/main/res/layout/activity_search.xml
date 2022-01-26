@@ -11,97 +11,148 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/search_cl"
+        <FrameLayout
+            android:id="@+id/device_resume_fl"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="45dp">
 
             <ImageView
-                android:id="@+id/search_mask_img"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="match_parent"
                 android:scaleType="fitXY"
-                android:src="@mipmap/icon_device_mask"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:src="@mipmap/icon_device_mask" />
 
             <ImageView
                 android:id="@+id/search_back_img"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
                 android:layout_marginStart="15dp"
-                android:src="@mipmap/icon_back_white"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <RelativeLayout
-                android:layout_width="0dp"
-                android:layout_height="36dp"
-                android:layout_marginStart="5dp"
-                android:layout_marginEnd="15dp"
-                android:background="@drawable/shape_btn_auth"
-                app:layout_constraintBottom_toBottomOf="@id/search_mask_img"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="@id/search_mask_img"
-                app:layout_constraintWidth_default="percent"
-                app:layout_constraintWidth_percent="0.76">
-
-                <EditText
-                    android:id="@+id/search_search_et"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginEnd="15dp"
-                    android:background="@android:color/transparent"
-                    android:drawablePadding="10dp"
-                    android:gravity="center_vertical"
-                    android:hint="输入搜索关键词"
-                    android:imeOptions="actionDone"
-                    android:paddingStart="15dp"
-                    android:singleLine="true"
-                    android:textColor="@color/color_262626"
-                    android:textColorHint="@color/color_BFBFBF"
-                    android:textSize="14sp"
-                    app:drawableLeftCompat="@mipmap/icon_search" />
-
-                <TextView
-                    android:id="@+id/search_tv"
-                    android:layout_width="60dp"
-                    android:layout_height="match_parent"
-                    android:layout_alignParentEnd="true"
-                    android:gravity="center"
-                    android:text="搜索"
-                    android:textColor="@color/color_999999"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
-
-                <View
-                    android:layout_width="1dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginVertical="10dp"
-                    android:layout_toLeftOf="@id/search_tv"
-                    android:background="@color/color_BFBFBF" />
-
-            </RelativeLayout>
+                android:src="@mipmap/icon_back_white" />
 
             <TextView
-                android:id="@+id/search_filter_tv"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:drawableTop="@mipmap/icon_filter"
-                android:drawablePadding="3dp"
-                android:gravity="center_horizontal"
-                android:text="筛选"
+                android:layout_gravity="center"
+                android:gravity="center_vertical"
+                android:text="搜索"
                 android:textColor="@color/white"
-                android:textSize="12sp"
-                app:layout_constraintBottom_toBottomOf="@id/search_mask_img"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="@id/search_mask_img"
-                app:layout_constraintWidth_default="percent"
-                app:layout_constraintWidth_percent="0.13" />
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+            <ImageView
+                android:id="@+id/search_filter_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|center_vertical"
+                android:layout_marginEnd="15dp"
+                android:src="@mipmap/icon_filter" />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@color/white">
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/search_tablayout"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                app:tabBackground="@color/white"
+                app:tabIndicator="@drawable/shape_tab_indicator"
+                app:tabIndicatorColor="@color/color_0E64BC"
+                app:tabIndicatorFullWidth="false"
+                app:tabIndicatorHeight="2dp"
+                app:tabSelectedTextColor="@color/color_0E64BC"
+                app:tabTextAppearance="@style/TabLayoutTheme"
+                app:tabTextColor="@color/color_999999">
+
+                <com.google.android.material.tabs.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="类型不限" />
+
+                <com.google.android.material.tabs.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="适用管片" />
+
+                <com.google.android.material.tabs.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="设备类型" />
+
+                <com.google.android.material.tabs.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="刀盘类型" />
+
+                <com.google.android.material.tabs.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="适用地层" />
+
+            </com.google.android.material.tabs.TabLayout>
+
+        </FrameLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/color_14707070"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:background="@color/white"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintWidth_default="percent"
+            app:layout_constraintWidth_percent="0.76">
+
+            <EditText
+                android:id="@+id/search_search_et"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="15dp"
+                android:background="@android:color/transparent"
+                android:drawablePadding="12dp"
+                android:gravity="center_vertical"
+                android:hint="输入搜索关键词"
+                android:imeOptions="actionDone"
+                android:paddingStart="15dp"
+                android:singleLine="true"
+                android:textColor="@color/color_262626"
+                android:textColorHint="@color/color_BFBFBF"
+                android:textSize="14sp"
+                app:drawableLeftCompat="@mipmap/icon_search" />
+
+            <TextView
+                android:id="@+id/search_tv"
+                android:layout_width="60dp"
+                android:layout_height="match_parent"
+                android:layout_alignParentEnd="true"
+                android:gravity="center"
+                android:text="搜索"
+                android:textColor="@color/color_999999"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:layout_marginVertical="8dp"
+                android:layout_toLeftOf="@id/search_tv"
+                android:background="@color/color_14707070" />
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/color_14707070"/>
 
         <LinearLayout
             android:id="@+id/search_tab_ll"

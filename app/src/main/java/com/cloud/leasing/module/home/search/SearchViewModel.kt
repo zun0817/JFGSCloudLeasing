@@ -27,9 +27,13 @@ class SearchViewModel : BaseViewModel() {
     @PageName
     override fun getPageName() = PageName.SEARCH
 
-    fun requestOfQueryData(type: Int, keyWord: String?) {
+    fun requestOfQueryData(
+        type: Int,
+        key: String,
+        value: String?
+    ) {
         viewModelScope.launch {
-            val param = getSearchParam(type, keyWord)
+            val param = getSearchParam(type, key, value)
             val result = NetworkApi.requestOfQueryData(param)
             when (type) {
                 1 -> searchDeviceLiveData.value = result
@@ -158,12 +162,16 @@ class SearchViewModel : BaseViewModel() {
         }
     }
 
-    private fun getSearchParam(type: Int, keyWord: String?): RequestBody {
+    private fun getSearchParam(
+        type: Int,
+        key: String,
+        value: String?
+    ): RequestBody {
         val map = mutableMapOf<String, Any?>()
         map["pageNo"] = 1
         map["pageSize"] = 50
         map["type"] = type
-        map["keyWord"] = keyWord
+        map[key] = value
         val json = JSON.toJSONString(map)
         return json.toRequestBody("application/json".toMediaTypeOrNull())
     }
