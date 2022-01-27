@@ -124,7 +124,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="云端租赁用户协议"
+            android:text="盾构租赁服务平台用户协议"
             android:textColor="@color/color_17191C"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"

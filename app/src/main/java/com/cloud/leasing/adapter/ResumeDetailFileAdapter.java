@@ -30,5 +30,8 @@ public class ResumeDetailFileAdapter extends CommonAdapter<DeviceFlie> {
             detail_file_name_tv.setText(item.getFileName());
         }
         detail_file_size_tv.setVisibility(View.GONE);
+        detail_file_cache_img.setOnClickListener(v -> {
+            mOnItemClickListener.onItemClick(v, viewHolder, position);
+        });
     }
 }

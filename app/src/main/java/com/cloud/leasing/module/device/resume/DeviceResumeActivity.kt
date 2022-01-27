@@ -4,7 +4,6 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.widget.AdapterView
 import androidx.activity.viewModels
 import com.cloud.leasing.R
 import com.cloud.leasing.adapter.DeviceResumeAdapter
@@ -18,7 +17,7 @@ import com.gyf.immersionbar.ktx.immersionBar
 
 class DeviceResumeActivity :
     BaseActivity<ActivityDeviceResumeBinding>(ActivityDeviceResumeBinding::inflate),
-    View.OnClickListener, AdapterView.OnItemClickListener {
+    View.OnClickListener {
 
     companion object {
         fun startActivity(activity: Activity, deviceId: Int) {
@@ -54,7 +53,6 @@ class DeviceResumeActivity :
         viewBinding.deviceResumeListview.adapter = deviceResumeAdapter
         viewModel.requestOfDeviceResume(deviceId)
         viewBinding.deviceResumeLoadingview.visibility = View.VISIBLE
-        viewBinding.deviceResumeListview.onItemClickListener = this
     }
 
     private fun viewModelObserve() {
@@ -94,14 +92,4 @@ class DeviceResumeActivity :
             R.id.device_resume_back_img -> this.finish()
         }
     }
-
-    override fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-        DeviceResumeDetailActivity.startActivity(
-            this,
-            list[position].id,
-            list[position].deviceResumeStatus,
-            list[position].deviceNo
-        )
-    }
-
 }

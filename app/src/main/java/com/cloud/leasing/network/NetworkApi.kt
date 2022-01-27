@@ -4,7 +4,6 @@ import com.cloud.leasing.constant.Constant
 import com.cloud.leasing.network.base.BaseNetworkApi
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
-import retrofit2.http.Body
 
 /**
  * 网络请求具体实现
@@ -182,6 +181,10 @@ object NetworkApi : BaseNetworkApi<INetworkService>(Constant.BASE_URL) {
 
     suspend fun requestOfStoreCheck(resumeId: Int) = getResult {
         service.requestOfStoreCheck(resumeId)
+    }
+
+    suspend fun requestOfDownloadFile(fileName: String, path: String) = getResult {
+        service.requestOfDownloadFile(fileName, path)
     }
 
 }

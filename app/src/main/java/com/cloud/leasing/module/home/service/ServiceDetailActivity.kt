@@ -60,19 +60,25 @@ class ServiceDetailActivity :
         viewBinding.serviceDetailEmailTv.text = intent.getStringExtra("email")
         val content = intent.getStringExtra("content")
         content?.let {
-            it.takeIf { it.contain("<p><br></p>") }?.apply {
-                viewBinding.serviceDetailWebview.loadData(
-                    replace("<p><br></p>", "")
-                        .replace("<p>", "")
-                        .replace("</p>", ""),
-                    "text/html; charset=UTF-8",
-                    null
-                )
-            } ?: viewBinding.serviceDetailWebview.loadData(
-                it,
+//            it.takeIf { it.contain("<p><br/></p>") }?.apply {
+//                viewBinding.serviceDetailWebview.loadData(
+//                    replace("<p><br/></p>", "")
+//                        .replace("<p>", "")
+//                        .replace("</p>", "")
+//                        .replace("<br/>", ""),
+//                    "text/html; charset=UTF-8",
+//                    null
+//                )
+//            } ?: viewBinding.serviceDetailWebview.loadData(
+//                it,
+//                "text/html; charset=UTF-8",
+//                null
+//            )
+            val path = "<![CDATA[$it]]>"
+            viewBinding.serviceDetailWebview.loadData(
+                path,
                 "text/html; charset=UTF-8",
-                null
-            )
+                null)
         }
     }
 

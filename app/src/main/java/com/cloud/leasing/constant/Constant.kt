@@ -1,5 +1,8 @@
 package com.cloud.leasing.constant
 
+import android.os.Environment
+import java.io.File
+
 object Constant {
 
     /** 接口模块 */
@@ -13,6 +16,8 @@ object Constant {
     const val BASE_FILE_URL = "http://zulin.cregcloud.com:59180/creg/"
 
     const val PATH_FILE_UPLOAD = "/file/upload"
+
+    const val PATH_FILE_DOWNLOAD = "/file/download"
 
     const val PATH_FILE_DELETE = "/file/deleteFile"
 
@@ -96,6 +101,11 @@ object Constant {
 
 
     /** 本地存储 */
+
+    val FILE_PATH = File(
+        Environment.getExternalStorageDirectory(),
+        "盾构租赁"
+    ).path
 
     const val FILE_AVATAR = "10"
 

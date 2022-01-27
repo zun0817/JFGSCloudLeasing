@@ -3,6 +3,7 @@ package com.cloud.leasing.module.device.resume.use
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
+import com.cloud.leasing.R
 import com.cloud.leasing.adapter.MaintenanceAdapter
 import com.cloud.leasing.base.BaseFragment
 import com.cloud.leasing.bean.Maintenance
@@ -12,7 +13,7 @@ import com.cloud.leasing.util.toast
 
 
 class MaintenanceFragment :
-    BaseFragment<FragmentMaintenanceBinding>(FragmentMaintenanceBinding::inflate) {
+    BaseFragment<FragmentMaintenanceBinding>(FragmentMaintenanceBinding::inflate), View.OnClickListener {
 
     private var resumeId = 0
 
@@ -32,10 +33,14 @@ class MaintenanceFragment :
 
     private fun initView() {
         resumeId = requireArguments().getInt("resumeId")
-        viewModel.requestOfResumeMaintenance(resumeId)
-
         maintenanceAdapter = MaintenanceAdapter(requireActivity(), list)
         viewBinding.maintenanceListview.adapter = maintenanceAdapter
+        viewBinding.maintenanceFl.setOnClickListener(this)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.requestOfResumeMaintenance(resumeId)
     }
 
     private fun viewModelObserve() {
@@ -60,8 +65,13 @@ class MaintenanceFragment :
         }
     }
 
-    companion object {
+    override fun onClick(v: View?) {
+        when(v!!.id){
+            R.id.maintenance_fl -> {}
+        }
+    }
 
+    companion object {
         fun newInstance() = MaintenanceFragment()
     }
 }

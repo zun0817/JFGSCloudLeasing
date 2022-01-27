@@ -5,6 +5,7 @@ import com.cloud.leasing.constant.Constant
 import com.cloud.leasing.network.base.BaseResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
+import okhttp3.ResponseBody
 import retrofit2.http.*
 
 interface INetworkService {
@@ -136,6 +137,9 @@ interface INetworkService {
 
     @GET(Constant.PATH_STORE_CHECK)
     suspend fun requestOfStoreCheck(@Query("resumeId") resumeId: Int): BaseResponse<MutableList<CheckDailyItemBean>>
+
+    @GET(Constant.PATH_FILE_DOWNLOAD)
+    suspend fun requestOfDownloadFile(@Query("fileName") fileName: String, @Query("path") path: String): BaseResponse<ResponseBody>
 
     @Multipart
     @POST(Constant.PATH_FILE_UPLOAD)

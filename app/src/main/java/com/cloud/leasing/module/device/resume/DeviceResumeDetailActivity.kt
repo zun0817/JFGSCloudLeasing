@@ -7,6 +7,7 @@ import android.view.View
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.alibaba.fastjson.JSON
 import com.cloud.leasing.R
 import com.cloud.leasing.adapter.ResumeDetailFileAdapter
@@ -14,15 +15,16 @@ import com.cloud.leasing.adapter.ResumeDetailPictureAdapter
 import com.cloud.leasing.base.BaseActivity
 import com.cloud.leasing.bean.DeviceFlie
 import com.cloud.leasing.bean.DeviceType
-import com.cloud.leasing.bean.RentDeviceFile
 import com.cloud.leasing.bean.ResumeDetailBean
 import com.cloud.leasing.constant.Constant
 import com.cloud.leasing.constant.PageName
 import com.cloud.leasing.databinding.ActivityDeviceResumeDetailBinding
 import com.cloud.leasing.persistence.XKeyValue
+import com.cloud.leasing.util.FileManager
 import com.cloud.leasing.util.ViewTouchUtil
 import com.cloud.leasing.util.toast
 import com.gyf.immersionbar.ktx.immersionBar
+import com.zhy.adapter.recyclerview.MultiItemTypeAdapter
 
 class DeviceResumeDetailActivity :
     BaseActivity<ActivityDeviceResumeDetailBinding>(ActivityDeviceResumeDetailBinding::inflate),
@@ -45,6 +47,8 @@ class DeviceResumeDetailActivity :
     }
 
     private var deviceNo = ""
+
+    private var fileName = ""
 
     private var deviceResumeStatus = "1"
 
@@ -107,6 +111,14 @@ class DeviceResumeDetailActivity :
                     it.toString().toast(this@DeviceResumeDetailActivity)
                 }.onSuccess {
                     setData(it)
+                }
+            })
+            downloadFileLiveData.observe(this@DeviceResumeDetailActivity, { it ->
+                it.onFailure {
+                    it.toString().toast(this@DeviceResumeDetailActivity)
+                }.onSuccess {
+                    FileManager.saveFile(it, fileName)
+                    "下载成功，请到文件管理查看".toast(this@DeviceResumeDetailActivity)
                 }
             })
         }
@@ -187,23 +199,44 @@ class DeviceResumeDetailActivity :
                 resumeDetailFileAdapter = ResumeDetailFileAdapter(this, fileList)
                 viewBinding.layoutResumeDetailFile.resumeDetailFileRv.adapter =
                     resumeDetailFileAdapter
+                resumeDetailFileAdapter.setOnItemClickListener(object :
+                    MultiItemTypeAdapter.OnItemClickListener {
+                    override fun onItemClick(p0: View?, p1: RecyclerView.ViewHolder?, p2: Int) {
+                        fileName = fileList[p2].fileName
+                        viewModel.requestOfDownloadFile(fileList[p2].fileName, fileList[p2].filePath)
+                    }
+
+                    override fun onItemLongClick(
+                        p0: View?,
+                        p1: RecyclerView.ViewHolder?,
+                        p2: Int
+                    ): Boolean {
+                        return false
+                    }
+                })
             }
             "2" -> {
                 viewBinding.layoutResumeDetailUseInfo.resumeDetailUseNameTv.text = deviceNo
                 viewBinding.layoutResumeDetailUseInfo.resumeDetailUseTypeTv.text =
                     getDeviceTypeName(bean.deviceType)
-                viewBinding.layoutResumeDetailUseInfo.resumeDetailUseExcavateTv.text = bean.workingDiam
-                viewBinding.layoutResumeDetailUseInfo.resumeDetailUseRingwidthTv.text = bean.ringWidth.toString()
-                viewBinding.layoutResumeDetailUseInfo.resumeDetailUseIntervalTv.text = bean.intervalMileage ?: "无"
-                viewBinding.layoutResumeDetailUseInfo.resumeDetailUseTestedTv.text = bean.settlementRange ?: "无"
+                viewBinding.layoutResumeDetailUseInfo.resumeDetailUseExcavateTv.text =
+                    bean.workingDiam
+                viewBinding.layoutResumeDetailUseInfo.resumeDetailUseRingwidthTv.text =
+                    bean.ringWidth.toString()
+                viewBinding.layoutResumeDetailUseInfo.resumeDetailUseIntervalTv.text =
+                    bean.intervalMileage ?: "无"
+                viewBinding.layoutResumeDetailUseInfo.resumeDetailUseTestedTv.text =
+                    bean.settlementRange ?: "无"
                 viewBinding.layoutResumeDetailUseInfo.resumeDetailUseSerialTv.text =
                     bean.projectNumber ?: "无"
                 viewBinding.layoutResumeDetailUseInfo.resumeDetailUseClassTv.text =
                     bean.projectCatelog ?: "无"
                 viewBinding.layoutResumeDetailUseInfo.resumeDetailUseBossTv.text =
                     bean.projectManager ?: "无"
-                viewBinding.layoutResumeDetailUseInfo.resumeDetailUseUsecityTv.text = bean.useCity ?: "无"
-                viewBinding.layoutResumeDetailUseInfo.resumeDetailUseUseTv.text = bean.deviceUser ?: "无"
+                viewBinding.layoutResumeDetailUseInfo.resumeDetailUseUsecityTv.text =
+                    bean.useCity ?: "无"
+                viewBinding.layoutResumeDetailUseInfo.resumeDetailUseUseTv.text =
+                    bean.deviceUser ?: "无"
                 viewBinding.layoutResumeDetailUseInfo.resumeDetailUseAddressTv.text =
                     bean.projectAddress ?: "无"
                 viewBinding.layoutResumeDetailUseInfo.resumeDetailUseAmountTv.text =
@@ -272,6 +305,21 @@ class DeviceResumeDetailActivity :
                 resumeDetailFileAdapter = ResumeDetailFileAdapter(this, fileList)
                 viewBinding.layoutResumeDetailFile.resumeDetailFileRv.adapter =
                     resumeDetailFileAdapter
+                resumeDetailFileAdapter.setOnItemClickListener(object :
+                    MultiItemTypeAdapter.OnItemClickListener {
+                    override fun onItemClick(p0: View?, p1: RecyclerView.ViewHolder?, p2: Int) {
+                        fileName = fileList[p2].fileName
+                        viewModel.requestOfDownloadFile(fileList[p2].fileName, fileList[p2].filePath)
+                    }
+
+                    override fun onItemLongClick(
+                        p0: View?,
+                        p1: RecyclerView.ViewHolder?,
+                        p2: Int
+                    ): Boolean {
+                        return false
+                    }
+                })
             }
         }
     }

@@ -138,4 +138,19 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="@id/resume_item_time_tv" />
 
+    <TextView
+        android:id="@+id/resume_item_detail_tv"
+        android:layout_width="65dp"
+        android:layout_height="27dp"
+        android:background="@drawable/shape_look_13ad6b"
+        android:gravity="center"
+        android:text="履历详情"
+        android:textColor="@color/color_17191C"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/resume_item_look_tv"
+        app:layout_constraintRight_toLeftOf="@id/resume_item_look_tv"
+        app:layout_constraintTop_toTopOf="@id/resume_item_look_tv"
+        android:layout_marginEnd="15dp"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

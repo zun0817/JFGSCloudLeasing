@@ -88,6 +88,7 @@ class UseResumeLifecycleActivity :
         productDailyFragment.arguments = bundle
         faultLedgerFragment.arguments = bundle
         maintenanceFragment.arguments = bundle
+        manageDataFragment.arguments = bundle
     }
 
     override fun onClick(v: View?) {

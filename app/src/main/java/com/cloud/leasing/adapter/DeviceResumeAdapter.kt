@@ -10,6 +10,7 @@ import android.widget.BaseAdapter
 import android.widget.TextView
 import com.cloud.leasing.R
 import com.cloud.leasing.bean.DeviceResumeBean
+import com.cloud.leasing.module.device.resume.DeviceResumeDetailActivity
 import com.cloud.leasing.module.device.resume.RepairResumeLifecycleActivity
 import com.cloud.leasing.module.device.resume.StoreResumeLifecycleActivity
 import com.cloud.leasing.module.device.resume.UseResumeLifecycleActivity
@@ -45,6 +46,7 @@ class DeviceResumeAdapter(val context: Context, var list: MutableList<DeviceResu
             viewHoler.resume_item_time_tv = view.findViewById(R.id.resume_item_time_tv)
             viewHoler.resume_item_status_tv = view.findViewById(R.id.resume_item_status_tv)
             viewHoler.resume_item_look_tv = view.findViewById(R.id.resume_item_look_tv)
+            viewHoler.resume_item_detail_tv = view.findViewById(R.id.resume_item_detail_tv)
             view.tag = viewHoler
         } else {
             view = convertView
@@ -81,6 +83,16 @@ class DeviceResumeAdapter(val context: Context, var list: MutableList<DeviceResu
                 viewHoler.resume_item_status_tv!!.setBackgroundResource(R.drawable.shape_view_bfbfbf_2)
             }
         }
+        viewHoler.resume_item_detail_tv?.let {
+            it.setOnClickListener {
+                DeviceResumeDetailActivity.startActivity(
+                    context as Activity,
+                    list[position].id,
+                    list[position].deviceResumeStatus,
+                    list[position].deviceNo
+                )
+            }
+        }
         viewHoler.resume_item_look_tv?.let {
             it.setOnClickListener {
                 when (list[position].deviceResumeStatus) {
@@ -114,6 +126,7 @@ class DeviceResumeAdapter(val context: Context, var list: MutableList<DeviceResu
         var resume_item_time_tv: TextView? = null
         var resume_item_status_tv: TextView? = null
         var resume_item_look_tv: TextView? = null
+        var resume_item_detail_tv: TextView? = null
     }
 
 }
