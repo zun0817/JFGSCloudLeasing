@@ -14,6 +14,7 @@
         android:background="@mipmap/icon_device_mask">
 
         <TextView
+            android:id="@+id/service_detail_title_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -36,6 +37,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/service_detail_fl"
+        android:layout_marginBottom="15dp"
         android:scrollbars="none">
 
         <LinearLayout
@@ -43,21 +45,11 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/service_detail_title_tv"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:paddingVertical="20dp"
-                android:text="标题"
-                android:textColor="@color/color_262626"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
             <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="120dp"
+                android:layout_height="110dp"
                 android:layout_marginHorizontal="15dp"
+                android:layout_marginTop="15dp"
                 android:background="@mipmap/icon_service_mask">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -72,7 +64,7 @@
                         android:layout_height="wrap_content"
                         android:text="朱君"
                         android:textColor="@color/color_262626"
-                        android:textSize="20sp"
+                        android:textSize="18sp"
                         android:textStyle="bold"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -94,7 +86,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
                         android:layout_marginTop="10dp"
-                        android:text="联系电话"
+                        android:text=""
                         android:textColor="@color/color_262626"
                         android:textSize="14sp"
                         app:layout_constraintLeft_toRightOf="@id/service_detail_phone_lab"
@@ -117,7 +109,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
                         android:layout_marginTop="10dp"
-                        android:text="邮箱地址"
+                        android:text=""
                         android:textColor="@color/color_262626"
                         android:textSize="14sp"
                         app:layout_constraintLeft_toRightOf="@id/service_detail_email_lab"
@@ -131,8 +123,123 @@
                 android:id="@+id/service_detail_webview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginHorizontal="15dp"
                 android:layout_marginVertical="20dp"
-                android:layout_marginHorizontal="15dp"/>
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/service_detail_title1_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="20dp"
+                android:paddingTop="15dp"
+                android:text="标题一"
+                android:textColor="@color/color_262626"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <me.codeboy.android.aligntextview.AlignTextView
+                android:id="@+id/service_detail_content1_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="8dp"
+                android:paddingHorizontal="15dp"
+                android:paddingTop="15dp"
+                android:singleLine="false"
+                android:text="内容一内容一内容一内容一内容一内容一内容一内容一内容一内容一内容一内容一内容一内容一内容一内容一"
+                android:textColor="@color/color_262626"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/service_detail_title2_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="20dp"
+                android:paddingTop="15dp"
+                android:text="标题二"
+                android:textColor="@color/color_262626"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <me.codeboy.android.aligntextview.AlignTextView
+                android:id="@+id/service_detail_content2_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="8dp"
+                android:paddingHorizontal="15dp"
+                android:paddingTop="15dp"
+                android:singleLine="false"
+                android:text="内容二"
+                android:textColor="@color/color_262626"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/service_detail_title3_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="20dp"
+                android:paddingTop="15dp"
+                android:text="标题三"
+                android:textColor="@color/color_262626"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <me.codeboy.android.aligntextview.AlignTextView
+                android:id="@+id/service_detail_content3_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="8dp"
+                android:paddingHorizontal="15dp"
+                android:paddingTop="15dp"
+                android:singleLine="false"
+                android:text="内容三"
+                android:textColor="@color/color_262626"
+                android:textSize="14sp" />
+
+            <ImageView
+                android:id="@+id/service_detail_one"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scaleType="fitXY"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginTop="15dp"
+                android:src="@mipmap/icon_service_one"/>
+
+            <ImageView
+                android:id="@+id/service_detail_two"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scaleType="fitXY"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginTop="15dp"
+                android:src="@mipmap/icon_service_one"/>
+
+            <ImageView
+                android:id="@+id/service_detail_three"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scaleType="fitXY"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginTop="15dp"
+                android:src="@mipmap/icon_service_one"/>
+
+            <ImageView
+                android:id="@+id/service_detail_four"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scaleType="fitXY"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginTop="15dp"
+                android:src="@mipmap/icon_service_one"/>
+
+            <ImageView
+                android:id="@+id/service_detail_five"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scaleType="fitXY"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginTop="15dp"
+                android:src="@mipmap/icon_service_one"/>
 
         </LinearLayout>
 

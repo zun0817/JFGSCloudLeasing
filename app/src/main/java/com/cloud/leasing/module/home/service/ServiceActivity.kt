@@ -61,7 +61,8 @@ class ServiceActivity : BaseActivity<ActivityServiceBinding>(ActivityServiceBind
                             bean.noticeContent,
                             bean.contacts,
                             bean.phone,
-                            bean.mailbox
+                            bean.mailbox,
+                            position
                         )
                     }
                 })

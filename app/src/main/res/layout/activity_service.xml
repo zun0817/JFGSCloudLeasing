@@ -36,6 +36,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/service_fl"
+        android:layout_marginBottom="12dp"
         android:scrollbars="none" />
 
 </RelativeLayout>

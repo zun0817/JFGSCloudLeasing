@@ -11,11 +11,10 @@ import com.cloud.leasing.R
 import com.cloud.leasing.base.BaseActivity
 import com.cloud.leasing.constant.PageName
 import com.cloud.leasing.databinding.ActivityServiceDetailBinding
-import com.gyf.immersionbar.ktx.immersionBar
 import com.cloud.leasing.util.DensityUtil
 import com.cloud.leasing.util.ScreenUtils
 import com.cloud.leasing.util.ViewTouchUtil
-import com.sky.filepicker.kotlin.contain
+import com.gyf.immersionbar.ktx.immersionBar
 
 
 class ServiceDetailActivity :
@@ -29,7 +28,8 @@ class ServiceDetailActivity :
             content: String,
             name: String,
             phone: String,
-            email: String
+            email: String,
+            type: Int
         ) {
             val intent = Intent()
             intent.putExtra("title", title)
@@ -37,6 +37,7 @@ class ServiceDetailActivity :
             intent.putExtra("name", name)
             intent.putExtra("phone", phone)
             intent.putExtra("email", email)
+            intent.putExtra("type", type)
             intent.setClass(activity, ServiceDetailActivity::class.java)
             activity.startActivity(intent)
         }
@@ -58,8 +59,92 @@ class ServiceDetailActivity :
         viewBinding.serviceDetailNameTv.text = intent.getStringExtra("name")
         viewBinding.serviceDetailPhoneTv.text = intent.getStringExtra("phone")
         viewBinding.serviceDetailEmailTv.text = intent.getStringExtra("email")
-        val content = intent.getStringExtra("content")
-        content?.let {
+        when (intent.getIntExtra("type", 0)) {
+            0 -> {
+                viewBinding.serviceDetailTitleTv.text = "设备评估"
+                viewBinding.serviceDetailContent1Tv.text =
+                    "         " + resources.getString(R.string.shebeipinggu_one)
+                viewBinding.serviceDetailContent2Tv.text =
+                    "         " + resources.getString(R.string.shebeipinggu_two)
+                viewBinding.serviceDetailContent3Tv.text =
+                    "         " + resources.getString(R.string.shebeipinggu_three)
+                viewBinding.serviceDetailOne.setImageResource(R.mipmap.icon_service_one)
+                viewBinding.serviceDetailTwo.setImageResource(R.mipmap.icon_service_two)
+                viewBinding.serviceDetailThree.setImageResource(R.mipmap.icon_service_three)
+                viewBinding.serviceDetailFour.setImageResource(R.mipmap.icon_service_four)
+                viewBinding.serviceDetailFive.setImageResource(R.mipmap.icon_service_five)
+                viewBinding.serviceDetailTitle1Tv.visibility = View.GONE
+                viewBinding.serviceDetailTitle2Tv.visibility = View.GONE
+                viewBinding.serviceDetailTitle3Tv.visibility = View.GONE
+            }
+            1 -> {
+                viewBinding.serviceDetailTitleTv.text = "导向系统"
+                viewBinding.serviceDetailTitle1Tv.text = "（1）产品介绍"
+                viewBinding.serviceDetailTitle2Tv.text = "（2）应用案例"
+                viewBinding.serviceDetailContent1Tv.text =
+                    "         " + resources.getString(R.string.daoxiangxitong_one)
+                viewBinding.serviceDetailContent2Tv.text =
+                    "         " + resources.getString(R.string.daoxiangxitong_two)
+                viewBinding.serviceDetailOne.setImageResource(R.mipmap.icon_service_six)
+                viewBinding.serviceDetailTwo.visibility = View.GONE
+                viewBinding.serviceDetailThree.visibility = View.GONE
+                viewBinding.serviceDetailFour.visibility = View.GONE
+                viewBinding.serviceDetailFive.visibility = View.GONE
+                viewBinding.serviceDetailContent3Tv.visibility = View.GONE
+                viewBinding.serviceDetailTitle3Tv.visibility = View.GONE
+            }
+            2 -> {
+                viewBinding.serviceDetailTitleTv.text = "技能鉴定"
+                viewBinding.serviceDetailTitle1Tv.text = "（1）业务介绍"
+                viewBinding.serviceDetailTitle2Tv.text = "（2）鉴定范围"
+                viewBinding.serviceDetailContent1Tv.text =
+                    "         " + resources.getString(R.string.jinengjianding_one)
+                viewBinding.serviceDetailContent2Tv.text =
+                    "         " + resources.getString(R.string.jinengjianding_two)
+                viewBinding.serviceDetailOne.setImageResource(R.mipmap.icon_service_seven)
+                viewBinding.serviceDetailTwo.visibility = View.GONE
+                viewBinding.serviceDetailThree.visibility = View.GONE
+                viewBinding.serviceDetailFour.visibility = View.GONE
+                viewBinding.serviceDetailFive.visibility = View.GONE
+                viewBinding.serviceDetailContent3Tv.visibility = View.GONE
+                viewBinding.serviceDetailTitle3Tv.visibility = View.GONE
+            }
+            3 -> {
+                viewBinding.serviceDetailTitleTv.text = "盾构机3D模拟平台"
+                viewBinding.serviceDetailTitle1Tv.text = "（1）产品简介"
+                viewBinding.serviceDetailTitle2Tv.text = "（2）主要功能"
+                viewBinding.serviceDetailContent1Tv.text =
+                    "         " + resources.getString(R.string.dungouji_one)
+                viewBinding.serviceDetailContent2Tv.text =
+                    "         " + resources.getString(R.string.dungouji_two)
+                viewBinding.serviceDetailOne.setImageResource(R.mipmap.icon_service_eight)
+                viewBinding.serviceDetailTwo.visibility = View.GONE
+                viewBinding.serviceDetailThree.visibility = View.GONE
+                viewBinding.serviceDetailFour.visibility = View.GONE
+                viewBinding.serviceDetailFive.visibility = View.GONE
+                viewBinding.serviceDetailContent3Tv.visibility = View.GONE
+                viewBinding.serviceDetailTitle3Tv.visibility = View.GONE
+            }
+            4 -> {
+                viewBinding.serviceDetailTitleTv.text = "装备云平台"
+                viewBinding.serviceDetailTitle1Tv.text = "（1）产品简介"
+                viewBinding.serviceDetailTitle2Tv.text = "（2）主要功能"
+                viewBinding.serviceDetailTitle3Tv.text = "（3）应用案例"
+                viewBinding.serviceDetailContent1Tv.text =
+                    "         " + resources.getString(R.string.zhuangbeiyun_one)
+                viewBinding.serviceDetailContent2Tv.text =
+                    "         " + resources.getString(R.string.zhuangbeiyun_two)
+                viewBinding.serviceDetailContent3Tv.text =
+                    "         " + resources.getString(R.string.zhuangbeiyun_three)
+                viewBinding.serviceDetailOne.setImageResource(R.mipmap.icon_service_ten)
+                viewBinding.serviceDetailTwo.visibility = View.GONE
+                viewBinding.serviceDetailThree.visibility = View.GONE
+                viewBinding.serviceDetailFour.visibility = View.GONE
+                viewBinding.serviceDetailFive.visibility = View.GONE
+            }
+        }
+//        val content = intent.getStringExtra("content")
+//        content?.let {
 //            it.takeIf { it.contain("<p><br/></p>") }?.apply {
 //                viewBinding.serviceDetailWebview.loadData(
 //                    replace("<p><br/></p>", "")
@@ -74,12 +159,12 @@ class ServiceDetailActivity :
 //                "text/html; charset=UTF-8",
 //                null
 //            )
-            val path = "<![CDATA[$it]]>"
-            viewBinding.serviceDetailWebview.loadData(
-                path,
-                "text/html; charset=UTF-8",
-                null)
-        }
+//            val path = "<![CDATA[$it]]>"
+//            viewBinding.serviceDetailWebview.loadData(
+//                path,
+//                "text/html; charset=UTF-8",
+//                null)
+//        }
     }
 
     @SuppressLint("SetJavaScriptEnabled")

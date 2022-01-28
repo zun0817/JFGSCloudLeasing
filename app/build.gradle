@@ -169,6 +169,8 @@ dependencies {
 
     implementation 'org.jetbrains.kotlin:kotlin-reflect:1.5.30'
 
+    implementation 'me.codeboy.android:align-text-view:2.3.2'
+
     implementation project(':pictureLibrary')
 
     implementation project(':filepickerLibrary')
