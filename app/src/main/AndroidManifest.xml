@@ -201,7 +201,12 @@
             android:name=".module.device.resume.use.AddMaintenanceActivity"
             android:exported="true"
             android:screenOrientation="portrait"
-            android:theme="@style/ActivityTheme"/>
+            android:theme="@style/ActivityTheme" />
+        <activity
+            android:name=".module.device.resume.use.ManageDataFileActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/ActivityTheme"  />
     </application>
 
 </manifest>

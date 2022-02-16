@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/color_F2F4F6"
+    tools:context=".module.device.resume.use.ManageDataFileActivity">
+
+    <FrameLayout
+        android:id="@+id/manage_data_file_frame"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            android:src="@mipmap/icon_device_mask" />
+
+        <ImageView
+            android:id="@+id/manage_data_file_back_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="15dp"
+            android:src="@mipmap/icon_back_white" />
+
+        <TextView
+            android:id="@+id/manage_data_file_title_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center_vertical"
+            android:text="标题"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+    </FrameLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/manage_data_file_rv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none"
+        android:layout_marginVertical="15dp"
+        android:layout_below="@id/manage_data_file_frame"
+        android:layout_above="@id/manage_data_file_bottom"/>
+
+    <FrameLayout
+        android:id="@+id/manage_data_file_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@color/white"
+        android:layout_alignParentBottom="true">
+
+        <FrameLayout
+            android:id="@+id/manage_data_file_add"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginHorizontal="15dp"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/shape_view_fafafa">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:drawablePadding="6dp"
+                android:text="添加附件"
+                android:textStyle="bold"
+                android:textColor="@color/color_999999"
+                android:textSize="14sp"
+                app:drawableStartCompat="@mipmap/icon_add_small" />
+
+        </FrameLayout>
+
+    </FrameLayout>
+
+</RelativeLayout>

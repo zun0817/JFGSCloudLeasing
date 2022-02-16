@@ -7,13 +7,13 @@ object Constant {
 
     /** 接口模块 */
 
-    //const val BASE_URL = "http://123.52.43.250:2209"
+    const val BASE_URL = "http://123.52.43.250:2209"
 
-    const val BASE_URL = "http://zulin.cregcloud.com:59180"
+    //const val BASE_URL = "http://zulin.cregcloud.com:59180"
 
-    //const val BASE_FILE_URL = "http://123.52.43.250:2209/creg/"
+    const val BASE_FILE_URL = "http://123.52.43.250:2209/creg/"
 
-    const val BASE_FILE_URL = "http://zulin.cregcloud.com:59180/creg/"
+    //const val BASE_FILE_URL = "http://zulin.cregcloud.com:59180/creg/"
 
     const val PATH_FILE_UPLOAD = "/file/upload"
 
