@@ -2,7 +2,6 @@ package com.cloud.leasing.module.device
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.RecyclerView
 import com.alibaba.fastjson.JSON
@@ -47,7 +46,10 @@ class DeviceFragment : BaseFragment<FragmentDeviceBinding>(FragmentDeviceBinding
     }
 
     private fun initView() {
-        viewModel.requestOfDeviceType()
+        val json1 = XKeyValue.getString(Constant.DEVICE_TYPE)
+        typeList = JSON.parseArray(json1, DeviceType::class.java)
+        val json2 = XKeyValue.getString(Constant.DEVICE_CUTTER)
+        cutterList = JSON.parseArray(json2, CutterType::class.java)
         viewBinding.deviceRecyclerview.init(
             XRecyclerView.Config()
                 .setViewModel(viewModel)
@@ -109,21 +111,6 @@ class DeviceFragment : BaseFragment<FragmentDeviceBinding>(FragmentDeviceBinding
                     } else {
                         viewModel.firstViewDataLiveData.postValue(emptyList())
                     }
-                }
-            })
-            deviceTypeLiveData.observe(viewLifecycleOwner, { it ->
-                it.onFailure {
-                    it.toString().toast(requireActivity())
-                }.onSuccess {
-                    typeList = it.deviceType
-                    brandList = it.deviceBrand
-                    cutterList = it.cutterType
-                    val typejson = JSON.toJSON(typeList).toString()
-                    val brandjson = JSON.toJSON(brandList).toString()
-                    val cutterjson = JSON.toJSON(cutterList).toString()
-                    XKeyValue.putString(Constant.DEVICE_TYPE, typejson)
-                    XKeyValue.putString(Constant.DEVICE_BRAND, brandjson)
-                    XKeyValue.putString(Constant.DEVICE_CUTTER, cutterjson)
                 }
             })
         }

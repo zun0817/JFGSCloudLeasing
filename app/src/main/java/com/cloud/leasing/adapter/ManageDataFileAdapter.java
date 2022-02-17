@@ -6,13 +6,17 @@ import android.widget.TextView;
 
 import com.cloud.leasing.R;
 import com.cloud.leasing.bean.ManageFileBean;
-import com.cloud.leasing.bean.RentDeviceFile;
 import com.zhy.adapter.recyclerview.CommonAdapter;
 import com.zhy.adapter.recyclerview.base.ViewHolder;
 
 import java.util.List;
 
 public class ManageDataFileAdapter extends CommonAdapter<ManageFileBean> {
+
+    public void refreshData(List<ManageFileBean> list){
+        this.mDatas = list;
+        notifyDataSetChanged();
+    }
 
     public ManageDataFileAdapter(Context context, List<ManageFileBean> selectPath) {
         super(context, R.layout.layout_detail_file_item, selectPath);

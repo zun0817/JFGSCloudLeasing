@@ -45,6 +45,7 @@
         android:layout_height="match_parent"
         android:scrollbars="none"
         android:layout_marginVertical="15dp"
+        android:layout_marginHorizontal="15dp"
         android:layout_below="@id/manage_data_file_frame"
         android:layout_above="@id/manage_data_file_bottom"/>
 

@@ -51,6 +51,8 @@ import androidx.annotation.StringDef
     PageName.STORE_CHECK_DAILY,
     PageName.POLICY,
     PageName.MANAGE_DATA_FILE,
+    PageName.ADD_MAINTENANCE,
+    PageName.EDIT_MAINTENANCE,
 
     PageName.ACGN,
     PageName.SMALL_VIDEO,
@@ -110,6 +112,8 @@ annotation class PageName {
         const val STORE_CHECK_DAILY = "store_check_daily"
         const val POLICY = "policy"
         const val MANAGE_DATA_FILE = "manage_data_file"
+        const val ADD_MAINTENANCE = "add_maintenance"
+        const val EDIT_MAINTENANCE = "edit_maintenance"
 
         const val ACGN = "acgn"
         const val SMALL_VIDEO = "small_video"

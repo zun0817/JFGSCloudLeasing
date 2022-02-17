@@ -91,13 +91,17 @@ object Constant {
 
     const val PATH_ADD_PRODUCT_DAILY = "/api/v1/produceDaily/app/save"
 
-    const val PATH_MANAGE_DATA = "/api/v1/deviceManage/pc/getManageByResumeId"
+    const val PATH_MANAGE_DATA = "/api/v1/deviceManage/app/getManageByResumeId"
 
-    const val PATH_MANAGE_FILE = "/api/v1/deviceManage/pc/getManageFileByManmageId"
+    const val PATH_MANAGE_FILE = "/api/v1/deviceManage/app/getManageFileByManmageId"
 
     const val PATH_FAULT_ADD = "/api/v1/repairMaintenance/app/save"
 
     const val PATH_STORE_CHECK = "/api/v1/depositCheckItem/app/list"
+
+    const val PATH_LIFT_FILE = "/api/v1/deviceManageFile/app/save"
+
+    const val PATH_ADD_MAINTENANCE = "/api/v1/usedItem/app/getResumeBydeviceId"
 
 
     /** 本地存储 */

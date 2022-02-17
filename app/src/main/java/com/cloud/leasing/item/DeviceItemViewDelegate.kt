@@ -29,7 +29,7 @@ class DeviceItemViewDelegate :
         super.onBindViewHolder(holder, item)
         holder.viewBinding.deviceItemNameTv.text = item.value.drivingPosition + "·" + item.value.deviceNo
         holder.viewBinding.deviceItemTypeTv.text = item.value.deviceTypeName
-        holder.viewBinding.deviceItemDiameterTv.text = "刀盘直径：" + item.value.cutterDiam + "m"
+        holder.viewBinding.deviceItemDiameterTv.text = "开挖直径：" + item.value.cutterDiam + "m"
         holder.viewBinding.deviceItemFollowTv.visibility = View.GONE
         holder.viewBinding.deviceItemResumeTv.visibility = View.VISIBLE
         Glide.with(JFGSApplication.instance)

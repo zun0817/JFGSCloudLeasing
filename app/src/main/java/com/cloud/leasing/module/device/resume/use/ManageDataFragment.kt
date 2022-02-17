@@ -48,7 +48,7 @@ class ManageDataFragment :
                 }.onSuccess {
                     list = it as ArrayList<ManageDataBean>
                     if (it.size > 0) {
-                        manageDataAdapter.refreshData(it as ArrayList<ManageDataBean>)
+                        manageDataAdapter.refreshData(it)
                         viewBinding.manageDataRecycleview.expandGroup(0)
                     }
                 }

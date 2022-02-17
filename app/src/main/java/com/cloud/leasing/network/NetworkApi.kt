@@ -187,4 +187,12 @@ object NetworkApi : BaseNetworkApi<INetworkService>(Constant.BASE_URL) {
         service.requestOfDownloadFile(fileName, path)
     }
 
+    suspend fun requestOfLifeCycleFile(requestBody: RequestBody) = getResult {
+        service.requestOfLifeCycleFile(requestBody)
+    }
+
+    suspend fun requestOfAddMaintenance(resumeId: Int) = getResult {
+        service.requestOfAddMaintenance(resumeId)
+    }
+
 }

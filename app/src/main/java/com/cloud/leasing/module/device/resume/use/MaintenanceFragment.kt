@@ -67,7 +67,7 @@ class MaintenanceFragment :
 
     override fun onClick(v: View?) {
         when(v!!.id){
-            R.id.maintenance_fl -> {}
+            R.id.maintenance_fl -> AddMaintenanceActivity.startActivity(requireActivity(), resumeId)
         }
     }
 

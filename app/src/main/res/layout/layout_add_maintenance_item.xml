@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/add_maintenance_item_Linear"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -36,10 +35,7 @@
                 android:layout_marginStart="30dp"
                 android:text=""
                 android:textColor="@color/color_262626"
-                android:textSize="15sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toRightOf="@id/add_daily_creattime_frame"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:textSize="15sp" />
 
         </LinearLayout>
 
@@ -64,10 +60,7 @@
                 android:layout_marginStart="30dp"
                 android:text=""
                 android:textColor="@color/color_262626"
-                android:textSize="15sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toRightOf="@id/add_daily_creattime_frame"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:textSize="15sp" />
 
         </LinearLayout>
 
@@ -92,10 +85,7 @@
                 android:layout_marginStart="30dp"
                 android:text=""
                 android:textColor="@color/color_262626"
-                android:textSize="15sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toRightOf="@id/add_daily_creattime_frame"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:textSize="15sp" />
 
         </LinearLayout>
 
@@ -120,115 +110,21 @@
                 android:layout_marginStart="30dp"
                 android:text=""
                 android:textColor="@color/color_262626"
-                android:textSize="15sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toRightOf="@id/add_daily_creattime_frame"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:textSize="15sp" />
 
         </LinearLayout>
 
-        <FrameLayout
+        <TextView
+            android:id="@+id/add_maintenance_item_edit_tv"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="是否异常"
-                android:textColor="@color/color_17191C"
-                android:textSize="15sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/add_maintenance_item_exception_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:drawablePadding="8dp"
-                android:text="否"
-                android:textColor="@color/color_13AD6B"
-                android:textSize="15sp"
-                app:drawableEndCompat="@mipmap/icon_arrow_gray" />
-
-        </FrameLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="异常描述"
-                android:textColor="@color/color_17191C"
-                android:textSize="15sp"
-                android:textStyle="bold" />
-
-            <EditText
-                android:id="@+id/add_maintenance_item_errordesc_et"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="30dp"
-                android:background="@color/transparent"
-                android:hint="异常描述"
-                android:imeOptions="actionNext"
-                android:inputType="numberDecimal"
-                android:textColor="@color/color_262626"
-                android:textColorHint="@color/color_BFBFBF"
-                android:textSize="15sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toRightOf="@id/add_daily_maxrings_frame"
-                app:layout_constraintTop_toTopOf="parent" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:layout_marginTop="20dp"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="参考图片"
-                android:textColor="@color/color_17191C"
-                android:textSize="15sp"
-                android:textStyle="bold" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/add_maintenance_refer_item_rv"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:scrollbars="none" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="异常图片"
-                android:textColor="@color/color_17191C"
-                android:textSize="15sp"
-                android:textStyle="bold" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/add_maintenance_excepyion_item_rv"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:scrollbars="none" />
-
-        </LinearLayout>
+            android:background="@drawable/shape_view_f8fefb"
+            android:gravity="center"
+            android:text="异常填写"
+            android:textColor="@color/color_17191C"
+            android:textSize="15sp"
+            android:textStyle="bold" />
 
     </LinearLayout>
 

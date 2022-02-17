@@ -141,6 +141,12 @@ interface INetworkService {
     @GET(Constant.PATH_FILE_DOWNLOAD)
     suspend fun requestOfDownloadFile(@Query("fileName") fileName: String, @Query("path") path: String): BaseResponse<ResponseBody>
 
+    @POST(Constant.PATH_LIFT_FILE)
+    suspend fun requestOfLifeCycleFile(@Body requestBody: RequestBody): BaseResponse<String>
+
+    @GET(Constant.PATH_ADD_MAINTENANCE)
+    suspend fun requestOfAddMaintenance(@Query("resumeId") resumeId: Int): BaseResponse<MutableList<AddMaintenanceBean>>
+
     @Multipart
     @POST(Constant.PATH_FILE_UPLOAD)
     suspend fun requestOfUploadFile(

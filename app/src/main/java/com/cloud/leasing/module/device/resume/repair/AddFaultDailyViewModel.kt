@@ -5,7 +5,6 @@ import androidx.lifecycle.viewModelScope
 import com.alibaba.fastjson.JSON
 import com.cloud.leasing.base.BaseViewModel
 import com.cloud.leasing.bean.CompanyFileBean
-import com.cloud.leasing.bean.ProductDailyFaultBean
 import com.cloud.leasing.constant.PageName
 import com.cloud.leasing.network.NetworkApi
 import kotlinx.coroutines.launch
