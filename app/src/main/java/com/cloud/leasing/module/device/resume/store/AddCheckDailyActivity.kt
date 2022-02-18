@@ -5,6 +5,7 @@ import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.text.Editable
+import android.text.TextUtils
 import android.view.Gravity
 import android.view.View
 import android.widget.*
@@ -89,6 +90,7 @@ class AddCheckDailyActivity :
             R.id.check_back_img -> this.finish()
             R.id.check_datetime_frame -> timePickerView.show()
             R.id.check_save_btn -> {
+
             }
         }
     }
@@ -156,10 +158,14 @@ class AddCheckDailyActivity :
         val check_no_rb = dialog.getView<RadioButton>(R.id.check_no_rb)
         val check_desc_et = dialog.getView<EditText>(R.id.check_desc_et)
         val check_remark_et = dialog.getView<EditText>(R.id.check_remark_et)
-        check_desc_et.text =
-            Editable.Factory.getInstance().newEditable(list[position].coordinateMatter)
-        check_remark_et.text =
-            Editable.Factory.getInstance().newEditable(list[position].exceptionDetails)
+        if (!TextUtils.isEmpty(list[position].coordinateMatter)){
+            check_desc_et.text =
+                Editable.Factory.getInstance().newEditable(list[position].coordinateMatter)
+        }
+        if (!TextUtils.isEmpty(list[position].exceptionDetails)){
+            check_remark_et.text =
+                Editable.Factory.getInstance().newEditable(list[position].exceptionDetails)
+        }
         var deviceStatus = list[position].deviceStatus
         when (deviceStatus) {
             1 -> check_yes_rb.isChecked = true

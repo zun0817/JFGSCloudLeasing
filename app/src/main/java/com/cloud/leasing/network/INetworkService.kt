@@ -147,6 +147,12 @@ interface INetworkService {
     @GET(Constant.PATH_ADD_MAINTENANCE)
     suspend fun requestOfAddMaintenance(@Query("resumeId") resumeId: Int): BaseResponse<MutableList<AddMaintenanceBean>>
 
+    @POST(Constant.PATH_SUBMIT_MAINTENANCE)
+    suspend fun requestOfSubmitMaintenance(@Body requestBody: RequestBody): BaseResponse<String>
+
+    @POST(Constant.PATH_ADD_DEPOSIT)
+    suspend fun requestOfSubmitDeposit(@Body requestBody: RequestBody): BaseResponse<String>
+
     @Multipart
     @POST(Constant.PATH_FILE_UPLOAD)
     suspend fun requestOfUploadFile(

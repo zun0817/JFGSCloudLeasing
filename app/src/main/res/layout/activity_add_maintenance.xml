@@ -80,11 +80,33 @@
 
     </LinearLayout>
 
+    <FrameLayout
+        android:id="@+id/bottom"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/add_maintenance_submit_btn"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="15dp"
+            android:background="@drawable/shape_login_0e64bc"
+            android:gravity="center"
+            android:text="提交"
+            android:textColor="@color/white"
+            android:textSize="15sp" />
+
+    </FrameLayout>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/add_maintenance_recycleview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/add_maintenance_ll"
+        android:layout_above="@+id/bottom"
         android:scrollbars="none" />
 
 </RelativeLayout>

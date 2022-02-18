@@ -103,6 +103,10 @@ object Constant {
 
     const val PATH_ADD_MAINTENANCE = "/api/v1/usedItem/app/getResumeBydeviceId"
 
+    const val PATH_SUBMIT_MAINTENANCE = "/api/v1/usedMaintenance/app/save"
+
+    const val PATH_ADD_DEPOSIT = "/api/v1/depositMaintenance/pc/save"
+
 
     /** 本地存储 */
 
@@ -110,6 +114,8 @@ object Constant {
         Environment.getExternalStorageDirectory(),
         "盾构租赁"
     ).path
+
+    const val REQUEST_CODE = 1001
 
     const val FILE_AVATAR = "10"
 

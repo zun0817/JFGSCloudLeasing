@@ -195,4 +195,12 @@ object NetworkApi : BaseNetworkApi<INetworkService>(Constant.BASE_URL) {
         service.requestOfAddMaintenance(resumeId)
     }
 
+    suspend fun requestOfSubmitMaintenance(requestBody: RequestBody) = getResult {
+        service.requestOfSubmitMaintenance(requestBody)
+    }
+
+    suspend fun requestOfSubmitDeposit(requestBody: RequestBody) = getResult {
+        service.requestOfSubmitDeposit(requestBody)
+    }
+
 }

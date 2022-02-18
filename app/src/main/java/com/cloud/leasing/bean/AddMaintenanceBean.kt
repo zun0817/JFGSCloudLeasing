@@ -3,15 +3,15 @@ package com.cloud.leasing.bean
 import java.io.Serializable
 
 data class AddMaintenanceBean(
-    val createTime: String,
-    val exceptionDetails: Any,
-    val id: Int,
-    val isAbnormal: Any,
-    val mtnceName: String,
-    val mtncePosition: String,
-    val mtnceSystem: String,
-    val needingAttention: String,
-    val realPicture: Any,
-    val refPicture: String,
-    val resumeId: Int
+    var createTime: String,
+    var exceptionDetails: Any? = "",
+    var id: Int,
+    var isAbnormal: Any? = "0",
+    var mtnceName: String,
+    var mtncePosition: String,
+    var mtnceSystem: String,
+    var needingAttention: String,
+    var realPicture: Any? = "",
+    var refPicture: String,
+    var resumeId: Int
 ) : Serializable

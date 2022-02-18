@@ -19,7 +19,7 @@ import java.io.File
 
 class AddCheckDailyViewModel : BaseViewModel() {
 
-    val addDailyLiveData = MutableLiveData<Result<String>>()
+    val addDepositLiveData = MutableLiveData<Result<String>>()
 
     val checkItemLiveData = MutableLiveData<Result<MutableList<CheckDailyItemBean>>>()
 
@@ -32,58 +32,35 @@ class AddCheckDailyViewModel : BaseViewModel() {
         }
     }
 
-    fun requestOfAddProductDaily(
+    fun requestOfSubmitDeposit(
         resumeId: Int,
-        dateTime: String?,
-        ratio: String?,
-        safetyAccident: String?,
-        jobContent: String?,
-        assistMatter: String?,
-        remarks: String?,
-        dailyImageUrl: String?,
-        beginTime: String?,
-        planTime: String?
+        dateTime: String,
+        coordinateMatter: String,
+        depositCheckInfoList: MutableList<String>
     ) {
         viewModelScope.launch {
             val param = getAddFaultDailyParam(
                 resumeId,
                 dateTime,
-                ratio,
-                safetyAccident,
-                jobContent,
-                assistMatter,
-                remarks,
-                dailyImageUrl,
-                beginTime, planTime
+                coordinateMatter,
+                depositCheckInfoList
             )
-            val result = NetworkApi.requestOfAddFaultDaily(param)
-            addDailyLiveData.value = result
+            val result = NetworkApi.requestOfSubmitDeposit(param)
+            addDepositLiveData.value = result
         }
     }
 
     private fun getAddFaultDailyParam(
         resumeId: Int,
-        dateTime: String?,
-        ratio: String?,
-        safetyAccident: String?,
-        jobContent: String?,
-        assistMatter: String?,
-        remarks: String?,
-        dailyImageUrl: String?,
-        beginTime: String?,
-        planTime: String?
+        dateTime: String,
+        coordinateMatter: String,
+        depositCheckInfoList: MutableList<String>
     ): RequestBody {
-        val map = mutableMapOf<String, Any?>()
+        val map = mutableMapOf<String, Any>()
         map["resumeId"] = resumeId
         map["dateTime"] = dateTime
-        map["ratio"] = ratio
-        map["safetyAccident"] = safetyAccident
-        map["jobContent"] = jobContent
-        map["assistMatter"] = assistMatter
-        map["remarks"] = remarks
-        map["dailyImageUrl"] = dailyImageUrl
-        map["beginTime"] = beginTime
-        map["planTime"] = planTime
+        map["coordinateMatter"] = coordinateMatter
+        map["depositCheckInfoList"] = depositCheckInfoList
         val json = JSON.toJSONString(map)
         return json.toRequestBody("application/json".toMediaTypeOrNull())
     }
