@@ -27,7 +27,7 @@ data class DeviceManageDetailBean(
     val drivingTorque: String,
     val hingeForm: String,
     val id: Int,
-    val leaseTime: String,
+    val leaseTime: String?,
     val mileageUsed: String,
     val openingRate: String,
     val outTorque: String,

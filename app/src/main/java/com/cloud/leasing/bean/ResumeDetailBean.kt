@@ -23,7 +23,7 @@ data class ResumeDetailBean(
     val projectManager: String?,
     val projectName: Any?,
     val projectNumber: String?,
-    val ringWidth: Any,
+    val ringWidth: Any?,
     val settlementRange: String?,
     val shieldSpec: String,
     val startTime: Any?,

@@ -45,11 +45,11 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1.2">
+                android:layout_weight="1.1">
 
                 <TextView
                     android:id="@+id/title1"
-                    android:layout_width="90dp"
+                    android:layout_width="65dp"
                     android:layout_height="wrap_content"
                     android:drawablePadding="3dp"
                     android:text="设备品牌"
@@ -74,7 +74,7 @@
 
                 <TextView
                     android:id="@+id/title2"
-                    android:layout_width="90dp"
+                    android:layout_width="65dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:drawablePadding="3dp"
@@ -101,7 +101,7 @@
 
                 <TextView
                     android:id="@+id/title3"
-                    android:layout_width="90dp"
+                    android:layout_width="65dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:drawablePadding="3dp"
@@ -128,7 +128,7 @@
 
                 <TextView
                     android:id="@+id/title4"
-                    android:layout_width="90dp"
+                    android:layout_width="65dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:drawablePadding="3dp"
@@ -155,7 +155,7 @@
 
                 <TextView
                     android:id="@+id/title5"
-                    android:layout_width="90dp"
+                    android:layout_width="65dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:drawablePadding="3dp"
@@ -182,7 +182,7 @@
 
                 <TextView
                     android:id="@+id/title6"
-                    android:layout_width="90dp"
+                    android:layout_width="65dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:drawablePadding="3dp"
@@ -209,11 +209,11 @@
 
                 <TextView
                     android:id="@+id/title7"
-                    android:layout_width="90dp"
+                    android:layout_width="75dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:drawablePadding="3dp"
-                    android:text="管片外径"
+                    android:text="适用管片"
                     android:textColor="@color/color_999999"
                     android:textSize="12sp"
                     app:drawableStartCompat="@mipmap/icon_circle_label"
@@ -263,7 +263,7 @@
 
                 <TextView
                     android:id="@+id/title16"
-                    android:layout_width="90dp"
+                    android:layout_width="65dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:drawablePadding="3dp"
@@ -321,7 +321,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
-                android:layout_weight="1">
+                android:layout_weight="1.1">
 
                 <TextView
                     android:id="@+id/title8"
@@ -433,7 +433,7 @@
                     android:id="@+id/title12"
                     android:layout_width="65dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="10dp"
                     android:drawablePadding="3dp"
                     android:text="设备编号"
                     android:textColor="@color/color_999999"

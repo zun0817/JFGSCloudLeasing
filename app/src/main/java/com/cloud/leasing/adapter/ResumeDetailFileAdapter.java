@@ -25,10 +25,8 @@ public class ResumeDetailFileAdapter extends CommonAdapter<DeviceFlie> {
         ImageView detail_file_cache_img = viewHolder.getView(R.id.detail_file_cache_img);
         if (item.getFilePath().contains(".")) {
             String[] fileSuffix = item.getFilePath().split("\\.");
-            detail_file_name_tv.setText(item.getFileName() + "." + fileSuffix[1]);
-        } else {
-            detail_file_name_tv.setText(item.getFileName());
         }
+        detail_file_name_tv.setText(item.getFileName());
         detail_file_size_tv.setVisibility(View.GONE);
         detail_file_cache_img.setOnClickListener(v -> {
             mOnItemClickListener.onItemClick(v, viewHolder, position);

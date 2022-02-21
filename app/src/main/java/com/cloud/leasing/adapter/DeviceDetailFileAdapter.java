@@ -1,11 +1,14 @@
 package com.cloud.leasing.adapter;
 
 import android.content.Context;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.cloud.leasing.R;
 import com.cloud.leasing.bean.RentDeviceFile;
+import com.cloud.leasing.constant.Constant;
+import com.cloud.leasing.util.HttpDownload;
 import com.zhy.adapter.recyclerview.CommonAdapter;
 import com.zhy.adapter.recyclerview.base.ViewHolder;
 
@@ -29,5 +32,10 @@ public class DeviceDetailFileAdapter extends CommonAdapter<RentDeviceFile> {
             detail_file_name_tv.setText(item.getFileName());
         }
         detail_file_size_tv.setText(item.getFileSize());
+        detail_file_cache_img.setOnClickListener(v -> {
+            String path =
+                    Constant.BASE_URL + Constant.PATH_FILE_DOWNLOAD + "?fileName=" + item.getFileName() + "&path=" + item.getFilePath();
+            HttpDownload.getInstance().downLoadFile(path, item.getFileName());
+        });
     }
 }

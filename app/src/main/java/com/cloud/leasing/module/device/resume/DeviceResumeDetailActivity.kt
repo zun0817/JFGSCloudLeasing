@@ -21,7 +21,7 @@ import com.cloud.leasing.constant.PageName
 import com.cloud.leasing.databinding.ActivityDeviceResumeDetailBinding
 import com.cloud.leasing.persistence.XKeyValue
 import com.cloud.leasing.util.FileManager
-import com.cloud.leasing.util.HttpDownloader
+import com.cloud.leasing.util.HttpDownload
 import com.cloud.leasing.util.ViewTouchUtil
 import com.cloud.leasing.util.toast
 import com.gyf.immersionbar.ktx.immersionBar
@@ -204,10 +204,13 @@ class DeviceResumeDetailActivity :
                     MultiItemTypeAdapter.OnItemClickListener {
                     override fun onItemClick(p0: View?, p1: RecyclerView.ViewHolder?, p2: Int) {
                         fileName = fileList[p2].fileName
-                        viewModel.requestOfDownloadFile(
-                            fileList[p2].fileName,
-                            fileList[p2].filePath
-                        )
+                        val path =
+                            Constant.BASE_URL + Constant.PATH_FILE_DOWNLOAD + "?fileName=" + fileName + "&path=" + fileList[p2].filePath
+                        HttpDownload.getInstance().downLoadFile(path, fileName)
+//                        viewModel.requestOfDownloadFile(
+//                            fileList[p2].fileName,
+//                            fileList[p2].filePath
+//                        )
                     }
 
                     override fun onItemLongClick(
@@ -225,8 +228,12 @@ class DeviceResumeDetailActivity :
                     getDeviceTypeName(bean.deviceType)
                 viewBinding.layoutResumeDetailUseInfo.resumeDetailUseExcavateTv.text =
                     bean.workingDiam
-                viewBinding.layoutResumeDetailUseInfo.resumeDetailUseRingwidthTv.text =
-                    bean.ringWidth.toString()
+                if (bean.ringWidth == null) {
+                    viewBinding.layoutResumeDetailUseInfo.resumeDetailUseRingwidthTv.text = "无"
+                } else {
+                    viewBinding.layoutResumeDetailUseInfo.resumeDetailUseRingwidthTv.text =
+                        bean.ringWidth.toString()
+                }
                 viewBinding.layoutResumeDetailUseInfo.resumeDetailUseIntervalTv.text =
                     bean.intervalMileage ?: "无"
                 viewBinding.layoutResumeDetailUseInfo.resumeDetailUseTestedTv.text =
@@ -313,10 +320,13 @@ class DeviceResumeDetailActivity :
                     MultiItemTypeAdapter.OnItemClickListener {
                     override fun onItemClick(p0: View?, p1: RecyclerView.ViewHolder?, p2: Int) {
                         fileName = fileList[p2].fileName
-                        viewModel.requestOfDownloadFile(
-                            fileList[p2].fileName,
-                            fileList[p2].filePath
-                        )
+                        val path =
+                            Constant.BASE_URL + Constant.PATH_FILE_DOWNLOAD + "?fileName=" + fileName + "&path=" + fileList[p2].filePath
+                        HttpDownload.getInstance().downLoadFile(path, fileName)
+//                        viewModel.requestOfDownloadFile(
+//                            fileList[p2].fileName,
+//                            fileList[p2].filePath
+//                        )
                     }
 
                     override fun onItemLongClick(

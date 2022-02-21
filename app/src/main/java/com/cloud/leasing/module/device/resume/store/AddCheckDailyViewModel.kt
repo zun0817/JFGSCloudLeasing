@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.alibaba.fastjson.JSON
 import com.cloud.leasing.base.BaseViewModel
+import com.cloud.leasing.bean.AddDepositBean
 import com.cloud.leasing.bean.CheckDailyItemBean
 import com.cloud.leasing.bean.CompanyFileBean
 import com.cloud.leasing.bean.ProductDailyFaultBean
@@ -36,7 +37,7 @@ class AddCheckDailyViewModel : BaseViewModel() {
         resumeId: Int,
         dateTime: String,
         coordinateMatter: String,
-        depositCheckInfoList: MutableList<String>
+        depositCheckInfoList: MutableList<AddDepositBean>
     ) {
         viewModelScope.launch {
             val param = getAddFaultDailyParam(
@@ -54,7 +55,7 @@ class AddCheckDailyViewModel : BaseViewModel() {
         resumeId: Int,
         dateTime: String,
         coordinateMatter: String,
-        depositCheckInfoList: MutableList<String>
+        depositCheckInfoList: MutableList<AddDepositBean>
     ): RequestBody {
         val map = mutableMapOf<String, Any>()
         map["resumeId"] = resumeId

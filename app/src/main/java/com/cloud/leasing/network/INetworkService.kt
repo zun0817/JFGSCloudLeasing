@@ -153,6 +153,9 @@ interface INetworkService {
     @POST(Constant.PATH_ADD_DEPOSIT)
     suspend fun requestOfSubmitDeposit(@Body requestBody: RequestBody): BaseResponse<String>
 
+    @GET(Constant.PATH_CITY)
+    suspend fun requestOfCityList(@Query("areaCode") areaCode: String): BaseResponse<MutableList<CityBean>>
+
     @Multipart
     @POST(Constant.PATH_FILE_UPLOAD)
     suspend fun requestOfUploadFile(

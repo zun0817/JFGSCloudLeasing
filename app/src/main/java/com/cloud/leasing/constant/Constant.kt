@@ -65,6 +65,8 @@ object Constant {
 
     const val PATH_DEVICE_SITE = "/sys/area/list"
 
+    const val PATH_CITY = "/sys/area/getCityByProvinceCode"
+
     const val PATH_DEVICE_ADD = "/api/v1/rentDevice/app/save"
 
     const val PATH_REQUIRE_ADD = "/api/v1/demand/app/save"

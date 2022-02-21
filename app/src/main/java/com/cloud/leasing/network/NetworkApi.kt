@@ -203,4 +203,8 @@ object NetworkApi : BaseNetworkApi<INetworkService>(Constant.BASE_URL) {
         service.requestOfSubmitDeposit(requestBody)
     }
 
+    suspend fun requestOfCityList(areaCode: String) = getResult {
+        service.requestOfCityList(areaCode)
+    }
+
 }

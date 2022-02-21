@@ -10,11 +10,15 @@ import android.view.Gravity
 import android.view.View
 import android.widget.*
 import androidx.activity.viewModels
+import com.alibaba.fastjson.JSON
 import com.cloud.dialoglibrary.BaseDialog
 import com.cloud.leasing.R
 import com.cloud.leasing.adapter.AddDailyCheckAdapter
 import com.cloud.leasing.base.BaseActivity
+import com.cloud.leasing.bean.AddDepositBean
 import com.cloud.leasing.bean.CheckDailyItemBean
+import com.cloud.leasing.bean.DepositItemBean
+import com.cloud.leasing.bean.exception.NetworkException
 import com.cloud.leasing.constant.PageName
 import com.cloud.leasing.databinding.ActivityAddCheckDailyBinding
 import com.cloud.leasing.util.ViewTouchUtil
@@ -41,6 +45,10 @@ class AddCheckDailyActivity :
     private var resumeId = 0
 
     private var datetime = ""
+
+    private var params = mutableListOf<AddDepositBean>()
+
+    private var items = mutableListOf<DepositItemBean>()
 
     private var list = mutableListOf<CheckDailyItemBean>()
 
@@ -82,6 +90,19 @@ class AddCheckDailyActivity :
                     addDailyCheckAdapter.refreshData(list)
                 }
             })
+            addDepositLiveData.observe(this@AddCheckDailyActivity, { it ->
+                it.onFailure {
+                    if ((it as NetworkException).code == 200) {
+                        "提交成功".toast(this@AddCheckDailyActivity)
+                        this@AddCheckDailyActivity.finish()
+                    } else {
+                        it.toString().toast(this@AddCheckDailyActivity)
+                    }
+                }.onSuccess {
+                    "提交成功".toast(this@AddCheckDailyActivity)
+                    this@AddCheckDailyActivity.finish()
+                }
+            })
         }
     }
 
@@ -90,7 +111,24 @@ class AddCheckDailyActivity :
             R.id.check_back_img -> this.finish()
             R.id.check_datetime_frame -> timePickerView.show()
             R.id.check_save_btn -> {
-
+                if (datetime.isBlank()){
+                    "请选择日期".toast(this)
+                    return
+                }
+                list.forEach {
+                    val itemBean = DepositItemBean()
+                    itemBean.checkName = it.checkName
+                    itemBean.coordinateMatter = it.coordinateMatter
+                    itemBean.deviceStatus = it.deviceStatus
+                    itemBean.exceptionDetails = it.exceptionDetails
+                    items.add(itemBean)
+                }
+                val json = JSON.toJSONString(items)
+                val addDepositBean = AddDepositBean()
+                addDepositBean.checkJson = json
+                params.add(addDepositBean)
+                val coordinateMatter = viewBinding.checkCoordinatematterEt.text.trim().toString()
+                viewModel.requestOfSubmitDeposit(resumeId, datetime, coordinateMatter, params)
             }
         }
     }
@@ -168,13 +206,13 @@ class AddCheckDailyActivity :
         }
         var deviceStatus = list[position].deviceStatus
         when (deviceStatus) {
-            1 -> check_yes_rb.isChecked = true
-            2 -> check_no_rb.isChecked = true
+            2 -> check_yes_rb.isChecked = true
+            1 -> check_no_rb.isChecked = true
         }
         check_rg.setOnCheckedChangeListener { _, checkedId ->
             when (checkedId) {
-                R.id.check_yes_rb -> deviceStatus = 1
-                R.id.check_no_rb -> deviceStatus = 2
+                R.id.check_yes_rb -> deviceStatus = 2
+                R.id.check_no_rb -> deviceStatus = 1
             }
         }
         closeview.setOnClickListener {

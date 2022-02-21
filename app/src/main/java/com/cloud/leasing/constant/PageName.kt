@@ -53,6 +53,7 @@ import androidx.annotation.StringDef
     PageName.MANAGE_DATA_FILE,
     PageName.ADD_MAINTENANCE,
     PageName.EDIT_MAINTENANCE,
+    PageName.DEVICE_MANAGE_DETAIL,
 
     PageName.ACGN,
     PageName.SMALL_VIDEO,
@@ -114,6 +115,7 @@ annotation class PageName {
         const val MANAGE_DATA_FILE = "manage_data_file"
         const val ADD_MAINTENANCE = "add_maintenance"
         const val EDIT_MAINTENANCE = "edit_maintenance"
+        const val DEVICE_MANAGE_DETAIL = "device_manage_detail"
 
         const val ACGN = "acgn"
         const val SMALL_VIDEO = "small_video"

@@ -64,7 +64,7 @@ class DeviceFragment : BaseFragment<FragmentDeviceBinding>(FragmentDeviceBinding
                         id: Long
                     ) {
                         val bean = viewData.value as Record
-                        DeviceDetailActivity.startActivity(requireActivity(), bean.id)
+                        DeviceManageDetailActivity.startActivity(requireActivity(), bean.id)
                     }
                 })
                 .setOnItemChildViewClickListener(object :
