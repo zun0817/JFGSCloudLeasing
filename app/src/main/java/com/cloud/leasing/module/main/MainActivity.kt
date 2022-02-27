@@ -3,9 +3,14 @@ package com.cloud.leasing.module.main
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.view.Gravity
 import android.view.View
+import android.widget.FrameLayout
+import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.activity.viewModels
 import com.alibaba.fastjson.JSON
+import com.cloud.dialoglibrary.BaseDialog
 import com.cloud.leasing.R
 import com.cloud.leasing.base.BaseActivity
 import com.cloud.leasing.bean.*
@@ -17,9 +22,11 @@ import com.cloud.leasing.item.DeviceItemViewData
 import com.cloud.leasing.module.device.DeviceFragment
 import com.cloud.leasing.module.home.HomeFragment
 import com.cloud.leasing.module.mine.MineFragment
+import com.cloud.leasing.module.mine.auth.CompanyAuthActivity
 import com.cloud.leasing.persistence.XKeyValue
 import com.cloud.leasing.util.toast
 import com.cloud.leasing.widget.TabIndicatorView
+import com.cloud.popwindow.WheelView
 import com.gyf.immersionbar.ktx.immersionBar
 
 class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::inflate) {
@@ -31,6 +38,10 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
             activity.startActivity(intent)
         }
     }
+
+    private var userAuth: String = "0"
+
+    private lateinit var dialog: BaseDialog
 
     private lateinit var typeList: MutableList<DeviceType>
 
@@ -51,6 +62,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initSystemBar()
+        initDialog()
         initView()
         initTabs()
         viewModelObserve()
@@ -60,6 +72,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
     private fun initView() {
         viewModel.requestOfDeviceType()
         viewBinding.mianLoadingview.visibility = View.VISIBLE
+        userAuth= XKeyValue.getString(Constant.USER_AUTH, "0")
+        if (userAuth == "0") dialog.show()
     }
 
     private fun viewModelObserve() {
@@ -138,4 +152,28 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
     private fun setCurrentTab(@TabId tabID: String) {
         viewBinding.fragmentTabHost.setCurrentTabByTag(tabID)
     }
+
+    private fun initDialog(){
+        val builder = BaseDialog.Builder(this)
+        dialog = builder
+            .setViewId(R.layout.layout_auth_popwindow)
+            .setStyle(R.style.CommonDialog)
+            .setWidthHeightpx(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+            )
+            .setGravity(Gravity.CENTER)
+            .setAnimation(R.style.DialogScaleAnim)
+            .isOnTouchCanceled(false)
+            .setPaddingdp(30, 10, 30, 10)
+            .addViewOnClickListener(R.id.dialog_view_close) {
+                dialog.dismiss()
+            }.builder()
+        val dialog_auth_tv = dialog.getView<TextView>(R.id.dialog_auth_tv)
+        dialog_auth_tv.setOnClickListener {
+            dialog.dismiss()
+            CompanyAuthActivity.startActivity(this, "2")
+        }
+    }
+
 }

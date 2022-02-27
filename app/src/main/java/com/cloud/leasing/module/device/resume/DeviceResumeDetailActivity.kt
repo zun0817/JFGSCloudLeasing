@@ -206,7 +206,7 @@ class DeviceResumeDetailActivity :
                         fileName = fileList[p2].fileName
                         val path =
                             Constant.BASE_URL + Constant.PATH_FILE_DOWNLOAD + "?fileName=" + fileName + "&path=" + fileList[p2].filePath
-                        HttpDownload.getInstance().downLoadFile(path, fileName)
+                        HttpDownload.getInstance().downLoadFile(path, fileName, fileList[p2].filePath.split("\\.")[1])
 //                        viewModel.requestOfDownloadFile(
 //                            fileList[p2].fileName,
 //                            fileList[p2].filePath
@@ -322,7 +322,7 @@ class DeviceResumeDetailActivity :
                         fileName = fileList[p2].fileName
                         val path =
                             Constant.BASE_URL + Constant.PATH_FILE_DOWNLOAD + "?fileName=" + fileName + "&path=" + fileList[p2].filePath
-                        HttpDownload.getInstance().downLoadFile(path, fileName)
+                        HttpDownload.getInstance().downLoadFile(path, fileName, fileList[p2].filePath.split("\\.")[1])
 //                        viewModel.requestOfDownloadFile(
 //                            fileList[p2].fileName,
 //                            fileList[p2].filePath

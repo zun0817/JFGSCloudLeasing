@@ -30,5 +30,6 @@ data class User(
     val userIdentity: String,
     val userImage: Int,
     val userType: Any,
-    val username: String
+    val username: String,
+    val userAuth: String
 ) : Serializable

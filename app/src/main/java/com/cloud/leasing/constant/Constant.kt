@@ -145,6 +145,8 @@ object Constant {
 
     const val USER_PASSWORD = "user_password"
 
+    const val USER_AUTH = "user_auth"
+
     const val DEVICE_TYPE = "device_type"
 
     const val DEVICE_BRAND = "device_brand"

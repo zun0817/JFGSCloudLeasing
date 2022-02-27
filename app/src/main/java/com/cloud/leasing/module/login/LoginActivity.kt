@@ -102,7 +102,8 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::i
                     XKeyValue.putInt(Constant.USER_ID, it.user.userId)
                     XKeyValue.putString(Constant.USER_TOKEN, it.token)
                     XKeyValue.putString(Constant.USER_PHONE, it.user.mobile)
-                        XKeyValue.putString(Constant.USER_PASSWORD, it.user.password)
+                    XKeyValue.putString(Constant.USER_PASSWORD, it.user.password)
+                    XKeyValue.putString(Constant.USER_AUTH, it.user.userAuth)
                     MainActivity.startActivity(this@LoginActivity)
                     this@LoginActivity.finish()
                 }
@@ -116,6 +117,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::i
                     XKeyValue.putInt(Constant.USER_ID, it.user.userId)
                     XKeyValue.putString(Constant.USER_TOKEN, it.token)
                     XKeyValue.putString(Constant.USER_PHONE, it.user.mobile)
+                    XKeyValue.putString(Constant.USER_AUTH, it.user.userAuth)
                     MainActivity.startActivity(this@LoginActivity)
                     this@LoginActivity.finish()
                 }

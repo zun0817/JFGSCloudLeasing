@@ -31,6 +31,7 @@ import com.cloud.leasing.module.home.search.SearchActivity
 import com.cloud.leasing.module.home.service.ServiceActivity
 import com.cloud.leasing.module.home.want.AddRequireActivity
 import com.cloud.leasing.module.home.want.WantActivity
+import com.cloud.leasing.persistence.XKeyValue
 import com.cloud.leasing.util.ViewTouchUtil
 import com.cloud.leasing.util.toast
 import com.gyf.immersionbar.ktx.immersionBar
@@ -42,6 +43,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
     View.OnScrollChangeListener, View.OnClickListener {
 
     private var isFlag = 0
+
+    private var userAuth: String = "0"
 
     private var isFollowOne = false
 
@@ -392,8 +395,20 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
 
     override fun onClick(v: View?) {
         when (v!!.id) {
-            R.id.home_want_tv -> AddRequireActivity.startActivity(requireActivity())
-            R.id.home_have_tv -> AddDeviceActivity.startActivity(requireActivity())
+            R.id.home_want_tv -> {
+                if (userAuth == "0" || userAuth == "2") {
+                    "企业认证未通过".toast(requireActivity())
+                    return
+                }
+                AddRequireActivity.startActivity(requireActivity())
+            }
+            R.id.home_have_tv -> {
+                if (userAuth == "0" || userAuth == "2") {
+                    "企业认证未通过".toast(requireActivity())
+                    return
+                }
+                AddDeviceActivity.startActivity(requireActivity())
+            }
             R.id.home_service_tv -> ServiceActivity.startActivity(requireActivity())
             R.id.home_publish_tv -> PublishActivity.startActivity(requireActivity())
             R.id.main_device_more_tv -> MoreDeviceActivity.startActivity(requireActivity())
@@ -414,6 +429,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
     }
 
     private fun initView() {
+        userAuth = XKeyValue.getString(Constant.USER_AUTH, "0")
         viewBinding.homeWantTv.setOnClickListener(this)
         viewBinding.homeHaveTv.setOnClickListener(this)
         viewBinding.homePublishTv.setOnClickListener(this)

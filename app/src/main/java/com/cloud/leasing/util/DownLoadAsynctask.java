@@ -46,7 +46,7 @@ public class DownLoadAsynctask extends AsyncTask<String, Integer, Boolean> {
             URL url = new URL(downloadurl);
             URLConnection urlConnection = url.openConnection();
 
-            path = FileManager.getSDPath() + "/" + fileName;
+            path = JFGSApplication.instance.getExternalFilesDir(null).getPath() + "/" + "xxxxx.pdf";
             File file = new File(path);
 
             if (file.exists()) {

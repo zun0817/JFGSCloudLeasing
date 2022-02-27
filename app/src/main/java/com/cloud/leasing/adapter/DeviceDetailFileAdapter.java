@@ -1,7 +1,6 @@
 package com.cloud.leasing.adapter;
 
 import android.content.Context;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -35,7 +34,7 @@ public class DeviceDetailFileAdapter extends CommonAdapter<RentDeviceFile> {
         detail_file_cache_img.setOnClickListener(v -> {
             String path =
                     Constant.BASE_URL + Constant.PATH_FILE_DOWNLOAD + "?fileName=" + item.getFileName() + "&path=" + item.getFilePath();
-            HttpDownload.getInstance().downLoadFile(path, item.getFileName());
+            HttpDownload.getInstance().downLoadFile(path, item.getFileName(), item.getFilePath().split("\\.")[1]);
         });
     }
 }
