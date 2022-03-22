@@ -55,7 +55,7 @@ class DeviceResumeAdapter(val context: Context, var list: MutableList<DeviceResu
         viewHoler.resume_item_no_tv!!.text = list[position].deviceNo
         viewHoler.resume_item_tunnemeters_tv!!.text = list[position].tunneMeters + "m"
         viewHoler.resume_item_tunnemeterstotal_tv!!.text = list[position].tunneMeterTotal + "m"
-        viewHoler.resume_item_workingdiam_tv!!.text = list[position].workingDiam + "m"
+        viewHoler.resume_item_workingdiam_tv!!.text = list[position].workingDiam + "mm"
         var starttime = ""
         var exittime = ""
         starttime = if (list[position].startTime == null) {

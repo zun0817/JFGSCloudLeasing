@@ -29,7 +29,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="7dp"
-            android:text="创建时间：2021-12-15"
+            android:text="可租赁时间：2021-12-15"
             android:textColor="@color/color_999999"
             android:textSize="12sp" />
 
@@ -45,7 +45,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1.1">
+                android:layout_weight="1.0">
 
                 <TextView
                     android:id="@+id/title1"
@@ -213,7 +213,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:drawablePadding="3dp"
-                    android:text="适用管片"
+                    android:text="管片外径"
                     android:textColor="@color/color_999999"
                     android:textSize="12sp"
                     app:drawableStartCompat="@mipmap/icon_circle_label"
@@ -289,6 +289,33 @@
                     app:layout_constraintTop_toBottomOf="@id/device_detail_opening_tv" />
 
                 <TextView
+                    android:id="@+id/title001"
+                    android:layout_width="65dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:drawablePadding="3dp"
+                    android:text="最小价格"
+                    android:textColor="@color/color_999999"
+                    android:textSize="12sp"
+                    app:drawableStartCompat="@mipmap/icon_circle_label"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/title16" />
+
+                <TextView
+                    android:id="@+id/device_detail_minPrice_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:text="暂无"
+                    android:textColor="@color/color_262626"
+                    android:textSize="12sp"
+                    app:layout_constrainedWidth="true"
+                    app:layout_constraintLeft_toRightOf="@id/title001"
+                    app:layout_constraintTop_toBottomOf="@id/device_detail_cuttertype_tv" />
+
+                <TextView
                     android:id="@+id/title17"
                     android:layout_width="90dp"
                     android:layout_height="wrap_content"
@@ -299,7 +326,7 @@
                     android:textSize="12sp"
                     app:drawableStartCompat="@mipmap/icon_circle_label"
                     app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/title16" />
+                    app:layout_constraintTop_toBottomOf="@id/title001" />
 
                 <TextView
                     android:id="@+id/device_detail_radius_tv"
@@ -313,14 +340,14 @@
                     android:textSize="12sp"
                     app:layout_constrainedWidth="true"
                     app:layout_constraintLeft_toRightOf="@id/title17"
-                    app:layout_constraintTop_toBottomOf="@id/device_detail_cuttertype_tv" />
+                    app:layout_constraintTop_toBottomOf="@id/device_detail_minPrice_tv" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
+                android:layout_marginStart="8dp"
                 android:layout_weight="1.1">
 
                 <TextView
@@ -474,7 +501,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:ellipsize="end"
                     android:singleLine="true"
                     android:text="适用地层"
                     android:textColor="@color/color_262626"
@@ -563,6 +589,33 @@
                     app:layout_constrainedWidth="true"
                     app:layout_constraintLeft_toRightOf="@id/title18"
                     app:layout_constraintTop_toBottomOf="@id/device_detail_mileage_tv" />
+
+                <TextView
+                    android:id="@+id/title002"
+                    android:layout_width="65dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:drawablePadding="3dp"
+                    android:text="最大价格"
+                    android:textColor="@color/color_999999"
+                    android:textSize="12sp"
+                    app:drawableStartCompat="@mipmap/icon_circle_label"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/title19" />
+
+                <TextView
+                    android:id="@+id/device_detail_maxPrice_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:text="暂无"
+                    android:textColor="@color/color_262626"
+                    android:textSize="12sp"
+                    app:layout_constrainedWidth="true"
+                    app:layout_constraintLeft_toRightOf="@id/title002"
+                    app:layout_constraintTop_toBottomOf="@id/device_detail_status_tv" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

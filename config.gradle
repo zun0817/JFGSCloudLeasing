@@ -48,7 +48,7 @@ build_versions.target_sdk = 30
 build_versions.compile_sdk = 30
 build_versions.android_gradle_plugin = "7.0.2"
 build_versions.kotlin = '1.5.30'
-build_versions.app_version_name = "1.0.0"
+build_versions.app_version_name = "1.0.3"
 build_versions.app_version_code = 1000000
 ext.build_versions = build_versions
 

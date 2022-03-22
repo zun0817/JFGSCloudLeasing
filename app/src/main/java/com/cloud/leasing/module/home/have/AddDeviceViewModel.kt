@@ -19,6 +19,7 @@ import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.asRequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
 import java.io.File
+import java.math.BigDecimal
 
 class AddDeviceViewModel : BaseViewModel() {
 
@@ -195,6 +196,8 @@ class AddDeviceViewModel : BaseViewModel() {
         deviceStatus: String,
         workingDiam: String,
         remarks: String,
+        minPrice: BigDecimal,
+        maxPrice: BigDecimal,
         rentDeviceFileList: MutableList<UploadFileBean>
     ) {
         viewModelScope.launch {
@@ -226,6 +229,8 @@ class AddDeviceViewModel : BaseViewModel() {
                 deviceStatus,
                 workingDiam,
                 remarks,
+                minPrice,
+                maxPrice,
                 rentDeviceFileList
             )
             val result = NetworkApi.requestOfAddDevice(params)
@@ -261,6 +266,8 @@ class AddDeviceViewModel : BaseViewModel() {
         deviceStatus: String,
         workingDiam: String,
         remarks: String,
+        minPrice: BigDecimal,
+        maxPrice: BigDecimal,
         rentDeviceFileList: MutableList<UploadFileBean>
     ): RequestBody {
         val map = mutableMapOf<String, Any?>()
@@ -292,6 +299,8 @@ class AddDeviceViewModel : BaseViewModel() {
         map["deviceStatus"] = deviceStatus
         map["workingDiam"] = workingDiam
         map["remarks"] = remarks
+        map["minPrice"] = minPrice
+        map["maxPrice"] = maxPrice
         map["rentDeviceFileList"] = rentDeviceFileList
         val json = JSON.toJSONString(map)
         return json.toRequestBody("application/json".toMediaTypeOrNull())

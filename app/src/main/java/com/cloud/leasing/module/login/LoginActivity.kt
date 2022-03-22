@@ -281,6 +281,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::i
 
     private fun initPermission() {
         XXPermissions.with(this).permission(Permission.CAMERA).permission(Permission.Group.STORAGE)
+            .permission(Permission.CALL_PHONE).permission(Permission.READ_PHONE_STATE)
             .request(object : OnPermissionCallback {
                 override fun onGranted(permissions: MutableList<String>?, all: Boolean) {
                     if (all) {

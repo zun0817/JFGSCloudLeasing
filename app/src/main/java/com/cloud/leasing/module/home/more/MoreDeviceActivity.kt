@@ -10,6 +10,7 @@ import com.cloud.leasing.R
 import com.cloud.leasing.adapter.MoreDeviceAdapter
 import com.cloud.leasing.base.BaseActivity
 import com.cloud.leasing.bean.HomeDeviceBean
+import com.cloud.leasing.bean.Search
 import com.cloud.leasing.constant.PageName
 import com.cloud.leasing.databinding.ActivityMoreDeviceBinding
 import com.cloud.leasing.module.home.detail.DeviceDetailActivity
@@ -33,7 +34,7 @@ class MoreDeviceActivity :
 
     private lateinit var moreDeviceAdapter: MoreDeviceAdapter
 
-    private lateinit var list: MutableList<HomeDeviceBean>
+    private lateinit var list: MutableList<Search>
 
     override fun getPageName() = PageName.MORE_DEVICE
 
@@ -50,7 +51,8 @@ class MoreDeviceActivity :
         list = mutableListOf()
         moreDeviceAdapter = MoreDeviceAdapter(this, list)
         viewBinding.moreDeviceListview.adapter = moreDeviceAdapter
-        viewModel.requestOfHomeDevices()
+        //viewModel.requestOfHomeDevices()
+        viewModel.requestOfQueryData(1)
         viewBinding.moreDeviceLoadingview.visibility = View.VISIBLE
         viewBinding.moreDeviceListview.onItemClickListener = this
     }
@@ -67,16 +69,25 @@ class MoreDeviceActivity :
 
     private fun viewModelObserve() {
         viewModel.apply {
-            deviceLiveData.observe(
-                this@MoreDeviceActivity, { it ->
-                    viewBinding.moreDeviceLoadingview.visibility = View.GONE
-                    it.onFailure {
-                        it.toString().toast(this@MoreDeviceActivity)
-                    }.onSuccess {
-                        list = it
-                        moreDeviceAdapter.refreshData(it)
-                    }
-                })
+//            deviceLiveData.observe(
+//                this@MoreDeviceActivity, { it ->
+//                    viewBinding.moreDeviceLoadingview.visibility = View.GONE
+//                    it.onFailure {
+//                        it.toString().toast(this@MoreDeviceActivity)
+//                    }.onSuccess {
+//                        list = it
+//                        moreDeviceAdapter.refreshData(it)
+//                    }
+//                })
+            searchDeviceLiveData.observe(this@MoreDeviceActivity, { it ->
+                viewBinding.moreDeviceLoadingview.visibility = View.GONE
+                it.onFailure {
+                    it.toString().toast(this@MoreDeviceActivity)
+                }.onSuccess {
+                    list = it.sbData.sbList
+                    moreDeviceAdapter.refreshData(list)
+                }
+            })
         }
     }
 

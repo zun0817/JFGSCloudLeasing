@@ -112,7 +112,7 @@ class SearchActivity : BaseActivity<ActivitySearchBinding>(ActivitySearchBinding
                         }
                     } else {
                         viewBinding.searchTabLl.visibility = View.VISIBLE
-                        viewBinding.searchDeviceTv.text = "待租信息(" + it.sbData.sbTotal + ")"
+                        //viewBinding.searchDeviceTv.text = "待租信息(" + it.sbData.sbTotal + ")"
                         val sbList = it.sbData.sbList
                         searchDeviceFragment?.apply {
                             refreshData(sbList)
@@ -142,7 +142,7 @@ class SearchActivity : BaseActivity<ActivitySearchBinding>(ActivitySearchBinding
                         }
                     } else {
                         viewBinding.searchTabLl.visibility = View.VISIBLE
-                        viewBinding.searchRequireTv.text = "求租信息(" + it.xqData.xqTotal + ")"
+                         //viewBinding.searchRequireTv.text = "求租信息(" + it.xqData.xqTotal + ")"
                         val xqList = it.xqData.xqList
                         searchRequireFragment?.apply {
                             refreshData(xqList)

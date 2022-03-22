@@ -52,7 +52,7 @@ class SearchDeviceAdapter(val context: Context, var list: MutableList<Search>) :
         viewHoler.device_item_name_tv!!.text =
             list[position].deviceCity + "·" + list[position].deviceBrand
         viewHoler.device_item_type_tv!!.text = list[position].deviceType
-        viewHoler.device_item_diameter_tv!!.text = "管片外径 " + list[position].outerDiameter + "m"
+        viewHoler.device_item_diameter_tv!!.text = "管片外径 " + list[position].outerDiameter + "mm"
         viewHoler.device_item_img?.let {
             Glide.with(context)
                 .load(Constant.BASE_FILE_URL + list[position].filePath)

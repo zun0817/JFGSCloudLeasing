@@ -89,30 +89,30 @@ class RequireDetailActivity :
                     viewBinding.layoutRequireDetailInfo.requireDetailTypeTv.text = it.deviceTypeName
                     viewBinding.layoutRequireDetailInfo.requireDetailPlaceTv.text = it.demandCity
                     viewBinding.layoutRequireDetailInfo.requireDetailDiameterTv.text =
-                        if (it.cutterDiam.isBlank()) "无" else it.cutterDiam + "m"
+                        if (it.cutterDiam.isBlank()) "暂无" else it.cutterDiam + "mm"
                     viewBinding.layoutRequireDetailInfo.requireDetailGeologyTv.text =
-                        it.geologicalInfo
+                        if (it.geologicalInfo.isBlank()) "暂无" else it.geologicalInfo
                     viewBinding.layoutRequireDetailInfo.requireDetailCountTv.text =
                         it.demandNum.toString() + "台"
-                    viewBinding.layoutRequireDetailInfo.requireDetailUseTv.text = it.usageTime
+                    viewBinding.layoutRequireDetailInfo.requireDetailUseTv.text = if (it.usageTime.isBlank()) "无" else it.usageTime
                     viewBinding.layoutRequireDetailInfo.requireDetailTorqueTv.text =
-                        it.drivingTorque + "KN·m"
+                        if (it.drivingTorque.isBlank()) "暂无" else it.drivingTorque + "KN·m"
                     viewBinding.layoutRequireDetailInfo.requireDetailLengthTv.text =
                         it.projectLength.toString()
                     viewBinding.layoutRequireDetailInfo.requireDetailPropulTv.text =
-                        if (it.propulsiveForce.isBlank()) "无" else it.propulsiveForce
+                        if (it.propulsiveForce.isBlank()) "暂无" else it.propulsiveForce
                     viewBinding.layoutRequireDetailInfo.requireDetailOuterTv.text =
-                        it.outerDiameter + "m"
+                        if (it.outerDiameter.isBlank()) "暂无" else it.outerDiameter + "mm"
                     viewBinding.layoutRequireDetailInfo.requireDetailOpeningTv.text =
-                        if (it.openingRate.isBlank()) "无" else it.openingRate + "%"
+                        if (it.openingRate.isBlank()) "暂无" else it.openingRate + "%"
                     viewBinding.layoutRequireDetailInfo.requireDetailCuttertypeTv.text =
-                        it.cutterTypeName
+                        if (it.cutterTypeName.isBlank()) "暂无" else it.cutterTypeName
                     viewBinding.layoutRequireDetailInfo.requireDetailRadiusTv.text =
-                        if (it.turningRadius.isBlank()) "无" else it.turningRadius + "m"
+                        if (it.turningRadius.isBlank()) "暂无" else it.turningRadius + "m"
                     viewBinding.layoutRequireDetailUser.requireDetailUsernameTv.text = it.name
                     viewBinding.layoutRequireDetailUser.requireDetailPhoneTv.text = it.mobile
                     viewBinding.layoutRequireDetailUser.requireDetailPlaceTv.text =
-                        it.corporateName ?: "无"
+                        it.corporateName ?: "暂无"
                     it.demandFileList.takeIf { it.isNotEmpty() }?.onEach {
                         when (it.fileType) {
                             "1" -> {

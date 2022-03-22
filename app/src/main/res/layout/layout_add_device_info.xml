@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/add_device_info_scrollview"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/shape_item_white"
-    android:scrollbars="none"
     android:paddingHorizontal="16dp"
-    android:paddingVertical="18dp">
+    android:paddingVertical="18dp"
+    android:scrollbars="none">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -156,11 +157,11 @@
                     android:id="@+id/add_device_site_label_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:drawablePadding="2dp"
                     android:text="设备位置"
                     android:textColor="@color/color_17191C"
                     android:textSize="15sp"
                     android:textStyle="bold"
-                    android:drawablePadding="2dp"
                     app:drawableEndCompat="@mipmap/icon_required" />
 
             </FrameLayout>
@@ -179,11 +180,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
                 android:layout_marginEnd="60dp"
+                android:ellipsize="end"
+                android:singleLine="true"
                 android:text="设备位置"
                 android:textColor="@color/color_BFBFBF"
                 android:textSize="15sp"
-                android:singleLine="true"
-                android:ellipsize="end"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toRightOf="@id/add_device_site_frame"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -209,12 +210,12 @@
                     android:id="@+id/add_device_deviceno_label_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:drawablePadding="2dp"
                     android:text="设备编号"
                     android:textColor="@color/color_17191C"
                     android:textSize="15sp"
                     android:textStyle="bold"
-                    android:drawablePadding="2dp"
-                    app:drawableEndCompat="@mipmap/icon_required"  />
+                    app:drawableEndCompat="@mipmap/icon_required" />
 
             </FrameLayout>
 
@@ -223,13 +224,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
+                android:background="@color/transparent"
                 android:hint="设备编号"
-                android:inputType="text"
                 android:imeOptions="actionNext"
+                android:inputType="text"
                 android:textColor="@color/color_262626"
                 android:textColorHint="@color/color_BFBFBF"
                 android:textSize="15sp"
-                android:background="@color/transparent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toRightOf="@id/add_device_deviceno_frame"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -256,7 +257,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:drawablePadding="2dp"
-                    android:text="刀盘直径(m)"
+                    android:text="刀盘直径(mm)"
                     android:textColor="@color/color_17191C"
                     android:textSize="15sp"
                     android:textStyle="bold"
@@ -269,13 +270,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
-                android:hint="刀盘直径(m)"
+                android:background="@color/transparent"
+                android:hint="刀盘直径(mm)"
+                android:imeOptions="actionNext"
+                android:inputType="numberDecimal"
                 android:textColor="@color/color_262626"
                 android:textColorHint="@color/color_BFBFBF"
                 android:textSize="15sp"
-                android:inputType="numberDecimal"
-                android:imeOptions="actionNext"
-                android:background="@color/transparent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toRightOf="@id/add_device_diameter_frame"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -315,13 +316,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
+                android:background="@color/transparent"
                 android:hint="主梁数量(个)"
+                android:imeOptions="actionNext"
+                android:inputType="number"
                 android:textColor="@color/color_262626"
                 android:textColorHint="@color/color_BFBFBF"
                 android:textSize="15sp"
-                android:imeOptions="actionNext"
-                android:inputType="number"
-                android:background="@color/transparent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toRightOf="@id/add_device_beam_frame"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -361,10 +362,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
-                android:hint="总推进力(T)"
                 android:background="@color/transparent"
-                android:inputType="number"
+                android:hint="总推进力(T)"
                 android:imeOptions="actionDone"
+                android:inputType="number"
                 android:textColor="@color/color_262626"
                 android:textColorHint="@color/color_BFBFBF"
                 android:textSize="15sp"
@@ -393,12 +394,12 @@
                     android:id="@+id/add_device_knifetype_label_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:drawablePadding="2dp"
                     android:text="刀盘类型"
                     android:textColor="@color/color_17191C"
                     android:textSize="15sp"
                     android:textStyle="bold"
-                    android:drawablePadding="2dp"
-                    app:drawableEndCompat="@mipmap/icon_required"  />
+                    app:drawableEndCompat="@mipmap/icon_required" />
 
             </FrameLayout>
 
@@ -443,11 +444,11 @@
                     android:id="@+id/add_device_torque_label_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:drawablePadding="2dp"
                     android:text="驱动扭矩(kN·m)"
                     android:textColor="@color/color_17191C"
                     android:textSize="15sp"
                     android:textStyle="bold"
-                    android:drawablePadding="2dp"
                     app:drawableEndCompat="@mipmap/icon_required" />
 
             </FrameLayout>
@@ -457,10 +458,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
-                android:hint="驱动扭矩(kN·m)"
-                android:inputType="number"
                 android:background="@color/transparent"
+                android:hint="驱动扭矩(kN·m)"
                 android:imeOptions="actionNext"
+                android:inputType="number"
                 android:textColor="@color/color_262626"
                 android:textColorHint="@color/color_BFBFBF"
                 android:textSize="15sp"
@@ -489,12 +490,12 @@
                     android:id="@+id/add_device_power_label_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:drawablePadding="2dp"
                     android:text="驱动功率(KW)"
                     android:textColor="@color/color_17191C"
                     android:textSize="15sp"
                     android:textStyle="bold"
-                    android:drawablePadding="2dp"
-                    app:drawableEndCompat="@mipmap/icon_required"  />
+                    app:drawableEndCompat="@mipmap/icon_required" />
 
             </FrameLayout>
 
@@ -503,13 +504,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
+                android:background="@color/transparent"
                 android:hint="驱动功率(KW)"
                 android:imeOptions="actionNext"
+                android:inputType="number"
                 android:textColor="@color/color_262626"
                 android:textColorHint="@color/color_BFBFBF"
                 android:textSize="15sp"
-                android:inputType="number"
-                android:background="@color/transparent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toRightOf="@id/add_device_power_frame"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -549,12 +550,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
+                android:background="@color/transparent"
                 android:hint="适用地层"
+                android:inputType="text"
                 android:textColor="@color/color_262626"
                 android:textColorHint="@color/color_BFBFBF"
                 android:textSize="15sp"
-                android:inputType="text"
-                android:background="@color/transparent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toRightOf="@id/add_device_layer_frame"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -712,6 +713,101 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/add_device_workingdiam_cl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp">
+
+            <FrameLayout
+                android:id="@+id/add_device_workingdiam_frame"
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="7dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent">
+
+                <TextView
+                    android:id="@+id/add_device_workingdiam_label_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="2dp"
+                    android:imeOptions="actionNext"
+                    android:text="开挖直径(mm)"
+                    android:textColor="@color/color_17191C"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    app:drawableEndCompat="@mipmap/icon_required" />
+
+            </FrameLayout>
+
+
+            <EditText
+                android:id="@+id/add_device_workingdiam_et"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:background="@color/transparent"
+                android:hint="开挖直径(mm)"
+                android:imeOptions="actionNext"
+                android:inputType="number"
+                android:textColor="@color/color_262626"
+                android:textColorHint="@color/color_BFBFBF"
+                android:textSize="15sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toRightOf="@id/add_device_workingdiam_frame"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/add_device_outer_cl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp">
+
+            <FrameLayout
+                android:id="@+id/add_device_outer_frame"
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="7dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/add_device_outer_label_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="2dp"
+                    android:imeOptions="actionNext"
+                    android:text="管片外径(mm)"
+                    android:textColor="@color/color_17191C"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    app:drawableEndCompat="@mipmap/icon_required" />
+
+            </FrameLayout>
+
+            <EditText
+                android:id="@+id/add_device_outer_et"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:background="@color/transparent"
+                android:hint="管片外径(mm)"
+                android:imeOptions="actionNext"
+                android:inputType="number"
+                android:textColor="@color/color_262626"
+                android:textColorHint="@color/color_BFBFBF"
+                android:textSize="15sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toRightOf="@id/add_device_outer_frame"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/add_device_drivemodel_cl"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -742,12 +838,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
-                android:hint="设备型号"
                 android:background="@color/transparent"
+                android:hint="设备型号"
+                android:imeOptions="actionNext"
                 android:textColor="@color/color_262626"
                 android:textColorHint="@color/color_BFBFBF"
                 android:textSize="15sp"
-                android:imeOptions="actionNext"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toRightOf="@id/add_device_drivemodel_frame"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -785,12 +881,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
-                android:hint="驱动形式"
                 android:background="@color/transparent"
+                android:hint="驱动形式"
+                android:imeOptions="actionNext"
                 android:textColor="@color/color_262626"
                 android:textColorHint="@color/color_BFBFBF"
                 android:textSize="15sp"
-                android:imeOptions="actionNext"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toRightOf="@id/add_device_driveform_frame"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -828,60 +924,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
-                android:hint="最小转弯半径(m)"
                 android:background="@color/transparent"
+                android:hint="最小转弯半径(m)"
+                android:imeOptions="actionNext"
+                android:inputType="number"
                 android:textColor="@color/color_262626"
                 android:textColorHint="@color/color_BFBFBF"
                 android:textSize="15sp"
-                android:imeOptions="actionNext"
-                android:inputType="number"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toRightOf="@id/add_device_radius_frame"
-                app:layout_constraintTop_toTopOf="parent" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/add_device_outer_cl"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="25dp">
-
-            <FrameLayout
-                android:id="@+id/add_device_outer_frame"
-                android:layout_width="130dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="7dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <TextView
-                    android:id="@+id/add_device_outer_label_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="管片外径(m)"
-                    android:imeOptions="actionNext"
-                    android:textColor="@color/color_17191C"
-                    android:textSize="15sp"
-                    android:textStyle="bold" />
-
-            </FrameLayout>
-
-            <EditText
-                android:id="@+id/add_device_outer_et"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="30dp"
-                android:hint="管片外径(m)"
-                android:imeOptions="actionNext"
-                android:textColor="@color/color_262626"
-                android:textColorHint="@color/color_BFBFBF"
-                android:textSize="15sp"
-                android:inputType="number"
-                android:background="@color/transparent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toRightOf="@id/add_device_outer_frame"
                 app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -917,15 +968,103 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
-                android:hint="刀盘开口率(%)"
                 android:background="@color/transparent"
+                android:hint="刀盘开口率(%)"
                 android:imeOptions="actionNext"
+                android:inputType="number"
                 android:textColor="@color/color_262626"
                 android:textColorHint="@color/color_BFBFBF"
                 android:textSize="15sp"
-                android:inputType="number"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toRightOf="@id/add_device_openrate_frame"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/add_device_minprice_cl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp">
+
+            <FrameLayout
+                android:id="@+id/add_device_minprice_frame"
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="7dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/add_device_minprice_label_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="最小金额(元)"
+                    android:textColor="@color/color_17191C"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+            </FrameLayout>
+
+            <EditText
+                android:id="@+id/add_device_minprice_et"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:background="@color/transparent"
+                android:hint="最小金额(元)"
+                android:imeOptions="actionNext"
+                android:inputType="number"
+                android:textColor="@color/color_262626"
+                android:textColorHint="@color/color_BFBFBF"
+                android:textSize="15sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toRightOf="@id/add_device_minprice_frame"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/add_device_maxprice_cl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp">
+
+            <FrameLayout
+                android:id="@+id/add_device_maxprice_frame"
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="7dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/add_device_maxprice_label_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="最大金额(元)"
+                    android:textColor="@color/color_17191C"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+            </FrameLayout>
+
+            <EditText
+                android:id="@+id/add_device_maxprice_et"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:background="@color/transparent"
+                android:hint="最大金额(元)"
+                android:imeOptions="actionNext"
+                android:inputType="number"
+                android:textColor="@color/color_262626"
+                android:textColorHint="@color/color_BFBFBF"
+                android:textSize="15sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toRightOf="@id/add_device_maxprice_frame"
                 app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -961,13 +1100,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
-                android:hint="已使用里程(m)"
                 android:background="@color/transparent"
+                android:hint="已使用里程(m)"
                 android:imeOptions="actionNext"
+                android:inputType="number"
                 android:textColor="@color/color_262626"
                 android:textColorHint="@color/color_BFBFBF"
                 android:textSize="15sp"
-                android:inputType="number"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toRightOf="@id/add_device_mileage_frame"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -1005,13 +1144,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
-                android:hint="资产归属"
                 android:background="@color/transparent"
+                android:hint="资产归属"
                 android:imeOptions="actionDone"
+                android:inputType="number"
                 android:textColor="@color/color_262626"
                 android:textColorHint="@color/color_BFBFBF"
                 android:textSize="15sp"
-                android:inputType="number"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toRightOf="@id/add_device_ascription_frame"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -1021,9 +1160,9 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
             android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:layout_marginTop="25dp">
+            android:orientation="horizontal">
 
             <View
                 android:layout_width="2dp"
@@ -1041,27 +1180,27 @@
 
         </LinearLayout>
 
-            <EditText
-                android:id="@+id/add_device_resume_et"
-                android:layout_width="match_parent"
-                android:layout_height="90dp"
-                android:hint="请完善设备履历..."
-                android:background="@drawable/shape_view_f2f4f6"
-                android:imeOptions="actionDone"
-                android:textColor="@color/color_262626"
-                android:textColorHint="@color/color_BFBFBF"
-                android:textSize="14sp"
-                android:inputType="textMultiLine"
-                android:gravity="top"
-                android:padding="12dp"
-                android:layout_marginTop="17dp"/>
+        <EditText
+            android:id="@+id/add_device_resume_et"
+            android:layout_width="match_parent"
+            android:layout_height="90dp"
+            android:layout_marginTop="17dp"
+            android:background="@drawable/shape_view_f2f4f6"
+            android:gravity="top"
+            android:hint="请完善设备履历..."
+            android:imeOptions="actionDone"
+            android:inputType="textMultiLine"
+            android:padding="12dp"
+            android:textColor="@color/color_262626"
+            android:textColorHint="@color/color_BFBFBF"
+            android:textSize="14sp" />
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
             android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:layout_marginTop="25dp">
+            android:orientation="horizontal">
 
             <View
                 android:layout_width="2dp"
@@ -1083,16 +1222,16 @@
             android:id="@+id/add_device_remark_et"
             android:layout_width="match_parent"
             android:layout_height="90dp"
-            android:hint="备注(选填)..."
+            android:layout_marginTop="17dp"
             android:background="@drawable/shape_view_f2f4f6"
+            android:gravity="top"
+            android:hint="备注(选填)..."
             android:imeOptions="actionDone"
+            android:inputType="textMultiLine"
+            android:padding="12dp"
             android:textColor="@color/color_262626"
             android:textColorHint="@color/color_BFBFBF"
-            android:textSize="14sp"
-            android:inputType="textMultiLine"
-            android:gravity="top"
-            android:padding="12dp"
-            android:layout_marginTop="17dp"/>
+            android:textSize="14sp" />
 
     </LinearLayout>
 

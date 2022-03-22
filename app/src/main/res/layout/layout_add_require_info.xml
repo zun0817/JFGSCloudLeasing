@@ -45,7 +45,7 @@
 
             <FrameLayout
                 android:id="@+id/add_require_brand_frame"
-                android:layout_width="115dp"
+                android:layout_width="125dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="7dp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -95,7 +95,7 @@
 
             <FrameLayout
                 android:id="@+id/add_require_type_frame"
-                android:layout_width="115dp"
+                android:layout_width="125dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="7dp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -145,7 +145,7 @@
 
             <FrameLayout
                 android:id="@+id/add_require_site_frame"
-                android:layout_width="115dp"
+                android:layout_width="125dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="7dp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -195,7 +195,7 @@
 
             <FrameLayout
                 android:id="@+id/add_require_length_frame"
-                android:layout_width="115dp"
+                android:layout_width="125dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="7dp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -241,7 +241,7 @@
 
             <FrameLayout
                 android:id="@+id/add_require_geology_frame"
-                android:layout_width="115dp"
+                android:layout_width="125dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="7dp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -287,7 +287,7 @@
 
             <FrameLayout
                 android:id="@+id/add_require_amount_frame"
-                android:layout_width="115dp"
+                android:layout_width="125dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="7dp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -333,7 +333,7 @@
 
             <FrameLayout
                 android:id="@+id/add_require_outer_frame"
-                android:layout_width="115dp"
+                android:layout_width="125dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="7dp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -344,7 +344,7 @@
                     android:id="@+id/add_require_outer_label_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="管片外径(m)"
+                    android:text="管片外径(mm)"
                     android:textColor="@color/color_17191C"
                     android:textSize="15sp"
                     android:textStyle="bold"
@@ -358,7 +358,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
-                android:hint="管片外径(m)"
+                android:hint="管片外径(mm)"
                 android:textColor="@color/color_262626"
                 android:textColorHint="@color/color_BFBFBF"
                 android:background="@android:color/transparent"
@@ -379,7 +379,7 @@
 
             <FrameLayout
                 android:id="@+id/add_require_mileage_frame"
-                android:layout_width="115dp"
+                android:layout_width="125dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="7dp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -425,7 +425,7 @@
 
             <FrameLayout
                 android:id="@+id/add_require_usetime_frame"
-                android:layout_width="115dp"
+                android:layout_width="125dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="7dp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -475,7 +475,7 @@
 
             <FrameLayout
                 android:id="@+id/add_require_knifetype_frame"
-                android:layout_width="115dp"
+                android:layout_width="125dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="7dp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -525,7 +525,7 @@
 
             <FrameLayout
                 android:id="@+id/add_require_diameter_frame"
-                android:layout_width="115dp"
+                android:layout_width="125dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="7dp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -536,7 +536,7 @@
                     android:id="@+id/add_require_diameter_label_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="刀盘直径(m)"
+                    android:text="刀盘直径(mm)"
                     android:textColor="@color/color_17191C"
                     android:textSize="15sp"
                     android:textStyle="bold" />
@@ -548,7 +548,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
-                android:hint="刀盘直径(m)"
+                android:hint="刀盘直径(mm)"
                 android:textColor="@color/color_262626"
                 android:textColorHint="@color/color_BFBFBF"
                 android:background="@android:color/transparent"
@@ -569,7 +569,7 @@
 
             <FrameLayout
                 android:id="@+id/add_require_radius_frame"
-                android:layout_width="115dp"
+                android:layout_width="125dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="7dp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -613,7 +613,7 @@
 
             <FrameLayout
                 android:id="@+id/add_require_torque_frame"
-                android:layout_width="115dp"
+                android:layout_width="125dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="7dp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -657,7 +657,7 @@
 
             <FrameLayout
                 android:id="@+id/add_require_openrate_frame"
-                android:layout_width="115dp"
+                android:layout_width="125dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="7dp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -701,7 +701,7 @@
 
             <FrameLayout
                 android:id="@+id/add_require_thrust_frame"
-                android:layout_width="115dp"
+                android:layout_width="125dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="7dp"
                 app:layout_constraintBottom_toBottomOf="parent"

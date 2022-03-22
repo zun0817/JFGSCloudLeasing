@@ -2,6 +2,7 @@ package com.cloud.leasing.module.home.detail
 
 import android.app.Activity
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
@@ -59,6 +60,8 @@ class DeviceDetailActivity :
     private fun initView() {
         val deviceId = intent.getIntExtra("id", 0)
         viewBinding.deviceDetailBackImg.setOnClickListener(this)
+        viewBinding.layoutDevicePhone.phone1.setOnClickListener(this)
+        viewBinding.layoutDevicePhone.phone2.setOnClickListener(this)
         viewBinding.deviceDetailScrollview.setOnScrollChangeListener(this)
         viewBinding.deviceDetailTablayout.addOnTabSelectedListener(this)
         ViewTouchUtil.expandViewTouchDelegate(viewBinding.deviceDetailBackImg)
@@ -80,36 +83,43 @@ class DeviceDetailActivity :
                     it.toString().toast(this@DeviceDetailActivity)
                 }.onSuccess { it ->
                     viewBinding.layoutDeviceDetailInfo.deviceDetailNameTv.text = it.deviceBrandName
-                    viewBinding.layoutDeviceDetailInfo.deviceDetailDateTv.text = "创建时间：" +
-                    it.createTime.split(" ")[0]
+                    viewBinding.layoutDeviceDetailInfo.deviceDetailDateTv.text = "可租赁时间：" +
+                            it.leaseTime
                     viewBinding.layoutDeviceDetailInfo.deviceDetailBrandTv.text = it.deviceBrandName
                     viewBinding.layoutDeviceDetailInfo.deviceDetailTypeTv.text = it.deviceTypeName
                     viewBinding.layoutDeviceDetailInfo.deviceDetailPlaceTv.text = it.deviceCity
                     viewBinding.layoutDeviceDetailInfo.deviceDetailDiameterTv.text =
-                        it.cutterDiam + "m"
-                    viewBinding.layoutDeviceDetailInfo.deviceDetailBeamTv.text = it.beamNum + "个"
+                        if (it.cutterDiam.isBlank()) "暂无" else it.cutterDiam + "mm"
+                    viewBinding.layoutDeviceDetailInfo.deviceDetailBeamTv.text =
+                        if (it.beamNum.isBlank()) "暂无" else it.beamNum + "个"
                     viewBinding.layoutDeviceDetailInfo.deviceDetailThrustTv.text =
-                        it.propulsiveForce + "T"
-                    viewBinding.layoutDeviceDetailInfo.deviceDetailJiaojieTv.text = it.hingeFormName
+                        if (it.propulsiveForce.isBlank()) "暂无" else it.propulsiveForce + "T"
+                    viewBinding.layoutDeviceDetailInfo.deviceDetailJiaojieTv.text =
+                        it.hingeFormName ?: "暂无"
                     viewBinding.layoutDeviceDetailInfo.deviceDetailTorqueTv.text =
-                        it.drivingTorque + "KN·m"
+                        if (it.drivingTorque.isBlank()) "暂无" else it.drivingTorque + "KN·m"
                     viewBinding.layoutDeviceDetailInfo.deviceDetailPowerTv.text =
-                        it.drivingPower + "KW"
-                    viewBinding.layoutDeviceDetailInfo.deviceDetailDevicenoTv.text = it.deviceNo
+                        if (it.drivingPower.isBlank()) "暂无" else it.drivingPower + "KW"
+                    viewBinding.layoutDeviceDetailInfo.deviceDetailDevicenoTv.text =
+                        if (it.deviceNo.isBlank()) "暂无" else it.deviceNo
                     viewBinding.layoutDeviceDetailInfo.deviceDetailAssetsTv.text =
-                        if (it.assetOwnership.isBlank()) "无" else it.assetOwnership
+                        if (it.assetOwnership.isBlank()) "暂无" else it.assetOwnership
                     viewBinding.layoutDeviceDetailInfo.deviceDetailLayerTv.text =
-                        it.applicableStratum
+                        if (it.applicableStratum.isBlank()) "暂无" else it.applicableStratum
                     viewBinding.layoutDeviceDetailInfo.deviceDetailOuterTv.text =
-                        it.outerDiameter + "m"
+                        if (it.outerDiameter.isBlank()) "暂无" else it.outerDiameter + "mm"
                     viewBinding.layoutDeviceDetailInfo.deviceDetailDriveTv.text =
-                        if (it.drivingForm.isBlank()) "无" else it.drivingForm
+                        if (it.drivingForm.isBlank()) "暂无" else it.drivingForm
                     viewBinding.layoutDeviceDetailInfo.deviceDetailOpeningTv.text =
-                        if (it.openingRate.isBlank()) "无" else it.openingRate + "%"
+                        if (it.openingRate.isBlank()) "暂无" else it.openingRate + "%"
                     viewBinding.layoutDeviceDetailInfo.deviceDetailMileageTv.text =
-                        if (it.mileageUsed.isBlank()) "无" else it.mileageUsed + "m"
+                        if (it.mileageUsed.isBlank()) "暂无" else it.mileageUsed + "m"
                     viewBinding.layoutDeviceDetailInfo.deviceDetailCuttertypeTv.text =
                         it.cutterTypeName
+                    viewBinding.layoutDeviceDetailInfo.deviceDetailMinPriceTv.text =
+                        if (it.minPrice == null) "暂无" else (it.minPrice.div(10000)).toString() + "万"
+                    viewBinding.layoutDeviceDetailInfo.deviceDetailMaxPriceTv.text =
+                        if (it.maxPrice == null) "暂无" else (it.maxPrice.div(10000)).toString() + "万"
                     viewBinding.layoutDeviceDetailInfo.deviceDetailStatusTv.text =
                         when (it.deviceRentStatus) {
                             "1" -> {
@@ -123,11 +133,11 @@ class DeviceDetailActivity :
                             }
                         }
                     viewBinding.layoutDeviceDetailInfo.deviceDetailRadiusTv.text =
-                        if (it.turningRadius.isBlank()) "无" else it.turningRadius + "m"
+                        if (it.turningRadius.isBlank()) "暂无" else it.turningRadius + "m"
                     viewBinding.layoutDeviceDetailRemark.deviceDetailRemarkTv.text =
-                        if (it.remarks.isBlank()) "无" else it.remarks
+                        if (it.remarks.isBlank()) "暂无" else it.remarks
                     viewBinding.layoutDeviceDetailResume.deviceDetailResumeTv.text =
-                        if (it.deviceResume.isBlank()) "无" else it.deviceResume
+                        if (it.deviceResume.isBlank()) "暂无" else it.deviceResume
                     it.rentDeviceFileList.takeIf { it.isNotEmpty() }?.onEach {
                         when (it.fileType) {
                             "1" -> {
@@ -174,7 +184,20 @@ class DeviceDetailActivity :
     override fun onClick(v: View?) {
         when (v!!.id) {
             R.id.device_detail_back_img -> this.finish()
+            R.id.phone1 -> {
+                callPhone("18583940011")
+            }
+            R.id.phone2 -> {
+                callPhone("18538222939")
+            }
         }
+    }
+
+    private fun callPhone(phoneNum: String) {
+        val intent = Intent(Intent.ACTION_DIAL)
+        val data: Uri = Uri.parse("tel:$phoneNum")
+        intent.data = data
+        startActivity(intent)
     }
 
     override fun onTabSelected(tab: TabLayout.Tab) {

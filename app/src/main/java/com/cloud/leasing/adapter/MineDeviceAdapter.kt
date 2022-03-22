@@ -50,7 +50,7 @@ class MineDeviceAdapter(val context: Context, var list: MutableList<MineDevice>)
         viewHoler.minedevice_item_name_tv!!.text =
             list[position].drivingPosition + "·" + list[position].deviceBrand
         viewHoler.minedevice_item_type_tv!!.text = list[position].deviceType
-        viewHoler.minedevice_item_diameter_tv!!.text = "刀片直径 " + list[position].cutterDiam + "m"
+        viewHoler.minedevice_item_diameter_tv!!.text = "刀片直径 " + list[position].cutterDiam + "mm"
         viewHoler.minedevice_item_img?.let {
             Glide.with(context)
                 .load(Constant.BASE_FILE_URL + list[position].deviceMainFileUrl)

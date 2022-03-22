@@ -31,6 +31,7 @@ import com.gyf.immersionbar.ktx.immersionBar
 import com.sky.filepicker.upload.Constants
 import com.sky.filepicker.upload.LocalUpdateActivity
 import java.io.File
+import java.math.BigDecimal
 import java.util.*
 
 
@@ -105,6 +106,8 @@ class AddDeviceActivity :
     private var mHostPicList = mutableListOf<String>()
 
     private var mCutterPicList = mutableListOf<String>()
+
+    private var childrens =  mutableListOf<Children>()
 
     private var rentDeviceFileList = mutableListOf<UploadFileBean>()
 
@@ -558,7 +561,14 @@ class AddDeviceActivity :
         val mileageUsed = viewBinding.layoutAddDeviceInfo.addDeviceMileageEt.text.trim().toString()
         val deviceResume = viewBinding.layoutAddDeviceInfo.addDeviceResumeEt.text.trim().toString()
         val remarks = viewBinding.layoutAddDeviceInfo.addDeviceRemarkEt.text.trim().toString()
-        val workingDiam = ""
+        val workingDiam =
+            viewBinding.layoutAddDeviceInfo.addDeviceWorkingdiamEt.text.trim().toString()
+        val minPrice = BigDecimal.valueOf(
+            viewBinding.layoutAddDeviceInfo.addDeviceMinpriceEt.text.trim().toString().toDouble()
+        )
+        val maxPrice = BigDecimal.valueOf(
+            viewBinding.layoutAddDeviceInfo.addDeviceMaxpriceEt.text.trim().toString().toDouble()
+        )
         val propertyOwner = ""
         val deviceStatus = "0"
 
@@ -635,6 +645,8 @@ class AddDeviceActivity :
             deviceStatus,
             workingDiam,
             remarks,
+            minPrice,
+            maxPrice,
             rentDeviceFileList
         )
         viewBinding.addDeviceLoadingview.visibility = View.VISIBLE
@@ -703,6 +715,25 @@ class AddDeviceActivity :
             viewBinding.layoutAddDeviceInfo.addDeviceLayerEt.text.trim().toString()
                 .isBlank() -> {
                 "请输入适用地质".toast(this)
+                return true
+            }
+            viewBinding.layoutAddDeviceInfo.addDeviceWorkingdiamEt.text.trim().toString()
+                .isBlank() -> {
+                "请输入开挖直径".toast(this)
+                return true
+            }
+            viewBinding.layoutAddDeviceInfo.addDeviceOuterEt.text.trim().toString().isBlank() -> {
+                "请输入管片外径".toast(this)
+                return true
+            }
+        }
+        return false
+    }
+
+    private fun checkPrice(content: String) : Boolean {
+        if (content.isNotEmpty()) {
+            if (content.substring(0, 1) == "0" || content.substring(0, 1) == "."){
+                "请输入正确金额".toast(this)
                 return true
             }
         }
@@ -859,13 +890,14 @@ class AddDeviceActivity :
         provincewheelview.setOnItemSelectedListener(object : WheelView.OnItemSelectedListener {
             override fun onItemSelected(wheelView: WheelView, data: Any, position: Int) {
                 deviceArea = provinceList[position].value
+                childrens = provinceList[position].children as MutableList<Children>
                 citywheelview.setDataItems(provinceList[position].children.map { it.label }
                     .toMutableList())
             }
         })
         citywheelview.setOnItemSelectedListener(object : WheelView.OnItemSelectedListener {
             override fun onItemSelected(wheelView: WheelView, data: Any, position: Int) {
-                drivingPosition = provinceList[position].children[position].value
+                drivingPosition = childrens[position].value
             }
         })
         dialog?.show()

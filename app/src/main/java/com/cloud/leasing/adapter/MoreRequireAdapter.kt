@@ -10,12 +10,13 @@ import android.widget.BaseAdapter
 import android.widget.TextView
 import com.cloud.leasing.R
 import com.cloud.leasing.bean.HomeRequireBean
+import com.cloud.leasing.bean.Search
 import com.cloud.leasing.module.home.detail.RequireDetailActivity
 
-class MoreRequireAdapter(val context: Context, var list: MutableList<HomeRequireBean>) :
+class MoreRequireAdapter(val context: Context, var list: MutableList<Search>) :
     BaseAdapter() {
 
-    fun refreshData(list: MutableList<HomeRequireBean>){
+    fun refreshData(list: MutableList<Search>){
         this.list = list
         notifyDataSetChanged()
     }
@@ -46,13 +47,13 @@ class MoreRequireAdapter(val context: Context, var list: MutableList<HomeRequire
             view = convertView
             viewHoler = view.tag as ViewHoler
         }
-        viewHoler.require_item_type_tv!!.text = list[position].deviceTypeName
-        viewHoler.require_item_city_tv!!.text = list[position].demandCity
-        viewHoler.require_item_length_tv!!.text = list[position].projectLength
-        viewHoler.require_item_product_tv!!.text = list[position].deviceBrandName
-        viewHoler.require_item_num_tv!!.text = list[position].demandNum
-        viewHoler.require_item_geology_tv!!.text = list[position].geologicalInfo
-        viewHoler.require_item_time_tv!!.text = list[position].usageTime
+        viewHoler.require_item_type_tv!!.text = list[position].deviceType
+        viewHoler.require_item_city_tv!!.text = list[position].demandCity.toString()
+        viewHoler.require_item_length_tv!!.text = list[position].projectLength.toString()
+        viewHoler.require_item_product_tv!!.text = list[position].deviceBrand
+        viewHoler.require_item_num_tv!!.text = list[position].demandNum.toString()
+        viewHoler.require_item_geology_tv!!.text = list[position].geologicalInfo.toString()
+        viewHoler.require_item_time_tv!!.text = list[position].usageTime.toString()
         viewHoler.require_item_look_tv?.let {
             it.setOnClickListener {
                 RequireDetailActivity.startActivity(context as Activity, list[position].id)

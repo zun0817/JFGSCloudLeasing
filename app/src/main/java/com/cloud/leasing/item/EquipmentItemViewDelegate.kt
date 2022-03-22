@@ -31,7 +31,7 @@ class EquipmentItemViewDelegate :
         super.onBindViewHolder(holder, item)
         holder.viewBinding.deviceItemNameTv.text = item.value.deviceBrand
         holder.viewBinding.deviceItemTypeTv.text = item.value.deviceType
-        holder.viewBinding.deviceItemDiameterTv.text = "刀盘直径 " + item.value.cutterDiam + "m"
+        holder.viewBinding.deviceItemDiameterTv.text = "刀盘直径 " + item.value.cutterDiam + "mm"
         when (item.value.focusStatus) {
             0 -> {
                 val drawableLeft: Drawable = JFGSApplication.instance.resources.getDrawable(

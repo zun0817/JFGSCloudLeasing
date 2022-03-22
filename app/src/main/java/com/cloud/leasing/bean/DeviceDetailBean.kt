@@ -1,6 +1,7 @@
 package com.cloud.leasing.bean
 
 import java.io.Serializable
+import java.math.BigDecimal
 
 data class DeviceDetailBean(
     val applicableStratum: String,
@@ -31,7 +32,7 @@ data class DeviceDetailBean(
     val drivingTorque: String,
     val focusStatus: Int,
     val hingeForm: String,
-    val hingeFormName: String,
+    val hingeFormName: String?,
     val id: Int,
     val leaseTime: String,
     val matchStatus: String,
@@ -45,7 +46,9 @@ data class DeviceDetailBean(
     val rentDeviceUserVoList: Any,
     val turningRadius: String,
     val userId: Int,
-    val workingDiam: String
+    val workingDiam: String,
+    val minPrice: Double?,
+    val maxPrice: Double?
 ) : Serializable
 
 data class RentDeviceFile(

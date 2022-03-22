@@ -87,6 +87,8 @@ class AddRequireActivity :
 
     private lateinit var cutterList: MutableList<CutterType>
 
+    private var childrens =  mutableListOf<Children>()
+
     private var rentRequireFileList = mutableListOf<UploadFileBean>()
 
     private lateinit var addRequireFileAdapter: AddRequireFileAdapter
@@ -521,13 +523,14 @@ class AddRequireActivity :
         provincewheelview.setOnItemSelectedListener(object : WheelView.OnItemSelectedListener {
             override fun onItemSelected(wheelView: WheelView, data: Any, position: Int) {
                 province = provinceList[position].value
+                childrens = provinceList[position].children as MutableList<Children>
                 citywheelview.setDataItems(provinceList[position].children.map { it.label }
                     .toMutableList())
             }
         })
         citywheelview.setOnItemSelectedListener(object : WheelView.OnItemSelectedListener {
             override fun onItemSelected(wheelView: WheelView, data: Any, position: Int) {
-                projectLocation = provinceList[position].children[position].value
+                projectLocation = childrens[position].value
             }
         })
         dialog?.show()

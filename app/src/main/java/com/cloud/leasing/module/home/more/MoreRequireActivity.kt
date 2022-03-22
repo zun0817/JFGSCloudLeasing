@@ -11,6 +11,7 @@ import com.cloud.leasing.adapter.MoreDeviceAdapter
 import com.cloud.leasing.adapter.MoreRequireAdapter
 import com.cloud.leasing.base.BaseActivity
 import com.cloud.leasing.bean.HomeRequireBean
+import com.cloud.leasing.bean.Search
 import com.cloud.leasing.constant.PageName
 import com.cloud.leasing.databinding.ActivityMoreRequireBinding
 import com.cloud.leasing.module.home.detail.RequireDetailActivity
@@ -34,7 +35,7 @@ class MoreRequireActivity :
 
     private lateinit var moreRequireAdapter: MoreRequireAdapter
 
-    private lateinit var list: MutableList<HomeRequireBean>
+    private lateinit var list: MutableList<Search>
 
     override fun getPageName() = PageName.MORE_REQUIRE
 
@@ -51,7 +52,8 @@ class MoreRequireActivity :
         list = mutableListOf()
         moreRequireAdapter = MoreRequireAdapter(this, list)
         viewBinding.moreRequireListview.adapter = moreRequireAdapter
-        viewModel.requestOfHomeRequires()
+        //viewModel.requestOfHomeRequires()
+        viewModel.requestOfQueryData(2)
         viewBinding.moreRequireLoadingview.visibility = View.VISIBLE
         viewBinding.moreRequireListview.onItemClickListener = this
     }
@@ -68,16 +70,25 @@ class MoreRequireActivity :
 
     private fun viewModelObserve() {
         viewModel.apply {
-            requiresLiveData.observe(
-                this@MoreRequireActivity, { it ->
-                    viewBinding.moreRequireLoadingview.visibility = View.GONE
-                    it.onFailure {
-                        it.toString().toast(this@MoreRequireActivity)
-                    }.onSuccess {
-                        list = it
-                        moreRequireAdapter.refreshData(it)
-                    }
-                })
+//            requiresLiveData.observe(
+//                this@MoreRequireActivity, { it ->
+//                    viewBinding.moreRequireLoadingview.visibility = View.GONE
+//                    it.onFailure {
+//                        it.toString().toast(this@MoreRequireActivity)
+//                    }.onSuccess {
+//                        list = it
+//                        moreRequireAdapter.refreshData(it)
+//                    }
+//                })
+            searchRequireLiveData.observe(this@MoreRequireActivity, { it ->
+                viewBinding.moreRequireLoadingview.visibility = View.GONE
+                it.onFailure {
+                    it.toString().toast(this@MoreRequireActivity)
+                }.onSuccess {
+                    list = it.xqData.xqList
+                    moreRequireAdapter.refreshData(list)
+                }
+            })
         }
     }
 

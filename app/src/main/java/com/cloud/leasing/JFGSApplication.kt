@@ -4,6 +4,7 @@ import android.app.ActivityManager
 import android.app.Application
 import android.os.Process
 import com.cloud.leasing.persistence.XKeyValue
+import com.tencent.bugly.crashreport.CrashReport
 
 /**
  * Application
@@ -15,6 +16,7 @@ class JFGSApplication : Application() {
         initInMainProcess {
             instance = this
             XKeyValue.init(this)
+            CrashReport.initCrashReport(applicationContext, "b30430b5d9", false)
         }
     }
 

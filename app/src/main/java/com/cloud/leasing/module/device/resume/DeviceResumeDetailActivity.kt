@@ -149,25 +149,25 @@ class DeviceResumeDetailActivity :
                     getDeviceTypeName(bean.deviceType)
                 viewBinding.layoutResumeDetailInfo.resumeDetailExcavateTv.text = bean.workingDiam
                 viewBinding.layoutResumeDetailInfo.resumeDetailSerialTv.text =
-                    bean.projectNumber ?: "无"
+                    bean.projectNumber ?: "暂无"
                 viewBinding.layoutResumeDetailInfo.resumeDetailClassTv.text =
-                    bean.projectCatelog ?: "无"
+                    bean.projectCatelog ?: "暂无"
                 viewBinding.layoutResumeDetailInfo.resumeDetailBossTv.text =
-                    bean.projectManager ?: "无"
-                viewBinding.layoutResumeDetailInfo.resumeDetailUsecityTv.text = bean.useCity ?: "无"
-                viewBinding.layoutResumeDetailInfo.resumeDetailUseTv.text = bean.deviceUser ?: "无"
+                    bean.projectManager ?: "暂无"
+                viewBinding.layoutResumeDetailInfo.resumeDetailUsecityTv.text = bean.useCity ?: "暂无"
+                viewBinding.layoutResumeDetailInfo.resumeDetailUseTv.text = bean.deviceUser ?: "暂无"
                 viewBinding.layoutResumeDetailInfo.resumeDetailAddressTv.text =
-                    bean.projectAddress ?: "无"
+                    bean.projectAddress ?: "暂无"
                 viewBinding.layoutResumeDetailInfo.resumeDetailAmountTv.text =
                     bean.contractAmount.toString()
                 if (bean.packageTime == null) {
-                    viewBinding.layoutResumeDetailInfo.resumeDetailPackageTv.text = "无"
+                    viewBinding.layoutResumeDetailInfo.resumeDetailPackageTv.text = "暂无"
                 } else {
                     viewBinding.layoutResumeDetailInfo.resumeDetailPackageTv.text =
                         bean.packageTime.split(" ")[0]
                 }
                 if (bean.exitTime == null) {
-                    viewBinding.layoutResumeDetailInfo.resumeDetailExitTv.text = "无"
+                    viewBinding.layoutResumeDetailInfo.resumeDetailExitTv.text = "暂无"
                 } else {
                     viewBinding.layoutResumeDetailInfo.resumeDetailExitTv.text =
                         bean.exitTime.split(" ")[0]

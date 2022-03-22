@@ -76,7 +76,7 @@
                 <com.google.android.material.tabs.TabItem
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:text="适用管片" />
+                    android:text="管片外径" />
 
                 <com.google.android.material.tabs.TabItem
                     android:layout_width="wrap_content"

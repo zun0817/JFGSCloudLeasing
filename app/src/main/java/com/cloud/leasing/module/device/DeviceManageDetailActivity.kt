@@ -97,7 +97,7 @@ class DeviceManageDetailActivity :
                             "可租赁时间 : 暂未填写"
                     } else {
                         viewBinding.layoutDeviceDetailInfo.deviceDetailDateTv.text =
-                            "可租赁时间" + it.leaseTime
+                            "可租赁时间 ：" + it.leaseTime.split(" ")[0]
                     }
                     val deviceBrand = it.deviceBrand
                     brandList.forEach {
@@ -124,30 +124,36 @@ class DeviceManageDetailActivity :
 
                     //viewBinding.layoutDeviceDetailInfo.deviceDetailPlaceTv.text = it.deviceArea
                     viewBinding.layoutDeviceDetailInfo.deviceDetailDiameterTv.text =
-                        it.cutterDiam + "m"
-                    viewBinding.layoutDeviceDetailInfo.deviceDetailBeamTv.text = it.beamNum + "个"
+                        if (it.cutterDiam.isBlank()) "暂无" else it.cutterDiam + "mm"
+                    viewBinding.layoutDeviceDetailInfo.deviceDetailBeamTv.text = if (it.beamNum.isBlank()) "暂无" else it.beamNum + "个"
                     viewBinding.layoutDeviceDetailInfo.deviceDetailThrustTv.text =
-                        it.propulsiveForce + "T"
-                    viewBinding.layoutDeviceDetailInfo.deviceDetailJiaojieTv.text = it.hingeForm
+                        if (it.propulsiveForce.isBlank()) "暂无" else it.propulsiveForce + "T"
+                    viewBinding.layoutDeviceDetailInfo.deviceDetailJiaojieTv.text = if (it.hingeForm.isBlank()) "暂无" else it.hingeForm
                     viewBinding.layoutDeviceDetailInfo.deviceDetailTorqueTv.text =
-                        it.drivingTorque + "KN·m"
+                        if (it.drivingTorque.isBlank()) "暂无" else it.drivingTorque + "KN·m"
                     viewBinding.layoutDeviceDetailInfo.deviceDetailPowerTv.text =
-                        it.drivingPower + "KW"
-                    viewBinding.layoutDeviceDetailInfo.deviceDetailDevicenoTv.text = it.deviceNo
+                        if (it.drivingPower.isBlank()) "暂无" else it.drivingPower + "KW"
+                    viewBinding.layoutDeviceDetailInfo.deviceDetailDevicenoTv.text = if (it.deviceNo.isBlank()) "暂无" else it.deviceNo
                     viewBinding.layoutDeviceDetailInfo.deviceDetailAssetsTv.text =
-                        if (it.assetOwnership.isBlank()) "无" else it.assetOwnership
+                        if (it.assetOwnership.isBlank()) "暂无" else it.assetOwnership
                     viewBinding.layoutDeviceDetailInfo.deviceDetailLayerTv.text =
-                        it.applicableStratum
+                        if (it.applicableStratum.isBlank()) "暂无" else it.applicableStratum
                     viewBinding.layoutDeviceDetailInfo.deviceDetailOuterTv.text =
-                        it.outerDiameter + "m"
+                        if (it.outerDiameter.isBlank()) "暂无" else it.outerDiameter + "mm"
                     viewBinding.layoutDeviceDetailInfo.deviceDetailDriveTv.text =
-                        if (it.drivingForm.isBlank()) "无" else it.drivingForm
+                        if (it.drivingForm.isBlank()) "暂无" else it.drivingForm
                     viewBinding.layoutDeviceDetailInfo.deviceDetailOpeningTv.text =
-                        if (it.openingRate.isBlank()) "无" else it.openingRate + "%"
+                        if (it.openingRate.isBlank()) "暂无" else it.openingRate + "%"
                     viewBinding.layoutDeviceDetailInfo.deviceDetailMileageTv.text =
-                        if (it.mileageUsed.isBlank()) "无" else it.mileageUsed + "m"
+                        if (it.mileageUsed.isBlank()) "暂无" else it.mileageUsed + "m"
                     viewBinding.layoutDeviceDetailInfo.deviceDetailRadiusTv.text =
-                        if (it.turningRadius.isBlank()) "无" else it.turningRadius + "m"
+                        if (it.turningRadius.isBlank()) "暂无" else it.turningRadius + "m"
+
+//                    viewBinding.layoutDeviceDetailInfo.deviceDetailMinPriceTv.text =
+//                        if (it.minPrice == null) "暂无" else (it.minPrice.div(10000)).toString() + "万"
+//                    viewBinding.layoutDeviceDetailInfo.deviceDetailMaxPriceTv.text =
+//                        if (it.maxPrice == null) "暂无" else (it.maxPrice.div(10000)).toString() + "万"
+
                     viewBinding.layoutDeviceDetailInfo.title19.text = "管理模式"
                     viewBinding.layoutDeviceDetailInfo.deviceDetailStatusTv.text =
                         when (it.propertyOwner) {

@@ -4,7 +4,7 @@ import java.io.Serializable
 
 data class UserBean(
     val perms: List<String>,
-    val token: String,
+    val token: String = "",
     val user: User
 ) : Serializable
 
@@ -19,17 +19,17 @@ data class User(
     val gmtCreate: String,
     val gmtModified: String,
     val liveAddress: String,
-    val mobile: String,
+    val mobile: String = "",
     val name: String,
-    val password: String,
+    val password: String = "",
     val roleId: Int,
     val roleName: String,
     val sex: Int,
-    val userId: Int,
+    val userId: Int = 0,
     val userIdCreate: Any,
     val userIdentity: String,
     val userImage: Int,
     val userType: Any,
     val username: String,
-    val userAuth: String
+    val userAuth: String = ""
 ) : Serializable

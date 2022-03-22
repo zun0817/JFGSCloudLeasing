@@ -230,7 +230,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:visibility="gone">
+                android:visibility="visible"
+                android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -242,16 +243,20 @@
 
                 <EditText
                     android:id="@+id/edit_maintenance_errordesc_et"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="30dp"
-                    android:background="@color/transparent"
-                    android:hint="异常描述"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:background="@drawable/shape_view_f2f4f6"
+                    android:hint="请输入异常描述"
+                    android:gravity="top"
+                    android:padding="8dp"
+                    android:scrollbars="none"
+                    android:singleLine="false"
+                    android:layout_marginTop="10dp"
                     android:imeOptions="actionDone"
-                    android:inputType="text"
+                    android:inputType="textMultiLine"
                     android:textColor="@color/color_262626"
                     android:textColorHint="@color/color_BFBFBF"
-                    android:textSize="15sp" />
+                    android:textSize="13sp" />
 
             </LinearLayout>
 
