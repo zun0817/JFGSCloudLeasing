@@ -163,7 +163,7 @@
                     android:drawableTop="@mipmap/icon_increment"
                     android:drawablePadding="8dp"
                     android:gravity="center_horizontal"
-                    android:text="特色服务"
+                    android:text="特色业务"
                     android:textColor="@color/color_010F1D"
                     android:textSize="13sp"
                     android:textStyle="bold" />

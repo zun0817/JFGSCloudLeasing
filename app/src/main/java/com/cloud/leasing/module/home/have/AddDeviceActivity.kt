@@ -107,7 +107,7 @@ class AddDeviceActivity :
 
     private var mCutterPicList = mutableListOf<String>()
 
-    private var childrens =  mutableListOf<Children>()
+    private var childrens = mutableListOf<Children>()
 
     private var rentDeviceFileList = mutableListOf<UploadFileBean>()
 
@@ -563,12 +563,28 @@ class AddDeviceActivity :
         val remarks = viewBinding.layoutAddDeviceInfo.addDeviceRemarkEt.text.trim().toString()
         val workingDiam =
             viewBinding.layoutAddDeviceInfo.addDeviceWorkingdiamEt.text.trim().toString()
-        val minPrice = BigDecimal.valueOf(
-            viewBinding.layoutAddDeviceInfo.addDeviceMinpriceEt.text.trim().toString().toDouble()
-        )
-        val maxPrice = BigDecimal.valueOf(
-            viewBinding.layoutAddDeviceInfo.addDeviceMaxpriceEt.text.trim().toString().toDouble()
-        )
+        val minPrice =
+            if (viewBinding.layoutAddDeviceInfo.addDeviceMinpriceEt.text.trim().toString()
+                    .isNotBlank()
+            ) {
+                BigDecimal.valueOf(
+                    viewBinding.layoutAddDeviceInfo.addDeviceMinpriceEt.text.trim().toString()
+                        .toDouble()
+                )
+            } else {
+                BigDecimal.valueOf(0)
+            }
+        val maxPrice = if (viewBinding.layoutAddDeviceInfo.addDeviceMaxpriceEt.text.trim().toString()
+                    .isNotBlank()
+            ) {
+                BigDecimal.valueOf(
+                    viewBinding.layoutAddDeviceInfo.addDeviceMaxpriceEt.text.trim().toString()
+                        .toDouble()
+                )
+            } else {
+                BigDecimal.valueOf(0)
+            }
+
         val propertyOwner = ""
         val deviceStatus = "0"
 
@@ -730,9 +746,9 @@ class AddDeviceActivity :
         return false
     }
 
-    private fun checkPrice(content: String) : Boolean {
+    private fun checkPrice(content: String): Boolean {
         if (content.isNotEmpty()) {
-            if (content.substring(0, 1) == "0" || content.substring(0, 1) == "."){
+            if (content.substring(0, 1) == "0" || content.substring(0, 1) == ".") {
                 "请输入正确金额".toast(this)
                 return true
             }
@@ -938,6 +954,10 @@ class AddDeviceActivity :
             articulate = wheelview.getSelectedItemData().toString()
             viewBinding.layoutAddDeviceInfo.addDeviceArticulateTv.text = articulate
             viewBinding.layoutAddDeviceInfo.addDeviceArticulateTv.setTextColor(resources.getColor(R.color.color_262626))
+            when (wheelview.getSelectedItemData().toString()) {
+                "主动" -> articulate = "1"
+                "被动" -> articulate = "2"
+            }
         }
     }
 

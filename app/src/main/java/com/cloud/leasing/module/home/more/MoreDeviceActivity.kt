@@ -5,12 +5,14 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
+import android.widget.TextView
 import androidx.activity.viewModels
 import com.cloud.leasing.R
 import com.cloud.leasing.adapter.MoreDeviceAdapter
 import com.cloud.leasing.base.BaseActivity
-import com.cloud.leasing.bean.HomeDeviceBean
 import com.cloud.leasing.bean.Search
+import com.cloud.leasing.bean.exception.NetworkException
+import com.cloud.leasing.callback.OnItemViewClickListener
 import com.cloud.leasing.constant.PageName
 import com.cloud.leasing.databinding.ActivityMoreDeviceBinding
 import com.cloud.leasing.module.home.detail.DeviceDetailActivity
@@ -20,7 +22,7 @@ import com.gyf.immersionbar.ktx.immersionBar
 
 class MoreDeviceActivity :
     BaseActivity<ActivityMoreDeviceBinding>(ActivityMoreDeviceBinding::inflate),
-    View.OnClickListener, AdapterView.OnItemClickListener {
+    View.OnClickListener, AdapterView.OnItemClickListener, OnItemViewClickListener {
 
     companion object {
         fun startActivity(activity: Activity) {
@@ -29,6 +31,12 @@ class MoreDeviceActivity :
             activity.startActivity(intent)
         }
     }
+
+    private var textView: TextView? = null
+
+    private var clickSearch: Search? = null
+
+    private var clickFocusStatus = "0"
 
     private val viewModel: MoreDeviceViewModel by viewModels()
 
@@ -55,6 +63,7 @@ class MoreDeviceActivity :
         viewModel.requestOfQueryData(1)
         viewBinding.moreDeviceLoadingview.visibility = View.VISIBLE
         viewBinding.moreDeviceListview.onItemClickListener = this
+        moreDeviceAdapter.onItemViewClickListener = this
     }
 
     private fun initSystemBar() {
@@ -88,6 +97,76 @@ class MoreDeviceActivity :
                     moreDeviceAdapter.refreshData(list)
                 }
             })
+            followLiveData.observe(this@MoreDeviceActivity, { it ->
+                it.onFailure {
+                    if ((it as NetworkException).code == 200) {
+                        "关注成功".toast(this@MoreDeviceActivity)
+                        setFocusStatus()
+//                        val drawableLeft: Drawable =
+//                            resources.getDrawable(
+//                                R.mipmap.icon_follow_yes
+//                            )
+//                        textView?.setCompoundDrawablesWithIntrinsicBounds(
+//                            drawableLeft,
+//                            null, null, null
+//                        )
+//                        textView?.text = "已关注"
+//                        textView?.compoundDrawablePadding = 10
+//                        viewModel.requestOfQueryData(1)
+                    } else {
+                        it.toString().toast(this@MoreDeviceActivity)
+                    }
+                }.onSuccess {
+                    setFocusStatus()
+//                    "关注成功".toast(this@MoreDeviceActivity)
+//                    val drawableLeft: Drawable =
+//                        resources.getDrawable(
+//                            R.mipmap.icon_follow_yes
+//                        )
+//                    textView?.setCompoundDrawablesWithIntrinsicBounds(
+//                        drawableLeft,
+//                        null, null, null
+//                    )
+//                    textView?.text = "已关注"
+//                    textView?.compoundDrawablePadding = 10
+//                    viewModel.requestOfQueryData(1)
+                }
+            })
+            unfollowLiveData.observe(this@MoreDeviceActivity, { it ->
+                it.onFailure {
+                    if ((it as NetworkException).code == 200) {
+                        "取消关注".toast(this@MoreDeviceActivity)
+                        setFocusStatus()
+//                        val drawableLeft: Drawable =
+//                            resources.getDrawable(
+//                                R.mipmap.icon_follow_no
+//                            )
+//                        textView?.setCompoundDrawablesWithIntrinsicBounds(
+//                            drawableLeft,
+//                            null, null, null
+//                        )
+//                        textView?.text = "关注"
+//                        textView?.compoundDrawablePadding = 10
+//                        viewModel.requestOfQueryData(1)
+                    } else {
+                        it.toString().toast(this@MoreDeviceActivity)
+                    }
+                }.onSuccess {
+                    "取消关注".toast(this@MoreDeviceActivity)
+                    setFocusStatus()
+//                    val drawableLeft: Drawable =
+//                        resources.getDrawable(
+//                            R.mipmap.icon_follow_no
+//                        )
+//                    textView?.setCompoundDrawablesWithIntrinsicBounds(
+//                        drawableLeft,
+//                        null, null, null
+//                    )
+//                    textView?.text = "关注"
+//                    textView?.compoundDrawablePadding = 10
+//                    viewModel.requestOfQueryData(1)
+                }
+            })
         }
     }
 
@@ -99,5 +178,36 @@ class MoreDeviceActivity :
 
     override fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
         DeviceDetailActivity.startActivity(this, list[position].id)
+    }
+
+    override fun onChildren(position: Int, data: Any, view: View) {
+        textView = view as TextView
+        clickSearch = data as Search
+        clickFocusStatus = clickSearch!!.focusStatus
+        when (clickFocusStatus) {
+            "0" -> viewModel.requestOfAddFollow(clickSearch!!.id, "1")
+            "1" -> viewModel.requestOfUnfollow(clickSearch!!.id, "0")
+        }
+    }
+
+    private fun setFocusStatus(){
+        when(clickFocusStatus){
+            "0" -> {
+                list.forEach {
+                    if (clickSearch?.id == it.id){
+                        it.focusStatus = "1"
+                    }
+                }
+                moreDeviceAdapter.refreshData(list)
+            }
+            "1" -> {
+                list.forEach {
+                    if (clickSearch?.id == it.id){
+                        it.focusStatus = "0"
+                    }
+                }
+                moreDeviceAdapter.refreshData(list)
+            }
+        }
     }
 }

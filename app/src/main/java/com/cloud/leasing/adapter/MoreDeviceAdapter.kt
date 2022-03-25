@@ -13,16 +13,20 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.cloud.leasing.R
 import com.cloud.leasing.bean.HomeDeviceBean
 import com.cloud.leasing.bean.Search
+import com.cloud.leasing.callback.OnItemChildrenListener
+import com.cloud.leasing.callback.OnItemViewClickListener
 import com.cloud.leasing.constant.Constant
 import com.google.android.material.imageview.ShapeableImageView
 
 class MoreDeviceAdapter(val context: Context, var list: MutableList<Search>) :
     BaseAdapter() {
 
-    fun refreshData(list: MutableList<Search>){
+    fun refreshData(list: MutableList<Search>) {
         this.list = list
         notifyDataSetChanged()
     }
+
+    var onItemViewClickListener: OnItemViewClickListener? = null
 
     override fun getCount(): Int = list.size
 
@@ -89,9 +93,9 @@ class MoreDeviceAdapter(val context: Context, var list: MutableList<Search>) :
                 }
             }
         }
-        viewHoler.device_item_follow_tv?.let {
+        viewHoler.device_item_follow_tv?.let { it ->
             it.setOnClickListener {
-
+                onItemViewClickListener?.onChildren(position, list[position], it)
             }
         }
         return view!!
