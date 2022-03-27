@@ -10,10 +10,12 @@ import com.cloud.leasing.base.list.XRecyclerView
 import com.cloud.leasing.base.list.base.BaseViewData
 import com.cloud.leasing.bean.FollowRequireBean
 import com.cloud.leasing.bean.exception.NetworkException
+import com.cloud.leasing.constant.Constant
 import com.cloud.leasing.constant.PageName
 import com.cloud.leasing.databinding.FragmentRequireBinding
 import com.cloud.leasing.item.RequireItemViewData
 import com.cloud.leasing.module.home.detail.RequireDetailActivity
+import com.cloud.leasing.persistence.XKeyValue
 import com.cloud.leasing.util.toast
 
 
@@ -22,6 +24,8 @@ class RequireFragment : BaseFragment<FragmentRequireBinding>(FragmentRequireBind
     companion object {
         fun newInstance() = RequireFragment()
     }
+
+    private var userAuth: String = "0"
 
     private var list = mutableListOf<RequireItemViewData>()
 
@@ -36,6 +40,7 @@ class RequireFragment : BaseFragment<FragmentRequireBinding>(FragmentRequireBind
     }
 
     private fun initView() {
+        userAuth = XKeyValue.getString(Constant.USER_AUTH, "0")
         viewBinding.requireRecyclerview.init(
             XRecyclerView.Config()
                 .setViewModel(viewModel)
@@ -51,6 +56,10 @@ class RequireFragment : BaseFragment<FragmentRequireBinding>(FragmentRequireBind
                         extra: Any?
                     ) {
                         val bean = viewData.value as FollowRequireBean
+                        if (userAuth == "0" || userAuth == "2") {
+                            "企业认证未通过，暂无权限查看详情".toast(requireActivity())
+                            return
+                        }
                         RequireDetailActivity.startActivity(requireActivity(), bean.id)
                     }
                 })

@@ -397,14 +397,14 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         when (v!!.id) {
             R.id.home_want_tv -> {
                 if (userAuth == "0" || userAuth == "2") {
-                    "企业认证未通过".toast(requireActivity())
+                    "企业认证未通过，该功能暂无法使用".toast(requireActivity())
                     return
                 }
                 AddRequireActivity.startActivity(requireActivity())
             }
             R.id.home_have_tv -> {
                 if (userAuth == "0" || userAuth == "2") {
-                    "企业认证未通过".toast(requireActivity())
+                    "企业认证未通过，该功能暂无法使用".toast(requireActivity())
                     return
                 }
                 AddDeviceActivity.startActivity(requireActivity())
@@ -439,15 +439,31 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         viewBinding.mainSearchTv.setOnClickListener(this)
         viewBinding.mainSearchImg.setOnClickListener(this)
         viewBinding.layoutRequireItemOne.requireItemLookTv.setOnClickListener {
+            if (userAuth == "0" || userAuth == "2") {
+                "企业认证未通过，暂无权限查看详情".toast(requireActivity())
+                return@setOnClickListener
+            }
             RequireDetailActivity.startActivity(requireActivity(), homeRequireBeanOne.id)
         }
         viewBinding.layoutRequireItemTwo.requireItemLookTv.setOnClickListener {
+            if (userAuth == "0" || userAuth == "2") {
+                "企业认证未通过，暂无权限查看详情".toast(requireActivity())
+                return@setOnClickListener
+            }
             RequireDetailActivity.startActivity(requireActivity(), homeRequireBeanTwo.id)
         }
         viewBinding.layoutDeviceItemOne.layoutDeviceItemCl.setOnClickListener {
+            if (userAuth == "0" || userAuth == "2") {
+                "企业认证未通过，暂无权限查看详情".toast(requireActivity())
+                return@setOnClickListener
+            }
             DeviceDetailActivity.startActivity(requireActivity(), homeDeviceBeanOne.id)
         }
         viewBinding.layoutDeviceItemTwo.layoutDeviceItemCl.setOnClickListener {
+            if (userAuth == "0" || userAuth == "2") {
+                "企业认证未通过，暂无权限查看详情".toast(requireActivity())
+                return@setOnClickListener
+            }
             DeviceDetailActivity.startActivity(requireActivity(), homeDeviceBeanTwo.id)
         }
         viewBinding.layoutDeviceItemOne.deviceItemFollowTv.setOnClickListener {

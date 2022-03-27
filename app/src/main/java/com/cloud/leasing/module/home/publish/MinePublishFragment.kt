@@ -4,22 +4,28 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.AdapterView
 import androidx.fragment.app.viewModels
 import com.cloud.leasing.R
 import com.cloud.leasing.adapter.MineRequireAdapter
 import com.cloud.leasing.base.BaseFragment
 import com.cloud.leasing.bean.MineRequire
+import com.cloud.leasing.constant.Constant
 import com.cloud.leasing.constant.PageName
 import com.cloud.leasing.databinding.FragmentMinePublishBinding
+import com.cloud.leasing.module.home.detail.RequireDetailActivity
+import com.cloud.leasing.persistence.XKeyValue
 import com.cloud.leasing.util.toast
 
 class MinePublishFragment :
     BaseFragment<FragmentMinePublishBinding>(FragmentMinePublishBinding::inflate),
-    View.OnClickListener {
+    View.OnClickListener, AdapterView.OnItemClickListener {
 
     companion object {
         fun newInstance() = MinePublishFragment()
     }
+
+    private var userAuth: String = "0"
 
     private var isAllSelect = false
 
@@ -40,6 +46,7 @@ class MinePublishFragment :
     }
 
     private fun viewModelObserve() {
+        userAuth = XKeyValue.getString(Constant.USER_AUTH, "0")
         viewModel.apply {
             mineRequireLiveData.observe(viewLifecycleOwner, { it ->
                 it.onFailure {
@@ -109,6 +116,7 @@ class MinePublishFragment :
         viewBinding.minePublishCancelTv.setOnClickListener(this)
         viewBinding.minePublishDeleteallTv.setOnClickListener(this)
         viewBinding.minePublishSelectallTv.setOnClickListener(this)
+        viewBinding.minePublishListview.onItemClickListener = this
         viewModel.requestOfMineRequire()
     }
 
@@ -121,6 +129,14 @@ class MinePublishFragment :
             isAllVisible = false
             isAllSelect = false
         }
+    }
+
+    override fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+        if (userAuth == "0" || userAuth == "2") {
+            "企业认证未通过，暂无权限查看详情".toast(requireActivity())
+            return
+        }
+        RequireDetailActivity.startActivity(requireActivity(), list[position].id)
     }
 
 }

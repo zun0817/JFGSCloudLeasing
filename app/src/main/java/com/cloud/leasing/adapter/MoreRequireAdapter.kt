@@ -8,10 +8,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.TextView
+import com.cloud.leasing.JFGSApplication
 import com.cloud.leasing.R
 import com.cloud.leasing.bean.HomeRequireBean
 import com.cloud.leasing.bean.Search
 import com.cloud.leasing.module.home.detail.RequireDetailActivity
+import com.cloud.leasing.module.home.more.MoreRequireActivity
+import com.cloud.leasing.module.home.publish.PublishActivity
+import com.cloud.leasing.util.toast
 
 class MoreRequireAdapter(val context: Context, var list: MutableList<Search>) :
     BaseAdapter() {
@@ -56,6 +60,10 @@ class MoreRequireAdapter(val context: Context, var list: MutableList<Search>) :
         viewHoler.require_item_time_tv!!.text = list[position].usageTime.toString()
         viewHoler.require_item_look_tv?.let {
             it.setOnClickListener {
+                if ((context as MoreRequireActivity).userAuth == "0" || context.userAuth == "2") {
+                    "企业认证未通过，暂无权限查看详情".toast(context as Activity)
+                    return@setOnClickListener
+                }
                 RequireDetailActivity.startActivity(context as Activity, list[position].id)
             }
         }

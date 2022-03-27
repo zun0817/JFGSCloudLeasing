@@ -207,4 +207,8 @@ object NetworkApi : BaseNetworkApi<INetworkService>(Constant.BASE_URL) {
         service.requestOfCityList(areaCode)
     }
 
+    suspend fun requestOfUpdateVersion(appType: Int) = getResult {
+        service.requestOfUpdateVersion(appType)
+    }
+
 }

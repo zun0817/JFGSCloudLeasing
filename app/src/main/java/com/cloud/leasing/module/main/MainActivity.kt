@@ -2,6 +2,7 @@ package com.cloud.leasing.module.main
 
 import android.app.Activity
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.view.Gravity
 import android.view.View
@@ -14,6 +15,7 @@ import com.cloud.dialoglibrary.BaseDialog
 import com.cloud.leasing.R
 import com.cloud.leasing.base.BaseActivity
 import com.cloud.leasing.bean.*
+import com.cloud.leasing.bean.exception.NetworkException
 import com.cloud.leasing.constant.Constant
 import com.cloud.leasing.constant.PageName
 import com.cloud.leasing.constant.TabId
@@ -28,6 +30,9 @@ import com.cloud.leasing.util.toast
 import com.cloud.leasing.widget.TabIndicatorView
 import com.cloud.popwindow.WheelView
 import com.gyf.immersionbar.ktx.immersionBar
+import com.azhon.appupdate.config.UpdateConfiguration
+import com.azhon.appupdate.manager.DownloadManager
+
 
 class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::inflate) {
 
@@ -39,7 +44,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
         }
     }
 
-    private var userAuth: String = "0"
+    private var manager: DownloadManager? = null
 
     private lateinit var dialog: BaseDialog
 
@@ -71,6 +76,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
 
     private fun initView() {
         viewModel.requestOfDeviceType()
+        viewModel.requestOfUpdateVersion()
         viewBinding.mianLoadingview.visibility = View.VISIBLE
         userAuth= XKeyValue.getString(Constant.USER_AUTH, "0")
         if (userAuth == "0") dialog.show()
@@ -92,6 +98,15 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
                     XKeyValue.putString(Constant.DEVICE_TYPE, typejson)
                     XKeyValue.putString(Constant.DEVICE_BRAND, brandjson)
                     XKeyValue.putString(Constant.DEVICE_CUTTER, cutterjson)
+                }
+            })
+            updateVersionLiveData.observe(this@MainActivity, { it ->
+                it.onFailure {
+                    if ((it as NetworkException).code != 200) {
+                        it.toString().toast(this@MainActivity)
+                    }
+                }.onSuccess {
+                    startUpdate(it)
                 }
             })
         }
@@ -174,6 +189,45 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
             dialog.dismiss()
             CompanyAuthActivity.startActivity(this, "2")
         }
+    }
+
+    private fun startUpdate(updateVersionBean: UpdateVersionBean) {
+        /*
+         * 整个库允许配置的内容
+         * 非必选
+         */
+        val configuration = UpdateConfiguration()
+            //输出错误日志
+            .setEnableLog(true)
+            //设置自定义的下载
+            //.setHttpManager()
+            //下载完成自动跳动安装页面
+            .setJumpInstallPage(true)
+            //设置对话框背景图片 (图片规范参照demo中的示例图)
+            //.setDialogImage(R.drawable.ic_dialog)
+            //设置按钮的颜色
+            //.setDialogButtonColor(Color.parseColor("#E743DA"))
+            //设置对话框强制更新时进度条和文字的颜色
+            .setDialogProgressBarColor(Color.parseColor("#E743DA"))
+            //设置按钮的文字颜色
+            .setDialogButtonTextColor(Color.WHITE) //设置是否显示通知栏进度
+            .setShowNotification(true) //设置是否提示后台下载toast
+            .setShowBgdToast(false) //设置强制更新
+            .setForcedUpgrade(true) //设置对话框按钮的点击监听
+            .setShowBgdToast(true)
+            //.setButtonClickListener(this) //设置下载过程的监听
+            //.setOnDownloadListener(listenerAdapter)
+        manager = DownloadManager.getInstance(this)
+        manager!!.setApkName("盾构租赁.apk")
+            .setApkUrl(updateVersionBean.appUrl)
+            .setSmallIcon(R.mipmap.ic_launcher)
+            .setShowNewerToast(true)
+            .setConfiguration(configuration)
+            .setApkVersionCode(updateVersionBean.appName.toInt())
+            .setApkVersionName(updateVersionBean.appNo)
+            .setApkSize("36.4")
+            .setApkDescription(updateVersionBean.appDesc)
+            .download()
     }
 
 }

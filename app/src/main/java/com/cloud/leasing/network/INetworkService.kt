@@ -156,6 +156,9 @@ interface INetworkService {
     @GET(Constant.PATH_CITY)
     suspend fun requestOfCityList(@Query("areaCode") areaCode: String): BaseResponse<MutableList<CityBean>>
 
+    @GET(Constant.PATH_UPDATE_VERSION)
+    suspend fun requestOfUpdateVersion(@Query("appType") appType: Int): BaseResponse<UpdateVersionBean>
+
     @Multipart
     @POST(Constant.PATH_FILE_UPLOAD)
     suspend fun requestOfUploadFile(

@@ -12,9 +12,11 @@ import com.cloud.leasing.adapter.MoreRequireAdapter
 import com.cloud.leasing.base.BaseActivity
 import com.cloud.leasing.bean.HomeRequireBean
 import com.cloud.leasing.bean.Search
+import com.cloud.leasing.constant.Constant
 import com.cloud.leasing.constant.PageName
 import com.cloud.leasing.databinding.ActivityMoreRequireBinding
 import com.cloud.leasing.module.home.detail.RequireDetailActivity
+import com.cloud.leasing.persistence.XKeyValue
 import com.cloud.leasing.util.ViewTouchUtil
 import com.cloud.leasing.util.toast
 import com.gyf.immersionbar.ktx.immersionBar
@@ -47,6 +49,7 @@ class MoreRequireActivity :
     }
 
     private fun initView() {
+        userAuth = XKeyValue.getString(Constant.USER_AUTH, "0")
         viewBinding.moreRequireBackImg.setOnClickListener(this)
         ViewTouchUtil.expandViewTouchDelegate(viewBinding.moreRequireBackImg)
         list = mutableListOf()
@@ -99,6 +102,10 @@ class MoreRequireActivity :
     }
 
     override fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-
+        if (userAuth == "0" || userAuth == "2") {
+            "企业认证未通过，暂无权限查看详情".toast(this)
+            return
+        }
+        RequireDetailActivity.startActivity(this, list[position].id)
     }
 }

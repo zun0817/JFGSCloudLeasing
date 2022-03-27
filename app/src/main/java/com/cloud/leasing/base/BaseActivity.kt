@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import androidx.viewbinding.ViewBinding
 import com.cloud.leasing.constant.AppManager
+import com.cloud.leasing.constant.Constant
+import com.cloud.leasing.persistence.XKeyValue
 import com.cloud.leasing.util.toast
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
@@ -16,7 +18,7 @@ abstract class BaseActivity<T : ViewBinding>(val inflater: (inflater: LayoutInfl
     SwipeBackActivity(),
     IGetPageName {
 
-
+    var userAuth = "0"
     private var pressedTime = 0L
     protected lateinit var viewBinding: T
     private val compositeDisposable = CompositeDisposable()
@@ -27,6 +29,7 @@ abstract class BaseActivity<T : ViewBinding>(val inflater: (inflater: LayoutInfl
         setContentView(viewBinding.root)
         setSwipeBackEnable(swipeBackEnable())
         //AppManager.getInstance().addActivity(this)
+        userAuth = XKeyValue.getString(Constant.USER_AUTH, "0")
     }
 
     override fun onStart() {

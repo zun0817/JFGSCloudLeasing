@@ -181,6 +181,8 @@ dependencies {
 
     implementation 'me.codeboy.android:align-text-view:2.3.2'
 
+    implementation 'com.github.azhon:AppUpdate:3.0.7'
+
     implementation project(':pictureLibrary')
 
     implementation project(':filepickerLibrary')

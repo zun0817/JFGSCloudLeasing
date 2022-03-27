@@ -9,10 +9,12 @@ import com.cloud.leasing.base.list.XRecyclerView
 import com.cloud.leasing.base.list.base.BaseViewData
 import com.cloud.leasing.bean.FollowDeviceBean
 import com.cloud.leasing.bean.exception.NetworkException
+import com.cloud.leasing.constant.Constant
 import com.cloud.leasing.constant.PageName
 import com.cloud.leasing.databinding.FragmentEquipmentBinding
 import com.cloud.leasing.item.EquipmentItemViewData
 import com.cloud.leasing.module.home.detail.DeviceDetailActivity
+import com.cloud.leasing.persistence.XKeyValue
 import com.cloud.leasing.util.toast
 
 class EquipmentFragment :
@@ -21,6 +23,8 @@ class EquipmentFragment :
     companion object {
         fun newInstance() = EquipmentFragment()
     }
+
+    private var userAuth: String = "0"
 
     private var data: FollowDeviceBean? = null
 
@@ -37,6 +41,7 @@ class EquipmentFragment :
     }
 
     private fun initView() {
+        userAuth = XKeyValue.getString(Constant.USER_AUTH, "0")
         viewBinding.equipmentRecyclerview.init(
             XRecyclerView.Config()
                 .setViewModel(viewModel)
@@ -50,6 +55,10 @@ class EquipmentFragment :
                         id: Long
                     ) {
                         val bean = viewData.value as FollowDeviceBean
+                        if (userAuth == "0" || userAuth == "2") {
+                            "企业认证未通过，暂无权限查看详情".toast(requireActivity())
+                            return
+                        }
                         DeviceDetailActivity.startActivity(requireActivity(), bean.id)
                     }
                 })

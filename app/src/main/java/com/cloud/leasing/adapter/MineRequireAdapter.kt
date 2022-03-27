@@ -8,11 +8,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.TextView
+import com.cloud.leasing.JFGSApplication
 import com.cloud.leasing.R
+import com.cloud.leasing.base.BaseActivity
 import com.cloud.leasing.bean.MineRequire
 import com.cloud.leasing.bean.Search
 import com.cloud.leasing.callback.OnItemChildrenListener
 import com.cloud.leasing.module.home.detail.RequireDetailActivity
+import com.cloud.leasing.module.home.publish.PublishActivity
+import com.cloud.leasing.util.toast
 
 class MineRequireAdapter(val context: Context, var list: MutableList<MineRequire>) :
     BaseAdapter() {
@@ -57,6 +61,10 @@ class MineRequireAdapter(val context: Context, var list: MutableList<MineRequire
         viewHoler.minepublish_item_time_tv!!.text = list[position].usageTime.split(" ")[0]
         viewHoler.minepublish_item_look_tv?.let {
             it.setOnClickListener {
+                if ((context as PublishActivity).userAuth == "0" || context.userAuth == "2") {
+                    "企业认证未通过，暂无权限查看详情".toast(context as Activity)
+                    return@setOnClickListener
+                }
                 RequireDetailActivity.startActivity(context as Activity, list[position].id)
             }
         }

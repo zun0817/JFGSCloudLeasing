@@ -3,6 +3,7 @@ package com.cloud.leasing
 import android.app.ActivityManager
 import android.app.Application
 import android.os.Process
+import com.cloud.leasing.constant.Constant
 import com.cloud.leasing.persistence.XKeyValue
 import com.tencent.bugly.crashreport.CrashReport
 

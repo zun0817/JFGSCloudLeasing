@@ -109,6 +109,8 @@ object Constant {
 
     const val PATH_ADD_DEPOSIT = "/api/v1/depositMaintenance/pc/save"
 
+    const val PATH_UPDATE_VERSION = "/api/v1/version/app/getNewestAppVersion"
+
 
     /** 本地存储 */
 
