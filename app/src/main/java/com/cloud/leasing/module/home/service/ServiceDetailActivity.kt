@@ -76,6 +76,10 @@ class ServiceDetailActivity :
                 viewBinding.serviceDetailTitle1Tv.visibility = View.GONE
                 viewBinding.serviceDetailTitle2Tv.visibility = View.GONE
                 viewBinding.serviceDetailTitle3Tv.visibility = View.GONE
+                viewBinding.serviceDetailOne.visibility = View.GONE
+                viewBinding.serviceDetailThree.visibility = View.GONE
+                viewBinding.serviceDetailFour.visibility = View.GONE
+                viewBinding.serviceDetailFive.visibility = View.GONE
             }
             1 -> {
                 viewBinding.serviceDetailTitleTv.text = "导向系统"
@@ -141,6 +145,7 @@ class ServiceDetailActivity :
                 viewBinding.serviceDetailThree.visibility = View.GONE
                 viewBinding.serviceDetailFour.visibility = View.GONE
                 viewBinding.serviceDetailFive.visibility = View.GONE
+                viewBinding.serviceDetailOne.visibility = View.GONE
             }
         }
 //        val content = intent.getStringExtra("content")

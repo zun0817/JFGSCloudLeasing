@@ -48,7 +48,7 @@ class FaultLedgerFragment :
                         viewModel.requestOfResumeFaultLedger(resumeId)
                     })
                 }.onSuccess {
-                    if (it.produceDailyFaultList.records.isNotEmpty()) {
+                    if (it.produceDailyFaultList != null && it.produceDailyFaultList.records.size > 0) {
                         viewBinding.faultLedgerErrorview.visibility = View.GONE
                         faultLedgerAdapter.refreshData(it.produceDailyFaultList.records)
                     } else {

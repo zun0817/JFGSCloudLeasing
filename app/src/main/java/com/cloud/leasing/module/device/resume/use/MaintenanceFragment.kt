@@ -53,7 +53,7 @@ class MaintenanceFragment :
                         viewModel.requestOfResumeMaintenance(resumeId)
                     })
                 }.onSuccess {
-                    if (it.records.isNotEmpty()) {
+                    if (it.records.size > 0) {
                         viewBinding.maintenanceErrorview.visibility = View.GONE
                         maintenanceAdapter.refreshData(it.records)
                     } else {

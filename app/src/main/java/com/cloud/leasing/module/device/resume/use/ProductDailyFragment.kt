@@ -53,7 +53,7 @@ class ProductDailyFragment :
                         viewModel.requestOfResumeProductDaily(resumeId)
                     })
                 }.onSuccess {
-                    if (it.records.isNotEmpty()) {
+                    if (it.records.size > 0) {
                         viewBinding.productDailyErrorview.visibility = View.GONE
                         productDailyAdapter.refreshData(it.records)
                     } else {

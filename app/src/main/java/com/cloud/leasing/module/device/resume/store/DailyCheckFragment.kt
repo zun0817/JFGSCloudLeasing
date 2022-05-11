@@ -59,7 +59,7 @@ class DailyCheckFragment :
                         viewModel.requestOfResumeStoreDaily(resumeId)
                     })
                 }.onSuccess {
-                    if (it.records.isNotEmpty()) {
+                    if (it.records.size > 0) {
                         viewBinding.dailyCheckErrorview.visibility = View.GONE
                         dailyCheckAdapter.refreshData(it.records)
                     } else {

@@ -1,7 +1,7 @@
 package com.cloud.leasing.bean
 
 data class FaultLedgerBean(
-    val produceDailyFaultList: ProduceDailyFaultList,
+    val produceDailyFaultList: ProduceDailyFaultList?,
     val ringsTotal: String,
     val tunneMetersTotal: String
 )

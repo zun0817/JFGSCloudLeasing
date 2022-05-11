@@ -16,7 +16,7 @@ class SplashViewModel : BaseViewModel() {
     override fun getPageName() = PageName.SPLASH
 
     fun startTimer(activity: Activity, textView: TextView) {
-        countDownTimer = object : CountDownTimer(5000, 1000) {
+        countDownTimer = object : CountDownTimer(3000, 1000) {
             override fun onTick(millisUntilFinished: Long) {
                 textView.text = "跳过 " + millisUntilFinished / 1000 + " s"
             }

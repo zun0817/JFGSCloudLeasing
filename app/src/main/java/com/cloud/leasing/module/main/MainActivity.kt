@@ -210,10 +210,14 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
             //设置对话框强制更新时进度条和文字的颜色
             .setDialogProgressBarColor(Color.parseColor("#E743DA"))
             //设置按钮的文字颜色
-            .setDialogButtonTextColor(Color.WHITE) //设置是否显示通知栏进度
-            .setShowNotification(true) //设置是否提示后台下载toast
-            .setShowBgdToast(false) //设置强制更新
-            .setForcedUpgrade(true) //设置对话框按钮的点击监听
+            .setDialogButtonTextColor(Color.WHITE)
+            //设置是否显示通知栏进度
+            .setShowNotification(true)
+            //设置是否提示后台下载toast
+            .setShowBgdToast(false)
+            //设置强制更新
+            .setForcedUpgrade(false)
+            //设置对话框按钮的点击监听
             .setShowBgdToast(true)
             //.setButtonClickListener(this) //设置下载过程的监听
             //.setOnDownloadListener(listenerAdapter)
@@ -228,6 +232,28 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
             .setApkSize("36.4")
             .setApkDescription(updateVersionBean.appDesc)
             .download()
+    }
+
+    private fun startUpdate(){
+        val builder = BaseDialog.Builder(this)
+        dialog = builder
+            .setViewId(R.layout.layout_update_version_popwindow)
+            .setStyle(R.style.CommonDialog)
+            .setWidthHeightpx(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+            )
+            .setGravity(Gravity.CENTER)
+            .setAnimation(R.style.DialogScaleAnim)
+            .isOnTouchCanceled(false)
+            .setPaddingdp(30, 10, 30, 10)
+            .addViewOnClickListener(R.id.update_version_delay_tv) {
+                dialog.dismiss()
+            }.builder()
+        val update_version_upgrade_tv = dialog.getView<TextView>(R.id.update_version_upgrade_tv)
+        update_version_upgrade_tv.setOnClickListener {
+            CompanyAuthActivity.startActivity(this, "2")
+        }
     }
 
 }

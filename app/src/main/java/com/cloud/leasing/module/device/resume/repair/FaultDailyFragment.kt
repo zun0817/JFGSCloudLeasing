@@ -59,7 +59,7 @@ class FaultDailyFragment :
                         viewModel.requestOfResumeFaultDaily(resumeId)
                     })
                 }.onSuccess {
-                    if (it.records.isNotEmpty()) {
+                    if (it.records.size > 0) {
                         viewBinding.faultDailyErrorview.visibility = View.GONE
                         faultDailyAdapter.refreshData(it.records)
                     } else {
