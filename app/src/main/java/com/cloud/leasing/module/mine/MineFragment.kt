@@ -7,9 +7,12 @@ import android.text.style.ForegroundColorSpan
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.cloud.dialoglibrary.*
 import com.cloud.leasing.R
 import com.cloud.leasing.base.BaseFragment
+import com.cloud.leasing.constant.Constant
 import com.cloud.leasing.constant.PageName
 import com.cloud.leasing.databinding.FragmentMineBinding
 import com.cloud.leasing.module.forget.ForgetActivity
@@ -86,6 +89,12 @@ class MineFragment : BaseFragment<FragmentMineBinding>(FragmentMineBinding::infl
                     viewBinding.mineNameTv.text = it.mineUserName.toString()
                     viewBinding.mineIssueQtyTv.text = it.mineIssue.toString()
                     viewBinding.mineFollowQtyTv.text = it.mineFollowQty.toString()
+                    Glide.with(requireActivity())
+                        .load(Constant.BASE_FILE_URL + it.minHeadImg)
+                        .centerCrop()
+                        .placeholder(R.mipmap.icon_mine_avatar)
+                        .diskCacheStrategy(DiskCacheStrategy.ALL)
+                        .into(viewBinding.mineAvatarImg)
                     isAttestation = it.isAttestation
                     when (it.isAttestation) {
                         "0" -> {

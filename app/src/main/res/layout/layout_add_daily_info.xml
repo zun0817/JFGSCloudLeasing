@@ -404,7 +404,9 @@
             android:text="项目施工日志"
             android:textColor="@color/color_010F1D"
             android:textSize="15sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:drawablePadding="2dp"
+            app:drawableEndCompat="@mipmap/icon_required" />
 
         <EditText
             android:id="@+id/add_daily_log_et"

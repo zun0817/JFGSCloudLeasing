@@ -93,6 +93,7 @@ class DeviceFragment : BaseFragment<FragmentDeviceBinding>(FragmentDeviceBinding
                 }.onSuccess { formBean ->
                     list.takeIf { it.size > 0 }?.apply { clear() }
                     datas = formBean.records
+                    viewBinding.deviceTitleTv.text = "设备管理(" + formBean.total + ")"
                     if (datas.isNotEmpty()) {
                         datas.forEach { record ->
                             typeList.forEach {

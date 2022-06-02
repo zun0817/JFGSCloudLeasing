@@ -95,6 +95,7 @@ class SearchActivity : BaseActivity<ActivitySearchBinding>(ActivitySearchBinding
                 it.onFailure {
                     it.toString().toast(this@SearchActivity)
                 }.onSuccess {
+                    viewBinding.searchDeviceTv.text = "待租设备(" + it.sbData.sbTotal + ")"
                     if (it.sbData.sbTotal == 0 && it.xqData.xqTotal == 0) {
                         viewBinding.searchTabLl.visibility = View.GONE
                         searchDeviceFragment?.apply {
@@ -112,7 +113,6 @@ class SearchActivity : BaseActivity<ActivitySearchBinding>(ActivitySearchBinding
                         }
                     } else {
                         viewBinding.searchTabLl.visibility = View.VISIBLE
-                        //viewBinding.searchDeviceTv.text = "待租信息(" + it.sbData.sbTotal + ")"
                         val sbList = it.sbData.sbList
                         searchDeviceFragment?.apply {
                             refreshData(sbList)
@@ -125,6 +125,7 @@ class SearchActivity : BaseActivity<ActivitySearchBinding>(ActivitySearchBinding
                 it.onFailure {
                     it.toString().toast(this@SearchActivity)
                 }.onSuccess {
+                    viewBinding.searchRequireTv.text = "求租信息(" + it.xqData.xqTotal + ")"
                     if (it.sbData.sbTotal == 0 && it.xqData.xqTotal == 0) {
                         viewBinding.searchTabLl.visibility = View.GONE
                         searchDeviceFragment?.apply {
@@ -142,7 +143,6 @@ class SearchActivity : BaseActivity<ActivitySearchBinding>(ActivitySearchBinding
                         }
                     } else {
                         viewBinding.searchTabLl.visibility = View.VISIBLE
-                         //viewBinding.searchRequireTv.text = "求租信息(" + it.xqData.xqTotal + ")"
                         val xqList = it.xqData.xqList
                         searchRequireFragment?.apply {
                             refreshData(xqList)
@@ -287,6 +287,7 @@ class SearchActivity : BaseActivity<ActivitySearchBinding>(ActivitySearchBinding
             }
             R.id.device_filter_sure_tv -> {
                 requestOfQueryDataOfDevice()
+                requestOfQueryDataOfRequire()
                 viewBinding.layoutDeviceFilter.layoutDeviceFilterFrame.visibility = View.GONE
             }
             R.id.require_filter_reset_tv -> {
@@ -294,6 +295,7 @@ class SearchActivity : BaseActivity<ActivitySearchBinding>(ActivitySearchBinding
             }
             R.id.require_filter_sure_tv -> {
                 requestOfQueryDataOfRequire()
+                requestOfQueryDataOfDevice()
                 viewBinding.layoutRequireFilter.layoutRequireFilterFrame.visibility = View.GONE
             }
             R.id.require_detail_place_tv -> {
@@ -564,7 +566,7 @@ class SearchActivity : BaseActivity<ActivitySearchBinding>(ActivitySearchBinding
         dialog?.show()
         wheelview.setOnItemSelectedListener(object : WheelView.OnItemSelectedListener {
             override fun onItemSelected(wheelView: WheelView, data: Any, position: Int) {
-                deviceBrand = brandList[position].value
+                deviceBrand = brandList[position].name
             }
         })
         sureview.setOnClickListener {
@@ -616,7 +618,7 @@ class SearchActivity : BaseActivity<ActivitySearchBinding>(ActivitySearchBinding
         dialog?.show()
         wheelview.setOnItemSelectedListener(object : WheelView.OnItemSelectedListener {
             override fun onItemSelected(wheelView: WheelView, data: Any, position: Int) {
-                deviceType = typeList[position].value
+                deviceType = typeList[position].name
             }
         })
         sureview.setOnClickListener {
@@ -668,7 +670,7 @@ class SearchActivity : BaseActivity<ActivitySearchBinding>(ActivitySearchBinding
         dialog?.show()
         wheelview.setOnItemSelectedListener(object : WheelView.OnItemSelectedListener {
             override fun onItemSelected(wheelView: WheelView, data: Any, position: Int) {
-                cutterType = cutterList[position].value
+                cutterType = cutterList[position].name
             }
         })
         sureview.setOnClickListener {

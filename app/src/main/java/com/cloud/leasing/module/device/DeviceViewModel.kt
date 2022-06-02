@@ -36,7 +36,7 @@ class DeviceViewModel : BaseRecyclerViewModel() {
     private fun getDeviceForm(): MutableMap<String, Any?> {
         val map = mutableMapOf<String, Any?>()
         map["pageNo"] = "1"
-        map["pageSize"] = "50"
+        map["pageSize"] = "100"
         return map
     }
 }

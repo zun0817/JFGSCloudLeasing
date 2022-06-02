@@ -116,7 +116,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
                                     viewBinding.layoutDeviceItemOne.deviceItemTypeTv.text =
                                         homeDeviceBean.deviceTypeName
                                     viewBinding.layoutDeviceItemOne.deviceItemDiameterTv.text =
-                                        "管片外径 " + homeDeviceBean.outerDiameter + "mm"
+                                        "管片外径 " + homeDeviceBean.outerDiameter
                                     Glide.with(requireActivity())
                                         .load(Constant.BASE_FILE_URL + homeDeviceBean.deviceMainFileUrl)
                                         .centerCrop()
@@ -160,7 +160,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
                                     viewBinding.layoutDeviceItemTwo.deviceItemTypeTv.text =
                                         homeDeviceBean.deviceTypeName
                                     viewBinding.layoutDeviceItemTwo.deviceItemDiameterTv.text =
-                                        "管片外径 " + homeDeviceBean.outerDiameter + "mm"
+                                        "管片外径 " + homeDeviceBean.outerDiameter
                                     Glide.with(requireActivity())
                                         .load(Constant.BASE_FILE_URL + homeDeviceBean.deviceMainFileUrl)
                                         .centerCrop()

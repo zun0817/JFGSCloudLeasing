@@ -15,6 +15,7 @@ import com.cloud.leasing.base.BaseActivity
 import com.cloud.leasing.bean.exception.NetworkException
 import com.cloud.leasing.constant.PageName
 import com.cloud.leasing.databinding.ActivityCompanyAuthBinding
+import com.cloud.leasing.util.StringUtils
 import com.cloud.leasing.util.ViewTouchUtil
 import com.cloud.leasing.util.toast
 import com.gyf.immersionbar.ktx.immersionBar
@@ -33,6 +34,9 @@ class CompanyAuthActivity :
             activity.startActivity(intent)
         }
     }
+    private var filePath = ""
+
+    private var fileName = ""
 
     private lateinit var photoSelector: PhotoSelector
 
@@ -52,6 +56,13 @@ class CompanyAuthActivity :
 
     private fun initView() {
         when (intent.getStringExtra("type")) {
+            "0" -> {
+                viewBinding.layoutCompanyAuthSuccess.companyAuthSuccessLl.visibility =
+                    View.GONE
+                viewBinding.companyAuthFl.visibility = View.VISIBLE
+                viewBinding.layoutCompanyAuthEdit.companyAuthEditLl.visibility = View.VISIBLE
+                viewBinding.layoutCompanyAuthFail.companyAuthFailLl.visibility = View.GONE
+            }
             "1" -> {
                 viewBinding.layoutCompanyAuthSuccess.companyAuthSuccessLl.visibility =
                     View.GONE
@@ -74,6 +85,7 @@ class CompanyAuthActivity :
         viewBinding.layoutCaremaView.layoutCaremaPhotoBtn.setOnClickListener(this)
         viewBinding.layoutCaremaView.layoutCaremaQuitBtn.setOnClickListener(this)
         ViewTouchUtil.expandViewTouchDelegate(viewBinding.companyAuthBackImg)
+        StringUtils.lengthFilter(this, viewBinding.layoutCompanyAuthEdit.companyAuthFirstnameEt)
 
         builder = PhotoSelector.Builder(this)
         builder.setPermissionCallback(this)
@@ -111,6 +123,8 @@ class CompanyAuthActivity :
                     it.toString().toast(this@CompanyAuthActivity)
                 }.onSuccess {
                     "上传成功".toast(this@CompanyAuthActivity)
+                    fileName = it.fileName
+                    filePath = it.filePath
                 }
             })
         }
@@ -130,6 +144,8 @@ class CompanyAuthActivity :
         when (v!!.id) {
             R.id.company_auth_back_img -> this.finish()
             R.id.company_auth_commit_btn -> {
+                val firstname =
+                    viewBinding.layoutCompanyAuthEdit.companyAuthFirstnameEt.text.trim().toString()
                 val corporateName =
                     viewBinding.layoutCompanyAuthEdit.companyAuthNameEt.text.trim().toString()
                 val legalPerson =
@@ -138,9 +154,16 @@ class CompanyAuthActivity :
                     viewBinding.layoutCompanyAuthEdit.companyAuthCardnoEt.text.trim().toString()
                 val dutyParagraph =
                     viewBinding.layoutCompanyAuthEdit.companyAuthCreditcodeEt.text.trim().toString()
-                val filePath = ""
-                val fileName = ""
+                if (firstname.isBlank()) {
+                    "请输入姓名".toast(this)
+                    return
+                }
+                if (corporateName.isBlank()) {
+                    "请输入公司名称".toast(this)
+                    return
+                }
                 viewModel.requestOfCompanyAuth(
+                    firstname,
                     filePath,
                     fileName,
                     corporateName,

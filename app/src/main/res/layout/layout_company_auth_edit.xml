@@ -35,7 +35,39 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:drawableEnd="@mipmap/icon_required"
-            android:text="企业名称"
+            android:text="姓名"
+            android:textColor="@color/color_17191C"
+            android:textSize="15sp" />
+
+        <EditText
+            android:id="@+id/company_auth_firstname_et"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="30dp"
+            android:background="@color/transparent"
+            android:gravity="center_vertical"
+            android:hint="姓名"
+            android:imeOptions="actionNext"
+            android:inputType="textPhonetic"
+            android:singleLine="true"
+            android:textColor="@color/color_262626"
+            android:textColorHint="@color/color_BFBFBF"
+            android:textSize="15sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="5dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableEnd="@mipmap/icon_required"
+            android:text="公司名称"
             android:textColor="@color/color_17191C"
             android:textSize="15sp" />
 
@@ -46,7 +78,7 @@
             android:layout_marginStart="30dp"
             android:background="@color/transparent"
             android:gravity="center_vertical"
-            android:hint="企业名称"
+            android:hint="公司名称"
             android:imeOptions="actionNext"
             android:inputType="text"
             android:singleLine="true"
@@ -66,7 +98,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="企业法人"
+            android:text="公司法人"
             android:textColor="@color/color_17191C"
             android:textSize="15sp" />
 
@@ -77,7 +109,7 @@
             android:layout_marginStart="30dp"
             android:background="@color/transparent"
             android:gravity="center_vertical"
-            android:hint="企业法人"
+            android:hint="公司法人"
             android:imeOptions="actionNext"
             android:inputType="text"
             android:maxLength="4"
@@ -98,7 +130,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="企业法人身份证号"
+            android:text="公司法人身份证号"
             android:textColor="@color/color_17191C"
             android:textSize="15sp" />
 
@@ -109,7 +141,7 @@
             android:layout_marginStart="10dp"
             android:background="@color/transparent"
             android:gravity="center_vertical"
-            android:hint="企业法人身份证号"
+            android:hint="公司法人身份证号"
             android:imeOptions="actionNext"
             android:inputType="textVisiblePassword"
             android:maxLength="18"
@@ -160,8 +192,7 @@
         android:gravity="center_vertical"
         android:text="营业执照"
         android:textColor="@color/color_17191C"
-        android:textSize="15sp"
-        app:drawableEndCompat="@mipmap/icon_required" />
+        android:textSize="15sp"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

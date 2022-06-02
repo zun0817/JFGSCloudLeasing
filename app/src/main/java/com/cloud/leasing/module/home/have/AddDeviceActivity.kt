@@ -705,7 +705,7 @@ class AddDeviceActivity :
             }
             viewBinding.layoutAddDeviceInfo.addDeviceDiameterEt.text.trim().toString()
                 .isBlank() -> {
-                "请输入刀盘直径".toast(this)
+                "请输入开挖直径".toast(this)
                 return true
             }
             viewBinding.layoutAddDeviceInfo.addDeviceBeamEt.text.trim().toString().isBlank() -> {

@@ -202,8 +202,7 @@
                 android:layout_height="wrap_content"
                 android:scaleType="fitXY"
                 android:layout_marginHorizontal="15dp"
-                android:layout_marginTop="15dp"
-                android:src="@mipmap/icon_service_one"/>
+                android:layout_marginTop="15dp"/>
 
             <ImageView
                 android:id="@+id/service_detail_two"
@@ -211,8 +210,7 @@
                 android:layout_height="wrap_content"
                 android:scaleType="fitXY"
                 android:layout_marginHorizontal="15dp"
-                android:layout_marginTop="15dp"
-                android:src="@mipmap/icon_service_one"/>
+                android:layout_marginTop="15dp"/>
 
             <ImageView
                 android:id="@+id/service_detail_three"
@@ -220,8 +218,7 @@
                 android:layout_height="wrap_content"
                 android:scaleType="fitXY"
                 android:layout_marginHorizontal="15dp"
-                android:layout_marginTop="15dp"
-                android:src="@mipmap/icon_service_one"/>
+                android:layout_marginTop="15dp"/>
 
             <ImageView
                 android:id="@+id/service_detail_four"
@@ -229,8 +226,7 @@
                 android:layout_height="wrap_content"
                 android:scaleType="fitXY"
                 android:layout_marginHorizontal="15dp"
-                android:layout_marginTop="15dp"
-                android:src="@mipmap/icon_service_one"/>
+                android:layout_marginTop="15dp"/>
 
             <ImageView
                 android:id="@+id/service_detail_five"
@@ -238,8 +234,7 @@
                 android:layout_height="wrap_content"
                 android:scaleType="fitXY"
                 android:layout_marginHorizontal="15dp"
-                android:layout_marginTop="15dp"
-                android:src="@mipmap/icon_service_one"/>
+                android:layout_marginTop="15dp"/>
 
         </LinearLayout>
 

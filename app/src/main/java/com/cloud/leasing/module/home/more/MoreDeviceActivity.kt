@@ -98,6 +98,7 @@ class MoreDeviceActivity :
                 }.onSuccess {
                     list = it.sbData.sbList
                     moreDeviceAdapter.refreshData(list)
+                    viewBinding.moreDeviceTitleTv.text = "待租设备(" + it.sbData.sbTotal + ")"
                 }
             })
             followLiveData.observe(this@MoreDeviceActivity, { it ->

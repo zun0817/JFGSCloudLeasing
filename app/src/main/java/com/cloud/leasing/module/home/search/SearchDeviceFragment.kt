@@ -21,7 +21,7 @@ class SearchDeviceFragment :
 
     private var select = 0
 
-    private lateinit var datas: MutableList<Search>
+    private var datas: MutableList<Search> = mutableListOf()
 
     private lateinit var searchDeviceAdapter: SearchDeviceAdapter
 
@@ -94,6 +94,7 @@ class SearchDeviceFragment :
     }
 
     fun refreshData(list: MutableList<Search>) {
+        datas.takeIf { it.size > 0 }?.apply { clear() }
         datas = list
         if (datas.size > 0) {
             searchDeviceAdapter.refreshData(list)

@@ -8,10 +8,13 @@ import android.provider.Settings
 import android.view.View
 import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.cloud.cameralibrary.PhotoSelector
 import com.cloud.dialoglibrary.*
 import com.cloud.leasing.R
 import com.cloud.leasing.base.BaseActivity
+import com.cloud.leasing.constant.Constant
 import com.cloud.leasing.constant.PageName
 import com.cloud.leasing.databinding.ActivityProfileEditBinding
 import com.cloud.leasing.util.ViewTouchUtil
@@ -74,6 +77,12 @@ class ProfileEditActivity :
                     it.toString().toast(this@ProfileEditActivity)
                 }.onSuccess {
                     viewBinding.profileEditNameTv.text = it.userName
+                    Glide.with(this@ProfileEditActivity)
+                        .load(Constant.BASE_FILE_URL + it.filePath)
+                        .centerCrop()
+                        .placeholder(R.mipmap.icon_mine_avatar)
+                        .diskCacheStrategy(DiskCacheStrategy.ALL)
+                        .into(viewBinding.profileEditAvatarImg)
                 }
             })
         }

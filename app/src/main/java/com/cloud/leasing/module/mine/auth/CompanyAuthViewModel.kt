@@ -30,6 +30,7 @@ class CompanyAuthViewModel : BaseViewModel() {
     override fun getPageName() = PageName.COMPANYAUTH
 
     fun requestOfCompanyAuth(
+        name: String?,
         filePath: String?,
         fileName: String?,
         corporateName: String,
@@ -39,6 +40,7 @@ class CompanyAuthViewModel : BaseViewModel() {
     ) {
         viewModelScope.launch {
             val param = getCompanyAuthParam(
+                name,
                 filePath,
                 fileName,
                 corporateName,
@@ -70,6 +72,7 @@ class CompanyAuthViewModel : BaseViewModel() {
     }
 
     private fun getCompanyAuthParam(
+        name: String?,
         filePath: String?,
         fileName: String?,
         corporateName: String,
@@ -78,6 +81,7 @@ class CompanyAuthViewModel : BaseViewModel() {
         dutyParagraph: String?
     ): RequestBody {
         val map = mutableMapOf<String, Any?>()
+        map["name"] = name
         map["userId"] = userId
         map["fileType"] = 1
         map["filePath"] = filePath

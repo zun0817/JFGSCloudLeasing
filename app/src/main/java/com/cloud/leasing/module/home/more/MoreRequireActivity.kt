@@ -90,6 +90,7 @@ class MoreRequireActivity :
                 }.onSuccess {
                     list = it.xqData.xqList
                     moreRequireAdapter.refreshData(list)
+                    viewBinding.moreRequireTitleTv.text = "求租信息(" + it.xqData.xqTotal + ")"
                 }
             })
         }

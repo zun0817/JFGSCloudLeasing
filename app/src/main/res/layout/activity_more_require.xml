@@ -14,10 +14,11 @@
         android:paddingHorizontal="15dp">
 
         <TextView
+            android:id="@+id/more_require_title_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="需求列表"
+            android:text="求租信息"
             android:textColor="@color/white"
             android:textSize="18sp"
             android:textStyle="bold" />

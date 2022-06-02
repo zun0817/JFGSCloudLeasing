@@ -171,6 +171,7 @@ class SearchViewModel : BaseViewModel() {
         map["pageNo"] = 1
         map["pageSize"] = 50
         map["type"] = type
+        map["keyWord"] = value
         map[key] = value
         val json = JSON.toJSONString(map)
         return json.toRequestBody("application/json".toMediaTypeOrNull())

@@ -178,6 +178,10 @@ class AddProductDailyActivity :
             "请选择参数类型".toast(this)
             return
         }
+        if (dailyRecord.isBlank()){
+            "请完善施工日志".toast(this)
+            return
+        }
         viewModel.requestOfAddProductDaily(
             resumeId,
             enterTime,

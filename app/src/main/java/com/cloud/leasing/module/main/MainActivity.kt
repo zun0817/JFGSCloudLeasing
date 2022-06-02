@@ -187,7 +187,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
         val dialog_auth_tv = dialog.getView<TextView>(R.id.dialog_auth_tv)
         dialog_auth_tv.setOnClickListener {
             dialog.dismiss()
-            CompanyAuthActivity.startActivity(this, "2")
+            CompanyAuthActivity.startActivity(this, "0")
         }
     }
 

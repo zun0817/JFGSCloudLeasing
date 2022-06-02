@@ -71,7 +71,7 @@ object Constant {
 
     const val PATH_REQUIRE_ADD = "/api/v1/demand/app/save"
 
-    const val PATH_QUERY_DATA = "/api/v1/es/app/queryData"
+    const val PATH_QUERY_DATA = "/api/v1/db/app/queryData"
 
     const val PATH_DEVICE_MANAGE_LIST = "/api/v1/device/app/list"
 

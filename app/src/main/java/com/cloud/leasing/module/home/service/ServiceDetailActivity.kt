@@ -61,6 +61,22 @@ class ServiceDetailActivity :
         viewBinding.serviceDetailEmailTv.text = intent.getStringExtra("email")
         when (intent.getIntExtra("type", 0)) {
             0 -> {
+                viewBinding.serviceDetailTitleTv.text = "工程施工"
+                viewBinding.serviceDetailContent1Tv.text =
+                    "         " + resources.getString(R.string.gongchengshigong_one)
+                viewBinding.serviceDetailContent2Tv.text =
+                    "         " + resources.getString(R.string.gongchengshigong_two)
+                viewBinding.serviceDetailTitle1Tv.visibility = View.GONE
+                viewBinding.serviceDetailTitle2Tv.visibility = View.GONE
+                viewBinding.serviceDetailTitle3Tv.visibility = View.GONE
+                viewBinding.serviceDetailOne.visibility = View.GONE
+                viewBinding.serviceDetailTwo.visibility = View.GONE
+                viewBinding.serviceDetailThree.visibility = View.GONE
+                viewBinding.serviceDetailFour.visibility = View.GONE
+                viewBinding.serviceDetailFive.visibility = View.GONE
+                viewBinding.serviceDetailContent3Tv.visibility = View.GONE
+            }
+            1 -> {
                 viewBinding.serviceDetailTitleTv.text = "设备评估"
                 viewBinding.serviceDetailContent1Tv.text =
                     "         " + resources.getString(R.string.shebeipinggu_one)
@@ -68,20 +84,16 @@ class ServiceDetailActivity :
                     "         " + resources.getString(R.string.shebeipinggu_two)
                 viewBinding.serviceDetailContent3Tv.text =
                     "         " + resources.getString(R.string.shebeipinggu_three)
-                viewBinding.serviceDetailOne.setImageResource(R.mipmap.icon_service_one)
-                viewBinding.serviceDetailTwo.setImageResource(R.mipmap.icon_service_two)
-                viewBinding.serviceDetailThree.setImageResource(R.mipmap.icon_service_three)
-                viewBinding.serviceDetailFour.setImageResource(R.mipmap.icon_service_four)
-                viewBinding.serviceDetailFive.setImageResource(R.mipmap.icon_service_five)
                 viewBinding.serviceDetailTitle1Tv.visibility = View.GONE
                 viewBinding.serviceDetailTitle2Tv.visibility = View.GONE
                 viewBinding.serviceDetailTitle3Tv.visibility = View.GONE
                 viewBinding.serviceDetailOne.visibility = View.GONE
+                viewBinding.serviceDetailTwo.visibility = View.GONE
                 viewBinding.serviceDetailThree.visibility = View.GONE
                 viewBinding.serviceDetailFour.visibility = View.GONE
                 viewBinding.serviceDetailFive.visibility = View.GONE
             }
-            1 -> {
+            2 -> {
                 viewBinding.serviceDetailTitleTv.text = "导向系统"
                 viewBinding.serviceDetailTitle1Tv.text = "（1）产品介绍"
                 viewBinding.serviceDetailTitle2Tv.text = "（2）应用案例"
@@ -89,23 +101,7 @@ class ServiceDetailActivity :
                     "         " + resources.getString(R.string.daoxiangxitong_one)
                 viewBinding.serviceDetailContent2Tv.text =
                     "         " + resources.getString(R.string.daoxiangxitong_two)
-                viewBinding.serviceDetailOne.setImageResource(R.mipmap.icon_service_six)
-                viewBinding.serviceDetailTwo.visibility = View.GONE
-                viewBinding.serviceDetailThree.visibility = View.GONE
-                viewBinding.serviceDetailFour.visibility = View.GONE
-                viewBinding.serviceDetailFive.visibility = View.GONE
-                viewBinding.serviceDetailContent3Tv.visibility = View.GONE
-                viewBinding.serviceDetailTitle3Tv.visibility = View.GONE
-            }
-            2 -> {
-                viewBinding.serviceDetailTitleTv.text = "技能鉴定"
-                viewBinding.serviceDetailTitle1Tv.text = "（1）业务介绍"
-                viewBinding.serviceDetailTitle2Tv.text = "（2）鉴定范围"
-                viewBinding.serviceDetailContent1Tv.text =
-                    "         " + resources.getString(R.string.jinengjianding_one)
-                viewBinding.serviceDetailContent2Tv.text =
-                    "         " + resources.getString(R.string.jinengjianding_two)
-                viewBinding.serviceDetailOne.setImageResource(R.mipmap.icon_service_seven)
+                viewBinding.serviceDetailOne.visibility = View.GONE
                 viewBinding.serviceDetailTwo.visibility = View.GONE
                 viewBinding.serviceDetailThree.visibility = View.GONE
                 viewBinding.serviceDetailFour.visibility = View.GONE
@@ -114,14 +110,14 @@ class ServiceDetailActivity :
                 viewBinding.serviceDetailTitle3Tv.visibility = View.GONE
             }
             3 -> {
-                viewBinding.serviceDetailTitleTv.text = "盾构机3D模拟平台"
-                viewBinding.serviceDetailTitle1Tv.text = "（1）产品简介"
-                viewBinding.serviceDetailTitle2Tv.text = "（2）主要功能"
+                viewBinding.serviceDetailTitleTv.text = "技能鉴定"
+                viewBinding.serviceDetailTitle1Tv.text = "（1）业务介绍"
+                viewBinding.serviceDetailTitle2Tv.text = "（2）鉴定范围"
                 viewBinding.serviceDetailContent1Tv.text =
-                    "         " + resources.getString(R.string.dungouji_one)
+                    "         " + resources.getString(R.string.jinengjianding_one)
                 viewBinding.serviceDetailContent2Tv.text =
-                    "         " + resources.getString(R.string.dungouji_two)
-                viewBinding.serviceDetailOne.setImageResource(R.mipmap.icon_service_eight)
+                    "         " + resources.getString(R.string.jinengjianding_two)
+                viewBinding.serviceDetailOne.visibility = View.GONE
                 viewBinding.serviceDetailTwo.visibility = View.GONE
                 viewBinding.serviceDetailThree.visibility = View.GONE
                 viewBinding.serviceDetailFour.visibility = View.GONE
@@ -130,6 +126,22 @@ class ServiceDetailActivity :
                 viewBinding.serviceDetailTitle3Tv.visibility = View.GONE
             }
             4 -> {
+                viewBinding.serviceDetailTitleTv.text = "盾构机3D模拟平台"
+                viewBinding.serviceDetailTitle1Tv.text = "（1）产品简介"
+                viewBinding.serviceDetailTitle2Tv.text = "（2）主要功能"
+                viewBinding.serviceDetailContent1Tv.text =
+                    "         " + resources.getString(R.string.dungouji_one)
+                viewBinding.serviceDetailContent2Tv.text =
+                    "         " + resources.getString(R.string.dungouji_two)
+                viewBinding.serviceDetailOne.visibility = View.GONE
+                viewBinding.serviceDetailTwo.visibility = View.GONE
+                viewBinding.serviceDetailThree.visibility = View.GONE
+                viewBinding.serviceDetailFour.visibility = View.GONE
+                viewBinding.serviceDetailFive.visibility = View.GONE
+                viewBinding.serviceDetailContent3Tv.visibility = View.GONE
+                viewBinding.serviceDetailTitle3Tv.visibility = View.GONE
+            }
+            5 -> {
                 viewBinding.serviceDetailTitleTv.text = "装备云平台"
                 viewBinding.serviceDetailTitle1Tv.text = "（1）产品简介"
                 viewBinding.serviceDetailTitle2Tv.text = "（2）主要功能"
@@ -140,7 +152,7 @@ class ServiceDetailActivity :
                     "         " + resources.getString(R.string.zhuangbeiyun_two)
                 viewBinding.serviceDetailContent3Tv.text =
                     "         " + resources.getString(R.string.zhuangbeiyun_three)
-                viewBinding.serviceDetailOne.setImageResource(R.mipmap.icon_service_ten)
+                viewBinding.serviceDetailOne.visibility = View.GONE
                 viewBinding.serviceDetailTwo.visibility = View.GONE
                 viewBinding.serviceDetailThree.visibility = View.GONE
                 viewBinding.serviceDetailFour.visibility = View.GONE

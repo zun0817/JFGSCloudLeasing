@@ -67,7 +67,7 @@ class MineDeviceItemViewDelegate :
             .into(holder.viewBinding.minedeviceItemImg)
         holder.viewBinding.minedeviceItemNameTv.text = item.value.deviceBrand
         holder.viewBinding.minedeviceItemTypeTv.text = item.value.deviceType
-        holder.viewBinding.minedeviceItemDiameterTv.text = "刀盘直径 " + item.value.cutterDiam + "mm"
+        holder.viewBinding.minedeviceItemDiameterTv.text = "开挖直径 " + item.value.cutterDiam + "mm"
     }
 
     class ViewHolder(val viewBinding: LayoutMinedeviceItemBinding) :

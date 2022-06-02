@@ -88,7 +88,7 @@
                     android:id="@+id/device_filter_cutter_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="刀盘直径(m)"
+                    android:text="开挖直径(mm)"
                     android:textColor="@color/black"
                     android:textSize="15sp"
                     android:textStyle="bold" />

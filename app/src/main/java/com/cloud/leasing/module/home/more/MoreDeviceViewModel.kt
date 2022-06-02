@@ -53,7 +53,7 @@ class MoreDeviceViewModel : BaseViewModel() {
     private fun getSearchParam(type: Int): RequestBody {
         val map = mutableMapOf<String, Any?>()
         map["pageNo"] = 1
-        map["pageSize"] = 50
+        map["pageSize"] = 100
         map["type"] = type
         val json = JSON.toJSONString(map)
         return json.toRequestBody("application/json".toMediaTypeOrNull())
